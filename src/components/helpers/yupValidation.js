@@ -8,7 +8,7 @@ export const contactYupSchema = object().shape({
 
 export const yupRegisterValidation = object().shape({
   name: string().trim().strict().required('Required !'),
-  email: string().email('Enter a Vaid Email').required('Email is Required'),
+  email: string().email('Enter a Valid Email').required('Email is Required'),
   password: string()
     .required('Enter Your Password')
     .min(8, 'Password Should be minimum 8 character')
@@ -19,7 +19,7 @@ export const yupRegisterValidation = object().shape({
 });
 
 export const yupLoginValidation = object().shape({
-  email: string().email('Enter a Vaid Email').required('Email is Required'),
+  email: string().email('Enter a Valid Email').required('Email is Required'),
   password: string()
     .required('Enter Your Password')
     .min(8, 'Password Should be minimum 8 character')

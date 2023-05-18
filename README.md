@@ -1,21 +1,52 @@
-# Contacts Book
+# Your Pets
 
->The "Contacts Book" project is a web application for storing and managing a list
-of contacts. It is built using React, Redux and React Router. Emotion and
-Material UI libraries are used for styling. Redux Toolkit is used for data
-handling and state management. Axios library is used for API communication. Yup,
-yup-phone libraries are used for form validation. React-Icons,
-React-Parallax-Mouse, and React-Hot-Toast libraries are used for improving user
-experience.
+This is the Your Pets project, a collaborative effort by our team. It is a web
+application built with React, Redux, and other libraries to create a platform
+for pet lovers.
+
+## Features
+
+- View a collection of pets available for adoption.
+- Search and filter pets based on various criteria.
+- Create an account and log in to manage your favorite pets.
+- Submit adoption requests for pets you're interested in.
+- Get notifications and updates on your adoption requests.
+- And more!
+
+## Technologies Used
+
+- React
+- Redux
+- React Router DOM
+- Redux Toolkit
+- Axios
+- Formik
+- Yup
+- Styled Components
+- React Icons
+- React Loader Spinner
+- React Parallax Mouse
+- React Hot Toast
+- Redux Persist
+- PropTypes
+- Testing Library (Jest, React, User Event)
+- Web Vitals
 
 ## Installation
-To get started with the Contacts Book project, follow these steps:
 
-1. Clone this repository to your local machine using git clone https://github.com/haber-viacheslav/goit-react-hw-08-phonebook.git
-2. Navigate to the project directory using cd goit-react-hw-08-phonebook
-3. Install the necessary dependencies using npm install
-4. Start the development server using npm start
+1. Clone this repository to your local machine using git clone
+   https://github.com/haber-viacheslav/yourpet-frontend.git
+2. Navigate to the project directory using cd yourpet-frontend
+3. Run `npm install` to install the dependencies.
+4. Run `npm start` to start the development server.
+5. Open `http://localhost:3000` in your web browser.
+
 ## Usage
->Once the development server is running, you can access the Contacts Book application by navigating to [http://localhost:3000](http://localhost:3000) in your web browser.   From there, you can add, edit, and delete contacts as needed.
+
+> Once the development server is running, you can access the Your Pet
+> application by navigating to [http://localhost:3000](http://localhost:3000) in
+> your web browser. From there, you can add, edit, and delete pets as needed.
+
 ## Live page
->Follow this [Link](https://haber-viacheslav.github.io/goit-react-hw-08-phonebook/)
+
+> Follow this [Link](https://haber-viacheslav.github.io/yourpet-frontend/)

@@ -4,7 +4,6 @@ body {
   font-family: sans-serif;
   line-height: 1.5;
   margin: 0;
-  /* background-color: #ffffff26; */
 }
 h1,
 h2,
@@ -25,7 +24,4 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
-}
-td {
-  outline: 1px solid grey;
 }
