@@ -1,6 +1,7 @@
+
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import {setAuthHeader, clearAuthHeader}  from './utility/authUtility';
+import { setAuthHeader, clearAuthHeader } from './utility/authUtility';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
 
@@ -60,3 +61,4 @@ export const userCurrent = createAsyncThunk(
     }
   }
 );
+

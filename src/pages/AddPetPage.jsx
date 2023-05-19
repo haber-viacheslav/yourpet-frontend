@@ -1,9 +1,6 @@
-const AddPetPage = () => {
-  return (
-    <>
-      <h2>Add pet</h2>
-    </>
-  );
-};
+import { AddPetForm } from '../components/AddPetForm/AddPetForm';
 
+export const AddPetPage = () => {
+  return <AddPetForm />;
+};
 export default AddPetPage;
