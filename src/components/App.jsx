@@ -32,7 +32,7 @@ export const App = () => {
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<MainPage />} />
         <Route path="login" element={<LoginPage />} />
-        <Route path="register" component={<Register />} />
+        <Route path="register" element={<Register />} />
         <Route path="user" element={<UserPage />} />
         <Route path="notices" element={<NoticesPage />} />
         <Route path="friends" element={<OurFriendsPage />} />
