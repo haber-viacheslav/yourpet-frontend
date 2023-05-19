@@ -36,12 +36,12 @@ export const RegisterForm = () => {
 
   return (
     <>
-      <Form >
-
-        {/* <Button>
-          Register
-        </Button> */}
-      </Form>
+      <form>
+        <label />
+        <input type="text" />
+        <input type="text" />
+        <input type="text" />
+      </form>
     </>
   );
 };
