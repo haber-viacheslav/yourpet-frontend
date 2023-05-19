@@ -26,4 +26,9 @@ export const theme = Object.freeze({
     mainShadow: '3px 8px 14px rgba(136, 198, 253, 0.19)',
     secondShadow: '7px 13px 14px rgba(116, 177, 232, 0.24)',
   },
+  breakpoints: {
+    sm: '320px',
+    md: '768px',
+    lg: '1280px',
+  },
 });
