@@ -7,8 +7,10 @@ export const AuthNavMenu = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  @media screen {
-    
+
+  @media screen and (min-width: 767px) {
+    flex-direction: row;
+    justify-content: flex-end;
   }
 `;
 
@@ -41,4 +43,8 @@ export const LoginLink = styled(NavLink)`
   color: ${theme.colors.white};
   background-color: ${theme.colors.orange};
   border-radius: 40px;
+
+  @media screen and (min-width: 767px) {
+    margin-top: 0;
+  }
 `;
