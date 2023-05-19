@@ -1,6 +1,15 @@
+import { useEffect } from 'react';
+import { userCurrent } from 'redux/auth/authService';
+import { useAuth } from 'hooks/useAuth';
+import { useDispatch } from 'react-redux';
+// import { RestrictedRoute } from './routes/RestrictedRoute';
+// import { PrivateRoute } from './routes/PrivateRoute';
+
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { lazy } from 'react';
+
+
 const MainPage = lazy(() => import('../pages/MainPage'));
 const Register = lazy(() => import('../pages/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage'));
@@ -11,23 +20,17 @@ const OurFriendsPage = lazy(() => import('../pages/OurFriendsPage'));
 const AddPetPage = lazy(() => import('../pages/AddPetPage'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 
-// import { useEffect } from 'react';
-// import { userCurrent } from 'redux/auth/authService';
-// import { useAuth } from 'hooks/useAuth';
-// import { useDispatch } from 'react-redux';
-// import { RestrictedRoute } from './routes/RestrictedRoute';
-// import { PrivateRoute } from './routes/PrivateRoute';
 
 export const App = () => {
-  // const dispatch = useDispatch();
-  // const { isRefreshing } = useAuth();
+  const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
 
-  // useEffect(() => {
-  //   dispatch(userCurrent());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(userCurrent());
+  }, [dispatch]);
 
   return (
-    // !isRefreshing &&
+    !isRefreshing &&
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<MainPage />} />
