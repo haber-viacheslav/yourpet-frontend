@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import { userCurrent } from 'redux/auth/authService';
-import { useAuth } from 'hooks/useAuth';
-import { useDispatch } from 'react-redux';
+// import { useEffect } from 'react';
+// import { userCurrent } from 'redux/auth/authService';
+// import { useAuth } from 'hooks/useAuth';
+// import { useDispatch } from 'react-redux';
 // import { RestrictedRoute } from './routes/RestrictedRoute';
 // import { PrivateRoute } from './routes/PrivateRoute';
 
@@ -22,15 +22,15 @@ const NotFound = lazy(() => import('../pages/NotFound'));
 
 
 export const App = () => {
-  const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
+  // const dispatch = useDispatch();
+  // const { isRefreshing } = useAuth();
 
-  useEffect(() => {
-    dispatch(userCurrent());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(userCurrent());
+  // }, [dispatch]);
 
   return (
-    !isRefreshing &&
+    // !isRefreshing &&
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<MainPage />} />
