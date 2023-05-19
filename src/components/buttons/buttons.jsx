@@ -1,4 +1,5 @@
 import icons from 'images/icons.svg';
+
 import {
   BtnLM,
   BigBtnFavor,
@@ -14,6 +15,8 @@ import {
   AddCurcle,
   Heart,
 } from '../buttons/buttons.styled';
+
+console.log('ICONS', icons);
 // componemnts svg
 
 const SvgBtnPawprint = () => {
@@ -26,12 +29,12 @@ const SvgBtnPawprint = () => {
 
 const SvgBtnAdd = () => {
   return (
-    <Add width={10} height={10}>
+    <Add width={24} height={24}>
       <use href={icons + '#icon-plus-small'}></use>
+     
     </Add>
   );
 };
-
 const SvgBtnAddCurcle = () => {
   return (
     <AddCurcle width={16} height={16}>
@@ -51,7 +54,7 @@ const SvgBtnCancel = () => {
 const SvgBtnHeart = () => {
   return (
     <Heart width={18} height={16}>
-      <use href={icons + '#icon-heart'}></use>
+      <use href={icons + '#icon-location'}></use>
     </Heart>
   );
 };
@@ -84,7 +87,6 @@ export const BtnLearnMoreFavorite = () => {
     </>
   );
 };
-
 export const BtnDone = () => {
   return (
     <>
@@ -105,7 +107,6 @@ export const BtnNext = () => {
     </>
   );
 };
-
 export const BtnCancel = () => {
   return (
     <>
@@ -116,7 +117,6 @@ export const BtnCancel = () => {
     </>
   );
 };
-
 export const BtnBack = () => {
   return (
     <>
@@ -147,7 +147,6 @@ export const BtnAddPetCurcle = () => {
     </>
   );
 };
-
 export const BtnAddFavorite = () => {
   return (
     <BtnHeart type="button">
@@ -155,7 +154,6 @@ export const BtnAddFavorite = () => {
     </BtnHeart>
   );
 };
-
 export const BtnCongrats = () => {
   return (
     <>
@@ -166,3 +164,4 @@ export const BtnCongrats = () => {
     </>
   );
 };
+

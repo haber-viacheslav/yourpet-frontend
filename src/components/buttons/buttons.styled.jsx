@@ -43,16 +43,8 @@ export const BigBtnFavor = styled.button`
   :hover,
   :focus {
     background: ${theme.colors.blueGradient};
-  }
+  };
 
-  /* @‌media screen and (min-width: ${props => props.theme.breakpoints.md}) {
-    margin-bottom: 32px;
-    padding: 21px 32px;
-  }
-  @‌media screen and (min-width: ${props => props.theme.breakpoints.lg}) {
-    margin-bottom: 50px;
-    padding: 21px 40px;
-  } */
 `;
 export const Pawprint = styled.svg`
   fill: ${theme.colors.white};
@@ -82,7 +74,7 @@ export const BtnCancelArrow = styled.button`
   } */
 `;
 export const Cancel = styled.svg`
-  fill: ${theme.colors.blue};
+  stroke: ${theme.colors.blue};
   margin-right: 16px;
 `;
 export const BtnBackArrow = styled.button`
@@ -146,11 +138,11 @@ export const BtnAddCurcle = styled.button`
   }
 `;
 export const Add = styled.svg`
-  fill: ${theme.colors.white};
+  stroke: ${theme.colors.white};
   margin-right: 15px;
 `;
 export const AddCurcle = styled.svg`
-  fill: ${theme.colors.white};
+  stroke: ${theme.colors.white};
   margin-bottom: 8px;
 `;
 export const BtnHeart = styled.button`
@@ -168,7 +160,8 @@ export const BtnHeart = styled.button`
   border: none;
 `;
 export const Heart = styled.svg`
-  fill: ${theme.colors.blue};
+  fill: currentColor;
+  
 `;
 export const BtnRegLog = styled.button`
   height: 48px;
