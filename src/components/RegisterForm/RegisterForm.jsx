@@ -1,11 +1,11 @@
 import React from 'react';
 // import { useFormik } from 'formik';
 // import * as yup from 'yup';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 // import { register } from 'redux/auth/operations';
 // import { useDispatch } from 'react-redux';
-import { Form, Title } from './RegisterForm.styled';
-import TextField from '@mui/material/TextField';
+// import { Form, Input } from './RegisterForm.styled';
+// import TextField from '@mui/material/TextField';
 
 // const validationSchema = yup.object({
 //   name: yup.string('Enter your Name').required('Name is required'),
@@ -37,13 +37,10 @@ export const RegisterForm = () => {
   return (
     <>
       <Form >
-        <Title>Register</Title>
-        <TextField/>
-        <TextField/>
-        <TextField/>
-        <Button>
+
+        {/* <Button>
           Register
-        </Button>
+        </Button> */}
       </Form>
     </>
   );
