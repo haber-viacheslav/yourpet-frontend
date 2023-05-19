@@ -11,7 +11,6 @@ export const AuthNav = () => {
       <RegisterLink to="/register" end>
         Registration
       </RegisterLink>
-      </RegisterLink>
     </AuthNavMenu>
   );
 };
