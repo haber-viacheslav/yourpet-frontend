@@ -27,7 +27,6 @@ export const RegisterLink = styled(NavLink)`
   background-color: transparent;
   border: 2px solid ${theme.colors.orange};
   border-radius: 40px;
-
 `;
 
 export const LoginLink = styled(NavLink)`
@@ -47,4 +46,9 @@ export const LoginLink = styled(NavLink)`
   @media screen and (min-width: 767px) {
     margin-top: 0;
   }
+`;
+export const SVG = styled.svg`
+  margin-left: 8px;
+  fill: currentColor;
+  stroke: currentColor;
 `;
