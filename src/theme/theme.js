@@ -20,6 +20,7 @@ export const theme = Object.freeze({
     green: '#00C3AD;',
     red: '#F43F5E',
     backdropColor: ' #61616199',
+    grey: '#888888',
   },
   shadows: {
     mainShadow: '3px 8px 14px rgba(136, 198, 253, 0.19)',
