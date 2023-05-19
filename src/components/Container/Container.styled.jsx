@@ -8,19 +8,19 @@ export const StyledContainer = styled.div`
 
   margin: 0 auto; 
 
-  @media screen & ${props => props.theme.media.mobile} {
+  @media ${props => props.theme.media.mobile} {
   width: 320px;
   padding: 20px 20px 100px;
   padding-bottom: ${props => props.bottom || '100px'};
   }
 
-  @media screen & ${props => props.theme.media.tablet} {
+  @media ${props => props.theme.media.tablet} {
     width: 768px;
     padding: 24px 32px 192px;
     padding-bottom: ${props => props.bottom || '192px'};
   }
 
-  @media screen & ${props => props.theme.media.desktop} {
+  @media ${props => props.theme.media.desktop} {
     width: 1200px;
     padding: 20px 16px 103px;
     padding-bottom: ${props => props.bottom || '103px'};
