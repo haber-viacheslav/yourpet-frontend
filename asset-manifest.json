@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/yourpet-frontend/static/css/main.d54c442b.css",
-    "main.js": "/yourpet-frontend/static/js/main.6c9ff5cc.js",
+    "main.js": "/yourpet-frontend/static/js/main.5302bc04.js",
     "static/js/727.d1808665.chunk.js": "/yourpet-frontend/static/js/727.d1808665.chunk.js",
     "static/js/432.ca5650ec.chunk.js": "/yourpet-frontend/static/js/432.ca5650ec.chunk.js",
     "static/js/637.0700877b.chunk.js": "/yourpet-frontend/static/js/637.0700877b.chunk.js",
     "static/js/918.25745065.chunk.js": "/yourpet-frontend/static/js/918.25745065.chunk.js",
-    "static/js/150.86480764.chunk.js": "/yourpet-frontend/static/js/150.86480764.chunk.js",
+    "static/js/150.e0adcdd5.chunk.js": "/yourpet-frontend/static/js/150.e0adcdd5.chunk.js",
     "static/js/693.a3415c73.chunk.js": "/yourpet-frontend/static/js/693.a3415c73.chunk.js",
     "static/js/806.f786822c.chunk.js": "/yourpet-frontend/static/js/806.f786822c.chunk.js",
     "static/js/426.e8f84abf.chunk.js": "/yourpet-frontend/static/js/426.e8f84abf.chunk.js",
     "static/js/805.f0b6fc58.chunk.js": "/yourpet-frontend/static/js/805.f0b6fc58.chunk.js",
     "index.html": "/yourpet-frontend/index.html",
     "main.d54c442b.css.map": "/yourpet-frontend/static/css/main.d54c442b.css.map",
-    "main.6c9ff5cc.js.map": "/yourpet-frontend/static/js/main.6c9ff5cc.js.map",
+    "main.5302bc04.js.map": "/yourpet-frontend/static/js/main.5302bc04.js.map",
     "727.d1808665.chunk.js.map": "/yourpet-frontend/static/js/727.d1808665.chunk.js.map",
     "432.ca5650ec.chunk.js.map": "/yourpet-frontend/static/js/432.ca5650ec.chunk.js.map",
     "637.0700877b.chunk.js.map": "/yourpet-frontend/static/js/637.0700877b.chunk.js.map",
     "918.25745065.chunk.js.map": "/yourpet-frontend/static/js/918.25745065.chunk.js.map",
-    "150.86480764.chunk.js.map": "/yourpet-frontend/static/js/150.86480764.chunk.js.map",
+    "150.e0adcdd5.chunk.js.map": "/yourpet-frontend/static/js/150.e0adcdd5.chunk.js.map",
     "693.a3415c73.chunk.js.map": "/yourpet-frontend/static/js/693.a3415c73.chunk.js.map",
     "806.f786822c.chunk.js.map": "/yourpet-frontend/static/js/806.f786822c.chunk.js.map",
     "426.e8f84abf.chunk.js.map": "/yourpet-frontend/static/js/426.e8f84abf.chunk.js.map",
@@ -26,6 +26,6 @@
   },
   "entrypoints": [
     "static/css/main.d54c442b.css",
-    "static/js/main.6c9ff5cc.js"
+    "static/js/main.5302bc04.js"
   ]
 }
