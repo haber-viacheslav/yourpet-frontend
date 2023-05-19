@@ -109,10 +109,9 @@ export const Button = styled.button`
   }
 
   &:disabled {
-    color: #bdbdbd;
+    /* color: #bdbdbd; */
     background-color: #4e4039;
     border: 2px solid #bdbdbd;
-
     cursor: auto;
   }
 `;

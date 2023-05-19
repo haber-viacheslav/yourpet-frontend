@@ -190,28 +190,8 @@ export const AddPetForm = () => {
   );
 };
 
-// import { useState } from 'react';
-// import { RadioBtn } from './RadioBtn/RadioBtn';
-// import { InputField } from './InputField/InputField';
-// import { Title } from './Title/Title';
-// import { StageIndicator } from './StageIndicator/StageIndicator';
-// import { SexIcon } from './SexIcon/SexIcon';
 
-// import { Formik } from 'formik';
-// import * as yup from 'yup';
-// import {
-//   LoginFormStyled,
-//   Button,
-//   Wrapper,
-//   GroupWrapper,
-//   ExtraWrapper,
-//   CommentText,
-//   CommentsLabel,
-//   SexWrapper,
-//   GroupTitle,
-// } from './AddPetForm.styled';
 
-// console.log(SexIcon);
 
 // const formTempValues = localStorage.getItem('formValues');
 // const initialsValues = {
