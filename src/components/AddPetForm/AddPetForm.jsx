@@ -3,7 +3,8 @@ import { RadioBtn } from './RadioBtn/RadioBtn';
 import { InputField } from './InputField/InputField';
 import { Title } from './Title/Title';
 import { StageIndicator } from './StageIndicator/StageIndicator';
-// import { SexIcon } from './SexIcon/SexIcon';
+
+import { SexIcon } from './AddPetForm.styled';
 
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -112,14 +113,17 @@ export const AddPetForm = () => {
                 <GroupWrapper role="group" aria-labelledby="sex">
                   <GroupTitle id="sex">The sex</GroupTitle>
                   <SexWrapper>
-                    {sexes.map(option => {
+                    {sexes.map((option, i) => {
+                      const iconLabel = i === 0 ? '#icon-female' : '#icon-male';
                       return (
                         <RadioBtn
                           key={option}
                           value={option}
                           name="sex"
                           picked={sex}
-                        />
+                        >
+                          <SexIcon iconName={iconLabel} />
+                        </RadioBtn>
                       );
                     })}
                   </SexWrapper>
@@ -162,7 +166,6 @@ export const AddPetForm = () => {
                     placeholder={'Type price'}
                   />
                 </InputWrapper>
-
                 <CommentsLabel>
                   Comments
                   <CommentText
@@ -189,9 +192,6 @@ export const AddPetForm = () => {
     </ExtraWrapper>
   );
 };
-
-
-
 
 // const formTempValues = localStorage.getItem('formValues');
 // const initialsValues = {

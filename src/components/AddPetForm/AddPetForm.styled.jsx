@@ -1,5 +1,11 @@
 import styled from 'styled-components';
+import { ReactComponent as Female } from '../../images/icons.svg#icon-female';
+
 import { Form, Field } from 'formik';
+
+export const SexIcon = styled(Female)`
+  fill: red;
+`;
 
 export const ExtraWrapper = styled.div`
   display: flex;
