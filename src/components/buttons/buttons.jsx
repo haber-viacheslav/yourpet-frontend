@@ -9,14 +9,15 @@ import {
   BtnAdd,
   BtnHeart,
   BtnRegLog,
-  Cancel,
+  BtnFilter,
+
+  ArrowLeft,
   Pawprint,
   Add,
   AddCurcle,
-  Heart,
+  Heart, Filter
 } from '../buttons/buttons.styled';
 
-console.log('ICONS', icons);
 // componemnts svg
 
 const SvgBtnPawprint = () => {
@@ -26,38 +27,45 @@ const SvgBtnPawprint = () => {
     </Pawprint>
   );
 };
-
 const SvgBtnAdd = () => {
   return (
     <Add width={24} height={24}>
       <use href={icons + '#icon-plus-small'}></use>
-     
     </Add>
   );
 };
 const SvgBtnAddCurcle = () => {
   return (
-    <AddCurcle width={16} height={16}>
+    <AddCurcle width={24} height={24}>
       <use href={icons + '#icon-plus-small'}></use>
     </AddCurcle>
   );
 };
-
 const SvgBtnCancel = () => {
   return (
-    <Cancel width={16} height={12}>
+    <ArrowLeft width={24} height={24}>
       <use href={icons + '#icon-arrow-left'}></use>
-    </Cancel>
+    </ArrowLeft>
   );
 };
-
 const SvgBtnHeart = () => {
   return (
-    <Heart width={18} height={16}>
-      <use href={icons + '#icon-location'}></use>
+    <Heart width={24} height={24}>
+      <use href={icons + '#icon-heart'}></use>
     </Heart>
   );
 };
+const SvgBtnFilter = () => {
+  return (
+    <Filter width={24} height={24}>
+      <use href={icons + '#icon-filters-2'}></use>
+    </Filter>
+  );
+};
+
+
+
+
 
 // components btn
 export const BtnLearnMore = () => {
@@ -74,6 +82,12 @@ export const BtnAuth = () => {
       <BtnRegLog type="button">TEXT</BtnRegLog>
     </>
   );
+};
+
+export const BtnFilters = () => {
+  return (
+    <BtnFilter type="button">Filter <SvgBtnFilter/></BtnFilter> 
+  )
 };
 
 // components btn + svg
@@ -164,4 +178,3 @@ export const BtnCongrats = () => {
     </>
   );
 };
-

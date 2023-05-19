@@ -73,9 +73,9 @@ export const BtnCancelArrow = styled.button`
     background: ${theme.colors.blueGradient};
   } */
 `;
-export const Cancel = styled.svg`
+export const ArrowLeft = styled.svg`
   stroke: ${theme.colors.blue};
-  margin-right: 16px;
+  margin-right: 12px;
 `;
 export const BtnBackArrow = styled.button`
   height: 40px;
@@ -119,10 +119,10 @@ export const BtnAddCurcle = styled.button`
   width: 80px;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
-  align-content: center;
-  flex-direction: column;
-  align-items: stretch;
+  align-items: center;
+  padding-top: 18px;
   padding-bottom: 16px;
   border-radius: 40px;
   font-size: 12px;
@@ -160,7 +160,11 @@ export const BtnHeart = styled.button`
   border: none;
 `;
 export const Heart = styled.svg`
-  fill: currentColor;
+  fill: none;
+  stroke: ${theme.colors.blue};
+  :active{
+    fill: ${theme.colors.blue};    
+  }
   
 `;
 export const BtnRegLog = styled.button`
@@ -185,5 +189,34 @@ export const BtnRegLog = styled.button`
   :hover,
   :focus {
     background: ${theme.colors.blueGradient};
+  }
+`;
+export const BtnFilter = styled.button`
+  height: 40px;
+  width: 129px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  border-radius: 40px;
+  border: 2px solid ${theme.colors.blue};
+  color: ${theme.colors.blue};
+  background-color: ${theme.colors.white};
+  font-size: 16px;
+  font-family: ${theme.fonts.main};
+  font-weight: ${theme.fontWeights.bold};
+  :hover,
+  :focus {
+    color: ${theme.colors.white};
+    border: none;
+    background: ${theme.colors.blueGradient};
+  }
+`
+export const Filter = styled.svg`
+  fill: none;
+  stroke: ${theme.colors.blue};
+  :hover,
+  :focus{
+    stroke: ${theme.colors.white};
   }
 `;
