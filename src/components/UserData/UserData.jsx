@@ -1,14 +1,11 @@
-import { StyledInput, StyledLabel } from './UserData.styled';
-import  UserDataItem  from 'components/UserDataItem';
+// import { StyledInput, StyledLabel } from './UserData.styled';
+import { UserDataItem } from '../UserDataItem/UserDataItem';
 
-
-const UserData = () => {
+export const UserData = () => {
   return (
     <>
       <h2>UserData Profile will be here</h2>
-      <UserDataItem/>
+      <UserDataItem />
     </>
   );
 };
-
-export default UserData;
