@@ -76,6 +76,7 @@ export const Input = styled.input`
   border: 1px solid #54adff;
   border-radius: 40px;
   cursor: pointer;
+  outline: none;
 `;
 
 export const Button = styled.button`
