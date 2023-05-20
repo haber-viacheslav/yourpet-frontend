@@ -26,6 +26,7 @@ export const Form = styled.form`
 `;
 
 export const Box = styled.div`
+position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -63,6 +64,7 @@ export const Title = styled.h2`
 `;
 
 export const Input = styled.input`
+
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -115,10 +117,25 @@ export const Text = styled.p`
 export const Span = styled.span`
   margin-left: 3px;
 `;
+
+
 export const Link = styled(NavLink)`
   /* text-decoration: none; */
   color: #54adff;
   line-height: 16px;
   /* border-bottom: 1px solid currentColor;
   line-height: 0.8; */
+`;
+
+export const IconSpan = styled.span`
+  position: absolute;
+  cursor: pointer;
+  top: 92px;
+  right: 15px;
+`;
+export const IconSpan1 = styled.span`
+  position: absolute;
+  cursor: pointer;
+  top: 172px;
+  right: 15px;
 `;

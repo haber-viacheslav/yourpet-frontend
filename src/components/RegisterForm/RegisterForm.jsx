@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Wrapper, Form } from './RegisterForm.styled';
+import { Wrapper, Form, IconSpan, IconSpan1 } from './RegisterForm.styled';
 import {
   Input,
   Title,
@@ -44,13 +44,13 @@ export const RegisterForm = () => {
         <Box>
           <Input type="text" name="email" placeholder="Email" />
           <Input type={typePass} name="password" placeholder="Password" />
-          <span onClick={togglePassInput}>{toggleIconPass}</span>
+          <IconSpan onClick={togglePassInput}>{toggleIconPass}</IconSpan>
           <Input
             type={typeCofirm}
             name="confirm"
             placeholder="Confirm password"
           />
-          <span onClick={toggleConfirmInput}>{toggleIconConfirm}</span>
+          <IconSpan1 onClick={toggleConfirmInput}>{toggleIconConfirm}</IconSpan1>
         </Box>
         <Button>Registation</Button>
         <Text>
