@@ -65,6 +65,14 @@ export const InputWrapper = styled.div`
   gap: 24px;
 `;
 
+export const BtnWrappper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
+
 export const LoginFormStyled = styled(Form)`
   display: flex;
   flex-direction: column;

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { RadioBtn } from './RadioBtn/RadioBtn';
 import { InputField } from './InputField/InputField';
 import { UploadInput } from './UploadInput/UploadInput';
+import { BtnNext, BtnCancel, BtnBack, BtnDone } from '../buttons/buttons';
 import { Title } from './Title/Title';
 import { StageIndicator } from './StageIndicator/StageIndicator';
 import { SexIcon } from './Icon/Icon';
@@ -10,10 +11,10 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import {
   LoginFormStyled,
-  Button,
   Wrapper,
   InputWrapper,
   GroupWrapper,
+  BtnWrappper,
   ExtraWrapper,
   CommentText,
   CommentsLabel,
@@ -93,14 +94,22 @@ const initialsStage = formTempStage ? Number(JSON.parse(formTempStage)) : 1;
 export const AddPetForm = () => {
   const [stage, SetStage] = useState(() => initialsStage);
 
-  const handleOnNextClick = (values, validateField) => {
+  const handleOnNextClick = (values, validateField, errors) => {
+    console.log(errors);
     const { category } = values;
     if (stage === 2 && category === 'your pet') {
       validateField('name');
     }
+    console.log(stage);
     SetStage(prevStage => prevStage + 1);
     localStorage.setItem('formValues', JSON.stringify(values));
     localStorage.setItem('stage', JSON.stringify(stage + 1));
+  };
+
+  const handleOnBackClick = () => {
+    console.log(11111);
+    SetStage(prevStage => prevStage - 1);
+    localStorage.setItem('stage', JSON.stringify(stage - 1));
   };
 
   const handleSubmitForm = async (values, { resetForm }) => {
@@ -116,7 +125,7 @@ export const AddPetForm = () => {
         onSubmit={handleSubmitForm}
         validationSchema={FormSchema}
       >
-        {({ values, validateField }) => {
+        {({ values, validateField, errors }) => {
           const { category, sex } = values;
           return (
             <Wrapper>
@@ -173,7 +182,6 @@ export const AddPetForm = () => {
                       name="title"
                       label={'Title of add'}
                       placeholder={'Title of add'}
-                      // onBlur={() => validateField('title')}
                     />
                   )}
 
@@ -233,25 +241,35 @@ export const AddPetForm = () => {
                   </CommentsLabel>
                 )}
                 {stage !== 3 && (
-                  <Button
-                    type="button"
-                    onClick={() => handleOnNextClick(values, validateField)}
-                  >
-                    Next
-                  </Button>
-                )}
-                {stage === 3 && (
-                  <Button
-                    type="submit"
-                    // disabled={
-                    //   (props.values.email !== '') & (props.values.password !== '')
-                    //     ? false
-                    //     : true
-                    // }
-                  >
-                    Done
-                  </Button>
-                )}
+                  <BtnWrappper>
+                    <BtnNext
+                      onClick={() =>
+                        handleOnNextClick(values, validateField, errors)
+                      }
+                    />
+                    {stage === 1 && <BtnCancel />}
+                    {stage === 2 && <BtnBack onClick={handleOnBackClick} />}
+                  </BtnWrappper>
+                )}{' '}
+                {
+                  stage === 3 && (
+                    <BtnWrappper>
+                      <BtnDone />
+                      <BtnBack onClick={handleOnBackClick} />
+                    </BtnWrappper>
+                  )
+
+                  // <Button
+                  //   type="submit"
+                  //   disabled={
+                  //     (props.values.email !== '') & (props.values.password !== '')
+                  //       ? false
+                  //       : true
+                  //   }
+                  // >
+                  //   Done
+                  // </Button>
+                }
               </LoginFormStyled>
             </Wrapper>
           );
