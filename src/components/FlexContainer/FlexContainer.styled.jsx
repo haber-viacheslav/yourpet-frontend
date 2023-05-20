@@ -2,12 +2,9 @@ import styled from 'styled-components';
 
 export const StyledFlexContainer = styled.div`
   display: flex;
-  flex-direction: ${props => props.direction || 'column'};
-  align-item: ${props => props.align || 'stretch'};
-  justify-content: ${props => props.justify || 'stretch'};
-
-  margin: 0; 
-
-  outline: ${props => props.outline || 'none'};
-}
+  flex-direction: ${props => props.flexDirection || 'row'};
+  align-items: ${props => props.alignItems || 'center'};
+  justify-content: ${props => props.justifyContent || 'center'};
+  flex-wrap: ${props => props.flexWrap || 'nowrap'};
+  outline: ${props => props.outLine || 'none'};
 `;
