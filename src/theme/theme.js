@@ -20,21 +20,19 @@ export const theme = Object.freeze({
     green: '#00C3AD;',
     red: '#F43F5E',
     backdropColor: ' #61616199',
-    black: "#111111",
+    black: '#111111',
     grey: '#888888',
+    transparent: 'transparent',
   },
   shadows: {
     mainShadow: '3px 8px 14px rgba(136, 198, 253, 0.19)',
     secondShadow: '7px 13px 14px rgba(116, 177, 232, 0.24)',
   },
-  breakpoints: {
-    sm: '320px',
-    md: '768px',
-    lg: '1280px',
-  },
   media: {
-    mobile: '(min-width: 320px) and (max-width: 767px)',
-    tablet: '(min-width: 768px) and (max-width: 1279px)',
-    desktop: '(min-width: 1280px)',
-  }
+    sm: '(min-width: 320px)',
+    md: '(min-width: 768px)',
+    lg: '(min-width: 1280px)',
+    smToMd: '(min-width: 320px) and (max-width: 761px)',
+    mdToLg: '(min-width: 768px) and (max-width: 1279px)',
+  },
 });
