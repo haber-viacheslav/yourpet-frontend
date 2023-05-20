@@ -43,8 +43,7 @@ export const BigBtnFavor = styled.button`
   :hover,
   :focus {
     background: ${theme.colors.blueGradient};
-  };
-
+  }
 `;
 export const Pawprint = styled.svg`
   fill: ${theme.colors.white};
@@ -162,10 +161,10 @@ export const BtnHeart = styled.button`
 export const Heart = styled.svg`
   fill: none;
   stroke: ${theme.colors.blue};
-  :active{
-    fill: ${theme.colors.blue};    
+  :hover,
+  :active {
+    fill: ${theme.colors.blue};
   }
-  
 `;
 export const BtnRegLog = styled.button`
   height: 48px;
@@ -211,12 +210,137 @@ export const BtnFilter = styled.button`
     border: none;
     background: ${theme.colors.blueGradient};
   }
-`
+`;
 export const Filter = styled.svg`
   fill: none;
   stroke: ${theme.colors.blue};
   :hover,
-  :focus{
+  :focus {
     stroke: ${theme.colors.white};
   }
+`;
+export const BtnOption = styled.button`
+  height: 35px;
+  border-radius: 40px;
+  padding: 8px 16px;
+  background-color: ${theme.colors.blueLight};
+  border: none;
+  color: ${theme.colors.blue};
+  font-weight: ${theme.fontWeights.medium};
+  font-size: 14px;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  :hover,
+  :focus,
+  :active {
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.blue};
+  }
+`;
+export const BtnToHeart = styled.button`
+  height: 40px;
+  width: 129px;
+  border-radius: 40px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${theme.colors.blue};
+  font-size: 16px;
+  font-family: ${theme.fonts.main};
+  font-weight: ${theme.fontWeights.bold};
+  color: ${theme.colors.white};
+  border: none;
+  :hover,
+  :focus {
+    background: ${theme.colors.blueGradient};
+  }
+`;
+export const ToHeart = styled.svg`
+  fill: none;
+  stroke: ${theme.colors.white};
+  margin-left: 11px;
+`;
+export const BtnContact = styled.button`
+  height: 40px;
+  width: 129px;
+  border-radius: 40px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${theme.colors.white};
+  font-size: 16px;
+  font-family: ${theme.fonts.main};
+  font-weight: ${theme.fontWeights.bold};
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+  color: ${theme.colors.blue};
+  border: 2px solid ${theme.colors.blue};
+`;
+export const BtnCity = styled.button`
+  height: 28px;
+  width: 80px;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: ${theme.colors.blueLight};
+  border: none;
+  color: ${theme.colors.black};
+  :hover,
+  :focus,
+  :active {
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.blue};
+  }
+`;
+export const City = styled.svg`
+  fill: none;
+  stroke: ${theme.colors.blue};
+  margin-right: 8px;
+  :hover,
+  :focus {
+    stroke: ${theme.colors.white};
+  }
+`;
+
+export const YesBtn = styled.button`
+  height: 40px;
+  width: 129px;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 16px;
+  font-family: ${theme.fonts.main};
+  font-weight: ${theme.fontWeights.bold};
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+  background-color: ${theme.colors.blue};
+  border: none;
+  color: ${theme.colors.white};
+  :hover,
+  :focus,
+  :active {
+    background: ${theme.colors.blueGradient};
+  }
+`;
+
+export const Delete = styled.svg`
+  fill: none;
+  stroke: ${theme.colors.white};
+  margin-left: 8px;
+`;
+
+export const Logout = styled.svg`
+  fill: none;
+  stroke: ${theme.colors.white};
+  margin-left: 11px;
 `;
