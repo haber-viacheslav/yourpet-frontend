@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Wrapper, Form, IconSpan, IconSpan1 } from './RegisterForm.styled';
+import { Wrapper, Form, IconSpan, IconSpan1, SVG } from './RegisterForm.styled';
 import {
   Input,
   Title,
@@ -10,30 +10,47 @@ import {
   Span,
   Link,
 } from './RegisterForm.styled';
+import icons from 'images/icons.svg';
+
+const iconClose = () => {
+  return (
+    <SVG width={24} height={24}>
+      <use href={icons + '#icon-eye-closed'}></use>
+    </SVG>
+  );
+};
+
+const iconOpen = () => {
+  return (
+    <SVG width={24} height={24}>
+      <use href={icons + '#icon-eye-open'}></use>
+    </SVG>
+  );
+};
 
 export const RegisterForm = () => {
-  const [toggleIconPass, setToggleIconPass] = useState('☠️');
-  const [toggleIconConfirm, setToggleIconConfirm] = useState('☠️');
+  const [toggleIconPass, setToggleIconPass] = useState(iconClose);
   const [typePass, setTypePass] = useState('password');
+  const [toggleIconConfirm, setToggleIconConfirm] = useState(iconClose);
   const [typeCofirm, setTypeCofirm] = useState('password');
 
   const togglePassInput = e => {
     if (typePass === 'password') {
       setTypePass('text');
-      setToggleIconPass('💀');
+      setToggleIconPass(iconOpen);
     } else {
       setTypePass('password');
-      setToggleIconPass('☠️');
+      setToggleIconPass(iconClose);
     }
   };
 
-    const toggleConfirmInput = e => {
+  const toggleConfirmInput = e => {
     if (typeCofirm === 'password') {
       setTypeCofirm('text');
-      setToggleIconConfirm('💀');
+      setToggleIconConfirm(iconOpen);
     } else {
       setTypeCofirm('password');
-      setToggleIconConfirm('☠️');
+      setToggleIconConfirm(iconClose);
     }
   };
 
@@ -50,7 +67,9 @@ export const RegisterForm = () => {
             name="confirm"
             placeholder="Confirm password"
           />
-          <IconSpan1 onClick={toggleConfirmInput}>{toggleIconConfirm}</IconSpan1>
+          <IconSpan1 onClick={toggleConfirmInput}>
+            {toggleIconConfirm}
+          </IconSpan1>
         </Box>
         <Button>Registation</Button>
         <Text>
@@ -63,15 +82,3 @@ export const RegisterForm = () => {
     </Wrapper>
   );
 };
-
-
-// switch (e.target.name) {
-//       case 'name':
-//         setName(e.target.value);
-//         break;
-//       case 'number':
-//         setNumber(e.target.value);
-//         break;
-//       default:
-//         return;
-//     }

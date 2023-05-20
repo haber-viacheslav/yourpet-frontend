@@ -26,6 +26,7 @@ export const Form = styled.form`
 `;
 
 export const Box = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -120,4 +121,20 @@ export const Link = styled(NavLink)`
   line-height: 16px;
   /* border-bottom: 1px solid currentColor;
   line-height: 0.8; */
+`;
+
+export const IconSpan = styled.span`
+  position: absolute;
+  cursor: pointer;
+  top: 86px;
+  right: 15px;
+  @media screen and (min-width: 768px) {
+     top: 92px;
+  }
+`;
+
+export const SVG = styled.svg`
+  margin-left: 8px;
+  fill: transparent;
+  stroke: #54adff;
 `;

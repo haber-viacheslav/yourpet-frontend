@@ -26,7 +26,7 @@ export const Form = styled.form`
 `;
 
 export const Box = styled.div`
-position: relative;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -64,7 +64,6 @@ export const Title = styled.h2`
 `;
 
 export const Input = styled.input`
-
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -79,7 +78,6 @@ export const Input = styled.input`
   border-radius: 40px;
   cursor: pointer;
   outline: none;
-
 `;
 
 export const Button = styled.button`
@@ -118,7 +116,6 @@ export const Span = styled.span`
   margin-left: 3px;
 `;
 
-
 export const Link = styled(NavLink)`
   /* text-decoration: none; */
   color: #54adff;
@@ -130,12 +127,24 @@ export const Link = styled(NavLink)`
 export const IconSpan = styled.span`
   position: absolute;
   cursor: pointer;
-  top: 92px;
+  top: 86px;
   right: 15px;
+  @media screen and (min-width: 768px) {
+    top: 92px;
+  }
 `;
 export const IconSpan1 = styled.span`
   position: absolute;
   cursor: pointer;
-  top: 172px;
+  top: 156px;
   right: 15px;
+  @media screen and (min-width: 768px) {
+    top: 172px;
+  }
+`;
+
+export const SVG = styled.svg`
+  margin-left: 8px;
+  fill: transparent;
+  stroke: #54adff;
 `;
