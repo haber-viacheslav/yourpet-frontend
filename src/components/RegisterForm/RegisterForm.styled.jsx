@@ -54,11 +54,10 @@ export const Input = styled.input`
   font-family: ${theme.fonts.main};
   font-style: normal;
   font-weight: ${theme.fontWeights.regular};
-  height:40px;
+  height: 48px;
   font-size: 16px;
   padding: 12px 16px;
   width: 100%;
-  border: 1px solid rgba(33, 33, 33, 0.2);
   border: 1px solid #54adff;
   border-radius: 40px;
   cursor: pointer;
@@ -72,11 +71,10 @@ export const Button = styled.button`
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  padding: 12px 16px;
   width: 100%;
   border: none;
   border-radius: 40px;
-  height:40px;
+  height: 48px;
   cursor: pointer;
   background: #54adff;
   margin-bottom: 24px;
@@ -86,7 +84,9 @@ export const Text = styled.p`
   font-family: ${theme.fonts.main};
   font-style: normal;
   font-weight: ${theme.fontWeights.regular};
-  font-size: 16px;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
   color: #888888;
 `;
 
@@ -94,5 +94,9 @@ export const Span = styled.span`
   margin-left: 3px;
 `;
 export const Link = styled(NavLink)`
+  /* text-decoration: none; */
   color: #54adff;
+  line-height: 16px;
+  /* border-bottom: 1px solid currentColor;
+  line-height: 0.8; */
 `;
