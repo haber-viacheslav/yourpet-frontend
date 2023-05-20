@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import {theme} from '../../theme/theme'
+import { NavLink } from 'react-router-dom';
+import { theme } from '../../theme/theme';
 
 export const Wrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-top: 80px;
   width: 280px;
-  height: 481px;
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 40px;
   background-color: #ffffff;
@@ -54,6 +54,7 @@ export const Input = styled.input`
   font-family: ${theme.fonts.main};
   font-style: normal;
   font-weight: ${theme.fontWeights.regular};
+  height:40px;
   font-size: 16px;
   padding: 12px 16px;
   width: 100%;
@@ -75,10 +76,10 @@ export const Button = styled.button`
   width: 100%;
   border: none;
   border-radius: 40px;
+  height:40px;
   cursor: pointer;
-  background: #54ADFF;
+  background: #54adff;
   margin-bottom: 24px;
-  
 `;
 
 export const Text = styled.p`
@@ -91,4 +92,7 @@ export const Text = styled.p`
 
 export const Span = styled.span`
   margin-left: 3px;
+`;
+export const Link = styled(NavLink)`
+  color: #54adff;
 `;

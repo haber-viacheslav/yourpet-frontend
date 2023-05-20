@@ -1,7 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { Wrapper, Form } from './RegisterForm.styled';
-import { Input, Title, Box, Button, Text, Span } from './RegisterForm.styled';
+import { Input, Title, Box, Button, Text, Span, Link } from './RegisterForm.styled';
 
 export const RegisterForm = () => {
   return (
@@ -21,7 +20,7 @@ export const RegisterForm = () => {
         <Text>
           Already have an account?
           <Span>
-            <NavLink to="/login">Login</NavLink>
+            <Link to="/login">Login</Link>
           </Span>
         </Text>
       </Form>
