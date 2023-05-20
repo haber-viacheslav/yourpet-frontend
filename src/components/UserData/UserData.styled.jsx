@@ -1,15 +1,12 @@
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
-// export const StyledInput = styled.input`
-//   // margin-right: auto;
-//   // display: flex;
-//   // align-items: center;
-//   // gap: 10px;
-// `;
-// export const StyledLabel = styled.label`
-//   // &:hover,
-//   // &:focus {
-//   // }
-//   // &.active {
-//   // }
-// `;
+export const ProfileTitle = styled.h2`
+  font-family: Manrope;
+  font-style: Medium;
+  font-size: 20px;
+  line-height: calc(27/20);
+  letter-spacing: 4%;
+  color: rgba(0, 0, 0, 1);
+  align: left;
+  margin-bottom: 18px;
+`;
