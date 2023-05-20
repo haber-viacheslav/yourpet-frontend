@@ -13,7 +13,6 @@ import {
   BtnOption,
   BtnToHeart,
   BtnContact,
-  BtnCity,
   YesBtn,
   ArrowLeft,
   Pawprint,
@@ -26,6 +25,8 @@ import {
   Logout,
   Delete,
   BtnClose,
+  PetInfoStyle,
+  TexStyletInfo,
 } from '../buttons/buttons.styled';
 
 // componemnts svg
@@ -79,13 +80,57 @@ const SvgFilter = () => {
     </Filter>
   );
 };
-const SvgLocation = () => {
+
+// Svg and hendle for pet info
+
+export const SvgLocation = () => {
   return (
     <City width={24} height={24}>
       <use href={icons + '#icon-location'}></use>
     </City>
   );
 };
+export const SvgClock = () => {
+  return (
+    <City width={24} height={24}>
+      <use href={icons + '#icon-clock'}></use>
+    </City>
+  );
+};
+export const SvgMale = () => {
+  return (
+    <City width={24} height={24}>
+      <use href={icons + '#icon-male'}></use>
+    </City>
+  );
+};
+export const SvgFemale = () => {
+  return (
+    <City width={24} height={24}>
+      <use href={icons + '#icon-female'}></use>
+    </City>
+  );
+};
+export const SvgAge = () => {
+  return (
+    <City width={24} height={24}>
+      <use href={icons + '#icon-location'}></use>
+    </City>
+  );
+};
+
+export const PetInfo = ({ Svg, text, onClick }) => {
+  return (
+    <>
+      <PetInfoStyle onClick={onClick}>
+        <Svg />
+        <TexStyletInfo> {text}</TexStyletInfo>
+      </PetInfoStyle>
+    </>
+  );
+};
+
+//
 
 const SvgDelete = () => {
   return (
@@ -141,11 +186,12 @@ export const BtnAuth = ({ onClick }) => {
 };
 // button for Registration and Login, need write
 // "lost/foun, sell, in good hand, favorite ads, my ads" instead "text"
-export const BtnAddOption = ({ onClick }) => {
+export const BtnAddOption = ({ text, onClick }) => {
+  console.log(text);
   return (
     <>
       <BtnOption type="button" onClick={onClick}>
-        text
+        {text}
       </BtnOption>
     </>
   );
@@ -156,6 +202,13 @@ export const BtnFilters = ({ onClick }) => {
     <BtnFilter type="button" onClick={onClick}>
       Filter <SvgFilter />
     </BtnFilter>
+  );
+};
+export const BtnFiltersCircle = ({ onClick }) => {
+  return (
+    <BtnHeart type="button" onClick={onClick}>
+      <SvgFilter />
+    </BtnHeart>
   );
 };
 export const BtnCall = ({ onClick }) => {
@@ -264,16 +317,7 @@ export const BtnCongrats = ({ onClick }) => {
     </>
   );
 };
-export const BtnLocation = ({ onClick }) => {
-  return (
-    <>
-      <BtnCity type="button" onClick={onClick}>
-        <SvgLocation />
-        Lviv
-      </BtnCity>
-    </>
-  );
-};
+
 export const BtnYesLogout = ({ onClick }) => {
   return (
     <>

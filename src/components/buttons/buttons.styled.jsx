@@ -291,34 +291,31 @@ export const BtnContact = styled.button`
   color: ${theme.colors.blue};
   border: 2px solid ${theme.colors.blue};
 `;
-export const BtnCity = styled.button`
+export const PetInfoStyle = styled.div`
   height: 28px;
   width: 80px;
   border-radius: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 5px;
-  padding-bottom: 5px;
   background-color: ${theme.colors.blueLight};
   border: none;
   color: ${theme.colors.black};
-  cursor: pointer;
-  :hover,
-  :focus,
-  :active {
-    color: ${theme.colors.white};
-    background-color: ${theme.colors.blue};
-  }
 `;
 export const City = styled.svg`
   fill: none;
   stroke: ${theme.colors.blue};
-  margin-right: 8px;
-  :hover,
-  :focus {
-    stroke: ${theme.colors.white};
-  }
+  margin-right: 4px;
+`;
+export const TexStyletInfo = styled.p`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
 `;
 
 export const YesBtn = styled.button`
