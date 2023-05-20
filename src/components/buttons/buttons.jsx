@@ -13,13 +13,18 @@ import {
   BtnOption,
   BtnToHeart,
   BtnContact,
-  BtnCity, YesBtn,
-
+  BtnCity,
+  YesBtn,
   ArrowLeft,
   Pawprint,
   Add,
   AddCurcle,
-  Heart, Filter, ToHeart, City, Logout, Delete
+  Heart,
+  Filter,
+  ToHeart,
+  City,
+  Logout,
+  Delete,
 } from '../buttons/buttons.styled';
 
 // componemnts svg
@@ -96,167 +101,178 @@ const SvgLogout = () => {
   );
 };
 
-
 // components btn
-export const BtnLearnMore = () => {
+export const BtnLearnMore = ({ onClick }) => {
   return (
     <>
-      <BtnLM type="button">Learn More</BtnLM>
+      <BtnLM type="button" onClick={onClick}>
+        Learn More
+      </BtnLM>
     </>
   );
 };
 // button for Registration and Login, need write "Registretion or Login" instead "TEXT"
-export const BtnAuth = () => {
+export const BtnAuth = ({ onClick }) => {
   return (
     <>
-      <BtnRegLog type="button">TEXT</BtnRegLog>
+      <BtnRegLog type="button" onClick={onClick}>
+        TEXT
+      </BtnRegLog>
     </>
   );
 };
-// button for Registration and Login, need write 
+// button for Registration and Login, need write
 // "lost/foun, sell, in good hand, favorite ads, my ads" instead "text"
-export const BtnAddOption = () => {
+export const BtnAddOption = ({ onClick }) => {
   return (
     <>
-      <BtnOption type="button">text</BtnOption>
+      <BtnOption type="button" onClick={onClick}>
+        text
+      </BtnOption>
     </>
   );
 };
 
-
-export const BtnFilters = () => {
+export const BtnFilters = ({ onClick }) => {
   return (
-    <BtnFilter type="button">Filter <SvgFilter/></BtnFilter> 
-  )
+    <BtnFilter type="button" onClick={onClick}>
+      Filter <SvgFilter />
+    </BtnFilter>
+  );
 };
-export const BtnCall = () => {
+export const BtnCall = ({ onClick }) => {
   return (
     <>
-      <BtnContact type="button">Contact</BtnContact>
+      <BtnContact type="button" onClick={onClick}>
+        Contact
+      </BtnContact>
     </>
   );
 };
-
 
 // components btn + svg
-export const BtnLearnMoreFavorite = () => {
+export const BtnLearnMoreFavorite = ({ onClick }) => {
   return (
     <>
-      <BigBtnFavor type="button">
+      <BigBtnFavor type="button" onClick={onClick}>
         Learn more
         <SvgPawprint />
       </BigBtnFavor>
     </>
   );
 };
-export const BtnDone = () => {
+export const BtnDone = ({ onSubmit }) => {
   return (
     <>
-      <BigBtnFavor type="button">
+      <BigBtnFavor type="submit" onSubmit={onSubmit}>
         Done
         <SvgPawprint />
       </BigBtnFavor>
     </>
   );
 };
-export const BtnNext = () => {
+export const BtnNext = ({ onClick }) => {
   return (
     <>
-      <BigBtnFavor type="button">
+      <BigBtnFavor type="button" onClick={onClick}>
         Next
         <SvgPawprint />
       </BigBtnFavor>
     </>
   );
 };
-export const BtnCancel = () => {
+export const BtnCancel = ({ onClick }) => {
   return (
     <>
-      <BtnCancelArrow type="button">
+      <BtnCancelArrow type="button" onClick={onClick}>
         <SvgCancel />
         Cancel
       </BtnCancelArrow>
     </>
   );
 };
-export const BtnBack = () => {
+export const BtnBack = ({ onClick }) => {
   return (
     <>
-      <BtnBackArrow type="button">
+      <BtnBackArrow type="button" onClick={onClick}>
         <SvgCancel />
         Back
       </BtnBackArrow>
     </>
   );
 };
-export const BtnAddPet = () => {
+export const BtnAddPet = ({ onClick }) => {
   return (
     <>
-      <BtnAdd type="button">
+      <BtnAdd type="button" onClick={onClick}>
         Add Pet
         <SvgAdd />
       </BtnAdd>
     </>
   );
 };
-export const BtnAddPetCurcle = () => {
+export const BtnAddPetCurcle = ({ onClick }) => {
   return (
     <>
-      <BtnAddCurcle type="button">
+      <BtnAddCurcle type="button" onClick={onClick}>
         <SvgAddCurcle />
         Add Pet
       </BtnAddCurcle>
     </>
   );
 };
-export const BtnAddFavorite = () => {
+export const BtnAddFavorite = ({ onClick }) => {
   return (
-    <BtnHeart type="button">
+    <BtnHeart type="button" onClick={onClick}>
       <SvgHeart />
     </BtnHeart>
   );
 };
-export const BtnAddTo = () => {
+export const BtnAddTo = ({ onClick }) => {
   return (
-    <BtnToHeart type="button">
+    <BtnToHeart type="button" onClick={onClick}>
       Add to
       <SvgToHeart />
     </BtnToHeart>
   );
 };
-export const BtnCongrats = () => {
+export const BtnCongrats = ({ onClick }) => {
   return (
     <>
-      <BigBtnFavor type="button">
+      <BigBtnFavor type="button" onClick={onClick}>
         Go to profile
         <SvgPawprint />
       </BigBtnFavor>
     </>
   );
 };
-export const BtnLocation = () => {
+export const BtnLocation = ({ onClick }) => {
   return (
     <>
-      <BtnCity type="button">
-        <SvgLocation/>Lviv</BtnCity>
+      <BtnCity type="button" onClick={onClick}>
+        <SvgLocation />
+        Lviv
+      </BtnCity>
     </>
   );
 };
-export const BtnYesLogout = () => {
+export const BtnYesLogout = ({ onClick }) => {
   return (
     <>
-      <YesBtn type="button">
-        Yes<SvgLogout/></YesBtn>
+      <YesBtn type="button" onClick={onClick}>
+        Yes
+        <SvgLogout />
+      </YesBtn>
     </>
   );
 };
-export const BtnYesDelete = () => {
+export const BtnYesDelete = ({ onClick }) => {
   return (
     <>
-      <YesBtn type="button">
-        Yes<SvgDelete/></YesBtn>
+      <YesBtn type="button" onClick={onClick}>
+        Yes
+        <SvgDelete />
+      </YesBtn>
     </>
   );
 };
-
-

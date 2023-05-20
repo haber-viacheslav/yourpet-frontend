@@ -1,9 +1,9 @@
 import { AddPetTitle } from './Title.styled';
 
-export const Title = ({ reason, stage }) => {
+export const Title = ({ picked, stage }) => {
   let title = 'Add pet';
   if (stage !== 1) {
-    switch (reason) {
+    switch (picked) {
       case 'sell':
         title = 'Add pet for sale';
         break;

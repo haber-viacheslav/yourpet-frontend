@@ -16,6 +16,7 @@ export const BtnLM = styled.button`
   font-size: 16px;
   font-family: ${theme.fonts.main};
   font-weight: ${theme.fontWeights.semibold};
+  cursor: pointer;
   :hover,
   :focus {
     color: ${theme.colors.white};
@@ -40,6 +41,7 @@ export const BigBtnFavor = styled.button`
   font-size: 16px;
   font-family: ${theme.fonts.main};
   font-weight: ${theme.fontWeights.bold};
+  cursor: pointer;
   :hover,
   :focus {
     background: ${theme.colors.blueGradient};
@@ -63,7 +65,8 @@ export const BtnCancelArrow = styled.button`
   font-weight: ${theme.fontWeights.bold};
   border: none;
   color: ${theme.colors.blue};
-  background-color: ${theme.colors.white};
+  background-color: ${theme.colors.transparent};
+  cursor: pointer;
 
   /* :hover,
   :focus {
@@ -90,7 +93,8 @@ export const BtnBackArrow = styled.button`
   font-weight: ${theme.fontWeights.bold};
   border: none;
   color: ${theme.colors.blue};
-  background-color: ${theme.colors.white};
+  background-color: ${theme.colors.transparent};
+  cursor: pointer;
 `;
 export const BtnAdd = styled.button`
   height: 40px;
@@ -108,6 +112,7 @@ export const BtnAdd = styled.button`
   border: none;
   background: ${theme.colors.blue};
   color: ${theme.colors.white};
+  cursor: pointer;
   :hover,
   :focus {
     background: ${theme.colors.blueGradient};
@@ -131,6 +136,7 @@ export const BtnAddCurcle = styled.button`
   background: ${theme.colors.blue};
   color: ${theme.colors.white};
   box-shadow: ${theme.shadows.mainShadow};
+  cursor: pointer;
   :hover,
   :focus {
     background: ${theme.colors.blueGradient};
@@ -157,6 +163,7 @@ export const BtnHeart = styled.button`
   padding-right: 11px;
   background-color: ${theme.colors.blueLight};
   border: none;
+  cursor: pointer;
 `;
 export const Heart = styled.svg`
   fill: none;
@@ -184,6 +191,7 @@ export const BtnRegLog = styled.button`
   font-family: ${theme.fonts.main};
   font-weight: ${theme.fontWeights.semibold};
   border: none;
+  cursor: pointer;
 
   :hover,
   :focus {
@@ -204,6 +212,7 @@ export const BtnFilter = styled.button`
   font-size: 16px;
   font-family: ${theme.fonts.main};
   font-weight: ${theme.fontWeights.bold};
+  cursor: pointer;
   :hover,
   :focus {
     color: ${theme.colors.white};
@@ -230,6 +239,7 @@ export const BtnOption = styled.button`
   font-size: 14px;
   line-height: 1.35;
   letter-spacing: 0.04em;
+  cursor: pointer;
   :hover,
   :focus,
   :active {
@@ -252,6 +262,7 @@ export const BtnToHeart = styled.button`
   font-weight: ${theme.fontWeights.bold};
   color: ${theme.colors.white};
   border: none;
+  cursor: pointer;
   :hover,
   :focus {
     background: ${theme.colors.blueGradient};
@@ -292,6 +303,7 @@ export const BtnCity = styled.button`
   background-color: ${theme.colors.blueLight};
   border: none;
   color: ${theme.colors.black};
+  cursor: pointer;
   :hover,
   :focus,
   :active {
@@ -325,6 +337,7 @@ export const YesBtn = styled.button`
   line-height: 1.35;
   background-color: ${theme.colors.blue};
   border: none;
+  cursor: pointer;
   color: ${theme.colors.white};
   :hover,
   :focus,
