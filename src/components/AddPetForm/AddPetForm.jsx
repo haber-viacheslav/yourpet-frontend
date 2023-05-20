@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { RadioBtn } from './RadioBtn/RadioBtn';
 import { InputField } from './InputField/InputField';
 import { Title } from './Title/Title';
 import { StageIndicator } from './StageIndicator/StageIndicator';
-
-import { SexIcon } from './AddPetForm.styled';
+import { SexIcon, PlusIcon } from './Icon/Icon';
 
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -15,29 +14,15 @@ import {
   InputWrapper,
   GroupWrapper,
   ExtraWrapper,
+  PhotoWrapper,
   CommentText,
   CommentsLabel,
   SexWrapper,
   GroupTitle,
+  UploadFileLabel,
+  UploadFile,
+  Photo,
 } from './AddPetForm.styled';
-
-const formTempValues = localStorage.getItem('formValues');
-const initialsValues = {
-  title: '',
-  birth: '',
-  breed: '',
-  name: '',
-  location: '',
-  price: '',
-  comments: '',
-  sex: '',
-  category: 'your pet',
-  file: '',
-};
-
-const initialsFormState = formTempValues
-  ? JSON.parse(formTempValues)
-  : initialsValues;
 
 const FormSchema = yup.object().shape({
   title: yup.string().min(2).max(16).required(),
@@ -69,17 +54,48 @@ const FormSchema = yup.object().shape({
     .string()
     .oneOf(['your pet', 'sell', 'lost/found', 'in good hands'])
     .required(),
-  file: '',
 });
+
+const formTempValues = localStorage.getItem('formValues');
+const formTempStage = localStorage.getItem('stage');
+const initialsValues = {
+  title: '',
+  birth: '',
+  breed: '',
+  name: '',
+  location: '',
+  price: '',
+  comments: '',
+  sex: '',
+  category: 'your pet',
+  file: '',
+};
 
 const statuses = ['your pet', 'sell', 'lost/found', 'in good hands'];
 const sexes = ['Female', 'Male'];
 
-export const AddPetForm = () => {
-  const [stage, SetStage] = useState(1);
+const initialsFormState = formTempValues
+  ? JSON.parse(formTempValues)
+  : initialsValues;
 
-  const handleSubmitForm = async () => {
-    SetStage(2);
+const initialsStage = formTempStage ? Number(JSON.parse(formTempStage)) : 1;
+
+export const AddPetForm = () => {
+  const [stage, SetStage] = useState(() => initialsStage);
+  const inputFileRef = useRef(null);
+
+  console.log(inputFileRef.current);
+
+  const handleOnNextClick = values => {
+    SetStage(prevStage => prevStage + 1);
+    localStorage.setItem('formValues', JSON.stringify(values));
+    localStorage.setItem('stage', JSON.stringify(stage + 1));
+  };
+
+  const handleSubmitForm = async (values, { resetForm }) => {
+    localStorage.removeItem('formValues');
+    localStorage.removeItem('stage');
+    resetForm();
   };
 
   return (
@@ -90,7 +106,7 @@ export const AddPetForm = () => {
         validationSchema={FormSchema}
       >
         {({ values }) => {
-          const { category, sex } = values;
+          const { category, sex, file } = values;
           return (
             <Wrapper>
               <Title picked={category} stage={stage} />
@@ -99,91 +115,145 @@ export const AddPetForm = () => {
                 {stage === 1 && (
                   <GroupWrapper role="group">
                     {statuses.map(status => {
+                      const selected = status === category;
                       return (
                         <RadioBtn
                           key={status}
                           value={status}
                           name="category"
-                          picked={category}
+                          selected={selected}
                         />
                       );
                     })}
                   </GroupWrapper>
                 )}
-                <GroupWrapper role="group" aria-labelledby="sex">
-                  <GroupTitle id="sex">The sex</GroupTitle>
-                  <SexWrapper>
-                    {sexes.map((option, i) => {
-                      const iconLabel = i === 0 ? '#icon-female' : '#icon-male';
-                      return (
-                        <RadioBtn
-                          key={option}
-                          value={option}
-                          name="sex"
-                          picked={sex}
-                        >
-                          <SexIcon iconName={iconLabel} />
-                        </RadioBtn>
-                      );
-                    })}
-                  </SexWrapper>
-                </GroupWrapper>
+                {stage === 3 && (
+                  <GroupWrapper role="group" aria-labelledby="sex">
+                    <GroupTitle id="sex">The sex</GroupTitle>
+                    <SexWrapper>
+                      {sexes.map((option, i) => {
+                        const iconLabel =
+                          i === 0 ? '#icon-female' : '#icon-male';
+                        const selected = option === sex;
+                        return (
+                          <RadioBtn
+                            key={option}
+                            value={option}
+                            name="sex"
+                            selected={selected}
+                          >
+                            <SexIcon
+                              iconName={iconLabel}
+                              index={i}
+                              selected={selected}
+                              sex={sex}
+                            />
+                          </RadioBtn>
+                        );
+                      })}
+                    </SexWrapper>
+                  </GroupWrapper>
+                )}
+                {stage === 3 && (
+                  <UploadFileLabel>
+                    Add photo
+                    <UploadFile
+                      type="file"
+                      name="file"
+                      accept="image/*"
+                      ref={inputFileRef}
+                    />
+                    <PhotoWrapper>
+                      {file && <Photo scr="" />}
+                      {!file && <PlusIcon iconName="#icon-plus" />}
+                    </PhotoWrapper>
+                  </UploadFileLabel>
+                )}
                 <InputWrapper>
-                  <InputField
-                    type="text"
-                    name="title"
-                    label={'Title of add'}
-                    placeholder={'Title of add'}
-                  />
-                  <InputField
-                    type="text"
-                    name="name"
-                    label={"Pet's name"}
-                    placeholder={"Type your pet's name "}
-                  />
-                  <InputField
-                    type="text"
-                    name="birth"
-                    label={'Date of birth'}
-                    placeholder={'Type date of birth'}
-                  />
-                  <InputField
-                    type="text"
-                    name="breed"
-                    label={'Breed'}
-                    placeholder={'Type breed'}
-                  />
-                  <InputField
-                    type="text"
-                    name="location"
-                    label={'Location'}
-                    placeholder={'Type your location'}
-                  />
-                  <InputField
-                    type="number"
-                    name="price"
-                    label={'Price'}
-                    placeholder={'Type price'}
-                  />
+                  {stage === 2 && category !== 'your pet' && (
+                    <InputField
+                      type="text"
+                      name="title"
+                      label={'Title of add'}
+                      placeholder={'Title of add'}
+                    />
+                  )}
+
+                  {stage === 2 && (
+                    <InputField
+                      type="text"
+                      name="name"
+                      label={"Pet's name"}
+                      placeholder={"Type your pet's name "}
+                    />
+                  )}
+
+                  {stage === 2 && (
+                    <InputField
+                      type="text"
+                      name="birth"
+                      label={'Date of birth'}
+                      placeholder={'Type date of birth'}
+                    />
+                  )}
+
+                  {stage === 2 && (
+                    <InputField
+                      type="text"
+                      name="breed"
+                      label={'Breed'}
+                      placeholder={'Type breed'}
+                    />
+                  )}
+
+                  {stage === 3 && (
+                    <InputField
+                      type="text"
+                      name="location"
+                      label={'Location'}
+                      placeholder={'Type your location'}
+                    />
+                  )}
+
+                  {stage === 3 && category === 'sell' && (
+                    <InputField
+                      type="number"
+                      name="price"
+                      label={'Price'}
+                      placeholder={'Type price'}
+                    />
+                  )}
                 </InputWrapper>
-                <CommentsLabel>
-                  Comments
-                  <CommentText
-                    as="textarea"
-                    name="comments"
-                    placeholder="Type your comments here..."
-                  />
-                </CommentsLabel>
-                <Button
-                  type="submit"
-                  // disabled={
-                  //   (props.values.email !== '') & (props.values.password !== '')
-                  //     ? false
-                  //     : true
-                  // }
-                >
-                  Done
-                </Button>
+                {stage === 3 && (
+                  <CommentsLabel>
+                    Comments
+                    <CommentText
+                      as="textarea"
+                      name="comments"
+                      placeholder="Type your comments here..."
+                    />
+                  </CommentsLabel>
+                )}
+                {stage !== 3 && (
+                  <Button
+                    type="button"
+                    onClick={() => handleOnNextClick(values)}
+                  >
+                    Next
+                  </Button>
+                )}
+                {stage === 3 && (
+                  <Button
+                    type="submit"
+                    // disabled={
+                    //   (props.values.email !== '') & (props.values.password !== '')
+                    //     ? false
+                    //     : true
+                    // }
+                  >
+                    Done
+                  </Button>
+                )}
               </LoginFormStyled>
             </Wrapper>
           );

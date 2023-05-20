@@ -19,8 +19,6 @@ export const Input = styled(Field)`
   font-size: 14px;
   line-height: 150%;
 
-  font-size: 16px;
-
   border: 1px solid #54adff;
   border-radius: 40px;
 
@@ -36,6 +34,7 @@ export const Input = styled(Field)`
 export const ErrWrapper = styled.span`
   position: absolute;
   bottom: -20px;
+  padding-left: 16px;
   font-size: 12px;
   line-height: 16px;
   color: red;

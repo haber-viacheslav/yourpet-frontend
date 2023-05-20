@@ -1,10 +1,22 @@
 import styled from 'styled-components';
-import { ReactComponent as Female } from '../../images/icons.svg#icon-female';
-
 import { Form, Field } from 'formik';
 
-export const SexIcon = styled(Female)`
-  fill: red;
+export const SvgPlusIcon = styled.svg`
+  fill: #54adff;
+  stroke: #54adff;
+`;
+
+export const SvgSexIcon = styled.svg`
+  fill: #ffffff;
+  stroke: ${props => {
+    if (props.sex === '') {
+      return props.index === 0 ? '#F43F5E' : '#54ADFF';
+    } else if (props.index === 0) {
+      return props.selected ? '#F43F5E' : '#888888';
+    } else if (props.index === 1) {
+      return props.selected ? '#54ADFF' : '#888888';
+    }
+  }};
 `;
 
 export const ExtraWrapper = styled.div`
@@ -12,7 +24,7 @@ export const ExtraWrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 20px;
-  font-family: 'Manrope';
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
 `;
 
@@ -57,7 +69,7 @@ export const LoginFormStyled = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  /* gap: 10px; */
 `;
 
 export const CommentsLabel = styled.label`
@@ -66,6 +78,7 @@ export const CommentsLabel = styled.label`
   font-weight: 500;
   font-size: 14px;
   line-height: 19px;
+  margin-top: 24px;
 `;
 
 export const CommentText = styled(Field)`
@@ -84,6 +97,56 @@ export const CommentText = styled(Field)`
   }
 `;
 
+export const UploadFileLabel = styled.label`
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  align-self: flex-start;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  padding-left: 8px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  gap: 27px;
+  cursor: pointer;
+`;
+
+export const UploadFile = styled(Field)`
+  opacity: 0;
+  width: 264px;
+  height: 92px;
+  padding: 8px 16px;
+  margin-top: 4px;
+  outline: transparent;
+  border: 1px solid #54adff;
+  border-radius: 20px;
+  resize: none;
+
+  &::placeholder {
+    font-size: 14px;
+    color: #7a7a7a;
+  }
+`;
+
+export const Photo = styled.img`
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 20px;
+`;
+
+export const PhotoWrapper = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 112px;
+  height: 112px;
+  background: #cce4fb;
+  border-radius: 20px;
+`;
+
 export const ErrWrapper = styled.span`
   font-weight: 400;
   font-size: 14px;
@@ -94,30 +157,29 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: 700;
   font-size: 16px;
-  font-weight: 600;
-  width: 100px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+
+  padding: 8px 28px;
+  width: 248px;
   height: 40px;
 
-  border-radius: 5px;
-
-  color: #ff7b3e;
-  background-color: #4e4039;
-  border: 2px solid #ff7b3e;
-  box-shadow: 1px 1px 3px #c9c1c1;
+  color: #fef9f9;
+  background: #54adff;
+  border: none;
+  border-radius: 40px;
+  outline: transparent;
 
   cursor: pointer;
 
   &:hover,
   &:focus {
-    background-color: #ff7b3e;
-    color: #ffffff;
+    /* background-color: #fef9f9;
+    color: #54adff; */
   }
 
   &:disabled {
-    /* color: #bdbdbd; */
-    background-color: #4e4039;
-    border: 2px solid #bdbdbd;
-    cursor: auto;
   }
 `;
