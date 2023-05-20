@@ -5,7 +5,6 @@ export const StyledContainer = styled.div`
   flex-direction: ${props => props.direction || 'column'};
   align-items: ${props => props.align || 'stretch'};
   justify-content: ${props => props.justify || 'stretch'};
-
   margin: 0 auto;
 
   @media ${props => props.theme.media.mobile} {
