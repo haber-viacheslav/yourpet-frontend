@@ -16,7 +16,7 @@ export const RegisterForm = () => {
             placeholder="Confirm password"
           />
         </Box>
-        <Button>Login</Button>
+        <Button>Registation</Button>
         <Text>
           Already have an account?
           <Span>

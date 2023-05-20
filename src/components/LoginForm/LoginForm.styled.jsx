@@ -33,11 +33,11 @@ export const Box = styled.div`
   gap: 24px;
   width: 100%;
   margin-top: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 80px;
 
   @media screen and (min-width: 768px) {
     gap: 32px;
-    margin-bottom: 52px;
+    margin-bottom: 60px;
   }
   @media screen and (min-width: 1280px) {
     margin-bottom: 40px;
@@ -76,7 +76,6 @@ export const Input = styled.input`
   border: 1px solid #54adff;
   border-radius: 40px;
   cursor: pointer;
-
 `;
 
 export const Button = styled.button`
@@ -97,7 +96,7 @@ export const Button = styled.button`
   color: #ffffff;
 
   @media screen and (min-width: 768px) {
-    margin-bottom: 16px;
+    margin-bottom: 20px;
   }
 `;
 
