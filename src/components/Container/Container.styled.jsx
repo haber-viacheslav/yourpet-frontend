@@ -3,15 +3,15 @@ import styled from 'styled-components';
 export const StyledContainer = styled.div`
   display: flex;
   flex-direction: ${props => props.direction || 'column'};
-  align-item: ${props => props.align || 'stretch'};
+  align-items: ${props => props.align || 'stretch'};
   justify-content: ${props => props.justify || 'stretch'};
 
-  margin: 0 auto; 
+  margin: 0 auto;
 
   @media ${props => props.theme.media.mobile} {
-  width: 320px;
-  padding: 20px 20px 100px;
-  padding-bottom: ${props => props.bottom || '100px'};
+    width: 320px;
+    padding: 20px 20px 100px;
+    padding-bottom: ${props => props.bottom || '100px'};
   }
 
   @media ${props => props.theme.media.tablet} {
@@ -25,5 +25,4 @@ export const StyledContainer = styled.div`
     padding: 20px 16px 103px;
     padding-bottom: ${props => props.bottom || '103px'};
   }
-}
 `;
