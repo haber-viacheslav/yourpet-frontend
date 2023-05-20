@@ -20,7 +20,7 @@ export const theme = Object.freeze({
     green: '#00C3AD;',
     red: '#F43F5E',
     backdropColor: ' #61616199',
-    black: "#111111",
+    black: '#111111',
     grey: '#888888',
   },
   shadows: {
@@ -28,10 +28,10 @@ export const theme = Object.freeze({
     secondShadow: '7px 13px 14px rgba(116, 177, 232, 0.24)',
   },
   media: {
-    sm: 'screen and(min-width: 320px)',
-    md: 'screen and(min-width: 768px)',
-    lg: 'screen and(min-width: 1280px)',
-    smToMd: 'screen and(min-width: 320px) and (max-width: (768px - 0.01px))',
-    mdToLg: 'screen and(min-width: 768px) and (max-width: (1280px - 0.01px))',
+    sm: '(min-width: 320px)',
+    md: '(min-width: 768px)',
+    lg: '(min-width: 1280px)',
+    smToMd: '(min-width: 320px) and (max-width: 761px)',
+    mdToLg: '(min-width: 768px) and (max-width: 1279px)',
   },
 });
