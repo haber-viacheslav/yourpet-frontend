@@ -1,7 +1,6 @@
 import { RadioInput, InputLabel } from './RadioBtn.styled';
 
-export const RadioBtn = ({ value, picked, name, children }) => {
-  const selected = value === picked;
+export const RadioBtn = ({ value, selected, name, children }) => {
   return (
     <InputLabel selected={selected} name={name}>
       {children}

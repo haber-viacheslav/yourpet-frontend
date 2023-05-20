@@ -1,12 +1,30 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
 
+export const SvgPlusIcon = styled.svg`
+  fill: #54adff;
+  stroke: #54adff;
+`;
+
+export const SvgSexIcon = styled.svg`
+  fill: #ffffff;
+  stroke: ${props => {
+    if (props.sex === '') {
+      return props.index === 0 ? '#F43F5E' : '#54ADFF';
+    } else if (props.index === 0) {
+      return props.selected ? '#F43F5E' : '#888888';
+    } else if (props.index === 1) {
+      return props.selected ? '#54ADFF' : '#888888';
+    }
+  }};
+`;
+
 export const ExtraWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 20px;
-  font-family: 'Manrope';
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
 `;
 
@@ -47,11 +65,19 @@ export const InputWrapper = styled.div`
   gap: 24px;
 `;
 
+export const BtnWrappper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
+
 export const LoginFormStyled = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  /* gap: 10px; */
 `;
 
 export const CommentsLabel = styled.label`
@@ -60,6 +86,7 @@ export const CommentsLabel = styled.label`
   font-weight: 500;
   font-size: 14px;
   line-height: 19px;
+  margin-top: 24px;
 `;
 
 export const CommentText = styled(Field)`
@@ -88,30 +115,29 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: 700;
   font-size: 16px;
-  font-weight: 600;
-  width: 100px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+
+  padding: 8px 28px;
+  width: 248px;
   height: 40px;
 
-  border-radius: 5px;
-
-  color: #ff7b3e;
-  background-color: #4e4039;
-  border: 2px solid #ff7b3e;
-  box-shadow: 1px 1px 3px #c9c1c1;
+  color: #fef9f9;
+  background: #54adff;
+  border: none;
+  border-radius: 40px;
+  outline: transparent;
 
   cursor: pointer;
 
   &:hover,
   &:focus {
-    background-color: #ff7b3e;
-    color: #ffffff;
+    /* background-color: #fef9f9;
+    color: #54adff; */
   }
 
   &:disabled {
-    /* color: #bdbdbd; */
-    background-color: #4e4039;
-    border: 2px solid #bdbdbd;
-    cursor: auto;
   }
 `;

@@ -1,42 +1,26 @@
 import { useState } from 'react';
 import { RadioBtn } from './RadioBtn/RadioBtn';
 import { InputField } from './InputField/InputField';
+import { UploadInput } from './UploadInput/UploadInput';
+import { BtnNext, BtnCancel, BtnBack, BtnDone } from '../buttons/buttons';
 import { Title } from './Title/Title';
 import { StageIndicator } from './StageIndicator/StageIndicator';
-// import { SexIcon } from './SexIcon/SexIcon';
+import { SexIcon } from './Icon/Icon';
 
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import {
   LoginFormStyled,
-  Button,
   Wrapper,
   InputWrapper,
   GroupWrapper,
+  BtnWrappper,
   ExtraWrapper,
   CommentText,
   CommentsLabel,
   SexWrapper,
   GroupTitle,
 } from './AddPetForm.styled';
-
-const formTempValues = localStorage.getItem('formValues');
-const initialsValues = {
-  title: '',
-  birth: '',
-  breed: '',
-  name: '',
-  location: '',
-  price: '',
-  comments: '',
-  sex: '',
-  category: 'your pet',
-  file: '',
-};
-
-const initialsFormState = formTempValues
-  ? JSON.parse(formTempValues)
-  : initialsValues;
 
 const FormSchema = yup.object().shape({
   title: yup.string().min(2).max(16).required(),
@@ -68,17 +52,70 @@ const FormSchema = yup.object().shape({
     .string()
     .oneOf(['your pet', 'sell', 'lost/found', 'in good hands'])
     .required(),
-  file: '',
+  file: yup
+    .mixed()
+    .test(
+      'fileSize',
+      'File size is too large',
+      value => !value || value.size <= 3145728
+    )
+    .test(
+      'fileType',
+      'Only image files are allowed',
+      value =>
+        !value || ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type)
+    )
+    .required(),
 });
+
+const formTempValues = localStorage.getItem('formValues');
+const formTempStage = localStorage.getItem('stage');
+const initialsValues = {
+  title: '',
+  birth: '',
+  breed: '',
+  name: '',
+  location: '',
+  price: '',
+  comments: '',
+  sex: '',
+  category: 'your pet',
+};
 
 const statuses = ['your pet', 'sell', 'lost/found', 'in good hands'];
 const sexes = ['Female', 'Male'];
 
-export const AddPetForm = () => {
-  const [stage, SetStage] = useState(1);
+const initialsFormState = formTempValues
+  ? JSON.parse(formTempValues)
+  : initialsValues;
 
-  const handleSubmitForm = async () => {
-    SetStage(2);
+const initialsStage = formTempStage ? Number(JSON.parse(formTempStage)) : 1;
+
+export const AddPetForm = () => {
+  const [stage, SetStage] = useState(() => initialsStage);
+
+  const handleOnNextClick = (values, validateField, errors) => {
+    console.log(errors);
+    const { category } = values;
+    if (stage === 2 && category === 'your pet') {
+      validateField('name');
+    }
+    console.log(stage);
+    SetStage(prevStage => prevStage + 1);
+    localStorage.setItem('formValues', JSON.stringify(values));
+    localStorage.setItem('stage', JSON.stringify(stage + 1));
+  };
+
+  const handleOnBackClick = () => {
+    console.log(11111);
+    SetStage(prevStage => prevStage - 1);
+    localStorage.setItem('stage', JSON.stringify(stage - 1));
+  };
+
+  const handleSubmitForm = async (values, { resetForm }) => {
+    localStorage.removeItem('formValues');
+    localStorage.removeItem('stage');
+    resetForm();
   };
 
   return (
@@ -88,7 +125,7 @@ export const AddPetForm = () => {
         onSubmit={handleSubmitForm}
         validationSchema={FormSchema}
       >
-        {({ values }) => {
+        {({ values, validateField, errors }) => {
           const { category, sex } = values;
           return (
             <Wrapper>
@@ -98,89 +135,141 @@ export const AddPetForm = () => {
                 {stage === 1 && (
                   <GroupWrapper role="group">
                     {statuses.map(status => {
+                      const selected = status === category;
                       return (
                         <RadioBtn
                           key={status}
                           value={status}
                           name="category"
-                          picked={category}
+                          selected={selected}
                         />
                       );
                     })}
                   </GroupWrapper>
                 )}
-                <GroupWrapper role="group" aria-labelledby="sex">
-                  <GroupTitle id="sex">The sex</GroupTitle>
-                  <SexWrapper>
-                    {sexes.map(option => {
-                      return (
-                        <RadioBtn
-                          key={option}
-                          value={option}
-                          name="sex"
-                          picked={sex}
-                        />
-                      );
-                    })}
-                  </SexWrapper>
-                </GroupWrapper>
+                {stage === 3 && (
+                  <GroupWrapper role="group" aria-labelledby="sex">
+                    <GroupTitle id="sex">The sex</GroupTitle>
+                    <SexWrapper>
+                      {sexes.map((option, i) => {
+                        const iconLabel =
+                          i === 0 ? '#icon-female' : '#icon-male';
+                        const selected = option === sex;
+                        return (
+                          <RadioBtn
+                            key={option}
+                            value={option}
+                            name="sex"
+                            selected={selected}
+                          >
+                            <SexIcon
+                              iconName={iconLabel}
+                              index={i}
+                              selected={selected}
+                              sex={sex}
+                            />
+                          </RadioBtn>
+                        );
+                      })}
+                    </SexWrapper>
+                  </GroupWrapper>
+                )}
+                {stage === 3 && <UploadInput />}
                 <InputWrapper>
-                  <InputField
-                    type="text"
-                    name="title"
-                    label={'Title of add'}
-                    placeholder={'Title of add'}
-                  />
-                  <InputField
-                    type="text"
-                    name="name"
-                    label={"Pet's name"}
-                    placeholder={"Type your pet's name "}
-                  />
-                  <InputField
-                    type="text"
-                    name="birth"
-                    label={'Date of birth'}
-                    placeholder={'Type date of birth'}
-                  />
-                  <InputField
-                    type="text"
-                    name="breed"
-                    label={'Breed'}
-                    placeholder={'Type breed'}
-                  />
-                  <InputField
-                    type="text"
-                    name="location"
-                    label={'Location'}
-                    placeholder={'Type your location'}
-                  />
-                  <InputField
-                    type="number"
-                    name="price"
-                    label={'Price'}
-                    placeholder={'Type price'}
-                  />
-                </InputWrapper>
+                  {stage === 2 && category !== 'your pet' && (
+                    <InputField
+                      type="text"
+                      name="title"
+                      label={'Title of add'}
+                      placeholder={'Title of add'}
+                    />
+                  )}
 
-                <CommentsLabel>
-                  Comments
-                  <CommentText
-                    as="textarea"
-                    name="comments"
-                    placeholder="Type your comments here..."
-                  />
-                </CommentsLabel>
-                <Button
-                  type="submit"
-                  // disabled={
-                  //   (props.values.email !== '') & (props.values.password !== '')
-                  //     ? false
-                  //     : true
-                  // }
-                >
-                  Done
-                </Button>
+                  {stage === 2 && (
+                    <InputField
+                      type="text"
+                      name="name"
+                      label={"Pet's name"}
+                      placeholder={"Type your pet's name "}
+                    />
+                  )}
+
+                  {stage === 2 && (
+                    <InputField
+                      type="text"
+                      name="birth"
+                      label={'Date of birth'}
+                      placeholder={'Type date of birth'}
+                    />
+                  )}
+
+                  {stage === 2 && (
+                    <InputField
+                      type="text"
+                      name="breed"
+                      label={'Breed'}
+                      placeholder={'Type breed'}
+                    />
+                  )}
+
+                  {stage === 3 && (
+                    <InputField
+                      type="text"
+                      name="location"
+                      label={'Location'}
+                      placeholder={'Type your location'}
+                    />
+                  )}
+
+                  {stage === 3 && category === 'sell' && (
+                    <InputField
+                      type="number"
+                      name="price"
+                      label={'Price'}
+                      placeholder={'Type price'}
+                    />
+                  )}
+                </InputWrapper>
+                {stage === 3 && (
+                  <CommentsLabel>
+                    Comments
+                    <CommentText
+                      as="textarea"
+                      name="comments"
+                      placeholder="Type your comments here..."
+                    />
+                  </CommentsLabel>
+                )}
+                {stage !== 3 && (
+                  <BtnWrappper>
+                    <BtnNext
+                      onClick={() =>
+                        handleOnNextClick(values, validateField, errors)
+                      }
+                    />
+                    {stage === 1 && <BtnCancel />}
+                    {stage === 2 && <BtnBack onClick={handleOnBackClick} />}
+                  </BtnWrappper>
+                )}{' '}
+                {
+                  stage === 3 && (
+                    <BtnWrappper>
+                      <BtnDone />
+                      <BtnBack onClick={handleOnBackClick} />
+                    </BtnWrappper>
+                  )
+
+                  // <Button
+                  //   type="submit"
+                  //   disabled={
+                  //     (props.values.email !== '') & (props.values.password !== '')
+                  //       ? false
+                  //       : true
+                  //   }
+                  // >
+                  //   Done
+                  // </Button>
+                }
               </LoginFormStyled>
             </Wrapper>
           );
@@ -189,185 +278,3 @@ export const AddPetForm = () => {
     </ExtraWrapper>
   );
 };
-
-
-
-
-// const formTempValues = localStorage.getItem('formValues');
-// const initialsValues = {
-//   title: '',
-//   birth: '',
-//   breed: '',
-//   name: '',
-//   location: '',
-//   price: '',
-//   comments: '',
-// };
-
-// const initialsFormState = formTempValues
-//   ? JSON.parse(formTempValues)
-//   : initialsValues;
-
-// const FormSchema = yup.object().shape({
-//   title: '',
-//   birth: '',
-//   breed: yup.string().min(2).max(16).required(),
-//   name: yup.string().min(2).max(16).required(),
-//   location: '',
-//   price: yup.string().when('field1', {
-//     is: value => value && value.length > 0,
-//     then: yup.string().required('Field 2 is required'),
-//     otherwise: yup.string(),
-//   }),
-//   comments: '',
-// });
-
-// const statuses = ['your pet', 'sell', 'lost/found', 'in good hands'];
-
-// export const AddPetForm = () => {
-//   const [reason, SetReason] = useState('your pet');
-//   const [selectedSex, SetSelectedSex] = useState(null);
-//   const [stage, SetStage] = useState(1);
-//   const [formValues, SetFormValues] = useState(() => initialsFormState);
-
-//   const handleRadioBtn = e => {
-//     if (e.target.name === 'reason') {
-//       SetReason(e.target.value);
-//     } else if (e.target.name === 'selectedSex') {
-//       SetSelectedSex(e.target.value);
-//     }
-//   };
-
-//   const handleInputOnChange = e => {
-//     const { name, value } = e.target;
-//     SetFormValues({ ...formValues, [name]: value });
-
-//     localStorage.setItem('formValues', JSON.stringify(formValues));
-//   };
-
-//   const handleSubmitForm = async () => {
-//     console.log(formValues);
-//   };
-
-//   return (
-//     <ExtraWrapper>
-//       <Wrapper>
-//         <Title reason={reason} stage={stage} />
-//         <StageIndicator stage={stage} />
-//         <Formik
-//           onSubmit={handleSubmitForm}
-//           // validationSchema={FormSchema}
-//         >
-//           {props => {
-//             return (
-//               <LoginFormStyled>
-//                 {stage === 1 && (
-//                   <GroupWrapper role="group">
-//                     {statuses.map(status => (
-//                       <RadioBtn
-//                         key={status}
-//                         label={status}
-//                         onChange={handleRadioBtn}
-//                         choice={reason}
-//                         appointment="reason"
-//                       />
-//                     ))}
-//                   </GroupWrapper>
-//                 )}
-//                 <GroupWrapper role="group" aria-labelledby="sex">
-//                   <GroupTitle id="sex">The sex</GroupTitle>
-//                   <SexWrapper>
-//                     <RadioBtn
-//                       label="Female"
-//                       onChange={handleRadioBtn}
-//                       choice={selectedSex}
-//                       appointment="selectedSex"
-//                     >
-//                       <SexIcon iconName="#icon-pawprint" />
-//                     </RadioBtn>
-//                     <RadioBtn
-//                       label="Male"
-//                       onChange={handleRadioBtn}
-//                       choice={selectedSex}
-//                       appointment="selectedSex"
-//                     >
-//                       <SexIcon iconName="#icon-pawprint" />
-//                     </RadioBtn>
-//                   </SexWrapper>
-//                 </GroupWrapper>
-//                 <InputField
-//                   type="text"
-//                   name="title"
-//                   label={'Title of add'}
-//                   placeholder={'Title of add'}
-//                   value={formValues.title}
-//                   onChange={handleInputOnChange}
-//                 />
-//                 <InputField
-//                   type="text"
-//                   name="name"
-//                   label={"Pet's name"}
-//                   placeholder={"Type your pet's name "}
-//                   value={formValues.name}
-//                   onChange={handleInputOnChange}
-//                 />
-//                 <InputField
-//                   type="text"
-//                   name="birth"
-//                   label={'Date of birth'}
-//                   placeholder={'Type date of birth'}
-//                   value={formValues.birth}
-//                   onChange={handleInputOnChange}
-//                 />
-//                 <InputField
-//                   type="text"
-//                   name="breed"
-//                   label={'Breed'}
-//                   placeholder={'Type breed'}
-//                   value={formValues.breed}
-//                   onChange={handleInputOnChange}
-//                 />
-//                 <InputField
-//                   type="text"
-//                   name="location"
-//                   label={'Location'}
-//                   placeholder={'Type your location'}
-//                   value={formValues.location}
-//                   onChange={handleInputOnChange}
-//                 />
-//                 <InputField
-//                   type="number"
-//                   name="price"
-//                   label={'Price'}
-//                   placeholder={'Type price'}
-//                   value={formValues.price}
-//                   onChange={handleInputOnChange}
-//                 />
-//                 <CommentsLabel>
-//                   Comments
-//                   <CommentText
-//                     as="textarea"
-//                     name="comments"
-//                     placeholder="Type your comments here..."
-//                     value={formValues.comments}
-//                     onChange={e => handleInputOnChange(e)}
-//                   />
-//                 </CommentsLabel>
-//                 <Button
-//                   type="submit"
-//                   // disabled={
-//                   //   (props.values.email !== '') & (props.values.password !== '')
-//                   //     ? false
-//                   //     : true
-//                   // }
-//                 >
-//                   Done
-//                 </Button>
-//               </LoginFormStyled>
-//             );
-//           }}
-//         </Formik>
-//       </Wrapper>
-//     </ExtraWrapper>
-//   );
-// };
