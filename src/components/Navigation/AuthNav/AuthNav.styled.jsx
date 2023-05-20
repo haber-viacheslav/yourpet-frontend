@@ -8,7 +8,7 @@ export const AuthNavMenu = styled.div`
   align-items: center;
   gap: 12px;
 
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: 768px) {
     flex-direction: row;
     justify-content: flex-end;
   }
