@@ -1,7 +1,11 @@
+import { Container } from 'components/Container/Container';
+
 const NewsPage = () => {
   return (
     <>
-      <h2>Login</h2>
+      <Container align={'center'} d>
+        <h2>News</h2>
+      </Container>
     </>
   );
 };

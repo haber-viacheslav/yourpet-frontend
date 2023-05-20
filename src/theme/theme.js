@@ -26,14 +26,11 @@ export const theme = Object.freeze({
     mainShadow: '3px 8px 14px rgba(136, 198, 253, 0.19)',
     secondShadow: '7px 13px 14px rgba(116, 177, 232, 0.24)',
   },
-  breakpoints: {
-    sm: '320px',
-    md: '768px',
-    lg: '1280px',
-  },
   media: {
-    mobile: '(min-width: 320px) and (max-width: 767px)',
-    tablet: '(min-width: 768px) and (max-width: 1279px)',
-    desktop: '(min-width: 1280px)',
-  }
+    sm: 'screen and(min-width: 320px)',
+    md: 'screen and(min-width: 768px)',
+    lg: 'screen and(min-width: 1280px)',
+    smToMd: 'screen and(min-width: 320px) and (max-width: (768px - 0.01px))',
+    mdToLg: 'screen and(min-width: 768px) and (max-width: (1280px - 0.01px))',
+  },
 });
