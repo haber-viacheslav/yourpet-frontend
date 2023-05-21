@@ -1,10 +1,19 @@
-import { Modal } from 'components/Modal/Modal';
-const MainPage = () => {
+import { Hero } from '../components/Hero/Hero';
+import { Section } from 'components/Section/Section';
+import { Container } from 'components/Container/Container';
+
+export const MainPage = () => {
   return (
-    <>
-      <h2>Main page</h2>
-      <Modal onClick={() => console.log('hello')}>acdacdcdccdc</Modal>
-    </>
+    <Section
+      padTopSm={'10px'}
+      padBottomLg={'150px'}
+      padTopLg={'300px'}
+      padTopMd={'200px'}
+    >
+      <Container>
+        <Hero />
+      </Container>
+    </Section>
   );
 };
 
