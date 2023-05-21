@@ -1,17 +1,12 @@
+import { NoticesCategoryList } from 'components/NoticesCategoriesList/NoticesCategoriesList';
 import { Container } from '../components/Container/Container';
 import { FlexContainer } from '../components/FlexContainer/FlexContainer';
 import { Section } from '../components/Section/Section';
-import {
-  BtnAddFavorite,
-  BtnAddOption,
-  BtnAddPetCurcle,
-  BtnFiltersCircle,
-  BtnLearnMore,
-  PetInfo,
-  SvgClock,
-  SvgFemale,
-  SvgLocation,
-} from '../components/buttons/buttons';
+import { BtnAddOption, BtnFiltersCircle } from '../components/buttons/buttons';
+
+import petsList from '../mockData/petsList';
+
+// console.log('petsList :', petsList);
 
 const NoticesPage = () => {
   return (
@@ -28,7 +23,7 @@ const NoticesPage = () => {
               <BtnAddOption text={'lost/found'} />
               <BtnAddOption text={'in good hands'} />
               <div>
-                <BtnAddOption text={'favorite ads'} className={`po`} />
+                <BtnAddOption text={'favorite ads'} />
                 <BtnAddOption text={'my ads'} />
               </div>
             </div>
@@ -36,20 +31,7 @@ const NoticesPage = () => {
               <BtnFiltersCircle />
             </div>
           </div>
-
-          <div>
-            <BtnAddFavorite />
-            <img
-              src="https://res.cloudinary.com/dj6mkr2e6/image/upload/v1684434714/cat-sm_1x_uzkgpq.jpg"
-              alt=""
-            />
-            <BtnAddPetCurcle />
-            <PetInfo Svg={SvgLocation} text={'Lviv'} />
-            <PetInfo Svg={SvgClock} text={'1 year'} />
-            <PetInfo Svg={SvgFemale} text={'female'} />
-          </div>
-          <h3>Сute dog looking for a home</h3>
-          <BtnLearnMore />
+          <NoticesCategoryList petList={petsList[0]} />
         </Container>
       </Section>
     </>
