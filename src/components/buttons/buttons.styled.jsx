@@ -355,3 +355,23 @@ export const Logout = styled.svg`
   stroke: ${theme.colors.white};
   margin-left: 11px;
 `;
+
+export const BtnClose = styled.button`
+  height: 28px;
+  width: 80px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  background-color: ${theme.colors.transparent};
+  border: none;
+  color: ${theme.colors.black};
+  cursor: pointer;
+  :hover,
+  :focus,
+  :active {
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.blue};
+  }
+`;
