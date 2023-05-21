@@ -365,7 +365,7 @@ export const TexCategoyInfo = styled.p`
 
 export const YesBtn = styled.button`
   height: 40px;
-  width: 129px;
+  width: 100px;
   border-radius: 40px;
   display: flex;
   justify-content: center;
@@ -386,6 +386,10 @@ export const YesBtn = styled.button`
   :active {
     background: ${theme.colors.blueGradient};
   }
+
+  @media screen and (${props => props.theme.media.md}) {
+    width: 129px;
+  }
 `;
 
 export const Delete = styled.svg`
@@ -401,21 +405,59 @@ export const Logout = styled.svg`
 `;
 
 export const BtnClose = styled.button`
-  height: 28px;
-  width: 80px;
-  border-radius: 50%;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  height: 24px;
+  width: 24px;
+  background-color: ${theme.colors.transparent};
+  color: ${theme.colors.blue};
+  border: none;
+  cursor: pointer;
+  :hover,
+  :focus {
+    color: ${theme.colors.black};
+  }
+  @media screen and (${props => props.theme.media.md}) {
+    top: 24px;
+    right: 24px;
+  }
+  @media screen and (${props => props.theme.media.lg}) {
+    top: 23px;
+    right: 26px;
+  }
+`;
+export const Close = styled.svg`
+  position: absolute;
+  top: 0;
+  left: 0;
+  fill: ${theme.colors.currentColor};
+  stroke: ${theme.colors.currentColor};
+`;
+
+export const BtnCloseStyled = styled.button`
+  height: 40px;
+  width: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 5px;
-  background-color: ${theme.colors.transparent};
-  border: none;
-  color: ${theme.colors.black};
+  padding: 12px;
+  border-radius: 40px;
+  border: 2px solid ${theme.colors.blue};
+  color: ${theme.colors.blue};
+  background-color: ${theme.colors.clearWhite};
+  font-size: 16px;
+  font-family: ${theme.fonts.main};
+  font-weight: ${theme.fontWeights.bold};
   cursor: pointer;
   :hover,
-  :focus,
-  :active {
+  :focus {
     color: ${theme.colors.white};
-    background-color: ${theme.colors.blue};
+    border: none;
+    background: ${theme.colors.blueGradient};
+  }
+
+  @media screen and (${props => props.theme.media.md}) {
+    width: 129px;
   }
 `;
