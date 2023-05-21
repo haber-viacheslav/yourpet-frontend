@@ -10,7 +10,7 @@ export const InputLabel = styled.label`
   font-size: 14px;
   line-height: 1.36;
 
-  @media screen and (min-width: ${props => props.theme.media.md}) {
+  @media screen and (${props => props.theme.media.md}) {
     font-size: 20px;
     line-height: 1.3;
   }
@@ -31,7 +31,7 @@ export const Input = styled(Field)`
   border-color: ${props =>
     props['data-invalid'] ? props.theme.colors.red : props.theme.colors.blue};
 
-  @media screen and (min-width: ${props => props.theme.media.md}) {
+  @media screen and (${props => props.theme.media.md}) {
     width: 395px;
     height: 48px;
     padding: 12px 16px;

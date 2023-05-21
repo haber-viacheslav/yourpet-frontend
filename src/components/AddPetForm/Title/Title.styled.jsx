@@ -8,7 +8,7 @@ export const AddPetTitle = styled.h2`
   padding-left: 16px;
   margin-bottom: 24px;
 
-  @media screen and (min-width: ${props => props.theme.media.md}) {
+  @media screen and (${props => props.theme.media.md}) {
     font-size: 28px;
 
     text-align: ${props =>

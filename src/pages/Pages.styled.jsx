@@ -8,7 +8,8 @@ import bg_md_2x from '../images/bg/bg-md@2x.png';
 import bg_lg_1x from '../images/bg/bg-lg@1x.png';
 import bg_lg_2x from '../images/bg/bg-lg@2x.png';
 
-export const Wrapper = styled.div`
+export const BgWrapper = styled.div`
+  height: 100%;
   margin-left: auto;
   margin-right: auto;
 
@@ -24,7 +25,7 @@ export const Wrapper = styled.div`
     background-image: url(${bg_sm_2x});
   }
 
-  @media screen and (min-width: ${theme.media.md}) {
+  @media screen and (${theme.media.md}) {
     background-image: url(${bg_md_1x});
 
     @media (min-device-pixel-ratio: 2),
@@ -34,7 +35,7 @@ export const Wrapper = styled.div`
     }
   }
 
-  @media screen and (min-width: ${theme.media.lg}) {
+  @media screen and (${theme.media.lg}) {
     background-image: url(${bg_lg_1x});
 
     @media (min-device-pixel-ratio: 2),

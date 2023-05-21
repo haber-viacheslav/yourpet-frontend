@@ -30,11 +30,11 @@ export const ExtraWrapper = styled.div`
 export const Wrapper = styled.div`
   display: inline-block;
   padding: 20px 8px 16px;
+  font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeights.medium};
   background: ${props => props.theme.colors.clearWhite};
   box-shadow: ${props => props.theme.shadows.mainShadow};
   border-radius: 40px;
-  font-family: ${props => props.theme.fonts.main};
-  font-weight: ${props => props.theme.fontWeights.medium};
   font-style: normal;
 `;
 
@@ -50,7 +50,7 @@ export const GroupTitle = styled.p`
   line-height: 1.35;
   color: ${props => props.theme.colors.dark};
 
-  @media screen and (min-width: ${props => props.theme.media.md}) {
+  @media screen and (${props => props.theme.media.md}) {
     font-size: 20px;
   }
 `;
@@ -65,7 +65,7 @@ export const GroupWrapper = styled.div`
   margin-top: 8px;
   margin-bottom: 67px;
 
-  @media screen and (min-width: ${props => props.theme.media.md}) {
+  @media screen and (${props => props.theme.media.md}) {
     margin-top: 24px;
   }
 `;
@@ -96,7 +96,7 @@ export const SexUploadWrapper = styled.div`
   align-self: flex-start;
   gap: 24px;
 
-  @media screen and (min-width: ${props => props.theme.media.md}) {
+  @media screen and (${props => props.theme.media.md}) {
     gap: ${props => (props['data-category'] !== 'your pet' ? '48px' : '24px')};
     flex-direction: ${props =>
       props['data-category'] !== 'your pet' ? 'column' : 'row'};
@@ -111,7 +111,7 @@ export const FlexWrapper = styled.div`
   align-self: flex-start;
   gap: 16px;
 
-  @media screen and (min-width: ${props => props.theme.media.md}) {
+  @media screen and (${props => props.theme.media.md}) {
     gap: ${props => (props['data-category'] !== 'your pet' ? '63px' : '0')};
     flex-direction: ${props =>
       props['data-category'] !== 'your pet' ? 'row' : 'column'};
@@ -126,7 +126,7 @@ export const BtnWrappper = styled.div`
   gap: 20px;
   margin-top: 24px;
 
-  @media screen and (min-width: ${props => props.theme.media.md}) {
+  @media screen and (${props => props.theme.media.md}) {
     flex-direction: row-reverse;
     gap: 32px;
     margin-top: 36px;

@@ -13,7 +13,7 @@ export const UploadFileLabel = styled.label`
   gap: 27px;
   cursor: pointer;
 
-  @media screen and (min-width: ${props => props.theme.media.md}) {
+  @media screen and (${props => props.theme.media.md}) {
     font-size: 20px;
     flex-direction: ${props =>
       props['data-category'] !== 'your pet' ? 'column' : 'row'};
@@ -31,7 +31,7 @@ export const Photo = styled.img`
   border: none;
   border-radius: 20px;
 
-  @media screen and (min-width: ${props => props.theme.media.md}) {
+  @media screen and (${props => props.theme.media.md}) {
     border-radius: 40px;
   }
 `;
@@ -46,7 +46,7 @@ export const PhotoWrapper = styled.span`
   background: ${props => props.theme.colors.blueLight};
   border-radius: 20px;
 
-  @media screen and (min-width: ${props => props.theme.media.md}) {
+  @media screen and (${props => props.theme.media.md}) {
     width: 182px;
     height: 182px;
     border-radius: 40px;

@@ -18,7 +18,7 @@ export const CommentInput = styled(Field)`
   border-color: ${props =>
     props['data-invalid'] ? props.theme.colors.red : props.theme.colors.blue};
 
-  @media screen and (min-width: ${props => props.theme.media.md}) {
+  @media screen and (${props => props.theme.media.md}) {
     width: 393px;
     height: 79px;
     padding: 12px 16px;
@@ -46,7 +46,7 @@ export const CommentsLabel = styled.label`
   line-height: 1.35;
   margin-top: 24px;
 
-  @media screen and (min-width: ${props => props.theme.media.md}) {
+  @media screen and (${props => props.theme.media.md}) {
     font-size: 20px;
     line-height: 1.3;
   }

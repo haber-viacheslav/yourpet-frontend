@@ -13,7 +13,7 @@ export const Stage = styled.span`
     }
   }};
 
-  @media screen and (min-width: ${props => props.theme.media.md}) {
+  @media screen and (${props => props.theme.media.md}) {
     font-size: 16px;
     line-height: 26px;
   }
@@ -33,7 +33,7 @@ export const Indicator = styled.span`
   }};
   border-radius: 8px;
 
-  @media screen and (min-width: ${props => props.theme.media.md}) {
+  @media screen and (${props => props.theme.media.md}) {
     width: 120px;
   }
 `;
@@ -44,7 +44,7 @@ export const Wrapper = styled.div`
   gap: 12px;
   margin-bottom: 16px;
 
-  @media screen and (min-width: ${props => props.theme.media.md}) {
+  @media screen and (${props => props.theme.media.md}) {
     gap: 16px;
 
     justify-content: ${props =>
