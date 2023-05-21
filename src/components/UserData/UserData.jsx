@@ -10,8 +10,6 @@ import { Logout } from './Logout/Logout';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
-
-
 const ProfileSchema = yup.object().shape({
   name: yup.string().min(2).max(20).required(),
   email: yup.string(), 
@@ -23,20 +21,12 @@ const ProfileSchema = yup.object().shape({
 
 export const UserData = () => {
   return (
-<<<<<<< Updated upstream
-    <ProfileContainer outlineColor={'red'}>
-=======
-    <ProfileWrapper 
-      border-radius={'20px'} 
-      outline={'1px solid red'}
-    >
->>>>>>> Stashed changes
+    <ProfileWrapper outlineColor={'red'}>
       <ProfileTitle>
         My information:
       </ProfileTitle>
 
       <FlexContainer>
-<<<<<<< Updated upstream
         <div>
           <img 
             src="" 
@@ -45,8 +35,6 @@ export const UserData = () => {
             height={'182px'} 
           />
         </div>
-=======
->>>>>>> Stashed changes
 
         <Formik
           validationSchema={ProfileSchema}
@@ -88,12 +76,8 @@ export const UserData = () => {
         </Formik>
       </FlexContainer>
 
-<<<<<<< Updated upstream
       <Logout/>
 
-    </ProfileContainer>
-=======
     </ProfileWrapper>
->>>>>>> Stashed changes
   );
 };
