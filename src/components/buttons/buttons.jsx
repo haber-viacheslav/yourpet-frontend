@@ -169,6 +169,7 @@ export const BtnCall = ({ onClick }) => {
 };
 
 // components btn + svg
+// to favorite and to main page
 export const BtnLearnMoreFavorite = ({ onClick }) => {
   return (
     <>
@@ -239,6 +240,7 @@ export const BtnAddPetCurcle = ({ onClick }) => {
     </>
   );
 };
+
 export const BtnAddFavorite = ({ onClick }) => {
   return (
     <BtnHeart type="button" onClick={onClick}>
