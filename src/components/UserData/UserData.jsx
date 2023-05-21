@@ -1,14 +1,13 @@
-<<<<<<< Updated upstream
 import { ProfileTitle, ProfileContainer } from './UserData.styled';
-=======
-import { ProfileWrapper, ProfileTitle, ProfileInputWrapper } from './UserData.styled';
->>>>>>> Stashed changes
+import { ProfileWrapper, ProfileInputWrapper } from './UserData.styled';
 import { UserDataItem } from './UserDataItem/UserDataItem';
 import { UserAvatarInput } from './UserAvatarInput/UserAvatarInput';
 import { FlexContainer } from 'components/FlexContainer/FlexContainer';
 import { Logout } from './Logout/Logout';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+
+
 
 const ProfileSchema = yup.object().shape({
   name: yup.string().min(2).max(20).required(),
@@ -21,7 +20,10 @@ const ProfileSchema = yup.object().shape({
 
 export const UserData = () => {
   return (
-    <ProfileWrapper outlineColor={'red'}>
+    <ProfileContainer>
+    <ProfileWrapper 
+      border-radius={'20px'} 
+    >
       <ProfileTitle>
         My information:
       </ProfileTitle>
@@ -77,7 +79,7 @@ export const UserData = () => {
       </FlexContainer>
 
       <Logout/>
-
     </ProfileWrapper>
+    </ProfileContainer>
   );
 };

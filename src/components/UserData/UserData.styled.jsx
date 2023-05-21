@@ -11,7 +11,6 @@ export const ProfileTitle = styled.h2`
   margin-bottom: 18px;
 `;
 
-<<<<<<< Updated upstream
 export const ProfileContainer = styled.div`
 display: flex;
 flex-direction: ${props => props.direction || 'column'};
@@ -24,7 +23,7 @@ border-radius: 20px;
 
 box-shadow: 3px 8px 14px 0px #88C6FD30;
 `;
-=======
+
 export const ProfileInputWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -46,4 +45,4 @@ export const ProfileWrapper = styled.div`
   border-radius: 20px;
   outline: ${props => props.outline || 'none'};
 `;
->>>>>>> Stashed changes
+

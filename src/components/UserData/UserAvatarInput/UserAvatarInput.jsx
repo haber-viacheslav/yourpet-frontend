@@ -1,9 +1,8 @@
 import { 
   AvatarInputLabel, 
-  AvatarInput,
-  LabelContainer 
+  AvatarInput
 } from "./UserAvatarInput.styled";
-import { FlexContainer } from "components/FlexContainer/FlexContainer";
+
 
 import { SVG } from "../UserDataItem/UserDataItem.styled";
 import icons from 'images/icons.svg';
