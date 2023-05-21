@@ -25,16 +25,13 @@ import {
   Logout,
   Delete,
   BtnClose,
-<<<<<<< HEAD
   Close,
   BtnCloseStyled,
-=======
   PetInfoStyle,
   TexStyletInfo,
   FilterCurcle,
   PetCategoryStyle,
   TexCategoyInfo,
->>>>>>> main
 } from '../buttons/buttons.styled';
 
 // componemnts svg

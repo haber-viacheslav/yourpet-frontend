@@ -14,11 +14,15 @@ export const StyledModalTitle = styled.h3`
 
 export const AnotherStyledModalTitle = styled.h3`
   font-size: ${props => props.theme.fontSizes[5]}px;
-  line-height: 1.36;
-  letter-spacing: -0.01em;
+  line-height: 1.375;
   color: ${props => props.theme.colors.black};
-  font-weight: ${props => props.theme.fontWeights.bold};
+  font-weight: ${props => props.theme.fontWeights.semibold};
   margin-bottom: 24px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 33px;
+
+  letter-spacing: 0.04em;
   @media screen and (${props => props.theme.media.md}) {
     font-size: ${props => props.theme.fontSizes[14]}px;
     margin-bottom: 52px;
@@ -49,7 +53,12 @@ export const AnotherStyledModalDescr = styled.p`
   letter-spacing: 0.04em;
   color: ${props => props.theme.colors.black};
   @media screen and (${props => props.theme.media.md}) {
+    width: 360px;
     font-size: ${props => props.theme.fontSizes[5]}px;
     margin-bottom: 60px;
   }
+`;
+export const StyledLogOutModalTitle = styled(AnotherStyledModalTitle)`
+  margin-top: 48px;
+  margin-bottom: 48px;
 `;

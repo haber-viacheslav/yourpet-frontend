@@ -10,6 +10,7 @@ import {
   ModalDescrBold,
   AnotherModalTitle,
   AnotherModalDescr,
+  LogOutModalTitle,
 } from './ModalApproveActionContent/ModalApproveActionContent';
 import {
   BtnClearCancel,
@@ -35,7 +36,7 @@ export const ModalApproveAction = ({
           <ModalDescrBold>“{newText}”?</ModalDescrBold> You can`t undo this
           action.
         </ModalDescr>
-        <FlexContainer flexDirection={'row'} flexGap={'17px'}>
+        <FlexContainer flexGap={'17px'}>
           <BtnClearCancel onClick={onClick} />
           <BtnYesDelete onClick={onClick}></BtnYesDelete>
         </FlexContainer>
@@ -49,7 +50,7 @@ export const ModalApproveAction = ({
           <ModalDescrBold>“{newText}”?</ModalDescrBold> You can`t undo this
           action.
         </ModalDescr>
-        <FlexContainer flexDirection={'row'} flexGap={'17px'}>
+        <FlexContainer flexGap={'17px'}>
           <BtnClearCancel onClick={onClick} />
           <BtnYesDelete onClick={onClick}></BtnYesDelete>
         </FlexContainer>
@@ -58,13 +59,21 @@ export const ModalApproveAction = ({
     congrats: (
       <>
         <AnotherModalTitle>Congrats!</AnotherModalTitle>
-        <AnotherModalDescr>Youre registration is success</AnotherModalDescr>
-        <FlexContainer flexDirection={'row'} flexGap={'17px'}>
+        <AnotherModalDescr>You're registration is success</AnotherModalDescr>
+        <FlexContainer>
           <BtnCongrats onClick={onClick} />
         </FlexContainer>
       </>
     ),
-    logOut: '',
+    logOut: (
+      <>
+        <LogOutModalTitle>Already leaving?</LogOutModalTitle>
+        <FlexContainer flexGap={'17px'}>
+          <BtnClearCancel onClick={onClick} />
+          <BtnYesLogout onClick={onClick} />
+        </FlexContainer>
+      </>
+    ),
   };
   useEffect(() => {
     const handleEscDown = e => {

@@ -1,6 +1,6 @@
 import { Container } from 'components/Container/Container';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
-import { BtnLocation } from 'components/buttons/buttons';
+import { BtnNext } from 'components/buttons/buttons';
 import { useState } from 'react';
 const ModalTestPage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,10 +24,10 @@ const ModalTestPage = () => {
     <>
       <Container>
         <h2>Test modals</h2>
-        <BtnLocation onClick={onClose} />
-        <BtnLocation onClick={onClose1} />
-        <BtnLocation onClick={onClose2} />
-        <BtnLocation onClick={onClose3} />
+        <BtnNext onClick={onClose} />
+        <BtnNext onClick={onClose1} />
+        <BtnNext onClick={onClose2} />
+        <BtnNext onClick={onClose3} />
         {isOpen && (
           <ModalApproveAction
             onClick={onClose}

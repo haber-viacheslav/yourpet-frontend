@@ -4,6 +4,7 @@ import {
   AnotherStyledModalTitle,
   StyledModalDescrBold,
   AnotherStyledModalDescr,
+  StyledLogOutModalTitle,
 } from './ModalApproveActionContent.styled';
 
 export const ModalTitle = ({ children }) => {
@@ -20,4 +21,7 @@ export const ModalDescrBold = ({ children }) => {
 };
 export const AnotherModalDescr = ({ children }) => {
   return <AnotherStyledModalDescr>{children}</AnotherStyledModalDescr>;
+};
+export const LogOutModalTitle = ({ children }) => {
+  return <StyledLogOutModalTitle>{children}</StyledLogOutModalTitle>;
 };

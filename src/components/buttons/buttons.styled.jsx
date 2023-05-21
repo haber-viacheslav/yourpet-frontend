@@ -418,6 +418,14 @@ export const BtnClose = styled.button`
   :focus {
     color: ${theme.colors.black};
   }
+  @media screen and (${props => props.theme.media.md}) {
+    top: 24px;
+    right: 24px;
+  }
+  @media screen and (${props => props.theme.media.lg}) {
+    top: 23px;
+    right: 26px;
+  }
 `;
 export const Close = styled.svg`
   position: absolute;
