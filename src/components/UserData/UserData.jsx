@@ -1,8 +1,8 @@
-import { ProfileTitle } from './UserData.styled';
+import { ProfileTitle, ProfileContainer } from './UserData.styled';
 import { UserDataItem } from './UserDataItem/UserDataItem';
 import { ProfileInputWrapper } from './UserDataItem/UserDataItem.styled';
 import { FlexContainer } from 'components/FlexContainer/FlexContainer';
-
+import { Logout } from './Logout/Logout';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
@@ -18,13 +18,13 @@ const ProfileSchema = yup.object().shape({
 
 export const UserData = () => {
   return (
-    <FlexContainer outline={'1px solid red'}>
+    <ProfileContainer outlineColor={'red'}>
       <ProfileTitle>
         My information:
       </ProfileTitle>
 
       <FlexContainer>
-        <div styles={'margin: 20px, outline: 1px solid red '} >
+        <div>
           <img 
             src="" 
             alt="user avatar" 
@@ -35,15 +35,14 @@ export const UserData = () => {
 
         <Formik
           validationSchema={ProfileSchema}
-          >
+        >
           <ProfileInputWrapper >
             <UserDataItem 
               type='text'
               name='name'
               label='Name:'
               placeholder='Enter your name'
-              >+380</UserDataItem>
-            
+            />
             <UserDataItem 
               type='text'
               name='email'
@@ -72,6 +71,8 @@ export const UserData = () => {
         </Formik>
       </FlexContainer>
 
-    </FlexContainer>
+      <Logout/>
+
+    </ProfileContainer>
   );
 };

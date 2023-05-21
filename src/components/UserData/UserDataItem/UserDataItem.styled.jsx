@@ -13,24 +13,31 @@ export const ProfileInputLabel = styled.label`
 `;
 
 export const ProfileInput = styled(Field)`
-  padding: 4px 12px;
-  width: 190px;
-  height: 28px;
+  width: 120px;
   margin-top: 0;
   font-weight: 400;
   font-size: 12px;
   line-height: 16.39px;
 
-  border: 1px solid #54adff;
-  border-radius: 20px;
-
-  outline: transparent;
+  border: none;
+  outline: none;
 
   &::placeholder {
     font-weight: 400;
     font-size: 12px;
     line-height: 16.39px;
   }
+`;
+
+export const SingleInputWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  padding: 4px 12px;
+  width: 190px;
+  height: 28px;
+  border: 1px solid #54adff;
+  border-radius: 20px;
 `;
 
 export const ProfileInputWrapper = styled.div`
@@ -41,5 +48,9 @@ export const ProfileInputWrapper = styled.div`
   align-items: space-between;
   align-self: flex-start;
   gap: 12px;
-  outline: 1px solid blue;
+`;
+
+export const SVG = styled.svg`
+  fill: ${props => props.fill || 'transparent'};
+  stroke: ${props => props.stroke || 'transparent'};
 `;
