@@ -11,7 +11,12 @@ import {
   AnotherModalTitle,
   AnotherModalDescr,
 } from './ModalApproveActionContent/ModalApproveActionContent';
-import { BtnClearCancel, BtnYesLogout, BtnYesDelete } from '../buttons/buttons';
+import {
+  BtnClearCancel,
+  BtnYesLogout,
+  BtnCongrats,
+  BtnYesDelete,
+} from '../buttons/buttons';
 import { textCutter } from 'components/helpers/textCutter';
 const modalRoot = document.querySelector('#modal-root');
 export const ModalApproveAction = ({
@@ -55,8 +60,7 @@ export const ModalApproveAction = ({
         <AnotherModalTitle>Congrats!</AnotherModalTitle>
         <AnotherModalDescr>Youre registration is success</AnotherModalDescr>
         <FlexContainer flexDirection={'row'} flexGap={'17px'}>
-          <BtnClearCancel onClick={onClick} />
-          <BtnYesDelete onClick={onClick}></BtnYesDelete>
+          <BtnCongrats onClick={onClick} />
         </FlexContainer>
       </>
     ),
