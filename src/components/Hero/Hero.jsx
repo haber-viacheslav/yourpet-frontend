@@ -37,14 +37,14 @@ export const Hero = () => {
           srcSet={`${dog1_sm_1x} 299w, ${dog1_sm_2x} 597w , ${dog1_md_bg_1x} 729w,${dog1_md_bg_2x} 1457w`}
           src={dog1_sm_1x}
           sizes="(max-width: 767px) 299px, (max-width: 767px) 597px, (min-width: 768px) 729px, (min-width: 768px) 1457px, 100vw"
-          alt="cat"
+          alt="dog"
           loading="lazy"
         />
         <DoggyImage
           srcSet={`${dog2_sm_1x} 289w, ${dog2_sm_2x} 576w , ${dog2_md_bg_1x} 597w,${dog2_md_bg_2x} 1194w`}
           src={dog2_sm_1x}
           sizes="(max-width: 767px) 289px, (max-width: 767px) 576px, (min-width: 768px) 597px, (min-width: 768px) 1194px, 100vw"
-          alt="cat"
+          alt="dog"
           loading="lazy"
         />
       </ImageWrapper>
