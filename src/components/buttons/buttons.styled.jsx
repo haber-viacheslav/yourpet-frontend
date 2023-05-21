@@ -21,6 +21,7 @@ export const BtnLM = styled.button`
     border: none;
     background: ${theme.colors.blueGradient};
   }
+  margin: 0 auto 20px;
 `;
 export const BigBtnFavor = styled.button`
   height: 38px;
@@ -139,6 +140,9 @@ export const BtnAddCurcle = styled.button`
   :focus {
     background: ${theme.colors.blueGradient};
   }
+  position: absolute;
+  top: 108px;
+  right: 0;
 `;
 export const Add = styled.svg`
   stroke: ${theme.colors.white};
@@ -162,7 +166,26 @@ export const BtnHeart = styled.button`
   background-color: ${theme.colors.blueLight};
   border: none;
   cursor: pointer;
+  position: absolute;
+  top: 12px;
+  right: 12px;
 `;
+export const FilterCurcle = styled.button`
+  height: 40px;
+  width: 40px;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 13px;
+  padding-bottom: 11px;
+  padding-left: 11px;
+  padding-right: 11px;
+  background-color: ${theme.colors.blueLight};
+  border: none;
+  cursor: pointer;
+`;
+
 export const Heart = styled.svg`
   fill: none;
   stroke: ${theme.colors.blue};
@@ -289,34 +312,55 @@ export const BtnContact = styled.button`
   color: ${theme.colors.blue};
   border: 2px solid ${theme.colors.blue};
 `;
-export const BtnCity = styled.button`
+export const PetInfoStyle = styled.div`
   height: 28px;
   width: 80px;
-  border-radius: 40px;
+  border-radius: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 5px;
-  padding-bottom: 5px;
   background-color: ${theme.colors.blueLight};
   border: none;
   color: ${theme.colors.black};
-  cursor: pointer;
-  :hover,
-  :focus,
-  :active {
-    color: ${theme.colors.white};
-    background-color: ${theme.colors.blue};
-  }
+`;
+export const PetCategoryStyle = styled.div`
+  width: 126px;
+  height: 32px;
+  position: absolute;
+  top: 16px;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${theme.colors.blueLight};
+  border: none;
+  color: ${theme.colors.black};
 `;
 export const City = styled.svg`
   fill: none;
   stroke: ${theme.colors.blue};
-  margin-right: 8px;
-  :hover,
-  :focus {
-    stroke: ${theme.colors.white};
-  }
+  margin-right: 4px;
+`;
+export const TexStyletInfo = styled.p`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
+`;
+export const TexCategoyInfo = styled.p`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
 `;
 
 export const YesBtn = styled.button`
