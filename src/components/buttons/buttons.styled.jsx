@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { theme } from '../../theme/theme';
 
-console.log(theme);
-
 export const BtnLM = styled.button`
   height: 38px;
   width: 248px;
@@ -80,7 +78,7 @@ export const ArrowLeft = styled.svg`
   margin-right: 12px;
 `;
 export const BtnBackArrow = styled.button`
-  height: 40px;
+  height: 24px;
   width: 76px;
   display: flex;
   justify-content: center;
