@@ -7,7 +7,7 @@ export const SvgPlusIcon = styled.svg`
 `;
 
 export const SvgSexIcon = styled.svg`
-  fill: ${props => props.theme.colors.snowWhite};
+  fill: ${props => props.theme.colors.clearWhite};
   stroke: ${props => {
     if (props.sex === '') {
       return props.index === 0
@@ -30,7 +30,7 @@ export const ExtraWrapper = styled.div`
 export const Wrapper = styled.div`
   display: inline-block;
   padding: 20px 8px 16px;
-  background: ${props => props.theme.colors.snowWhite};
+  background: ${props => props.theme.colors.clearWhite};
   box-shadow: ${props => props.theme.shadows.mainShadow};
   border-radius: 40px;
   font-family: ${props => props.theme.fonts.main};

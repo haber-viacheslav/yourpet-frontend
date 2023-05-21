@@ -14,8 +14,8 @@ export const theme = Object.freeze({
     dark: '#111111',
     orange: '#FFC107',
     white: '#FDF7F2',
-    snowWhite: '#ffffff',
     whity: '#FEF9F9',
+    clearWhite: '#FFFFFF',
     blueGradient: 'linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%)',
     blue: '#54ADFF',
     blueLight: '#CCE4FB',
@@ -37,7 +37,7 @@ export const theme = Object.freeze({
     // sm: '(min-width: 320px)',
     // md: '(min-width: 768px)',
     // lg: '(min-width: 1280px)',
-    smToMd: '(min-width: 320px) and (max-width: 761px)',
+    smToMd: '(min-width: 320px) and (max-width: 767px)',
     mdToLg: '(min-width: 768px) and (max-width: 1279px)',
   },
 });
