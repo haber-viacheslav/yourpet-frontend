@@ -6,20 +6,20 @@ import {
   CatImage,
   DoggyImage,
 } from '../Hero/Hero.styled';
-import cat_sm_1x from '../../images/pets-hero/cat_sm@1x.png';
-import cat_sm_2x from '../../images/pets-hero/cat_sm@2x.png';
-import cat_md_bg_1x from '../../images/pets-hero/cat_md_bg@1x.png';
-import cat_md_bg_2x from '../../images/pets-hero/cat_md_bg@2x.png';
+import cat_sm_1x from '../../images/pets-hero/cat_sm@1x.webp';
+import cat_sm_2x from '../../images/pets-hero/cat_sm@2x.webp';
+import cat_md_bg_1x from '../../images/pets-hero/cat_md_bg@1x.webp';
+import cat_md_bg_2x from '../../images/pets-hero/cat_md_bg@2x.webp';
 
-import dog1_sm_1x from '../../images/pets-hero/dog1_sm@1x.png';
-import dog1_sm_2x from '../../images/pets-hero/dog1_sm@2x.png';
-import dog1_md_bg_1x from '../../images/pets-hero/dog1_md_bg@1x.png';
-import dog1_md_bg_2x from '../../images/pets-hero/dog1_md_bg@2x.png';
+import dog1_sm_1x from '../../images/pets-hero/dog1_sm@1x.webp';
+import dog1_sm_2x from '../../images/pets-hero/dog1_sm@2x.webp';
+import dog1_md_bg_1x from '../../images/pets-hero/dog1_md_bg@1x.webp';
+import dog1_md_bg_2x from '../../images/pets-hero/dog1_md_bg@2x.webp';
 
-import dog2_sm_1x from '../../images/pets-hero/dog2_sm@1x.png';
-import dog2_sm_2x from '../../images/pets-hero/dog2_sm@2x.png';
-import dog2_md_bg_1x from '../../images/pets-hero/dog2_md_bg@1x.png';
-import dog2_md_bg_2x from '../../images/pets-hero/dog2_md_bg@2x.png';
+import dog2_sm_1x from '../../images/pets-hero/dog2_sm@1x.webp';
+import dog2_sm_2x from '../../images/pets-hero/dog2_sm@2x.webp';
+import dog2_md_bg_1x from '../../images/pets-hero/dog2_md_bg@1x.webp';
+import dog2_md_bg_2x from '../../images/pets-hero/dog2_md_bg@2x.webp';
 
 export const Hero = () => {
   return (
