@@ -107,4 +107,7 @@ export const ModalApproveAction = ({
 
 ModalApproveAction.propTypes = {
   onClick: PropTypes.func.isRequired,
+  onActivate: PropTypes.func,
+  variant: PropTypes.string.isRequired,
+  text: PropTypes.string,
 };
