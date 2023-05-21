@@ -1,6 +1,10 @@
+<<<<<<< Updated upstream
 import { ProfileTitle, ProfileContainer } from './UserData.styled';
+=======
+import { ProfileWrapper, ProfileTitle, ProfileInputWrapper } from './UserData.styled';
+>>>>>>> Stashed changes
 import { UserDataItem } from './UserDataItem/UserDataItem';
-import { ProfileInputWrapper } from './UserDataItem/UserDataItem.styled';
+import { UserAvatarInput } from './UserAvatarInput/UserAvatarInput';
 import { FlexContainer } from 'components/FlexContainer/FlexContainer';
 import { Logout } from './Logout/Logout';
 import { Formik } from 'formik';
@@ -14,16 +18,25 @@ const ProfileSchema = yup.object().shape({
   phone: yup.string().matches(/^\+\d{12}$/),
   birthday: yup.string().matches(/^\d{2}\.\d{2}\.\d{4}$/),
   city: yup.string().matches(/^[A-Z][a-zA-Z]*$/),
+  file:'',
 });
 
 export const UserData = () => {
   return (
+<<<<<<< Updated upstream
     <ProfileContainer outlineColor={'red'}>
+=======
+    <ProfileWrapper 
+      border-radius={'20px'} 
+      outline={'1px solid red'}
+    >
+>>>>>>> Stashed changes
       <ProfileTitle>
         My information:
       </ProfileTitle>
 
       <FlexContainer>
+<<<<<<< Updated upstream
         <div>
           <img 
             src="" 
@@ -32,11 +45,15 @@ export const UserData = () => {
             height={'182px'} 
           />
         </div>
+=======
+>>>>>>> Stashed changes
 
         <Formik
           validationSchema={ProfileSchema}
         >
           <ProfileInputWrapper >
+            <UserAvatarInput/>
+
             <UserDataItem 
               type='text'
               name='name'
@@ -71,8 +88,12 @@ export const UserData = () => {
         </Formik>
       </FlexContainer>
 
+<<<<<<< Updated upstream
       <Logout/>
 
     </ProfileContainer>
+=======
+    </ProfileWrapper>
+>>>>>>> Stashed changes
   );
 };
