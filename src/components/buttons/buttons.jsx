@@ -232,10 +232,10 @@ export const BtnLearnMoreFavorite = ({ onClick }) => {
     </>
   );
 };
-export const BtnDone = ({ onSubmit }) => {
+export const BtnDone = () => {
   return (
     <>
-      <BigBtnFavor type="submit" onSubmit={onSubmit}>
+      <BigBtnFavor type="submit">
         Done
         <SvgPawprint />
       </BigBtnFavor>

@@ -6,31 +6,23 @@ export const UploadFileLabel = styled.label`
   align-items: center;
   align-self: flex-start;
 
-  font-weight: 500;
+  font-weight: ${props => props.theme.fontWeights.medium};
   font-size: 14px;
-  line-height: 19px;
-  padding-left: 8px;
+  line-height: 1.35;
   margin-top: 16px;
-  margin-bottom: 16px;
   gap: 27px;
   cursor: pointer;
+
+  @media screen and (${props => props.theme.media.md}) {
+    font-size: 20px;
+    flex-direction: ${props =>
+      props['data-category'] !== 'your pet' ? 'column' : 'row'};
+    gap: ${props => (props['data-category'] !== 'your pet' ? '12px' : '27px')};
+  }
 `;
 
 export const UploadFile = styled.input`
   display: none;
-  width: 264px;
-  height: 92px;
-  padding: 8px 16px;
-  margin-top: 4px;
-  outline: transparent;
-  border: 1px solid #54adff;
-  border-radius: 20px;
-  resize: none;
-
-  &::placeholder {
-    font-size: 14px;
-    color: #7a7a7a;
-  }
 `;
 
 export const Photo = styled.img`
@@ -38,6 +30,10 @@ export const Photo = styled.img`
   height: 100%;
   border: none;
   border-radius: 20px;
+
+  @media screen and (${props => props.theme.media.md}) {
+    border-radius: 40px;
+  }
 `;
 
 export const PhotoWrapper = styled.span`
@@ -47,11 +43,14 @@ export const PhotoWrapper = styled.span`
   align-items: center;
   width: 112px;
   height: 112px;
-  background: #cce4fb;
+  background: ${props => props.theme.colors.blueLight};
   border-radius: 20px;
-`;
-export const UploadWrapper = styled.span`
-  position: relative;
+
+  @media screen and (${props => props.theme.media.md}) {
+    width: 182px;
+    height: 182px;
+    border-radius: 40px;
+  }
 `;
 
 export const ErrWrapper = styled.span`
@@ -61,8 +60,7 @@ export const ErrWrapper = styled.span`
   bottom: -20px;
   padding-left: 16px;
   font-size: 12px;
-  padding: 0;
 
-  line-height: 16px;
-  color: red;
+  line-height: 1.35;
+  color: ${props => props.theme.colors.red};
 `;
