@@ -9,7 +9,7 @@ import {
   ErrWrapper,
 } from './UploadInput.styled';
 
-export const UploadInput = () => {
+export const UploadInput = ({ category }) => {
   const [photoPreview, SetPhotoPreview] = useState(null);
   const { setFieldValue } = useFormikContext();
 
@@ -21,7 +21,7 @@ export const UploadInput = () => {
   };
 
   return (
-    <UploadFileLabel htmlFor="file">
+    <UploadFileLabel data-category={category}>
       Add photo
       <UploadFile
         type="file"

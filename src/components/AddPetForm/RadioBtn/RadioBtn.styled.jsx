@@ -5,7 +5,7 @@ export const InputLabel = styled.label`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 19px;
+  gap: 16px;
   padding: ${props => {
     if (props.name === 'category') {
       return '8px 16px';
@@ -13,23 +13,40 @@ export const InputLabel = styled.label`
   }};
 
   font-weight: 500;
-  font-size: 14px;
-  line-height: 19px;
+  font-size: ${props => {
+    if (props.name === 'category') {
+      return '14px';
+    } else {
+      return '16px';
+    }
+  }};
+  line-height: 1.35;
   letter-spacing: 0.04em;
 
   color: ${props => {
     if (props.name === 'category') {
-      return props.selected ? '#FEF9F9' : '#54adff';
+      return props.selected
+        ? props.theme.colors.whity
+        : props.theme.colors.blue;
     } else {
-      return props.selected ? '#00C3AD' : '#888888';
+      return props.selected
+        ? props.theme.colors.green
+        : props.theme.colors.grey;
     }
   }};
   background: ${props => {
     if (props.name === 'category') {
-      return props.selected ? '#54adff' : '#cce4fb';
+      return props.selected
+        ? props.theme.colors.blue
+        : props.theme.colors.blueLight;
     }
   }};
-  border-radius: 40px;
+  border-radius: ${props => {
+    if (props.name === 'category') {
+      return '40px';
+    }
+  }};
+
   cursor: pointer;
 `;
 

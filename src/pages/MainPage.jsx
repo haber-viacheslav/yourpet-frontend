@@ -1,19 +1,22 @@
 import { Hero } from '../components/Hero/Hero';
 import { Section } from 'components/Section/Section';
 import { Container } from 'components/Container/Container';
+import { BgWrapper } from './Pages.styled';
 
-export const MainPage = () => {
+const MainPage = () => {
   return (
-    <Section
-      padTopSm={'10px'}
-      padBottomLg={'150px'}
-      padTopLg={'300px'}
-      padTopMd={'200px'}
-    >
-      <Container>
-        <Hero />
-      </Container>
-    </Section>
+    <BgWrapper>
+      <Section
+        padTopSm={'10px'}
+        padTopMd={'20px'}
+        padTopLg={'30px'}
+        padBottomLg={'15px'}
+      >
+        <Container>
+          <Hero />
+        </Container>
+      </Section>
+    </BgWrapper>
   );
 };
 
