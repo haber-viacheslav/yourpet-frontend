@@ -2,27 +2,37 @@ import {
   BtnAddFavorite,
   BtnAddPetCurcle,
   BtnLearnMore,
+  PetCategory,
   PetInfo,
   SvgClock,
   SvgFemale,
   SvgLocation,
 } from 'components/buttons/buttons';
+import {
+  ConteinerCard,
+  ConteinerInfo,
+  Img,
+  Text,
+} from './NoticesCategoriesList.styled';
 
 export const NoticesCategoryList = ({ petList }) => {
-  const { smImgUrl1x, name, sex, place } = petList;
+  const { smImgUrl1x, sex, place, category } = petList;
 
   return (
     <>
-      <div>
-        <img src={smImgUrl1x} alt="" />
+      <ConteinerCard>
+        <Img src={smImgUrl1x} alt="" />
         <BtnAddFavorite />
         <BtnAddPetCurcle />
-        <PetInfo Svg={SvgLocation} text={`${place}`} />
-        <PetInfo Svg={SvgClock} text={'1 year'} />
-        <PetInfo Svg={SvgFemale} text={`${sex}`} />
-      </div>
-      <h3>{`${name}`}</h3>
-      <BtnLearnMore />
+        <PetCategory text={`${category}`} />
+        <ConteinerInfo>
+          <PetInfo Svg={SvgLocation} text={`${place}`} />
+          <PetInfo Svg={SvgClock} text={'1 year'} />
+          <PetInfo Svg={SvgFemale} text={`${sex}`} />
+        </ConteinerInfo>
+        <Text>Сute dog looking for a home</Text>
+        <BtnLearnMore />
+      </ConteinerCard>
     </>
   );
 };

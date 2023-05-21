@@ -22,12 +22,8 @@ const NoticesPage = () => {
               <BtnAddOption text={'sell'} />
               <BtnAddOption text={'lost/found'} />
               <BtnAddOption text={'in good hands'} />
-              <div>
-                <BtnAddOption text={'favorite ads'} />
-                <BtnAddOption text={'my ads'} />
-              </div>
-            </div>
-            <div>
+              <BtnAddOption text={'favorite ads'} />
+              <BtnAddOption text={'my ads'} />
               <BtnFiltersCircle />
             </div>
           </div>

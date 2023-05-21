@@ -27,6 +27,9 @@ import {
   BtnClose,
   PetInfoStyle,
   TexStyletInfo,
+  FilterCurcle,
+  PetCategoryStyle,
+  TexCategoyInfo,
 } from '../buttons/buttons.styled';
 
 // componemnts svg
@@ -129,6 +132,15 @@ export const PetInfo = ({ Svg, text, onClick }) => {
     </>
   );
 };
+export const PetCategory = ({ text, onClick }) => {
+  return (
+    <>
+      <PetCategoryStyle onClick={onClick}>
+        <TexCategoyInfo> {text}</TexCategoyInfo>
+      </PetCategoryStyle>
+    </>
+  );
+};
 
 //
 
@@ -206,9 +218,9 @@ export const BtnFilters = ({ onClick }) => {
 };
 export const BtnFiltersCircle = ({ onClick }) => {
   return (
-    <BtnHeart type="button" onClick={onClick}>
+    <FilterCurcle type="button" onClick={onClick}>
       <SvgFilter />
-    </BtnHeart>
+    </FilterCurcle>
   );
 };
 export const BtnCall = ({ onClick }) => {
