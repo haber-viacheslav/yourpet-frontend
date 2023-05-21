@@ -23,18 +23,18 @@ export const ModalBody = styled.div`
   border-radius: 20px;
   background-color: ${props => props.theme.colors.clearWhite};
 
-  @media screen and (min-width: ($mobile - 0.02px)) {
+  @media screen and (${props => props.theme.media.sm}) {
     width: 280px;
   }
 
-  @media screen and (min-width: $tablet) {
+  @media screen and (${props => props.theme.media.md}) {
     top: 148px;
     padding: 60px 129px;
     width: 608px;
     height: 345px;
   }
 
-  @media screen and (min-width: $desktop) {
+  @media screen and (${props => props.theme.media.lg}) {
     top: 112px;
   }
 `;
