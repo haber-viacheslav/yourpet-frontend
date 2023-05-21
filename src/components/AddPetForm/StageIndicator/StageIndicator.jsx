@@ -5,9 +5,9 @@ import {
   Wrapper,
 } from './StageIndicator.styled';
 
-export const StageIndicator = ({ stage }) => {
+export const StageIndicator = ({ stage, category }) => {
   return (
-    <Wrapper>
+    <Wrapper data-category={category}>
       <StageWrapper>
         <Stage stage={stage} datastage={1}>
           Choose option
