@@ -12,6 +12,7 @@ export const Header = () => {
         <Nav />
         <p>HEADER</p>
         {/* {isLoggedIn ? <UserNav /> : <AuthNav />} */}
+        <AuthNav />
       </header>
     </Container>
   );
