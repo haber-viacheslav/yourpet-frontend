@@ -42,10 +42,14 @@ export const App = () => {
             <Route path="friends" element={<OurFriendsPage />} />
             <Route path="news" element={<NewsPage />} />
             <Route path="add-pet" element={<AddPetPage />} />
-            <Route
+            {/* <Route
               path="*"
               element={<Navigate to="404" component={<NotFound />} />}
-            />
+            /> */}
+             <Route
+              path="*"
+              element={<NotFound />} />
+            
           </Route>
         </Routes>
       </ThemeProvider>
