@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { theme } from '../../theme/theme';
+import { Link } from 'react-router-dom';
 
 export const Box = styled.div`
   display: block;
@@ -87,3 +88,35 @@ export const BlockBtn = styled.div`
     margin-top: 18px;
   }
 `;
+export const LinkToMain = styled.div`
+  height: 38px;
+  width: 248px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 40px;
+  padding-left: auto;
+  padding-right: auto;
+  border: none;
+  background: ${theme.colors.blue};
+  color: ${theme.colors.white};
+  font-size: 16px;
+  font-family: ${theme.fonts.main};
+  font-weight: ${theme.fontWeights.bold};
+  cursor: pointer;
+  :hover,
+  :focus {
+    background: ${theme.colors.blueGradient};
+  }
+`;
+export const Links = styled(Link)`  
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  text-decoration: none;
+  color: ${theme.colors.white};
+  font-weight: 500;   
+`;
+  

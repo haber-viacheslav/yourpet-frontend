@@ -13,8 +13,10 @@ import {
   Box,
   BlockBtn,
   Cat,
+  LinkToMain,
+  Links,
 } from './NotfoundHero.syled';
-import { BtnToGo } from '../buttons/buttons';
+import { SvgPawprint } from '../buttons/buttons';
 
 export const NotFoundHero = () => {
   return (
@@ -37,8 +39,12 @@ export const NotFoundHero = () => {
       </ImageWrapper>
 
       <BlockBtn>
-        <BtnToGo />
-        
+        <LinkToMain>
+          <Links to="./">
+            To main page
+            <SvgPawprint />
+          </Links>
+        </LinkToMain>
       </BlockBtn>
     </Box>
   );
