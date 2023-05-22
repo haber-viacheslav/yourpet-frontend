@@ -8,6 +8,7 @@ import {
   Photo,
   ErrWrapper,
 } from './UploadInput.styled';
+import PropTypes from 'prop-types';
 
 export const UploadInput = ({ category }) => {
   const [photoPreview, SetPhotoPreview] = useState(null);
@@ -39,4 +40,8 @@ export const UploadInput = ({ category }) => {
       </PhotoWrapper>
     </UploadFileLabel>
   );
+};
+
+UploadInput.propTypes = {
+  category: PropTypes.string.isRequired,
 };

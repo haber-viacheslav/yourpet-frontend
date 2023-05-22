@@ -12,7 +12,7 @@ import { SexIcon } from './Icon/Icon';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import {
-  LoginFormStyled,
+  FormWrapper,
   Wrapper,
   InputWrapper,
   GroupWrapper,
@@ -32,29 +32,29 @@ const addPetFormSchema = yup.object().shape({
       .string()
       .min(2, 'Minimum 2 characters')
       .max(16, 'Maximum 16 characters')
-      .required('Title is required (min 2, max 16 characters)'),
+      .required('Enter a title (min 2, max 16 characters)'),
     otherwise: yup.string(),
   }),
   date: yup
     .string()
     .matches(/^\d{2}\.\d{2}\.\d{4}$/, 'DD.MM.YYYY format needed')
-    .required('Date is required (DD.MM.YYYY format)'),
+    .required('Enter a date of birth (DD.MM.YYYY format)'),
   breed: yup
     .string('Must be a string')
     .min(2, 'Minimum 2 characters')
     .max(16, 'Maximum 16 characters')
-    .required('Breed is required (min 2, max 16 characters)'),
+    .required('Enter a pet`s breed (min 2, max 16 characters)'),
   name: yup
     .string()
     .min(2, 'Minimum 2 characters')
     .max(16, 'Maximum 16 characters')
-    .required('Name is required (min 2, max 16 characters)'),
+    .required('Enter a pet`s name (min 2, max 16 characters)'),
   location: yup.string().when('category', {
     is: value => value !== 'your pet',
     then: yup
       .string()
-      .matches(/^[A-Z][a-zA-Z]*$/, 'City begins with capitalize character')
-      .required('City is required'),
+      .matches(/^[A-Z][a-zA-Z]*$/, 'Location begins with capitalize character')
+      .required('Enter your location'),
     otherwise: yup.string(),
   }),
   price: yup.number().when('category', {
@@ -62,24 +62,23 @@ const addPetFormSchema = yup.object().shape({
     then: yup
       .number()
       .moreThan(0, 'Price must be greater than 0')
-      .required('Price is required'),
+      .required('Enter a price'),
     otherwise: yup.number(),
   }),
   comments: yup
     .string()
     .min(8, 'Minimum 8 characters')
     .max(120, 'Maximum 120 characters'),
-
   sex: yup.string().when('category', {
     is: value =>
       value === 'sell' || value === 'lost/found' || value === 'in good hands',
-    then: yup.string().oneOf(['Female', 'Male']).required('Sex is required'),
+    then: yup.string().oneOf(['Female', 'Male']).required('Enter a pet`s sex'),
     otherwise: yup.string(),
   }),
   category: yup
     .string()
     .oneOf(['your pet', 'sell', 'lost/found', 'in good hands'])
-    .required('Category is required'),
+    .required(),
   file: yup
     .mixed()
     .test('fileSize', 'File size is too large', value => value?.size <= 3145728)
@@ -89,7 +88,7 @@ const addPetFormSchema = yup.object().shape({
       value =>
         !value || ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type)
     )
-    .required('Photo is required'),
+    .required('Upload pet`s photo'),
 });
 
 const formTempValues = localStorage.getItem('formValues');
@@ -115,38 +114,72 @@ const initialsFormState = formTempValues
 
 const initialsStage = formTempStage ? Number(JSON.parse(formTempStage)) : 1;
 
-const isFieldValid = (errors, touched, field) => {
-  return !errors[field] && touched[field];
-};
-
 export const AddPetForm = () => {
   const [stage, SetStage] = useState(() => initialsStage);
   const navigate = useNavigate();
 
-  const handleOnNextClick = (values, errors, touched) => {
-    let formIsValid = true;
-    const { category } = values;
+  const handleOnNextClick = (
+    values,
+    errors,
+    touched,
+    validateForm,
+    setTouched
+  ) => {
+    validateForm(values)
+      .then(res => {
+        let formIsValid = true;
+        const { category } = values;
+        const fields = Object.keys(res);
+        // console.log(touched);
+        // console.log(errors);
 
-    if (stage === 2 && category === 'your pet') {
-      formIsValid =
-        isFieldValid(errors, touched, 'name') &&
-        isFieldValid(errors, touched, 'date') &&
-        isFieldValid(errors, touched, 'breed');
-    } else if (stage === 2 && category !== 'your pet') {
-      formIsValid =
-        isFieldValid(errors, touched, 'name') &&
-        isFieldValid(errors, touched, 'date') &&
-        isFieldValid(errors, touched, 'breed') &&
-        isFieldValid(errors, touched, 'title');
-    }
+        if (stage === 2 && category === 'your pet') {
+          setTouched({ name: false, date: true, breed: true });
+          console.log(touched);
 
-    if (!formIsValid) {
-      return;
-    } else {
-      SetStage(prevStage => prevStage + 1);
-      localStorage.setItem('formValues', JSON.stringify(values));
-      localStorage.setItem('stage', JSON.stringify(stage + 1));
-    }
+          formIsValid =
+            !fields.includes('name') &&
+            !fields.includes('date') &&
+            !fields.includes('breed');
+        } else if (stage === 2 && category !== 'your pet') {
+          setTouched({ name: false, date: true, breed: true });
+          console.log(touched);
+          formIsValid =
+            !fields.includes('name') &&
+            !fields.includes('date') &&
+            !fields.includes('breed') &&
+            !fields.includes('title');
+        }
+        // console.log(formInvalid);
+        if (!formIsValid) {
+        } else {
+          SetStage(prevStage => prevStage + 1);
+          localStorage.setItem('formValues', JSON.stringify(values));
+          localStorage.setItem('stage', JSON.stringify(stage + 1));
+        }
+      })
+      .catch(err => {});
+
+    // if (stage === 2 && category === 'your pet') {
+    //   formIsValid =
+    //     isFieldValid(errors, touched, 'name') &&
+    //     isFieldValid(errors, touched, 'date') &&
+    //     isFieldValid(errors, touched, 'breed');
+    // } else if (stage === 2 && category !== 'your pet') {
+    //   formIsValid =
+    //     isFieldValid(errors, touched, 'name') &&
+    //     isFieldValid(errors, touched, 'date') &&
+    //     isFieldValid(errors, touched, 'breed') &&
+    //     isFieldValid(errors, touched, 'title');
+    // }
+
+    // if (!formIsValid) {
+    //   return;
+    // } else {
+    //   SetStage(prevStage => prevStage + 1);
+    //   localStorage.setItem('formValues', JSON.stringify(values));
+    //   localStorage.setItem('stage', JSON.stringify(stage + 1));
+    // }
   };
 
   const handleOnBackClick = () => {
@@ -154,12 +187,27 @@ export const AddPetForm = () => {
     localStorage.setItem('stage', JSON.stringify(stage - 1));
   };
 
+  const handleOnCancelClick = () => {
+    navigate(-1);
+  };
+
   const handleOnSubmit = (values, { resetForm }) => {
-    localStorage.removeItem('formValues');
-    localStorage.removeItem('stage');
-    resetForm({});
-    SetStage(1);
-    navigate('/add-pet');
+    const formKeys = Object.keys(values);
+    const formData = new FormData();
+
+    formKeys.forEach(el => {
+      if (el !== 'file') {
+        formData.append(el, values[el]);
+      } else {
+        formData.append(el, values[el], 'Pet`s photo');
+      }
+    });
+
+    // localStorage.removeItem('formValues');
+    // localStorage.removeItem('stage');
+    // resetForm({});
+    // SetStage(1);
+    // navigate('/add-pet');
   };
 
   return (
@@ -169,14 +217,14 @@ export const AddPetForm = () => {
         onSubmit={handleOnSubmit}
         validationSchema={addPetFormSchema}
       >
-        {({ values, errors, touched }) => {
-          console.log(errors);
+        {({ values, errors, touched, setTouched, validateForm }) => {
+          // console.log(validateForm);
           const { category, sex } = values;
           return (
             <Wrapper data-category={category}>
               <Title picked={category} stage={stage} />
               <StageIndicator stage={stage} category={category} />
-              <LoginFormStyled>
+              <FormWrapper>
                 {stage === 1 && (
                   <GroupWrapper role="group">
                     {statuses.map(status => {
@@ -194,36 +242,38 @@ export const AddPetForm = () => {
                 )}
 
                 <FlexWrapper data-category={category}>
-                  <SexUploadWrapper>
-                    {stage === 3 && (
-                      <GroupSexWrapper role="group" aria-labelledby="sex">
-                        <GroupTitle id="sex">The sex</GroupTitle>
-                        <SexWrapper>
-                          {sexes.map((option, i) => {
-                            const iconLabel =
-                              i === 0 ? '#icon-female' : '#icon-male';
-                            const selected = option === sex;
-                            return (
-                              <RadioBtn
-                                key={option}
-                                value={option}
-                                name="sex"
-                                selected={selected}
-                              >
-                                <SexIcon
-                                  iconName={iconLabel}
-                                  index={i}
+                  {stage === 3 && (
+                    <SexUploadWrapper>
+                      {category !== 'your pet' && (
+                        <GroupSexWrapper role="group" aria-labelledby="sex">
+                          <GroupTitle id="sex">The sex</GroupTitle>
+                          <SexWrapper>
+                            {sexes.map((option, i) => {
+                              const iconLabel =
+                                i === 0 ? '#icon-female' : '#icon-male';
+                              const selected = option === sex;
+                              return (
+                                <RadioBtn
+                                  key={option}
+                                  value={option}
+                                  name="sex"
                                   selected={selected}
-                                  sex={sex}
-                                />
-                              </RadioBtn>
-                            );
-                          })}
-                        </SexWrapper>
-                      </GroupSexWrapper>
-                    )}
-                    {stage === 3 && <UploadInput category={category} />}
-                  </SexUploadWrapper>
+                                >
+                                  <SexIcon
+                                    iconName={iconLabel}
+                                    index={i}
+                                    selected={selected}
+                                    sex={sex}
+                                  />
+                                </RadioBtn>
+                              );
+                            })}
+                          </SexWrapper>
+                        </GroupSexWrapper>
+                      )}
+                      <UploadInput category={category} />
+                    </SexUploadWrapper>
+                  )}
                   <InputWrapper>
                     {stage === 2 && category !== 'your pet' && (
                       <InputField
@@ -291,16 +341,28 @@ export const AddPetForm = () => {
                       />
                     )}
                     {stage === 3 && (
-                      <CommentField errors={errors} touched={touched} />
+                      <CommentField
+                        errors={errors}
+                        touched={touched}
+                        category={category}
+                      />
                     )}
                   </InputWrapper>
                 </FlexWrapper>
                 {stage !== 3 && (
                   <BtnWrappper>
                     <BtnNext
-                      onClick={() => handleOnNextClick(values, errors, touched)}
+                      onClick={() =>
+                        handleOnNextClick(
+                          values,
+                          errors,
+                          touched,
+                          setTouched,
+                          validateForm
+                        )
+                      }
                     />
-                    {stage === 1 && <BtnCancel />}
+                    {stage === 1 && <BtnCancel onClick={handleOnCancelClick} />}
                     {stage === 2 && <BtnBack onClick={handleOnBackClick} />}
                   </BtnWrappper>
                 )}
@@ -310,7 +372,7 @@ export const AddPetForm = () => {
                     <BtnBack onClick={handleOnBackClick} />
                   </BtnWrappper>
                 )}
-              </LoginFormStyled>
+              </FormWrapper>
             </Wrapper>
           );
         }}

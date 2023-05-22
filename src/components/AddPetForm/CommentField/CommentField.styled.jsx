@@ -20,7 +20,10 @@ export const CommentInput = styled(Field)`
 
   @media screen and (${props => props.theme.media.md}) {
     width: 393px;
-    height: 79px;
+    height: ${props =>
+      props['data-category'] !== 'your pet' && props['data-category'] !== 'sell'
+        ? '182px'
+        : '79px'};
     padding: 12px 16px;
     margin-top: 8px;
     font-size: 16px;
@@ -34,8 +37,6 @@ export const CommentInput = styled(Field)`
   }
 `;
 
-export const InputLabel = styled.label``;
-
 export const CommentsLabel = styled.label`
   position: relative;
   display: flex;
@@ -44,7 +45,7 @@ export const CommentsLabel = styled.label`
   font-weight: ${props => props.theme.fontWeights.medium};
   font-size: 14px;
   line-height: 1.35;
-  margin-top: 24px;
+  /* margin-top: 24px; */
 
   @media screen and (${props => props.theme.media.md}) {
     font-size: 20px;
