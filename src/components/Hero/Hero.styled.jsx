@@ -4,10 +4,10 @@ const anim = keyframes`
 0% {    
     transform: rotateZ(0);
   }
-20% {
+40% {
     transform: rotateZ(-15deg);
   }
-  80% {
+  60% {
     transform: rotateZ(-15deg);
   }
 100% {
@@ -60,7 +60,8 @@ export const DogImage = styled.img`
   right: 5px;
   transform-origin: 25% 85%;
   animation-name: ${anim};
-  animation-duration: 6s;
+
+  animation-duration: 3s;
   animation-iteration-count: infinite;
 
   @media screen and (${props => props.theme.media.md}) {
@@ -81,7 +82,8 @@ export const CatImage = styled.img`
 
   transform-origin: 30% 70%;
   animation-name: ${anim};
-  animation-duration: 6s;
+
+  animation-duration: 3s;
   animation-iteration-count: infinite;
 
   @media screen and (${props => props.theme.media.md}) {
@@ -101,7 +103,8 @@ export const DoggyImage = styled.img`
 
   transform-origin: 65% 80%;
   animation-name: ${anim};
-  animation-duration: 6s;
+
+  animation-duration: 3s;
   animation-iteration-count: infinite;
 
   @media screen and (${props => props.theme.media.md}) {
