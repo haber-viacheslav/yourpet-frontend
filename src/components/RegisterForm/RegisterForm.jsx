@@ -37,6 +37,14 @@ const iconOpen = () => {
   );
 };
 
+const iconCross = () => {
+  return (
+    <SVG width={24} height={24}>
+      <use href={icons + '#icon-cross-small'}></use>
+    </SVG>
+  );
+};
+
 export const RegisterForm = () => {
   const [toggleIconPass, setToggleIconPass] = useState(iconClose);
   const [typePass, setTypePass] = useState('password');
@@ -109,6 +117,12 @@ export const RegisterForm = () => {
                 id="email"
                 render={msg => <EmailMessage>{msg}</EmailMessage>}
               />
+              {errors.email && touched.email && (
+                <IconSpan>
+                  <iconCross/>
+                </IconSpan>
+               
+              )}
               <Input
                 type={typePass}
                 id="password"
