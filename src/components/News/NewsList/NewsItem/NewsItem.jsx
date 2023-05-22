@@ -12,6 +12,7 @@ import {
   Date,
   Link,
 } from './NewsItem.styled';
+import icons from 'images/icons.svg';
 
 export const NewsItem = ({ imgUrl, title, text, date, url }) => {
   const transformDate = date => {
@@ -29,7 +30,9 @@ export const NewsItem = ({ imgUrl, title, text, date, url }) => {
             height="252"
           />
         ) : (
-          <Plug />
+          <Plug width={24} height={24}>
+            <use href={icons + '#icon-pawprint'}></use>
+          </Plug>
         )}
       </WrapImg>
       <Wrap>

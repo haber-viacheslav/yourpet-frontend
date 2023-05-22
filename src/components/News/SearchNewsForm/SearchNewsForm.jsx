@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 
-import { ButtonIconForm } from '/components/ButtonIconForm/ButtonIconForm';
+import { ButtonIconForm } from 'components/ButtonIconForm/ButtonIconForm';
 import { FormSearch, InputSearch } from './SearchNewsForm.styled';
 
 export const SearchNewsForm = ({ onSubmit, onClick }) => {

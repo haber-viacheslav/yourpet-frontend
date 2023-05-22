@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchNews } from 'redux/news/news-operations';
+import { fetchNews } from 'redux/news/newsoperations';
 import {
   selectNews,
   selectIsLoading,
   selectError,
   selectTotalPage,
-} from 'redux/news/news-selector';
+} from 'redux/news/newsSelector';
 
 import { Loader } from 'components/Loader';
 import { SearchNewsForm } from 'components/News/SearchNewsForm/SearchNewsForm';
-import ReusableTitle from '/components/ReusableTitle';
+import ReusableTitle from 'components/ReusableTitle/ReusableTitle';
 import { NewsList } from 'components/News/NewsList/NewsList';
-import { PaginateComponent } from '/components/Pagination/Pagination';
-import { NotFound } from '/components/NotFound/NotFound';
+import Pagination from 'components/Pagination/Pagination';
+import { NotFound } from 'components/News/NewsNotFound/NewsNotFound';
 
 const initialState = { search: '', page: 1 };
 
-const NewsPage = () => {
+export const NewsPage = () => {
   const [state, setState] = useState({ ...initialState });
   const { search, page } = state;
 
@@ -57,7 +57,7 @@ const NewsPage = () => {
       {!isLoading && newsItems.length !== 0 && (
         <>
           <NewsList news={newsItems} />
-          <PaginateComponent
+          <Pagination
             count={pageQty}
             page={page}
             onChange={(_, num) => {
@@ -70,4 +70,3 @@ const NewsPage = () => {
   );
 };
 
-export default NewsPage;

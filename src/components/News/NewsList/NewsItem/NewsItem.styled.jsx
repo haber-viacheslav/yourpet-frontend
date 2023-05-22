@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import { ReactComponent as Notify } from '../../../../images/icons.svg';
-import icons from 'images/icons.svg';
-{/* <use href={icons + '#icon-pawprint'}></use> */}
+// import icons from 'images/icons.svg';
+
 
 export const Item = styled.li`
   width: 100%;
   position: relative;
   border-radius: 20px;
-  background-color: ${({ theme }) => theme.colors.white};
-  box-shadow: ${({ theme }) => theme.shadow.mainShadow};
-  &::before {
+  background-color: ${props => props.theme.colors.white};
+  box-shadow: ${props => props.theme.shadows.mainShadow};
+    &::before {
     content: '';
     position: absolute;
     top: -20px;
@@ -17,16 +17,17 @@ export const Item = styled.li`
     width: 100%;
     height: 8px;
     border-radius: 4px;
-    background-color: ${({ theme }) => theme.colors.blue};
-    background: ${({ theme }) => theme.background.blueGradient};
+    background-color: ${props => props.theme.colors.blue};
+    background: ${props => props.theme.colors.blueGradient};
     @media screen and (min-width: 768px) {
       top: -22px;
     }
+   
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (${props => props.theme.media.md}) {
     flex-basis: calc((100% - 32px) / 2);
   }
-  @media screen and (min-width: 1280px) {
+  @media screen and (${props => props.theme.media.lg}) {
     flex-basis: calc((100% - 2 * 32px) / 3);
   }
 `;
@@ -91,7 +92,7 @@ export const WrapBottom = styled.div`
 export const Date = styled.p`
   font-weight: 400;
   line-height: 1.37;
-  color: ${({ theme }) => theme.colors.grey};
+  color: ${props => props.theme.colors.grey};
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -102,10 +103,10 @@ export const Date = styled.p`
 export const Link = styled.a`
   padding: 0;
   line-height: 1.37;
-  color: ${({ theme }) => theme.colors.blue};
+  color: ${props => props.theme.colors.blue};
   transition: transform 250ms ease-in-out, border 250ms ease-in-out;
   &:hover,
   &:focus {
-    color: ${({ theme }) => theme.colors.grey};
+    color: ${props => props.theme.colors.grey};
   }
 `;

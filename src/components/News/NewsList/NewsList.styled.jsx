@@ -8,7 +8,7 @@ export const List = styled.ul`
   @media screen and (max-width: 767px) {
     width: 280px;
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (${props => props.theme.media.md}) {
     display: flex;
     flex-wrap: wrap;
     column-gap: 32px;

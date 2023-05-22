@@ -2,10 +2,12 @@ import styled from 'styled-components';
 
 export const Wrap = styled.div`
   position: absolute;
-  right: 12px;
+  right: 18px;
   top: 50%;
   transform: translateY(-50%);
+  gap: 12px;
   display: flex;
+
 `;
 
 export const ButtonIcon = styled.button`
@@ -25,9 +27,9 @@ export const ButtonIcon = styled.button`
   svg:hover {
     color: ${({ hovercolor }) => hovercolor ?? hovercolor};
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (${props => props.theme.media.md}) {
     right: 20px;
   }
-  @media screen and (min-width: 1024px) {
+  @media screen and (${props => props.theme.media.lg}) {
   }
 `;
