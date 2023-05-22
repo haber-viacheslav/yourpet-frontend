@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Spin as Hamburger } from 'hamburger-react';
 import BackdropMenu from '../Backdrop/Backdrop';
-import { Wrapper } from './Burger.styled';
+// import { Wrapper } from './Burger.styled';
 
 function BurgerMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,8 +16,9 @@ function BurgerMenu() {
   };
 
   return (
-  <> 
-      <Hamburger onClick={handleOpen}
+    <>
+      <Hamburger
+        onClick={handleOpen}
         toggled={isOpen}
         toggle={setIsOpen}
         rounded
@@ -30,11 +31,8 @@ function BurgerMenu() {
       {isOpen ? (
         <BackdropMenu isOpen={isOpen} handleClose={handleClose} />
       ) : null}
-      </>
-
+    </>
   );
-  };
-  
+}
+
 export default BurgerMenu;
-
-

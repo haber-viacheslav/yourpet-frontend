@@ -1,11 +1,17 @@
 import { React, useState, useEffect } from 'react';
-import {Backdrop, Menu, BackdropUser, BackdropAuth,BackdropNav} from './Backdrop.styled';
+import {
+  Backdrop,
+  Menu,
+  BackdropUser,
+  BackdropAuth,
+  BackdropNav,
+} from './Backdrop.styled';
 import { useSelector } from 'react-redux';
 import AuthNav from '../AuthNav/AuthNav';
 import Nav from '../Nav/Nav';
 import Logo from 'components/Logo/Logo';
 import UserNav from '../UserNav/UserNav';
-import BurgerMenu from '../BurgerMenu/Burger';
+// import BurgerMenu from '../BurgerMenu/Burger';
 
 function isTabletDevice() {
   return window.innerWidth > 767;
@@ -34,7 +40,6 @@ const BackdropMenu = ({ isOpen, handleClose }) => {
     <>
       {isOpen && (
         <Backdrop>
-          
           <Menu>
             <Logo handleLinkClick={handleLinkClick} />
             {isLogIn && !isTablet ? (
@@ -53,7 +58,6 @@ const BackdropMenu = ({ isOpen, handleClose }) => {
             </BackdropNav>
           </Menu>
         </Backdrop>
-        
       )}
     </>
   );
