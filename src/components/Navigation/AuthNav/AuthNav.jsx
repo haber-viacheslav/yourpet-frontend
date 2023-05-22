@@ -6,7 +6,7 @@ export const AuthNav = () => {
     <AuthNavMenu>
       <LoginLink to="/login">Log IN
         <SVG width={24} height={24}>
-          <use href={icons + '#icon-pawprint-1'}></use>
+          <use href={icons + '#icon-pawprint'}></use>
         </SVG></LoginLink>
       <RegisterLink to="/register" end>
         Registration

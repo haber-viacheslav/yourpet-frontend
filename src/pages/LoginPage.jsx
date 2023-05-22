@@ -1,9 +1,17 @@
+
 import { Modal } from 'components/Modal/Modal';
 import { BtnCongrats } from 'components/buttons/buttons';
+import {LoginForm} from '../components/LoginForm/LoginForm'
+
 const LoginPage = () => {
   return (
     <>
-      <h2>Login</h2>
+      <LoginForm/>
+      <Modal>
+        <h2>Congrats!</h2>
+        <BtnCongrats />
+      </Modal>
+
     </>
   );
 };
