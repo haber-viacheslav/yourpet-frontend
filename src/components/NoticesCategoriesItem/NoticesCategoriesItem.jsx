@@ -14,9 +14,9 @@ import {
   ConteinerInfo,
   Img,
   Text,
-} from './NoticesCategoriesList.styled';
+} from './NoticesCategoriesItem.styled';
 
-export const NoticesCategoryList = ({ petList }) => {
+export const NoticesCategoryItem = ({ petList }) => {
   const { smImgUrl1x, sex, place, category } = petList;
   const Svg = () => {
     return sex === 'female' ? SvgFemale : SvgMale;

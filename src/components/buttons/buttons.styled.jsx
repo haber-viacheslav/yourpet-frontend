@@ -184,6 +184,9 @@ export const FilterCurcle = styled.button`
   background-color: ${theme.colors.blueLight};
   border: none;
   cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
 `;
 
 export const Heart = styled.svg`
@@ -267,6 +270,7 @@ export const BtnOption = styled.button`
     color: ${theme.colors.white};
     background-color: ${theme.colors.blue};
   }
+  margin: 0 8px 8px 0;
 `;
 export const BtnToHeart = styled.button`
   height: 40px;

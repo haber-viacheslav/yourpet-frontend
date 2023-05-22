@@ -1,16 +1,23 @@
 import { BtnAddOption, BtnFiltersCircle } from 'components/buttons/buttons';
+import {
+  FilterAdsConteiner,
+  FiltersConteiner,
+} from './NoticesCategoriesNav.styled';
 
 export const NoticesCategoriesNav = () => {
   return (
     <>
-      <div>
+      <FiltersConteiner>
         <BtnAddOption text={'sell'} />
         <BtnAddOption text={'lost/found'} />
         <BtnAddOption text={'in good hands'} />
-        <BtnAddOption text={'favorite ads'} />
-        <BtnAddOption text={'my ads'} />
+        <FilterAdsConteiner>
+          <BtnAddOption text={'favorite ads'} />
+          <BtnAddOption text={'my ads'} />
+        </FilterAdsConteiner>
+
         <BtnFiltersCircle />
-      </div>
+      </FiltersConteiner>
     </>
   );
 };

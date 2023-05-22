@@ -1,11 +1,9 @@
-import { NoticesCategoryList } from 'components/NoticesCategoriesList/NoticesCategoriesList';
+import { NoticesCategoriesList } from 'components/NoticesCategoriesList/NoticesCategorieList';
 import { Container } from '../components/Container/Container';
 import { FlexContainer } from '../components/FlexContainer/FlexContainer';
 import { Section } from '../components/Section/Section';
-
-import petsLists from '../mockData/petsList';
-import { nanoid } from '@reduxjs/toolkit';
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
+import { NoticesSearch } from 'components/NoticesSerch/NoticesSerch';
 
 const NoticesPage = () => {
   return (
@@ -14,13 +12,9 @@ const NoticesPage = () => {
         <Container>
           <FlexContainer flexDirection={'column'}>
             <h2>Find your favorite pet</h2>
-            <input placeholder="Serch"></input>
+            <NoticesSearch />
             <NoticesCategoriesNav />
-            <ul>
-              {petsLists.map(petItem => (
-                <NoticesCategoryList petList={petItem} key={nanoid()} />
-              ))}
-            </ul>
+            <NoticesCategoriesList />
           </FlexContainer>
         </Container>
       </Section>
