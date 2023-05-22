@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ConteinerCard = styled.div`
+export const ConteinerCard = styled.li`
   position: relative;
   width: 280px;
   border-block: solid 1px #ffffff;

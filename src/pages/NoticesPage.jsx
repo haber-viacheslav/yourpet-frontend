@@ -2,10 +2,10 @@ import { NoticesCategoryList } from 'components/NoticesCategoriesList/NoticesCat
 import { Container } from '../components/Container/Container';
 import { FlexContainer } from '../components/FlexContainer/FlexContainer';
 import { Section } from '../components/Section/Section';
-import { BtnAddOption, BtnFiltersCircle } from '../components/buttons/buttons';
 
 import petsLists from '../mockData/petsList';
 import { nanoid } from '@reduxjs/toolkit';
+import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 
 // console.log('petsList :', petsList);
 
@@ -17,20 +17,12 @@ const NoticesPage = () => {
           <FlexContainer flexDirection={'column'}>
             <h2>Find your favorite pet</h2>
             <input placeholder="Serch"></input>
-
-            <div>
-              <div>
-                <BtnAddOption text={'sell'} />
-                <BtnAddOption text={'lost/found'} />
-                <BtnAddOption text={'in good hands'} />
-                <BtnAddOption text={'favorite ads'} />
-                <BtnAddOption text={'my ads'} />
-                <BtnFiltersCircle />
-              </div>
-            </div>
-            {petsLists.map(petItem => (
-              <NoticesCategoryList petList={petItem} key={nanoid()} />
-            ))}
+            <NoticesCategoriesNav />
+            <ul>
+              {petsLists.map(petItem => (
+                <NoticesCategoryList petList={petItem} key={nanoid()} />
+              ))}
+            </ul>
           </FlexContainer>
         </Container>
       </Section>
