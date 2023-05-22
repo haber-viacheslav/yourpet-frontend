@@ -1,9 +1,9 @@
-import {LoginForm} from '../components/LoginForm/LoginForm'
-
+import { Modal } from 'components/Modal/Modal';
+import { BtnCongrats } from 'components/buttons/buttons';
 const LoginPage = () => {
   return (
     <>
-      <LoginForm/>
+      <h2>Login</h2>
     </>
   );
 };

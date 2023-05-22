@@ -25,6 +25,7 @@ import {
   City,
   Logout,
   Delete,
+  BtnClose,
 } from '../buttons/buttons.styled';
 
 // componemnts svg
@@ -100,8 +101,25 @@ const SvgLogout = () => {
     </Logout>
   );
 };
+const SvgCloseSmall = () => {
+  return (
+    <Logout width={24} height={24}>
+      <use href={icons + '#icon-cross-small'}></use>
+    </Logout>
+  );
+};
 
 // components btn
+
+export const BtnCloseModal = ({ onClick }) => {
+  return (
+    <>
+      <BtnClose type="button" onClick={onClick}>
+        Filter <SvgCloseSmall />
+      </BtnClose>
+    </>
+  );
+};
 export const BtnLearnMore = ({ onClick }) => {
   return (
     <>
