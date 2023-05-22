@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ErrorMessage, useFormikContext } from 'formik';
+import { useFormikContext } from 'formik';
 import { PlusIcon } from '../Icon/Icon';
 import {
   PhotoWrapper,
@@ -7,9 +7,11 @@ import {
   UploadFile,
   Photo,
   ErrWrapper,
+  PhotoPlaceWrapper,
 } from './UploadInput.styled';
+import PropTypes from 'prop-types';
 
-export const UploadInput = ({ category }) => {
+export const UploadInput = ({ errors, touched, category }) => {
   const [photoPreview, SetPhotoPreview] = useState(null);
   const { setFieldValue } = useFormikContext();
 
@@ -19,6 +21,8 @@ export const UploadInput = ({ category }) => {
     const preview = uploadFile ? URL.createObjectURL(uploadFile) : null;
     SetPhotoPreview(preview);
   };
+
+  const isFieldInvalid = errors.file && touched.file;
 
   return (
     <UploadFileLabel data-category={category}>
@@ -30,13 +34,19 @@ export const UploadInput = ({ category }) => {
         id="file"
         onChange={handleUploadFile}
       />
-      <PhotoWrapper>
-        {photoPreview && <Photo src={photoPreview} />}
-        {!photoPreview && <PlusIcon iconName="#icon-plus" />}
-        <ErrWrapper>
-          <ErrorMessage name="file" />
-        </ErrWrapper>
-      </PhotoWrapper>
+      <PhotoPlaceWrapper>
+        <PhotoWrapper>
+          {photoPreview && <Photo src={photoPreview} />}
+          {!photoPreview && <PlusIcon iconName="#icon-plus" />}
+        </PhotoWrapper>
+        {isFieldInvalid && <ErrWrapper>{errors.file}</ErrWrapper>}
+      </PhotoPlaceWrapper>
     </UploadFileLabel>
   );
+};
+
+UploadInput.propTypes = {
+  errors: PropTypes.object.isRequired,
+  touched: PropTypes.object.isRequired,
+  category: PropTypes.string.isRequired,
 };

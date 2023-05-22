@@ -1,5 +1,5 @@
-import { ErrorMessage } from 'formik';
 import { InputLabel, Input, ErrWrapper } from './InputField.styled';
+import PropTypes from 'prop-types';
 
 export const InputField = ({
   type,
@@ -8,9 +8,12 @@ export const InputField = ({
   placeholder,
   errors,
   touched,
+  emulTouch,
 }) => {
   const isFieldInvalid =
-    errors.hasOwnProperty(name) && touched.hasOwnProperty(name);
+    (errors[name] && touched[name]) ||
+    (errors[name] && emulTouch.includes(name));
+
   return (
     <InputLabel>
       {label}
@@ -20,9 +23,17 @@ export const InputField = ({
         placeholder={placeholder}
         data-invalid={isFieldInvalid}
       />
-      <ErrWrapper>
-        <ErrorMessage name={name} />
-      </ErrWrapper>
+      {isFieldInvalid && <ErrWrapper>{errors[name]}</ErrWrapper>}
     </InputLabel>
   );
+};
+
+InputField.propTypes = {
+  emulTouch: PropTypes.arrayOf(PropTypes.string).isRequired,
+  errors: PropTypes.object.isRequired,
+  touched: PropTypes.object.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
 };
