@@ -7,6 +7,15 @@ export const ConteinerCard = styled.li`
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 0px 0px 40px 40px;
   margin-bottom: 24px;
+  width: 280px;
+  height: 456px;
+  @media screen and (${props => props.theme.media.md}) {
+    width: 336px;
+    height: 456px;
+  }
+  @media screen and (${props => props.theme.media.lg}) {
+    width: 288px;
+  }
 `;
 export const ConteinerInfo = styled.div`
   display: flex;
@@ -14,6 +23,14 @@ export const ConteinerInfo = styled.div`
   position: absolute;
   top: 248px;
   right: 8px;
+  @media screen and (${props => props.theme.media.md}) {
+    right: 24px;
+    gap: 24px;
+  }
+  @media screen and (${props => props.theme.media.lg}) {
+    right: 12px;
+    gap: 12px;
+  }
 `;
 export const Text = styled.h3`
   font-family: 'Manrope';
@@ -26,4 +43,12 @@ export const Text = styled.h3`
 `;
 export const Img = styled.img`
   margin-bottom: 20px;
+  width: 336px;
+  height: 288px;
+  @media screen and (${props => props.theme.media.md}) {
+    width: 336px;
+  }
+  @media screen and (${props => props.theme.media.lg}) {
+    width: 288px;
+  }
 `;
