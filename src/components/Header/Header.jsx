@@ -1,18 +1,14 @@
-import { Nav } from 'components/Navigation/Nav/Nav';
-import { Container } from '../Container/Container';
-// import { UserNav } from 'components/Navigation/UserNav/UserNav';
-// import { AuthNav } from 'components/Navigation/AuthNav/AuthNav';
-
-// import { useAuth } from '../../hooks/useAuth';
+import { Navig } from '../Navigation/Nav/Nav';
+import { AuthNav } from '../Navigation/AuthNav/AuthNav';
+import { Logo } from '../Logo/Logo';
+import { HeaderWrapper } from './Header.styled';
 export const Header = () => {
-  // const { isLoggedIn } = useAuth();
   return (
-    <Container>
-      <header>
-        <Nav />
-        <p>HEADER</p>
-        {/* {isLoggedIn ? <UserNav /> : <AuthNav />} */}
-      </header>
-    </Container>
+    <HeaderWrapper>
+      <Logo />
+      <Navig />
+      <AuthNav />
+    </HeaderWrapper>
   );
 };
+export default Header;

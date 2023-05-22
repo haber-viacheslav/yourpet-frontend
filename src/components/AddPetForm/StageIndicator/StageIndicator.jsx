@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   Stage,
   StageWrapper,
@@ -28,4 +29,9 @@ export const StageIndicator = ({ stage, category }) => {
       </StageWrapper>
     </Wrapper>
   );
+};
+
+StageIndicator.propTypes = {
+  stage: PropTypes.number.isRequired,
+  category: PropTypes.string.isRequired,
 };
