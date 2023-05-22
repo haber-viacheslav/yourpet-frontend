@@ -116,11 +116,8 @@ export const Span = styled.span`
   margin-left: 3px;
 `;
 export const Link = styled(NavLink)`
-  /* text-decoration: none; */
   color: #54adff;
   line-height: 16px;
-  /* border-bottom: 1px solid currentColor;
-  line-height: 0.8; */
 `;
 
 export const IconSpan = styled.span`
@@ -134,7 +131,7 @@ export const IconSpan = styled.span`
 `;
 
 export const SVG = styled.svg`
-  margin-left: 8px;
+display:block;
   fill: transparent;
   stroke: #54adff;
 `;

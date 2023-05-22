@@ -1,6 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
-import { Wrapper, Form, IconSpan, IconSpan1, SVG } from './RegisterForm.styled';
+import { Formik,ErrorMessage } from 'formik';
+import { string, object, ref } from 'yup';
+import {
+  Wrapper,
+  RegisterFormStyled,
+  IconSpan,
+  IconSpan1,
+  SVG,
+} from './RegisterForm.styled';
 import {
   Input,
   Title,
@@ -34,6 +42,31 @@ export const RegisterForm = () => {
   const [toggleIconConfirm, setToggleIconConfirm] = useState(iconClose);
   const [typeCofirm, setTypeCofirm] = useState('password');
 
+  const error = {}
+
+  const yupRegisterValidation = object().shape({
+    email: string().email('Enter a Valid Email').required('Email is Required'),
+    password: string()
+      .required('Enter Your Password')
+      .min(8, 'Password Should be minimum 8 character')
+      .max(50, 'Too long'),
+    confirm: string()
+      .oneOf([ref('password')], 'Password does not matched')
+      .required('Confirm Password is Required'),
+  });
+
+  const initialValues = {
+    email: '',
+    password: '',
+    confirm: '',
+  };
+
+  const handleSubmit = (values, { resetForm }) => {
+    console.log(values);
+    // console.log(actions);
+    resetForm();
+  };
+
   const togglePassInput = e => {
     if (typePass === 'password') {
       setTypePass('text');
@@ -56,29 +89,36 @@ export const RegisterForm = () => {
 
   return (
     <Wrapper>
-      <Form>
-        <Title>Registation</Title>
-        <Box>
-          <Input type="text" name="email" placeholder="Email" />
-          <Input type={typePass} name="password" placeholder="Password" />
-          <IconSpan onClick={togglePassInput}>{toggleIconPass}</IconSpan>
-          <Input
-            type={typeCofirm}
-            name="confirm"
-            placeholder="Confirm password"
-          />
-          <IconSpan1 onClick={toggleConfirmInput}>
-            {toggleIconConfirm}
-          </IconSpan1>
-        </Box>
-        <Button>Registation</Button>
-        <Text>
-          Already have an account?
-          <Span>
-            <Link to="/login">Login</Link>
-          </Span>
-        </Text>
-      </Form>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={yupRegisterValidation}
+        onSubmit={handleSubmit}
+      >
+        <RegisterFormStyled autoComplete="off">
+          <Title>Registation</Title>
+          <Box>
+            <Input type="text" name="email" placeholder="Email" />
+            <ErrorMessage name="email" type="email" />
+            <Input type={typePass} name="password" placeholder="Password" />
+            <IconSpan onClick={togglePassInput}>{toggleIconPass}</IconSpan>
+            <Input
+              type={typeCofirm}
+              name="confirm"
+              placeholder="Confirm password"
+            />
+            <IconSpan1 onClick={toggleConfirmInput}>
+              {toggleIconConfirm}
+            </IconSpan1>
+          </Box>
+          <Button type="submit">Registation</Button>
+          <Text>
+            Already have an account?
+            <Span>
+              <Link to="/login">Login</Link>
+            </Span>
+          </Text>
+        </RegisterFormStyled>
+      </Formik>
     </Wrapper>
   );
 };
