@@ -44,8 +44,7 @@ export const CommentsLabel = styled.label`
 
   font-weight: ${props => props.theme.fontWeights.medium};
   font-size: 14px;
-  line-height: 1.35;
-  /* margin-top: 24px; */
+  line-height: 1.35;  
 
   @media screen and (${props => props.theme.media.md}) {
     font-size: 20px;

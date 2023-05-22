@@ -43,6 +43,7 @@ export const Wrapper = styled.div`
 `;
 
 export const SexWrapper = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -98,11 +99,11 @@ export const SexUploadWrapper = styled.div`
   justify-content: center;
   align-items: flex-start;
   align-self: flex-start;
-  gap: 16px;
+  gap: 20px;
 
   @media screen and (${props => props.theme.media.md}) {
     margin-right: 63px;
-    gap: ${props => (props['data-category'] !== 'your pet' ? '40px' : '16px')};
+    gap: ${props => (props['data-category'] !== 'your pet' ? '40px' : '20px')};
 
     flex-direction: ${props =>
       props['data-category'] !== 'your pet' ? 'column' : 'row'};
@@ -151,4 +152,17 @@ export const FormWrapper = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+export const ErrWrapper = styled.span`
+  position: absolute;
+  display: inline-block;
+  width: 180px;
+  bottom: -18px;
+  text-align: center;
+
+  font-size: 12px;
+
+  line-height: 1.35;
+  color: ${props => props.theme.colors.red};
 `;

@@ -23,6 +23,7 @@ import {
   GroupSexWrapper,
   SexUploadWrapper,
   FlexWrapper,
+  ErrWrapper,
 } from './AddPetForm.styled';
 
 const addPetFormSchema = yup.object().shape({
@@ -35,10 +36,7 @@ const addPetFormSchema = yup.object().shape({
       .required('Enter a title (min 2, max 16 characters)'),
     otherwise: yup.string(),
   }),
-  date: yup
-    .string()
-    .matches(/^\d{2}\.\d{2}\.\d{4}$/, 'DD.MM.YYYY format needed')
-    .required('Enter a date of birth (DD.MM.YYYY format)'),
+  date: yup.string().required('Choose a date of birth'),
   breed: yup
     .string('Must be a string')
     .min(2, 'Minimum 2 characters')
@@ -72,7 +70,7 @@ const addPetFormSchema = yup.object().shape({
   sex: yup.string().when('category', {
     is: value =>
       value === 'sell' || value === 'lost/found' || value === 'in good hands',
-    then: yup.string().oneOf(['Female', 'Male']).required('Enter a pet`s sex'),
+    then: yup.string().oneOf(['Female', 'Male']).required('Choose a pet`s sex'),
     otherwise: yup.string(),
   }),
   category: yup
@@ -81,14 +79,19 @@ const addPetFormSchema = yup.object().shape({
     .required(),
   file: yup
     .mixed()
-    .test('fileSize', 'File size is too large', value => value?.size <= 3145728)
+    .required('Upload pet`s photo')
+
     .test(
       'fileType',
       'Only image files are allowed',
       value =>
         !value || ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type)
     )
-    .required('Upload pet`s photo'),
+    .test(
+      'fileSize',
+      'File size is too large',
+      value => value?.size <= 3145728
+    ),
 });
 
 const formTempValues = localStorage.getItem('formValues');
@@ -103,6 +106,7 @@ const initialsValues = {
   comments: '',
   sex: '',
   category: 'your pet',
+  file: '',
 };
 
 const statuses = ['your pet', 'sell', 'lost/found', 'in good hands'];
@@ -116,82 +120,56 @@ const initialsStage = formTempStage ? Number(JSON.parse(formTempStage)) : 1;
 
 export const AddPetForm = () => {
   const [stage, SetStage] = useState(() => initialsStage);
+  const [emulTouch, SetEmulTouch] = useState([]);
   const navigate = useNavigate();
 
-  const handleOnNextClick = (
-    values,
-    errors,
-    touched,
-    validateForm,
-    setTouched
-  ) => {
-    validateForm(values)
-      .then(res => {
-        let formIsValid = true;
-        const { category } = values;
-        const fields = Object.keys(res);
-        // console.log(touched);
-        // console.log(errors);
+  const handleOnNextClick = async (values, errors, validateForm) => {
+    let formIsValid;
+    validateForm(values);
+    const { category } = values;
 
-        if (stage === 2 && category === 'your pet') {
-          setTouched({ name: false, date: true, breed: true });
-          console.log(touched);
+    if (stage === 1) {
+      formIsValid = true;
+    }
 
-          formIsValid =
-            !fields.includes('name') &&
-            !fields.includes('date') &&
-            !fields.includes('breed');
-        } else if (stage === 2 && category !== 'your pet') {
-          setTouched({ name: false, date: true, breed: true });
-          console.log(touched);
-          formIsValid =
-            !fields.includes('name') &&
-            !fields.includes('date') &&
-            !fields.includes('breed') &&
-            !fields.includes('title');
-        }
-        // console.log(formInvalid);
-        if (!formIsValid) {
-        } else {
-          SetStage(prevStage => prevStage + 1);
-          localStorage.setItem('formValues', JSON.stringify(values));
-          localStorage.setItem('stage', JSON.stringify(stage + 1));
-        }
-      })
-      .catch(err => {});
+    if (stage === 2 && category === 'your pet') {
+      SetEmulTouch(['breed', 'name', 'date']);
+      if (errors.breed || errors.name || errors.date) {
+        formIsValid = false;
+      } else {
+        formIsValid = true;
+      }
+    }
 
-    // if (stage === 2 && category === 'your pet') {
-    //   formIsValid =
-    //     isFieldValid(errors, touched, 'name') &&
-    //     isFieldValid(errors, touched, 'date') &&
-    //     isFieldValid(errors, touched, 'breed');
-    // } else if (stage === 2 && category !== 'your pet') {
-    //   formIsValid =
-    //     isFieldValid(errors, touched, 'name') &&
-    //     isFieldValid(errors, touched, 'date') &&
-    //     isFieldValid(errors, touched, 'breed') &&
-    //     isFieldValid(errors, touched, 'title');
-    // }
+    if (stage === 2 && category !== 'your pet') {
+      SetEmulTouch(['breed', 'name', 'date', 'title']);
+      if (errors.breed || errors.name || errors.date || errors.title) {
+        formIsValid = false;
+      } else {
+        formIsValid = true;
+      }
+    }
 
-    // if (!formIsValid) {
-    //   return;
-    // } else {
-    //   SetStage(prevStage => prevStage + 1);
-    //   localStorage.setItem('formValues', JSON.stringify(values));
-    //   localStorage.setItem('stage', JSON.stringify(stage + 1));
-    // }
+    if (!formIsValid) {
+      return;
+    } else {
+      SetStage(prevStage => prevStage + 1);
+      localStorage.setItem('formValues', JSON.stringify(values));
+      localStorage.setItem('stage', JSON.stringify(stage + 1));
+    }
   };
 
   const handleOnBackClick = () => {
     SetStage(prevStage => prevStage - 1);
     localStorage.setItem('stage', JSON.stringify(stage - 1));
+    SetEmulTouch([]);
   };
 
   const handleOnCancelClick = () => {
     navigate(-1);
   };
 
-  const handleOnSubmit = (values, { resetForm }) => {
+  const handleOnSubmit = async (values, { resetForm }) => {
     const formKeys = Object.keys(values);
     const formData = new FormData();
 
@@ -202,11 +180,12 @@ export const AddPetForm = () => {
         formData.append(el, values[el], 'Pet`s photo');
       }
     });
-
+    alert('SUBMIT!');
     // localStorage.removeItem('formValues');
     // localStorage.removeItem('stage');
     // resetForm({});
     // SetStage(1);
+    SetEmulTouch([]);
     // navigate('/add-pet');
   };
 
@@ -217,9 +196,9 @@ export const AddPetForm = () => {
         onSubmit={handleOnSubmit}
         validationSchema={addPetFormSchema}
       >
-        {({ values, errors, touched, setTouched, validateForm }) => {
-          // console.log(validateForm);
+        {({ values, errors, touched, validateForm }) => {
           const { category, sex } = values;
+          const isFieldInvalid = errors.sex && touched.sex;
           return (
             <Wrapper data-category={category}>
               <Title picked={category} stage={stage} />
@@ -252,12 +231,15 @@ export const AddPetForm = () => {
                               const iconLabel =
                                 i === 0 ? '#icon-female' : '#icon-male';
                               const selected = option === sex;
+
                               return (
                                 <RadioBtn
                                   key={option}
                                   value={option}
                                   name="sex"
                                   selected={selected}
+                                  errors={errors}
+                                  touched={touched}
                                 >
                                   <SexIcon
                                     iconName={iconLabel}
@@ -268,10 +250,17 @@ export const AddPetForm = () => {
                                 </RadioBtn>
                               );
                             })}
+                            {isFieldInvalid && (
+                              <ErrWrapper>{errors.sex}</ErrWrapper>
+                            )}
                           </SexWrapper>
                         </GroupSexWrapper>
                       )}
-                      <UploadInput category={category} />
+                      <UploadInput
+                        errors={errors}
+                        category={category}
+                        touched={touched}
+                      />
                     </SexUploadWrapper>
                   )}
                   <InputWrapper>
@@ -283,6 +272,7 @@ export const AddPetForm = () => {
                         placeholder={'Title of add'}
                         errors={errors}
                         touched={touched}
+                        emulTouch={emulTouch}
                       />
                     )}
 
@@ -294,17 +284,19 @@ export const AddPetForm = () => {
                         placeholder={"Type your pet's name "}
                         errors={errors}
                         touched={touched}
+                        emulTouch={emulTouch}
                       />
                     )}
 
                     {stage === 2 && (
                       <InputField
-                        type="text"
+                        type="date"
                         name="date"
                         label={'Date of birth'}
-                        placeholder={'Type date of birth'}
+                        placeholder={'Choose a date of birth'}
                         errors={errors}
                         touched={touched}
+                        emulTouch={emulTouch}
                       />
                     )}
 
@@ -316,6 +308,7 @@ export const AddPetForm = () => {
                         placeholder={'Type breed'}
                         errors={errors}
                         touched={touched}
+                        emulTouch={emulTouch}
                       />
                     )}
 
@@ -327,6 +320,7 @@ export const AddPetForm = () => {
                         placeholder={'Type your location'}
                         errors={errors}
                         touched={touched}
+                        emulTouch={emulTouch}
                       />
                     )}
 
@@ -338,6 +332,7 @@ export const AddPetForm = () => {
                         placeholder={'Type price'}
                         errors={errors}
                         touched={touched}
+                        emulTouch={emulTouch}
                       />
                     )}
                     {stage === 3 && (
@@ -345,6 +340,7 @@ export const AddPetForm = () => {
                         errors={errors}
                         touched={touched}
                         category={category}
+                        emulTouch={emulTouch}
                       />
                     )}
                   </InputWrapper>
@@ -353,13 +349,7 @@ export const AddPetForm = () => {
                   <BtnWrappper>
                     <BtnNext
                       onClick={() =>
-                        handleOnNextClick(
-                          values,
-                          errors,
-                          touched,
-                          setTouched,
-                          validateForm
-                        )
+                        handleOnNextClick(values, errors, validateForm)
                       }
                     />
                     {stage === 1 && <BtnCancel onClick={handleOnCancelClick} />}
