@@ -1,5 +1,5 @@
-import { LogoIcon, LogoIconSm } from './Logo.styled';
-import { Link } from 'react-router-dom';
+import { LogoIcon, LogoIconSm, LogoWrapper } from './Logo.styled';
+// import { Link } from 'react-router-dom';
 import logo from 'images/logo.svg';
 import logoSm from 'images/logo-small.svg';
 import React from 'react';
@@ -12,9 +12,9 @@ export const Logo = ({ handleLinkClick }) => {
   };
 
   return (
-    <Link to="/" onClick={handleClick}>
+    <LogoWrapper to="/" onClick={handleClick}>
       <LogoIcon src={logo} alt="logo" />
       <LogoIconSm src={logoSm} alt="logo" />
-    </Link>
+    </LogoWrapper>
   );
 };

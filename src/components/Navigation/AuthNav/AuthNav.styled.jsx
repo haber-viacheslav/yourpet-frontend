@@ -4,9 +4,9 @@ import { theme } from '../../../theme/theme';
 
 export const AuthNavMenu = styled.div`
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   align-items: center;
-  gap: 12px;
+  gap: 20px;
 
   @media screen and (min-width: 768px) {
     flex-direction: row;
