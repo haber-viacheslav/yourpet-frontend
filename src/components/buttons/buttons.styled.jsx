@@ -46,6 +46,7 @@ export const BigBtnFavor = styled.button`
     background: ${theme.colors.blueGradient};
   }
 `;
+
 export const Pawprint = styled.svg`
   fill: ${theme.colors.white};
   margin-left: 12px;
