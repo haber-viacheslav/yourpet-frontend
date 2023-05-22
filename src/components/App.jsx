@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { lazy } from 'react';
 import { ThemeProvider } from 'styled-components';
@@ -43,14 +43,7 @@ export const App = () => {
             <Route path="news" element={<NewsPage />} />
             <Route path="add-pet" element={<AddPetPage />} />
             <Route path="modals" element={<ModalTestPage />} />
-            {/* <Route
-              path="*"
-              element={<Navigate to="404" component={<NotFound />} />}
-            />  */}
-             <Route
-              path="*"
-              element={<NotFound />} />
-            
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </ThemeProvider>

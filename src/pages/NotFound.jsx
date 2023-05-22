@@ -4,8 +4,7 @@ import { Container } from 'components/Container/Container';
 import { NotFoundHero} from 'components/NotFoundHero/NotFoundHero'
 
 const NotFound = () => {
-  return (
-    
+  return (    
     <BgWrapper>
       <Section
         padTopSm={'10px'}

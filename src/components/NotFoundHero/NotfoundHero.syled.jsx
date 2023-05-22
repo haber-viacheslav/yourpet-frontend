@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { theme } from '../../theme/theme';
 
 export const Box = styled.div`
-  /* position: relative; */
   display: block;
   flex-direction: column;
   justify-items: center;
@@ -67,22 +66,17 @@ export const ImageWrapper = styled.div`
 `;
 
 export const Cat = styled.img`
-  /* position: absolute; */
   width: 280px;
-  /* height: 123px; */
-
+ 
   @media screen and (${props => props.theme.media.md}) {
-    width: 704px;
-    /* height: 308px;     */
+    width: 704px;   
   }
   @media screen and (${props => props.theme.media.lg}) {
-    width: 822px;
-    /* height: 360px;     */
+    width: 822px;    
   }
 `;
 
 export const BlockBtn = styled.div`
-  /* position: absolute; */
   display: flex;
   justify-content: space-around;
   margin-top: 69px;
