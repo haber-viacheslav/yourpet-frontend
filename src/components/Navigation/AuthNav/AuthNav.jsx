@@ -1,12 +1,16 @@
-import { AuthNavMenu, StyledLink } from './AuthNav.styled';
+import { AuthNavMenu, RegisterLink, LoginLink, SVG } from './AuthNav.styled';
+import icons from 'images/icons.svg';
 
 export const AuthNav = () => {
   return (
     <AuthNavMenu>
-      <StyledLink to="/register" end>
+      <LoginLink to="/login">Log IN
+        <SVG width={24} height={24}>
+          <use href={icons + '#icon-pawprint'}></use>
+        </SVG></LoginLink>
+      <RegisterLink to="/register" end>
         Registration
-      </StyledLink>
-      <StyledLink to="/login">Log IN</StyledLink>
+      </RegisterLink>
     </AuthNavMenu>
   );
 };

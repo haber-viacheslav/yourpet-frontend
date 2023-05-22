@@ -36,9 +36,14 @@ export const Wrapper = styled.div`
   box-shadow: ${props => props.theme.shadows.mainShadow};
   border-radius: 40px;
   font-style: normal;
+
+  @media screen and (${props => props.theme.media.md}) {
+    padding: 20px 32px;
+  }
 `;
 
 export const SexWrapper = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,12 +99,18 @@ export const SexUploadWrapper = styled.div`
   justify-content: center;
   align-items: flex-start;
   align-self: flex-start;
-  gap: 24px;
+  gap: 20px;
 
   @media screen and (${props => props.theme.media.md}) {
-    gap: ${props => (props['data-category'] !== 'your pet' ? '48px' : '24px')};
+    margin-right: 63px;
+    gap: ${props => (props['data-category'] !== 'your pet' ? '40px' : '20px')};
+
     flex-direction: ${props =>
       props['data-category'] !== 'your pet' ? 'column' : 'row'};
+  }
+
+  @media screen and (${props => props.theme.media.lg}) {
+    margin-right: 96px;
   }
 `;
 
@@ -112,7 +123,11 @@ export const FlexWrapper = styled.div`
   gap: 16px;
 
   @media screen and (${props => props.theme.media.md}) {
-    gap: ${props => (props['data-category'] !== 'your pet' ? '63px' : '0')};
+    gap: ${props => {
+      if (props['data-category'] !== 'your pet') {
+        return '0';
+      }
+    }};
     flex-direction: ${props =>
       props['data-category'] !== 'your pet' ? 'row' : 'column'};
   }
@@ -133,9 +148,21 @@ export const BtnWrappper = styled.div`
   }
 `;
 
-export const LoginFormStyled = styled(Form)`
+export const FormWrapper = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* gap: 10px; */
+`;
+
+export const ErrWrapper = styled.span`
+  position: absolute;
+  display: inline-block;
+  width: 180px;
+  bottom: -18px;
+  text-align: center;
+
+  font-size: 12px;
+
+  line-height: 1.35;
+  color: ${props => props.theme.colors.red};
 `;
