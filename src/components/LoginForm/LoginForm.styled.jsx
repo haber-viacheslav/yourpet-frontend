@@ -75,7 +75,8 @@ export const Input = styled(Field)`
   font-size: 16px;
   padding: 12px 16px;
   width: 100%;
-  border: 1px solid #54adff;
+  border: 1px solid;
+    border-color: ${props => (props.error ? props.theme.colors.red  : props.theme.colors.blue)};
   border-radius: 40px;
   cursor: pointer;
   outline: none;

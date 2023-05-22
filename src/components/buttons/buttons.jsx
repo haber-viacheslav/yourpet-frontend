@@ -36,7 +36,7 @@ import {
 
 // componemnts svg
 
-const SvgPawprint = () => {
+export const SvgPawprint = () => {
   return (
     <Pawprint width={24} height={24}>
       <use href={icons + '#icon-pawprint'}></use>
@@ -236,11 +236,22 @@ export const BtnCall = ({ onClick }) => {
 };
 
 // components btn + svg
+// to favorite and to main page
 export const BtnLearnMoreFavorite = ({ onClick }) => {
   return (
     <>
       <BigBtnFavor type="button" onClick={onClick}>
         Learn more
+        <SvgPawprint />
+      </BigBtnFavor>
+    </>
+  );
+};
+export const BtnToGo = ({ onClick }) => {
+  return (
+    <>
+      <BigBtnFavor type="button" onClick={onClick}>
+        To main page
         <SvgPawprint />
       </BigBtnFavor>
     </>
@@ -306,6 +317,7 @@ export const BtnAddPetCurcle = ({ onClick }) => {
     </>
   );
 };
+
 export const BtnAddFavorite = ({ onClick }) => {
   return (
     <BtnHeart type="button" onClick={onClick}>
