@@ -36,7 +36,7 @@ import {
 
 // componemnts svg
 
-const SvgPawprint = () => {
+export const SvgPawprint = () => {
   return (
     <Pawprint width={24} height={24}>
       <use href={icons + '#icon-pawprint'}></use>
