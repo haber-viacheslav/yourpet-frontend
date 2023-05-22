@@ -1,6 +1,12 @@
-import { BtnAddOption, BtnFiltersCircle } from 'components/buttons/buttons';
+import {
+  BtnAddOption,
+  BtnAddPet,
+  BtnFilters,
+  BtnFiltersCircle,
+} from 'components/buttons/buttons';
 import {
   FilterAdsConteiner,
+  FiltersBtnConteiner,
   FiltersConteiner,
 } from './NoticesCategoriesNav.styled';
 
@@ -15,7 +21,10 @@ export const NoticesCategoriesNav = () => {
           <BtnAddOption text={'favorite ads'} />
           <BtnAddOption text={'my ads'} />
         </FilterAdsConteiner>
-
+        <FiltersBtnConteiner>
+          <BtnFilters />
+          <BtnAddPet />
+        </FiltersBtnConteiner>
         <BtnFiltersCircle />
       </FiltersConteiner>
     </>

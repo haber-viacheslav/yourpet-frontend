@@ -191,6 +191,9 @@ export const FilterCurcle = styled.button`
   position: absolute;
   top: 0;
   right: 0;
+  @media screen and (${props => props.theme.media.md}) {
+    display: none;
+  }
 `;
 
 export const Heart = styled.svg`
