@@ -7,8 +7,6 @@ import petsLists from '../mockData/petsList';
 import { nanoid } from '@reduxjs/toolkit';
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 
-// console.log('petsList :', petsList);
-
 const NoticesPage = () => {
   return (
     <>
