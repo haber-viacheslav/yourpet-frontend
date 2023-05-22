@@ -1,2 +1,0 @@
-(self.webpackChunkyourpet_frontend=self.webpackChunkyourpet_frontend||[]).push([[637],{5881:function(){},3637:function(n,e,r){"use strict";r.r(e);var t=r(5881),u=r(184);e.default=function(){return(0,u.jsx)(u.Fragment,{children:(0,u.jsx)(t.LoginForm,{})})}}}]);
-//# sourceMappingURL=637.ec7554ab.chunk.js.map
