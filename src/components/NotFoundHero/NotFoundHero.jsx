@@ -10,14 +10,7 @@ import notfound_lg_2x from '../../images/notfound-hero/notfound-lg@2x-2.webp';
 import { Title, Span, BlockTitle, ImageWrapper, Box, BlockBtn, Cat} from './NotfoundHero.syled';
 
 import {BtnToGo} from '../buttons/buttons';
-import { Link } from 'react-router-dom';
 
-
-const toGo = () =>{
-    return(
-        <Link to="./main"/>
-    )
-}
 
 
 export const NotFoundHero = () => {
@@ -38,7 +31,7 @@ export const NotFoundHero = () => {
       /></ImageWrapper>
       
       <BlockBtn>
-         <BtnToGo onClick={toGo}/>
+         <BtnToGo onClick />
       </BlockBtn >
      
     </Box>
