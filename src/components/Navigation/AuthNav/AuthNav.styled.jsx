@@ -21,7 +21,6 @@ export const RegisterLink = styled(NavLink)`
   text-decoration: none;
   width: 165px;
   height: 36px;
-  cursor: pointer;
   font-size: ${theme.fontSizes[2]}px;
   color: ${theme.colors.orange};
   background-color: transparent;
@@ -37,7 +36,6 @@ export const LoginLink = styled(NavLink)`
   text-decoration: none;
   width: 165px;
   height: 40px;
-  cursor: pointer;
   font-size: ${theme.fontSizes[2]}px;
   color: ${theme.colors.white};
   background-color: ${theme.colors.orange};
