@@ -5,8 +5,9 @@ import { string, object, ref } from 'yup';
 import {
   Wrapper,
   RegisterFormStyled,
-  IconSpan,
-  IconSpan1,
+  IconMail,
+  IconPass,
+  IconConfirm,
   SVG,
   EmailMessage,
   PasswordMessage,
@@ -33,14 +34,6 @@ const iconOpen = () => {
   return (
     <SVG width={24} height={24}>
       <use href={icons + '#icon-eye-open'}></use>
-    </SVG>
-  );
-};
-
-const iconCross = () => {
-  return (
-    <SVG width={24} height={24}>
-      <use href={icons + '#icon-cross-small'}></use>
     </SVG>
   );
 };
@@ -118,17 +111,18 @@ export const RegisterForm = () => {
                 render={msg => <EmailMessage>{msg}</EmailMessage>}
               />
               {errors.email && touched.email && (
-                <IconSpan>
-                  <iconCross/>
-                </IconSpan>
-               
+                <IconMail>
+                  <SVG width={24} height={24}>
+                    <use href={icons + '#icon-cross-small'}></use>
+                  </SVG>
+                </IconMail>
               )}
               <Input
                 type={typePass}
                 id="password"
                 name="password"
                 placeholder="Password"
-                error={errors.password && touched.password && 'false' }
+                error={errors.password && touched.password && 'false'}
               />
               <ErrorMessage
                 name="password"
@@ -137,7 +131,7 @@ export const RegisterForm = () => {
                   <PasswordMessage>{password}</PasswordMessage>
                 )}
               />
-              <IconSpan onClick={togglePassInput}>{toggleIconPass}</IconSpan>
+              <IconPass onClick={togglePassInput}>{toggleIconPass}</IconPass>
               <ErrorMessage
                 name="confirm"
                 type="confirm"
@@ -150,9 +144,9 @@ export const RegisterForm = () => {
                 placeholder="Confirm password"
                 error={errors.confirm && touched.confirm && 'false'}
               />
-              <IconSpan1 onClick={toggleConfirmInput}>
+              <IconConfirm onClick={toggleConfirmInput}>
                 {toggleIconConfirm}
-              </IconSpan1>
+              </IconConfirm>
             </Box>
             <Button type="submit">Registation</Button>
             <Text>

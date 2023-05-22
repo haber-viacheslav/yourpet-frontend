@@ -123,7 +123,20 @@ export const Link = styled(NavLink)`
   line-height: 16px;
 `;
 
-export const IconSpan = styled.span`
+
+export const IconMail = styled.span`
+  position: absolute;
+  cursor: pointer;
+  color: #F43F5E;
+  top: 86px;
+  right: 15px;
+  @media screen and (min-width: 768px) {
+    top: 12px;
+  }
+`;
+
+export const IconPass = styled.span`
+color: #54adff;
   position: absolute;
   cursor: pointer;
   top: 86px;
@@ -132,7 +145,8 @@ export const IconSpan = styled.span`
     top: 92px;
   }
 `;
-export const IconSpan1 = styled.span`
+export const IconConfirm = styled.span`
+color: #54adff;
   position: absolute;
   cursor: pointer;
   top: 156px;
@@ -145,7 +159,7 @@ export const IconSpan1 = styled.span`
 export const SVG = styled.svg`
   display: block;
   fill: transparent;
-  stroke: #54adff;
+  stroke: currentColor;
 `;
 
 export const EmailMessage = styled.div`
