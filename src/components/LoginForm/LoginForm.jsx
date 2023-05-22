@@ -17,6 +17,22 @@ import {
   EmailMessage,
   PasswordMessage,
 } from './LoginForm.styled';
+import { string, object } from 'yup';
+import {
+  Wrapper,
+  Input,
+  LoginFormStyled,
+  Title,
+  Box,
+  Button,
+  Text,
+  Span,
+  Link,
+  IconSpan,
+  SVG,
+  EmailMessage,
+  PasswordMessage,
+} from './LoginForm.styled';
 import icons from 'images/icons.svg';
 
 export const LoginForm = () => {
@@ -33,7 +49,13 @@ export const LoginForm = () => {
       .required('Enter Your Password')
       .min(8, 'Password Should be minimum 8 character')
       .max(50, 'Too long'),
+    email: string().email('Enter a Valid Email').required('Email is Required'),
+    password: string()
+      .required('Enter Your Password')
+      .min(8, 'Password Should be minimum 8 character')
+      .max(50, 'Too long'),
   });
+
 
   const initialValues = {
     email: '',
@@ -47,6 +69,7 @@ export const LoginForm = () => {
   };
 
   const togglePassInput = e => {
+  const togglePassInput = e => {
     if (typePass === 'password') {
       setTypePass('text');
       setToggleIconPass(
@@ -54,8 +77,18 @@ export const LoginForm = () => {
           <use href={icons + '#icon-eye-open'}></use>
         </SVG>
       );
+      setToggleIconPass(
+        <SVG width={24} height={24}>
+          <use href={icons + '#icon-eye-open'}></use>
+        </SVG>
+      );
     } else {
       setTypePass('password');
+      setToggleIconPass(
+        <SVG width={24} height={24}>
+          <use href={icons + '#icon-eye-closed'}></use>
+        </SVG>
+      );
       setToggleIconPass(
         <SVG width={24} height={24}>
           <use href={icons + '#icon-eye-closed'}></use>
