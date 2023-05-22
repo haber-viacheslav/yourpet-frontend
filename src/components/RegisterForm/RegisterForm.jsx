@@ -10,16 +10,14 @@ import {
   SVG,
   EmailMessage,
   PasswordMessage,
-  ConfirmMessage
-} from './RegisterForm.styled';
-import {
+  ConfirmMessage,
   Input,
   Title,
   Box,
   Button,
   Text,
   Span,
-  Link,
+  Link
 } from './RegisterForm.styled';
 import icons from 'images/icons.svg';
 
@@ -88,6 +86,8 @@ export const RegisterForm = () => {
     }
   };
 
+  
+
   return (
     <Wrapper>
       <Formik
@@ -96,11 +96,13 @@ export const RegisterForm = () => {
         onSubmit={handleSubmit}
       >
         {({ isSubmitting, errors, touched }) => (
+          
+          
           <RegisterFormStyled autoComplete="off">
             <Title>Registation</Title>
             <Box>
               <Input type="text" name="email" placeholder="Email" />
-              <ErrorMessage name="email" type="email" render={msg => <EmailMessage>{msg}</EmailMessage>} />
+              <ErrorMessage name="email" type="email" render={msg => <EmailMessage>{msg}</EmailMessage>} errors={ errors }  />
               <Input type={typePass} name="password" placeholder="Password" />
               <ErrorMessage name="password" type="password" render={password => <PasswordMessage>{password}</PasswordMessage>} />
               <IconSpan onClick={togglePassInput}>{toggleIconPass}</IconSpan>
@@ -125,5 +127,6 @@ export const RegisterForm = () => {
         )}
       </Formik>
     </Wrapper>
+    
   );
 };
