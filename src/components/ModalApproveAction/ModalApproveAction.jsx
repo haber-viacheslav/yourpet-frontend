@@ -18,7 +18,7 @@ import {
   BtnCongrats,
   BtnYesDelete,
 } from '../buttons/buttons';
-import { textCutter } from 'components/helpers/textCutter';
+import { textCutter } from 'helpers/textCutter';
 const modalRoot = document.querySelector('#modal-root');
 export const ModalApproveAction = ({
   onActivate,

@@ -8,9 +8,10 @@ import { BtnNext, BtnCancel, BtnBack, BtnDone } from '../buttons/buttons';
 import { Title } from './Title/Title';
 import { StageIndicator } from './StageIndicator/StageIndicator';
 import { SexIcon } from './Icon/Icon';
+import { addPetFormSchema } from 'helpers/yupValidation';
 
 import { Formik } from 'formik';
-import * as yup from 'yup';
+
 import {
   FormWrapper,
   Wrapper,
@@ -26,76 +27,6 @@ import {
   ErrWrapper,
 } from './AddPetForm.styled';
 
-const addPetFormSchema = yup.object().shape({
-  title: yup.string().when('category', {
-    is: value => value !== 'your pet',
-    then: yup
-      .string()
-      .min(2, 'Minimum 2 characters')
-      .max(16, 'Maximum 16 characters')
-      .required('Enter a title (min 2, max 16 characters)'),
-    otherwise: yup.string(),
-  }),
-  date: yup.string().required('Choose a date of birth'),
-  breed: yup
-    .string('Must be a string')
-    .min(2, 'Minimum 2 characters')
-    .max(16, 'Maximum 16 characters')
-    .required('Enter a pet`s breed (min 2, max 16 characters)'),
-  name: yup
-    .string()
-    .min(2, 'Minimum 2 characters')
-    .max(16, 'Maximum 16 characters')
-    .required('Enter a pet`s name (min 2, max 16 characters)'),
-  location: yup.string().when('category', {
-    is: value => value !== 'your pet',
-    then: yup
-      .string()
-      .matches(/^[A-Z][a-zA-Z]*$/, 'Location begins with capitalize character')
-      .required('Enter your location'),
-    otherwise: yup.string(),
-  }),
-  price: yup.number().when('category', {
-    is: value => value === 'sell',
-    then: yup
-      .number()
-      .moreThan(0, 'Price must be greater than 0')
-      .required('Enter a price'),
-    otherwise: yup.number(),
-  }),
-  comments: yup
-    .string()
-    .min(8, 'Minimum 8 characters')
-    .max(120, 'Maximum 120 characters'),
-  sex: yup.string().when('category', {
-    is: value =>
-      value === 'sell' || value === 'lost/found' || value === 'in good hands',
-    then: yup.string().oneOf(['Female', 'Male']).required('Choose a pet`s sex'),
-    otherwise: yup.string(),
-  }),
-  category: yup
-    .string()
-    .oneOf(['your pet', 'sell', 'lost/found', 'in good hands'])
-    .required(),
-  file: yup
-    .mixed()
-    .required('Upload pet`s photo')
-
-    .test(
-      'fileType',
-      'Only image files are allowed',
-      value =>
-        !value || ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type)
-    )
-    .test(
-      'fileSize',
-      'File size is too large',
-      value => value?.size <= 3145728
-    ),
-});
-
-const formTempValues = localStorage.getItem('formValues');
-const formTempStage = localStorage.getItem('stage');
 const initialsValues = {
   title: '',
   date: '',
@@ -112,10 +43,12 @@ const initialsValues = {
 const statuses = ['your pet', 'sell', 'lost/found', 'in good hands'];
 const sexes = ['Female', 'Male'];
 
+const formTempValues = localStorage.getItem('formValues');
 const initialsFormState = formTempValues
   ? JSON.parse(formTempValues)
   : initialsValues;
 
+const formTempStage = localStorage.getItem('stage');
 const initialsStage = formTempStage ? Number(JSON.parse(formTempStage)) : 1;
 
 export const AddPetForm = () => {
