@@ -1,4 +1,19 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const anim = keyframes`
+0% {    
+    transform: rotateZ(0);
+  }
+20% {
+    transform: rotateZ(-15deg);
+  }
+  80% {
+    transform: rotateZ(-15deg);
+  }
+100% {
+    transform: rotateZ(0);
+  }
+`;
 
 export const SectionWrapper = styled.div`
   position: relative;
@@ -43,6 +58,11 @@ export const DogImage = styled.img`
   position: absolute;
   top: -40px;
   right: 5px;
+  transform-origin: 25% 85%;
+  animation-name: ${anim};
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+
   @media screen and (${props => props.theme.media.md}) {
     top: -80px;
     right: 100px;
@@ -59,6 +79,11 @@ export const CatImage = styled.img`
   top: 170px;
   right: 5px;
 
+  transform-origin: 30% 70%;
+  animation-name: ${anim};
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+
   @media screen and (${props => props.theme.media.md}) {
     top: 450px;
     right: 160px;
@@ -73,6 +98,11 @@ export const DoggyImage = styled.img`
   position: absolute;
   top: 80px;
   right: 148px;
+
+  transform-origin: 65% 80%;
+  animation-name: ${anim};
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
 
   @media screen and (${props => props.theme.media.md}) {
     top: 240px;

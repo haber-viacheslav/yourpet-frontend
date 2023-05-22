@@ -1,4 +1,5 @@
 import { AddPetTitle } from './Title.styled';
+import PropTypes from 'prop-types';
 
 export const Title = ({ picked, stage }) => {
   let title = 'Add pet';
@@ -19,4 +20,9 @@ export const Title = ({ picked, stage }) => {
       {title}
     </AddPetTitle>
   );
+};
+
+Title.propTypes = {
+  picked: PropTypes.string.isRequired,
+  stage: PropTypes.number.isRequired,
 };

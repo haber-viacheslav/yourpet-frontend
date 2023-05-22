@@ -9,7 +9,6 @@ export const UploadFileLabel = styled.label`
   font-weight: ${props => props.theme.fontWeights.medium};
   font-size: 14px;
   line-height: 1.35;
-  margin-top: 16px;
   gap: 27px;
   cursor: pointer;
 
@@ -36,8 +35,12 @@ export const Photo = styled.img`
   }
 `;
 
-export const PhotoWrapper = styled.span`
+export const PhotoPlaceWrapper = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: column;
+`;
+export const PhotoWrapper = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,9 +59,10 @@ export const PhotoWrapper = styled.span`
 export const ErrWrapper = styled.span`
   position: absolute;
   display: inline-block;
-  width: 120px;
-  bottom: -20px;
-  padding-left: 16px;
+  width: 180px;
+  bottom: -25px;
+  text-align: center;
+
   font-size: 12px;
 
   line-height: 1.35;
