@@ -247,6 +247,16 @@ export const BtnLearnMoreFavorite = ({ onClick }) => {
     </>
   );
 };
+export const BtnToGo = ({ onClick }) => {
+  return (
+    <>
+      <BigBtnFavor type="button" onClick={onClick}>
+        To main page
+        <SvgPawprint />
+      </BigBtnFavor>
+    </>
+  );
+};
 export const BtnDone = () => {
   return (
     <>

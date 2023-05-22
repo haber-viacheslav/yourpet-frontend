@@ -1,7 +1,7 @@
 import { BgWrapper } from "./Pages.styled";
 import { Section } from 'components/Section/Section';
 import { Container } from 'components/Container/Container';
-import { NotFoundHero} from 'components/Hero/NotFoundHero'
+import { NotFoundHero} from 'components/NotFoundHero/NotFoundHero'
 
 const NotFound = () => {
   return (

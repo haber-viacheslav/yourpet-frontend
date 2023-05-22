@@ -43,10 +43,10 @@ export const App = () => {
             <Route path="news" element={<NewsPage />} />
             <Route path="add-pet" element={<AddPetPage />} />
             <Route path="modals" element={<ModalTestPage />} />
-            <Route
+            {/* <Route
               path="*"
               element={<Navigate to="404" component={<NotFound />} />}
-            /> */}
+            />  */}
              <Route
               path="*"
               element={<NotFound />} />
