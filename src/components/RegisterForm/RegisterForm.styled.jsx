@@ -149,44 +149,46 @@ export const SVG = styled.svg`
 `;
 
 export const EmailMessage = styled.div`
-  position: absolute;
+ position: absolute;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
-  color: #f43f5e;
+ color: #F43F5E;
   top: 50px;
   left: 16px;
 `;
 
 export const PasswordMessage = styled.div`
-  position: absolute;
+ position: absolute;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
-  color: #f43f5e;
-  top: 123px;
+ color: #F43F5E;
+   top: 123px;
   left: 16px;
-  @media screen and (min-width: 768px) {
+ @media screen and (min-width: 768px) {
     top: 130px;
-    left: 16px;
+  left: 16px;
   }
+
 `;
 
 export const ConfirmMessage = styled.div`
-  position: absolute;
+ position: absolute;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
-  color: #f43f5e;
+ color: #F43F5E;
   top: 195px;
   left: 16px;
   @media screen and (min-width: 768px) {
     top: 210px;
+
   }
 `;
