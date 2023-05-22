@@ -6,6 +6,7 @@ export const ConteinerCard = styled.div`
   border-block: solid 1px #ffffff;
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 0px 0px 40px 40px;
+  margin-bottom: 24px;
 `;
 export const ConteinerInfo = styled.div`
   display: flex;

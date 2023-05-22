@@ -7,6 +7,7 @@ import {
   SvgClock,
   SvgFemale,
   SvgLocation,
+  SvgMale,
 } from 'components/buttons/buttons';
 import {
   ConteinerCard,
@@ -17,6 +18,9 @@ import {
 
 export const NoticesCategoryList = ({ petList }) => {
   const { smImgUrl1x, sex, place, category } = petList;
+  const Svg = () => {
+    return sex === 'female' ? SvgFemale : SvgMale;
+  };
 
   return (
     <>
@@ -28,7 +32,7 @@ export const NoticesCategoryList = ({ petList }) => {
         <ConteinerInfo>
           <PetInfo Svg={SvgLocation} text={`${place}`} />
           <PetInfo Svg={SvgClock} text={'1 year'} />
-          <PetInfo Svg={SvgFemale} text={`${sex}`} />
+          <PetInfo Svg={Svg()} text={`${sex}`} />
         </ConteinerInfo>
         <Text>Сute dog looking for a home</Text>
         <BtnLearnMore />
