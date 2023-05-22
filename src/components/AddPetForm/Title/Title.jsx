@@ -11,8 +11,12 @@ export const Title = ({ picked, stage }) => {
         title = 'Add lost pet';
         break;
       default:
-        title = 'Add pet';
+        title = 'Add my pet';
     }
   }
-  return <AddPetTitle>{title}</AddPetTitle>;
+  return (
+    <AddPetTitle data-category={picked} data-stage={stage}>
+      {title}
+    </AddPetTitle>
+  );
 };

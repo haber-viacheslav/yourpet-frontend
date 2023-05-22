@@ -1,4 +1,5 @@
 import { Nav } from 'components/Navigation/Nav/Nav';
+import { Container } from '../Container/Container';
 // import { UserNav } from 'components/Navigation/UserNav/UserNav';
 import { AuthNav } from 'components/Navigation/AuthNav/AuthNav';
 
@@ -6,11 +7,12 @@ import { AuthNav } from 'components/Navigation/AuthNav/AuthNav';
 export const Header = () => {
   // const { isLoggedIn } = useAuth();
   return (
-    <header>
-      <Nav />
-      <p>HEADER</p>
-      {/* {isLoggedIn ? <UserNav /> : <AuthNav />} */}
-      <AuthNav />
-    </header>
+    <Container>
+      <header>
+        <Nav />
+        <p>HEADER</p>
+        {/* {isLoggedIn ? <UserNav /> : <AuthNav />} */}
+      </header>
+    </Container>
   );
 };

@@ -3,7 +3,7 @@ export const theme = Object.freeze({
     main: `'Manrope', sans-serif`,
     second: `'Inter', sans-serif`,
   },
-  fontSizes: [12, 14, 16, 18, 20, 24, 28, 32, 44, 48, 60, 72, 100],
+  fontSizes: [12, 14, 16, 18, 20, 24, 28, 32, 44, 48, 60, 72, 100, 10, 36],
   fontWeights: {
     regular: 400,
     medium: 500,
@@ -14,6 +14,7 @@ export const theme = Object.freeze({
     dark: '#111111',
     orange: '#FFC107',
     white: '#FDF7F2',
+    whity: '#FEF9F9',
     clearWhite: '#FFFFFF',
     blueGradient: 'linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%)',
     blue: '#54ADFF',
@@ -22,8 +23,10 @@ export const theme = Object.freeze({
     red: '#F43F5E',
     backdropColor: ' #61616199',
     black: '#111111',
+    clearBlack: '#000000',
     grey: '#888888',
     transparent: 'transparent',
+    currentColor: 'currentColor',
   },
   shadows: {
     mainShadow: '3px 8px 14px rgba(136, 198, 253, 0.19)',

@@ -12,7 +12,7 @@ const NoticesPage = lazy(() => import('../pages/NoticesPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriendsPage'));
 const AddPetPage = lazy(() => import('../pages/AddPetPage'));
 const NotFound = lazy(() => import('../pages/NotFound'));
-
+const ModalTestPage = lazy(() => import('../pages/ModalTestPage'));
 // import { useEffect } from 'react';
 // import { userCurrent } from 'redux/auth/authService';
 // import { useAuth } from 'hooks/useAuth';
@@ -42,6 +42,7 @@ export const App = () => {
             <Route path="friends" element={<OurFriendsPage />} />
             <Route path="news" element={<NewsPage />} />
             <Route path="add-pet" element={<AddPetPage />} />
+            <Route path="modals" element={<ModalTestPage />} />
             <Route
               path="*"
               element={<Navigate to="404" component={<NotFound />} />}

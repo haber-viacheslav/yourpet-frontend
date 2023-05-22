@@ -1,20 +1,22 @@
 import styled from 'styled-components';
-import { Form, Field } from 'formik';
+import { Form } from 'formik';
 
 export const SvgPlusIcon = styled.svg`
-  fill: #54adff;
-  stroke: #54adff;
+  fill: ${props => props.theme.colors.blue};
+  stroke: ${props => props.theme.colors.blue};
 `;
 
 export const SvgSexIcon = styled.svg`
-  fill: #ffffff;
+  fill: ${props => props.theme.colors.clearWhite};
   stroke: ${props => {
     if (props.sex === '') {
-      return props.index === 0 ? '#F43F5E' : '#54ADFF';
+      return props.index === 0
+        ? props.theme.colors.red
+        : props.theme.colors.blue;
     } else if (props.index === 0) {
-      return props.selected ? '#F43F5E' : '#888888';
+      return props.selected ? props.theme.colors.red : props.theme.colors.grey;
     } else if (props.index === 1) {
-      return props.selected ? '#54ADFF' : '#888888';
+      return props.selected ? props.theme.colors.blue : props.theme.colors.grey;
     }
   }};
 `;
@@ -23,8 +25,16 @@ export const ExtraWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 20px;
+`;
+
+export const Wrapper = styled.div`
+  display: inline-block;
+  padding: 20px 8px 16px;
   font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeights.medium};
+  background: ${props => props.theme.colors.clearWhite};
+  box-shadow: ${props => props.theme.shadows.mainShadow};
+  border-radius: 40px;
   font-style: normal;
 `;
 
@@ -37,15 +47,12 @@ export const SexWrapper = styled.div`
 
 export const GroupTitle = styled.p`
   font-size: 14px;
-  line-height: 19px;
-`;
+  line-height: 1.35;
+  color: ${props => props.theme.colors.dark};
 
-export const Wrapper = styled.div`
-  display: inline-block;
-  padding: 20px 8px 16px;
-  background: #ffffff;
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
-  border-radius: 40px;
+  @media screen and (${props => props.theme.media.md}) {
+    font-size: 20px;
+  }
 `;
 
 export const GroupWrapper = styled.div`
@@ -55,7 +62,23 @@ export const GroupWrapper = styled.div`
   align-items: flex-start;
   align-self: flex-start;
   gap: 12px;
+  margin-top: 8px;
+  margin-bottom: 67px;
+
+  @media screen and (${props => props.theme.media.md}) {
+    margin-top: 24px;
+  }
 `;
+
+export const GroupSexWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  align-self: flex-start;
+  gap: 12px;
+`;
+
 export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -65,12 +88,49 @@ export const InputWrapper = styled.div`
   gap: 24px;
 `;
 
+export const SexUploadWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  align-self: flex-start;
+  gap: 24px;
+
+  @media screen and (${props => props.theme.media.md}) {
+    gap: ${props => (props['data-category'] !== 'your pet' ? '48px' : '24px')};
+    flex-direction: ${props =>
+      props['data-category'] !== 'your pet' ? 'column' : 'row'};
+  }
+`;
+
+export const FlexWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  align-self: flex-start;
+  gap: 16px;
+
+  @media screen and (${props => props.theme.media.md}) {
+    gap: ${props => (props['data-category'] !== 'your pet' ? '63px' : '0')};
+    flex-direction: ${props =>
+      props['data-category'] !== 'your pet' ? 'row' : 'column'};
+  }
+`;
+
 export const BtnWrappper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
+  margin-top: 24px;
+
+  @media screen and (${props => props.theme.media.md}) {
+    flex-direction: row-reverse;
+    gap: 32px;
+    margin-top: 36px;
+  }
 `;
 
 export const LoginFormStyled = styled(Form)`
@@ -78,66 +138,4 @@ export const LoginFormStyled = styled(Form)`
   flex-direction: column;
   align-items: center;
   /* gap: 10px; */
-`;
-
-export const CommentsLabel = styled.label`
-  display: flex;
-  flex-direction: column;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 19px;
-  margin-top: 24px;
-`;
-
-export const CommentText = styled(Field)`
-  width: 264px;
-  height: 92px;
-  padding: 8px 16px;
-  margin-top: 4px;
-  outline: transparent;
-  border: 1px solid #54adff;
-  border-radius: 20px;
-  resize: none;
-
-  &::placeholder {
-    font-size: 14px;
-    color: #7a7a7a;
-  }
-`;
-
-export const ErrWrapper = styled.span`
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.5;
-`;
-
-export const Button = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 22px;
-  letter-spacing: 0.04em;
-
-  padding: 8px 28px;
-  width: 248px;
-  height: 40px;
-
-  color: #fef9f9;
-  background: #54adff;
-  border: none;
-  border-radius: 40px;
-  outline: transparent;
-
-  cursor: pointer;
-
-  &:hover,
-  &:focus {
-    /* background-color: #fef9f9;
-    color: #54adff; */
-  }
-
-  &:disabled {
-  }
 `;
