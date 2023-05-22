@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { theme } from '../../theme/theme';
+import { Form, Field } from 'formik';
 
 export const Wrapper = styled.div`
   margin-left: auto;
@@ -18,7 +19,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Form = styled.form`
+export const LoginFormStyled = styled(Form)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -63,7 +64,7 @@ export const Title = styled.h2`
   }
 `;
 
-export const Input = styled.input`
+export const Input = styled(Field)`
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -134,4 +135,33 @@ export const SVG = styled.svg`
 display:block;
   fill: transparent;
   stroke: #54adff;
+`;
+
+export const EmailMessage = styled.div`
+ position: absolute;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+ color: #F43F5E;
+  top: 50px;
+  left: 16px;
+`;
+
+export const PasswordMessage = styled.div`
+ position: absolute;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+ color: #F43F5E;
+   top: 123px;
+  left: 16px;
+ @media screen and (min-width: 768px) {
+    top: 130px;
+  left: 16px;
+  }
+
 `;
