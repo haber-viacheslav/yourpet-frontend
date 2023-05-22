@@ -1,7 +1,6 @@
-// import styled from 'styled-components';
 import styled from 'styled-components';
 
-const HeaderWrapper = styled.header`
+export const HeaderWrapper = styled.header`
   position: fixed;
   top: 0;
   left: 0;
@@ -12,10 +11,7 @@ const HeaderWrapper = styled.header`
   align-items: center;
   padding: 24px 32px 12px;
 
-  
   @media screen and (min-width: 1280px) {
     padding: 20px 16px 10px;
-
+  }
 `;
-
-export { HeaderWrapper };
