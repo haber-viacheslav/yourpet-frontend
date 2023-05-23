@@ -4,10 +4,10 @@ const anim = keyframes`
 0% {    
     transform: rotateZ(0);
   }
-20% {
+40% {
     transform: rotateZ(-15deg);
   }
-  80% {
+  60% {
     transform: rotateZ(-15deg);
   }
 100% {
@@ -56,61 +56,63 @@ export const ImageWrapper = styled.div`
 
 export const DogImage = styled.img`
   position: absolute;
-  top: -40px;
-  right: 5px;
-  transform-origin: 25% 85%;
+  top: 0;
+  right: 0;
+  transform-origin: 0% 100%;
   animation-name: ${anim};
-  animation-duration: 6s;
+  animation-duration: 3s;
   animation-iteration-count: infinite;
 
   @media screen and (${props => props.theme.media.md}) {
-    top: -80px;
-    right: 100px;
+    top: 40px;
+    right: 160px;
   }
 
   @media screen and (${props => props.theme.media.lg}) {
-    top: -80px;
-    right: -20px;
+    top: -35px;
+    right: -40px;
   }
 `;
 
 export const CatImage = styled.img`
   position: absolute;
-  top: 170px;
-  right: 5px;
+  top: 215px;
+  right: 45px;
 
-  transform-origin: 30% 70%;
+  transform-origin: 0% 50%;
   animation-name: ${anim};
-  animation-duration: 6s;
+
+  animation-duration: 3s;
   animation-iteration-count: infinite;
 
   @media screen and (${props => props.theme.media.md}) {
-    top: 450px;
-    right: 160px;
+    top: 490px;
+    right: 250px;
   }
   @media screen and (${props => props.theme.media.lg}) {
-    top: 450px;
-    right: 30px;
+    top: 405px;
+    right: 50px;
   }
 `;
 
 export const DoggyImage = styled.img`
   position: absolute;
-  top: 80px;
-  right: 148px;
+  top: 130px;
+  right: 243px;
 
-  transform-origin: 65% 80%;
+  transform-origin: 100% 100%;
   animation-name: ${anim};
-  animation-duration: 6s;
+
+  animation-duration: 3s;
   animation-iteration-count: infinite;
 
   @media screen and (${props => props.theme.media.md}) {
-    top: 240px;
-    right: 478px;
+    top: 320px;
+    right: 665px;
   }
   @media screen and (${props => props.theme.media.lg}) {
-    top: 240px;
-    right: 358px;
+    top: 230px;
+    right: 463px;
   }
 `;
 
@@ -127,7 +129,7 @@ export const HeroTitle = styled.h1`
 
   @media screen and (${props => props.theme.media.lg}) {
     line-height: 1.3;
-    margin-top: 228px;
+    margin-top: 159px;
     width: 500px;
   }
 `;
