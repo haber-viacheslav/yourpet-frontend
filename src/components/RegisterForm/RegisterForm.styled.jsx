@@ -72,7 +72,7 @@ export const Input = styled(Field)`
   font-style: normal;
   font-weight: ${props => props.theme.fontWeights.regular};
   height: 48px;
-  font-size: 16px;
+  font-size: ${props => props.theme.fontSizes[2]};
   padding: 12px 16px;
   width: 100%;
   border: 1px solid;
@@ -93,8 +93,8 @@ export const Button = styled.button`
   margin-right: auto;
   font-family: ${props => props.theme.fonts.main};
   font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: ${props => props.theme.fontWeights.regular};
+  font-size: ${props => props.theme.fontSizes[2]};
   width: 100%;
   border: none;
   border-radius: 40px;

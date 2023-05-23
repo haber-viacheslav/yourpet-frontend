@@ -8,9 +8,9 @@ export const Wrapper = styled.div`
   margin-right: auto;
   margin-top: 80px;
   width: 280px;
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  box-shadow: ${props => props.theme.shadows.mainShadow};
   border-radius: 40px;
-  background-color: #ffffff;
+  background-color: ${props => props.theme.colors.clearWhite};
   padding: 40px 12px;
 
   @media screen and (min-width: 768px) {
@@ -37,30 +37,30 @@ export const Box = styled.div`
   margin-top: 40px;
   margin-bottom: 80px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (${props => props.theme.media.md}) {
     gap: 32px;
     margin-bottom: 60px;
   }
-  @media screen and (min-width: 1280px) {
+  @media screen and (${props => props.theme.media.lg}) {
     margin-bottom: 40px;
   }
 `;
 
 export const Title = styled.h2`
-  font-family: ${theme.fonts.main};
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
-  font-weight: ${theme.fontWeights.medium};
-  font-size: 24px;
-  line-height: 33px;
+  font-weight: ${props => props.theme.fontWeights.medium};
+  font-size: ${props => props.theme.fontSizes[5]};
+  line-height: 1.37;
   display: flex;
   align-items: center;
   text-align: center;
-  color: #111111;
+  color: ${props => props.theme.colors.dark};
 
-  @media screen and (min-width: 768px) {
-    font-weight: 500;
-    font-size: 36px;
-    line-height: 49px;
+ @media screen and (${props => props.theme.media.md}) {
+    font-weight: ${props => props.theme.fontWeights.medium};
+    font-size: ${props => props.theme.fontSizes[14]};
+    line-height: 1.37;
   }
 `;
 
@@ -68,11 +68,11 @@ export const Input = styled(Field)`
   display: block;
   margin-left: auto;
   margin-right: auto;
-  font-family: ${theme.fonts.main};
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
-  font-weight: ${theme.fontWeights.regular};
+  font-weight: ${props => props.theme.fontWeights.regular};
   height: 48px;
-  font-size: 16px;
+  font-size: ${props => props.theme.fontSizes[2]};
   padding: 12px 16px;
   width: 100%;
   border: 1px solid;
@@ -86,10 +86,10 @@ export const Button = styled.button`
   display: block;
   margin-left: auto;
   margin-right: auto;
-  font-family: 'Manrope';
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: ${props => props.theme.fontWeights.regular};
+  font-size: ${props => props.theme.fontSizes[2]};
   width: 100%;
   border: none;
   border-radius: 40px;
