@@ -38,6 +38,22 @@ const iconOpen = () => {
   );
 };
 
+const IconCrossSmall = () => {
+  return (
+    <SVG width={24} height={24}>
+      <use href={icons + '#icon-cross-small'}></use>
+    </SVG>
+  );
+};
+
+const IconCheck = () => {
+  return (
+    <SVG width={24} height={24}>
+      <use href={icons + '#icon-check'} color="#00C3AD"></use>
+    </SVG>
+  );
+};
+
 export const RegisterForm = () => {
   const [toggleIconPass, setToggleIconPass] = useState(iconClose);
   const [typePass, setTypePass] = useState('password');
@@ -113,9 +129,7 @@ export const RegisterForm = () => {
               />
               {errors.email && touched.email && (
                 <IconMail error={errors.email && touched.email && 'false'}>
-                  <SVG width={24} height={24}>
-                    <use href={icons + '#icon-cross-small'}></use>
-                  </SVG>
+                  <IconCrossSmall />
                 </IconMail>
               )}
               {touched.email && !errors.email && (
@@ -146,9 +160,7 @@ export const RegisterForm = () => {
                 <IconPass
                   error={errors.password && touched.password && 'false'}
                 >
-                  <SVG width={24} height={24}>
-                    <use href={icons + '#icon-check'} color="#00C3AD"></use>
-                  </SVG>
+                  <IconCheck />
                 </IconPass>
               ) : (
                 <IconPass onClick={togglePassInput}>{toggleIconPass}</IconPass>
@@ -171,9 +183,7 @@ export const RegisterForm = () => {
                 <IconConfirm
                   error={errors.confirm && touched.confirm && 'false'}
                 >
-                  <SVG width={24} height={24}>
-                    <use href={icons + '#icon-check'} color="#00C3AD"></use>
-                  </SVG>
+                  <IconCheck />
                 </IconConfirm>
               ) : (
                 <IconConfirm onClick={toggleConfirmInput}>
