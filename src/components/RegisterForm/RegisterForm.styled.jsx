@@ -127,7 +127,7 @@ export const Link = styled(NavLink)`
 export const IconMail = styled.span`
   position: absolute;
   cursor: pointer;
-  color: #F43F5E;
+  color: ${props => (props.error ? props.theme.colors.red  : props.theme.colors.green)};
   top: 86px;
   right: 15px;
   @media screen and (min-width: 768px) {

@@ -94,7 +94,7 @@ export const RegisterForm = () => {
         validationSchema={yupRegisterValidation}
         onSubmit={handleSubmit}
       >
-        {({ errors, touched }) => (
+        {({ errors, touched, isValid }) => (
           <RegisterFormStyled autoComplete="off">
             <Title>Registation</Title>
             <Box>
@@ -110,13 +110,17 @@ export const RegisterForm = () => {
                 id="email"
                 render={msg => <EmailMessage>{msg}</EmailMessage>}
               />
-              {errors.email && touched.email && (
-                <IconMail>
+              {errors.email && touched.email ? (
+                <IconMail error={errors.email && touched.email && 'false'}>
                   <SVG width={24} height={24}>
                     <use href={icons + '#icon-cross-small'}></use>
                   </SVG>
                 </IconMail>
-              )}
+              ) : <IconMail error={errors.email && touched.email && 'false'}>
+                  <SVG width={24} height={24}>
+                    <use href={icons + '#icon-check'}></use>
+                  </SVG>
+                </IconMail> }
               <Input
                 type={typePass}
                 id="password"
