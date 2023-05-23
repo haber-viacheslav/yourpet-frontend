@@ -60,7 +60,7 @@ export const DogImage = styled.img`
   right: 0;
   transform-origin: 0% 100%;
   animation-name: ${anim};
-  animation-duration: 3s;
+  animation-duration: 5s;
   animation-iteration-count: infinite;
 
   @media screen and (${props => props.theme.media.md}) {
@@ -82,7 +82,7 @@ export const CatImage = styled.img`
   transform-origin: 0% 50%;
   animation-name: ${anim};
 
-  animation-duration: 3s;
+  animation-duration: 5s;
   animation-iteration-count: infinite;
 
   @media screen and (${props => props.theme.media.md}) {
@@ -103,7 +103,7 @@ export const DoggyImage = styled.img`
   transform-origin: 100% 100%;
   animation-name: ${anim};
 
-  animation-duration: 3s;
+  animation-duration: 5s;
   animation-iteration-count: infinite;
 
   @media screen and (${props => props.theme.media.md}) {

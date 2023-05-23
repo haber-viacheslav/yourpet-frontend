@@ -3,8 +3,11 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+
+  flex-basis: calc((100% - 0) / 1);
+  height: 280px;
   padding: 16px 12px;
 
   color: ${props => props.theme.colors.black};
@@ -12,21 +15,31 @@ export const Wrapper = styled.div`
   box-shadow: ${props => props.theme.shadows.mainShadow};
 
   border-radius: 40px;
+
+  @media screen and (${props => props.theme.media.md}) {
+    flex-basis: calc((100% - 32px * 1) / 2);
+    height: 365px;
+  }
+
+  @media screen and (${props => props.theme.media.lg}) {
+    flex-basis: calc((100% - 32px * 2) / 3);
+  }
 `;
 
 export const ContentWrapper = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  width: 100%;
+  flex-grow: 1;
   gap: 12px;
 
-  /* @media screen and (${props => props.theme.media.lg}) {
-    gap: 20px;
-  } */
+  @media screen and (${props => props.theme.media.lg}) {
+  }
 `;
 
 export const DayWrapper = styled.div`
-  width: 101px;
+  width: 120px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -41,20 +54,30 @@ export const DayWrapper = styled.div`
     }
   }};
   color: ${props => {
-    const minHour = Number(
-      props.children[1].props.children[0].props.children.replace(/:/, '.')
-    );
+    const min = props.children[1].props.children[0].props.children;
+    const minHour =
+      min === 'closed'
+        ? 'red'
+        : min === 'day & night'
+        ? 'green'
+        : Number(
+            props.children[1].props.children[0].props.children
+              .slice(0, 4)
+              .replace(/:/, '.')
+          );
+
     const maxHour = Number(
-      props.children[1].props.children[2].props.children.replace(/:/, '.')
+      props.children[1].props.children[1].props.children.replace(/:/, '.')
     );
     const inTime =
       props['data-time'][1] > minHour && props['data-time'][1] < maxHour;
+    const isThisDay = props['data-time'][0] === props['data-day'];
 
-    if (inTime && props['data-time'][0] === props['data-day']) {
+    if ((inTime && isThisDay) || (minHour === 'green' && isThisDay)) {
       return props.theme.colors.green;
-    } else if (!inTime && props['data-time'][0] === props['data-day']) {
+    } else if ((!inTime && isThisDay) || (minHour === 'red' && isThisDay)) {
       return props.theme.colors.red;
-    } else if (['data-time'][0] !== props['data-day']) {
+    } else if (!isThisDay) {
       return props.theme.colors.black;
     }
   }};
@@ -67,6 +90,7 @@ export const Day = styled.span`
 `;
 export const DayTime = styled.span`
   display: flex;
+  justify-content: right;
   font-size: 12px;
   line-height: 16px;
   font-weight: ${props => props.theme.fontWeights.medium};
@@ -77,14 +101,17 @@ export const MaxTime = styled.span``;
 export const MinTime = styled.span``;
 
 export const LogoWrapper = styled.div`
-  width: 68px;
+  width: 100px;
+  height: 68px;
 
   @media screen and (${props => props.theme.media.md}) {
-    width: 88px;
+    width: 124px;
+    height: 104px;
   }
 
   @media screen and (${props => props.theme.media.lg}) {
-    width: 104px;
+    width: 146px;
+    height: 104px;
   }
 `;
 export const ScheduleWrapper = styled.div`
@@ -100,7 +127,7 @@ export const Schedule = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 126px;
+  width: 155px;
   height: 160px;
 
   background: ${props => props.theme.colors.clearWhite};
@@ -113,24 +140,23 @@ export const LogoContent = styled.img`
 `;
 
 export const CardTitle = styled.a`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   text-decoration: none;
+
+  height: 54px;
 
   font-weight: ${props => props.theme.fontWeights.bold};
   font-size: 20px;
-  line-height: 27px;
   line-height: 1.35;
   color: ${props => props.theme.colors.blue};
   margin-bottom: 16px;
-`;
 
-export const Link = styled.a`
-  text-decoration: none;
-  color: ${props => props.theme.colors.black};
-  &:hover,
-  &:focus-visible {
-    color: ${props => props.theme.colors.blue};
+  @media screen and (${props => props.theme.media.md}) {
+    width: 80%;
   }
-  cursor: pointer;
 `;
 
 export const ScheduleBtn = styled.button`
@@ -162,10 +188,21 @@ export const TextContent = styled.div`
   justify-content: center;
   align-items: flex-start;
   gap: 12px;
+  width: 70%;
 
   @media screen and (${props => props.theme.media.md}) {
     font-size: 20px;
   }
+`;
+
+export const Link = styled.a`
+  text-decoration: none;
+  color: ${props => props.theme.colors.black};
+  &:hover,
+  &:focus-visible {
+    color: ${props => props.theme.colors.blue};
+  }
+  cursor: pointer;
 `;
 
 export const Title = styled.p`
@@ -184,6 +221,8 @@ export const Title = styled.p`
 `;
 
 export const Text = styled.p`
+  word-break: break-word;
+
   text-align: left;
   font-size: 12px;
   font-weight: ${props => props.theme.fontWeights.regular};

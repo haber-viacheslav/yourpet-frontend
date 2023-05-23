@@ -3,6 +3,10 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import { lazy } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../theme/theme';
+
+// import { RestrictedRoute } from './routes/RestrictedRoute';
+// import { PrivateRoute } from './routes/PrivateRoute';
+
 const MainPage = lazy(() => import('../pages/MainPage'));
 const Register = lazy(() => import('../pages/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage'));
@@ -17,8 +21,6 @@ const ModalTestPage = lazy(() => import('../pages/ModalTestPage'));
 // import { userCurrent } from 'redux/auth/authService';
 // import { useAuth } from 'hooks/useAuth';
 // import { useDispatch } from 'react-redux';
-// import { RestrictedRoute } from './routes/RestrictedRoute';
-// import { PrivateRoute } from './routes/PrivateRoute';
 
 export const App = () => {
   // const dispatch = useDispatch();
@@ -46,6 +48,41 @@ export const App = () => {
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
+
+        {/* <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<MainPage />} />
+            <Route
+              path="login"
+              element={
+                <RestrictedRoute component={LoginPage} redirectTo="/user" />
+              }
+            />
+            <Route
+              path="register"
+              element={
+                <RestrictedRoute component={Register} redirectTo="/user" />
+              }
+            />
+            <Route
+              path="user"
+              element={
+                <PrivateRoute component={UserPage} redirectTo="/login" />
+              }
+            />
+            <Route path="notices" element={<NoticesPage />} />
+            <Route path="friends" element={<OurFriendsPage />} />
+            <Route path="news" element={<NewsPage />} />
+            <Route
+              path="add-pet"
+              element={
+                <PrivateRoute component={AddPetPage} redirectTo="/login" />
+              }
+            />
+            <Route path="modals" element={<ModalTestPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes> */}
       </ThemeProvider>
     </>
   );
