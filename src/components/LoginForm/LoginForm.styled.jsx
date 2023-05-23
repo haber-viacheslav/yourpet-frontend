@@ -140,7 +140,7 @@ export const IconSpan = styled.span`
 export const SVG = styled.svg`
 display:block;
   fill: transparent;
-  stroke: ${props => props.theme.colors.blue};
+  stroke: currentColor;
 `;
 
 export const IconMail = styled.span`
