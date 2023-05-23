@@ -113,8 +113,8 @@ export const Text = styled.p`
   font-family: ${theme.fonts.main};
   font-style: normal;
   font-weight: ${theme.fontWeights.regular};
-  font-size: 12px;
-  line-height: 16px;
+  font-size: ${props => props.theme.fontSizes[0]};
+  line-height: 1.33;
   letter-spacing: 0.04em;
   color: ${props => props.theme.colors.grey};
 `;
@@ -125,7 +125,7 @@ export const Span = styled.span`
 
 export const Link = styled(NavLink)`
   color: ${props => props.theme.colors.blue};
-  line-height: 16px;
+  line-height: 1.33;
 `;
 
 export const IconMail = styled.span`
@@ -184,8 +184,8 @@ export const PasswordMessage = styled.div`
   font-family: ${props => props.theme.fonts.main};
   font-style: normal;
   font-weight: ${props => props.theme.fontWeights.regular};
-  font-size: 12px;
-  line-height: 16px;
+  font-size: ${props => props.theme.fontSizes[0]};
+  line-height: 1.33;
   color: ${props => props.theme.colors.red};
   top: 123px;
   left: 16px;
@@ -200,8 +200,8 @@ export const ConfirmMessage = styled.div`
   font-family: ${props => props.theme.fonts.main};
   font-style: normal;
   font-weight: ${props => props.theme.fontWeights.regular};
-  font-size: 12px;
-  line-height: 16px;
+  font-size: ${props => props.theme.fontSizes[0]};
+  line-height: 1.33;
   color: ${props => props.theme.colors.red};
   top: 195px;
   left: 16px;
