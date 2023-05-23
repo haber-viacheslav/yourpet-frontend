@@ -27,34 +27,33 @@ export const CardItem = () => {
   const [time, SetTime] = useState([]);
   const scheduleRef = useRef(null);
 
-  // useEffect(() => {
-  //       const handleKeyEscape = event => {
-  //     if (event.code === 'Escape') {
-  //       SetShowSchedule(false);
-  //     }
-  //   };
-  //   if (showSchedule === true) {
-  //     window.addEventListener('keydown', handleKeyEscape);
-  //   }
+  useEffect(() => {
+    const handleKeyEscape = event => {
+      if (event.code === 'Escape') {
+        SetShowSchedule(false);
+      }
+    };
+    if (showSchedule === true) {
+      window.addEventListener('keydown', handleKeyEscape);
+    }
 
-  //   return () => window.removeEventListener('keydown', handleKeyEscape);
-  // }, [showSchedule]);
+    return () => window.removeEventListener('keydown', handleKeyEscape);
+  }, [showSchedule]);
 
   useEffect(() => {
     const schedule = scheduleRef.current;
-    // console.log(schedule);
-    const onScheduleClick = e => {
-      if (e.target === e.currentTarget) {
-        showSchedule(false);
+    const handleOnClick = e => {
+      if (e.target !== schedule && !schedule.contains(e.target)) {
+        SetShowSchedule(false);
       }
     };
 
     if (showSchedule === true) {
-      schedule.addEventListener('click', e => onScheduleClick);
+      document.addEventListener('click', e => handleOnClick(e));
     }
 
     return () => {
-      schedule.removeEventListener('click', e => onScheduleClick);
+      document.removeEventListener('click', e => handleOnClick(e));
     };
   }, [showSchedule]);
 

@@ -20,7 +20,7 @@ export const Title = styled.h2`
     margin-bottom: 40px;
   }
 
-  @media screen and (${props => props.theme.media.md}) {
+  @media screen and (${props => props.theme.media.lg}) {
     margin-bottom: 60px;
   }
 `;
