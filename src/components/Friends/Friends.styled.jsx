@@ -28,7 +28,7 @@ export const Title = styled.h2`
 export const CardList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   row-gap: 20px;
 
