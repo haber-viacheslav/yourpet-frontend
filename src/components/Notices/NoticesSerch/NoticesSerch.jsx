@@ -1,3 +1,5 @@
+import { SearchNewsForm } from 'components/News/SearchNewsForm/SearchNewsForm';
+
 export const NoticesSearch = () => {
-  return <input placeholder="Serch"></input>;
+  return <SearchNewsForm />;
 };
