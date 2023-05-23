@@ -207,7 +207,6 @@ export const BtnAuth = ({ onClick }) => {
 // button for Registration and Login, need write
 // "lost/foun, sell, in good hand, favorite ads, my ads" instead "text"
 export const BtnAddOption = ({ text, onClick }) => {
-  console.log(text);
   return (
     <>
       <BtnOption type="button" onClick={onClick}>

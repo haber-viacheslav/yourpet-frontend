@@ -58,7 +58,7 @@ export const DayWrapper = styled.div`
     const minHour =
       min === 'closed'
         ? 'red'
-        : min === 'day & night'
+        : min === 'day / night'
         ? 'green'
         : Number(
             props.children[1].props.children[0].props.children

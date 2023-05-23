@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useSchedule } from 'hooks/useSchedule';
 
 import {
   CardTitle,
@@ -33,6 +34,7 @@ export const CardItem = ({
 }) => {
   const [showSchedule, SetShowSchedule] = useState(false);
   const [time, SetTime] = useState([]);
+  const [workTime, weekSchedule] = useSchedule(workDays);
   const scheduleRef = useRef(null);
 
   useEffect(() => {
@@ -74,81 +76,6 @@ export const CardItem = ({
     SetTime([day, time]);
   };
 
-  const minMN = workDays
-    ? workDays[0].isOpen
-      ? workDays[0].from + '-'
-      : 'closed'
-    : 'day & night';
-  const maxMN = workDays ? (workDays[0].isOpen ? workDays[0].to : '') : '';
-
-  const minTU = workDays
-    ? workDays[1].isOpen
-      ? workDays[1].from + '-'
-      : 'closed'
-    : 'day & night';
-  const maxTU = workDays ? (workDays[1].isOpen ? workDays[1].to : '') : '';
-
-  const minWE = workDays
-    ? workDays[2].isOpen
-      ? workDays[2].from + '-'
-      : 'closed'
-    : 'day & night';
-  const maxWE = workDays ? (workDays[2].isOpen ? workDays[2].to : '') : '';
-
-  const minTH = workDays
-    ? workDays[3].isOpen
-      ? workDays[3].from + '-'
-      : 'closed'
-    : 'day & night';
-  const maxTH = workDays ? (workDays[3].isOpen ? workDays[3].to : '') : '';
-
-  const minFR = workDays
-    ? workDays[4].isOpen
-      ? workDays[4].from + '-'
-      : 'closed'
-    : 'day & night';
-  const maxFR = workDays ? (workDays[4].isOpen ? workDays[4].to : '') : '';
-
-  const minSA = workDays
-    ? workDays[5].isOpen
-      ? workDays[5].from + '-'
-      : 'closed'
-    : 'day & night';
-  const maxSA = workDays ? (workDays[5].isOpen ? workDays[5].to : '') : '';
-
-  const minSU = workDays
-    ? workDays[6].isOpen
-      ? workDays[6].from + '-'
-      : 'closed'
-    : 'day & night';
-  const maxSU = workDays ? (workDays[6].isOpen ? workDays[6].to : '') : '';
-
-  let workTime;
-  switch (new Date().getDay()) {
-    case 0:
-      workTime = minMN + maxMN;
-      break;
-    case 1:
-      workTime = minTU + maxTU;
-      break;
-    case 2:
-      workTime = minWE + maxWE;
-      break;
-    case 3:
-      workTime = minTH + maxTH;
-      break;
-    case 4:
-      workTime = minFR + maxFR;
-      break;
-    case 5:
-      workTime = minSA + maxSA;
-      break;
-    case 6:
-      workTime = minSU + maxSU;
-      break;
-    default:
-  }
-
   return (
     <Wrapper>
       <CardTitle
@@ -178,50 +105,50 @@ export const CardItem = ({
                 <DayWrapper data-time={time} data-day={1}>
                   <Day>MN</Day>
                   <DayTime>
-                    <MinTime>{minMN}</MinTime>
-                    <MaxTime>{maxMN}</MaxTime>
+                    <MinTime>{weekSchedule[0].start}</MinTime>
+                    <MaxTime>{weekSchedule[0].end}</MaxTime>
                   </DayTime>
                 </DayWrapper>
                 <DayWrapper data-time={time} data-day={2}>
                   <Day>TU</Day>
                   <DayTime>
-                    <MinTime>{minTU}</MinTime>
-                    <MaxTime>{maxTU}</MaxTime>
+                    <MinTime>{weekSchedule[1].start}</MinTime>
+                    <MaxTime>{weekSchedule[1].end}</MaxTime>
                   </DayTime>
                 </DayWrapper>
                 <DayWrapper data-time={time} data-day={3}>
                   <Day>WE</Day>
                   <DayTime>
-                    <MinTime>{minWE}</MinTime>
-                    <MaxTime>{maxWE}</MaxTime>
+                    <MinTime>{weekSchedule[2].start}</MinTime>
+                    <MaxTime>{weekSchedule[2].end}</MaxTime>
                   </DayTime>
                 </DayWrapper>
                 <DayWrapper data-time={time} data-day={4}>
                   <Day>TH</Day>
                   <DayTime>
-                    <MinTime>{minTH}</MinTime>
-                    <MaxTime>{maxTH}</MaxTime>
+                    <MinTime>{weekSchedule[3].start}</MinTime>
+                    <MaxTime>{weekSchedule[3].end}</MaxTime>
                   </DayTime>
                 </DayWrapper>
                 <DayWrapper data-time={time} data-day={5}>
                   <Day>FR</Day>
                   <DayTime>
-                    <MinTime>{minFR}</MinTime>
-                    <MaxTime>{maxFR}</MaxTime>
+                    <MinTime>{weekSchedule[4].start}</MinTime>
+                    <MaxTime>{weekSchedule[4].end}</MaxTime>
                   </DayTime>
                 </DayWrapper>
                 <DayWrapper data-time={time} data-day={6}>
                   <Day>SA</Day>
                   <DayTime>
-                    <MinTime>{minSA}</MinTime>
-                    <MaxTime>{maxSA}</MaxTime>
+                    <MinTime>{weekSchedule[5].start}</MinTime>
+                    <MaxTime>{weekSchedule[5].end}</MaxTime>
                   </DayTime>
                 </DayWrapper>
                 <DayWrapper data-time={time} data-day={0}>
                   <Day>SU</Day>
                   <DayTime>
-                    <MinTime>{minSU}</MinTime>
-                    <MaxTime>{maxSU}</MaxTime>
+                    <MinTime>{weekSchedule[6].start}</MinTime>
+                    <MaxTime>{weekSchedule[6].end}</MaxTime>
                   </DayTime>
                 </DayWrapper>
               </Schedule>
@@ -251,8 +178,12 @@ export const CardItem = ({
 };
 
 // CardItem.propTypes = {
-//   emulTouch: PropTypes.arrayOf(PropTypes.string).isRequired,
-//   errors: PropTypes.object.isRequired,
-//   touched: PropTypes.object.isRequired,
-//   category: PropTypes.string.isRequired,
+//   email: PropTypes.string.isRequired,
+//   address: PropTypes.string.isRequired,
+//   url: PropTypes.string.isRequired,
+//   addressUrl: PropTypes.string.isRequired,
+//   imageUrl: PropTypes.string.isRequired,
+//   phone: PropTypes.string.isRequired,
+//   title: PropTypes.string.isRequired,
+//   workDays: PropTypes.string.isRequired,
 // };

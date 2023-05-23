@@ -38,7 +38,7 @@ export const OurFriends = () => {
           } = friend;
           return (
             <CardItem
-              key={email}
+              key={title}
               email={email}
               address={address}
               url={url}
