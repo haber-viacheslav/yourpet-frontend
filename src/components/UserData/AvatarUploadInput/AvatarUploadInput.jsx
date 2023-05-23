@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { useFormikContext } from 'formik';
+// import { useState } from 'react';
+// import { useFormikContext } from 'formik';
 import { PlusIcon, EditPhotoIcon, CheckIcon } from '../Icons/Icons';
 import {
   PhotoWrapper,
   UploadFileLabel,
   UploadLabelWrapper,
   UploadFile,
-  Photo,
-  ErrWrapper,
+  // Photo,
+  // ErrWrapper,
   PhotoPlaceWrapper,
 } from './AvatarUploadInput.styled';
 import { theme } from "theme/theme";
