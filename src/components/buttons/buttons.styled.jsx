@@ -191,6 +191,15 @@ export const FilterCurcle = styled.button`
   position: absolute;
   top: 0;
   right: 0;
+  stroke: ${theme.colors.blue};
+  fill: none;
+  :hover,
+  :focus & svg {
+    stroke: ${theme.colors.white};
+    color: ${theme.colors.white};
+    border: none;
+    background: ${theme.colors.blueGradient};
+  }
   @media screen and (${props => props.theme.media.md}) {
     display: none;
   }
@@ -244,21 +253,23 @@ export const BtnFilter = styled.button`
   font-family: ${theme.fonts.main};
   font-weight: ${theme.fontWeights.bold};
   cursor: pointer;
+  stroke: ${theme.colors.blue};
+  fill: none;
   :hover,
-  :focus {
+  :focus & svg {
+    stroke: ${theme.colors.white};
     color: ${theme.colors.white};
     border: none;
     background: ${theme.colors.blueGradient};
   }
 `;
-export const Filter = styled.svg`
-  fill: none;
-  stroke: ${theme.colors.blue};
-  :hover,
-  :focus {
-    stroke: ${theme.colors.white};
-  }
-`;
+// export const Filter = styled.svg`
+//   fill: none;
+//   stroke: ${theme.colors.blue};
+//   :hover,
+//   :focus {
+//   }
+// `;
 export const BtnOption = styled.button`
   height: 35px;
   border-radius: 40px;
