@@ -71,31 +71,45 @@ export const LoginForm = () => {
         validationSchema={yupLoginValidation}
         onSubmit={handleSubmit}
       >
-        <LoginFormStyled>
-          <Title>Login</Title>
-          <Box>
-            <Input type="text" name="email" placeholder="Email" />
-            <ErrorMessage
-              name="email"
-              type="email"
-              render={msg => <EmailMessage>{msg}</EmailMessage>}
-            />
-            <Input type={typePass} name="password" placeholder="Password" />
-            <ErrorMessage
-              name="password"
-              type="password"
-              render={password => <PasswordMessage>{password}</PasswordMessage>}
-            />
-            <IconSpan onClick={togglePassInput}>{toggleIconPass}</IconSpan>
-          </Box>
-          <Button type="submit">Login</Button>
-          <Text>
-            Don't have an account?
-            <Span>
-              <Link to="/register">Register</Link>
-            </Span>
-          </Text>
-        </LoginFormStyled>
+        {({ errors, touched }) => (
+          <LoginFormStyled>
+            <Title>Login</Title>
+            <Box>
+              <Input
+                type="text"
+                name="email"
+                placeholder="Email"
+                error={errors.email && touched.email && 'false'}
+              />
+              <ErrorMessage
+                name="email"
+                type="email"
+                render={msg => <EmailMessage>{msg}</EmailMessage>}
+              />
+              <Input
+                type={typePass}
+                name="password"
+                placeholder="Password"
+                error={errors.password && touched.password && 'false'}
+              />
+              <ErrorMessage
+                name="password"
+                type="password"
+                render={password => (
+                  <PasswordMessage>{password}</PasswordMessage>
+                )}
+              />
+              <IconSpan onClick={togglePassInput}>{toggleIconPass}</IconSpan>
+            </Box>
+            <Button type="submit">Login</Button>
+            <Text>
+              Don't have an account?
+              <Span>
+                <Link to="/register">Register</Link>
+              </Span>
+            </Text>
+          </LoginFormStyled>
+        )}
       </Formik>
     </Wrapper>
   );

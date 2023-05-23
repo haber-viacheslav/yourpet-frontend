@@ -10,9 +10,7 @@ import {
   SVG,
   EmailMessage,
   PasswordMessage,
-  ConfirmMessage
-} from './RegisterForm.styled';
-import {
+  ConfirmMessage,
   Input,
   Title,
   Box,
@@ -95,20 +93,48 @@ export const RegisterForm = () => {
         validationSchema={yupRegisterValidation}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting, errors, touched }) => (
+        {({ errors, touched }) => (
           <RegisterFormStyled autoComplete="off">
             <Title>Registation</Title>
             <Box>
-              <Input type="text" name="email" placeholder="Email" />
-              <ErrorMessage name="email" type="email" render={msg => <EmailMessage>{msg}</EmailMessage>} />
-              <Input type={typePass} name="password" placeholder="Password" />
-              <ErrorMessage name="password" type="password" render={password => <PasswordMessage>{password}</PasswordMessage>} />
+              <Input
+                type="text"
+                name="email"
+                placeholder="Email"
+                error={errors.email && touched.email && 'false'}
+              />
+              <ErrorMessage
+                name="email"
+                type="email"
+                id="email"
+                render={msg => <EmailMessage>{msg}</EmailMessage>}
+              />
+              <Input
+                type={typePass}
+                id="password"
+                name="password"
+                placeholder="Password"
+                error={errors.password && touched.password && 'false' }
+              />
+              <ErrorMessage
+                name="password"
+                type="password"
+                render={password => (
+                  <PasswordMessage>{password}</PasswordMessage>
+                )}
+              />
               <IconSpan onClick={togglePassInput}>{toggleIconPass}</IconSpan>
-              <ErrorMessage name="confirm" type="confirm" render={msg => <ConfirmMessage>{msg}</ConfirmMessage>} />
+              <ErrorMessage
+                name="confirm"
+                type="confirm"
+                render={msg => <ConfirmMessage>{msg}</ConfirmMessage>}
+              />
               <Input
                 type={typeCofirm}
                 name="confirm"
+                id="confirm"
                 placeholder="Confirm password"
+                error={errors.confirm && touched.confirm && 'false'}
               />
               <IconSpan1 onClick={toggleConfirmInput}>
                 {toggleIconConfirm}

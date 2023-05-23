@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+// import { React, useState, useEffect } from 'react';
 import {
   Backdrop,
   Menu,
@@ -6,35 +6,35 @@ import {
   BackdropAuth,
   BackdropNav,
 } from './Backdrop.styled';
-import { useSelector } from 'react-redux';
-import AuthNav from '../AuthNav/AuthNav';
-import Nav from '../Nav/Nav';
-import Logo from 'components/Logo/Logo';
-import UserNav from '../UserNav/UserNav';
+// import { useSelector } from 'react-redux';
+import {AuthNav} from '../AuthNav/AuthNav';
+import {Nav} from '../Nav/Nav';
+import {Logo} from 'components/Logo/Logo';
+import {UserNav} from '../UserNav/UserNav';
 // import BurgerMenu from '../BurgerMenu/Burger';
 
-function isTabletDevice() {
-  return window.innerWidth > 767;
-}
+// function isTabletDevice() {
+//   return window.innerWidth > 767;
+// }
 
-const BackdropMenu = ({ isOpen, handleClose }) => {
+export const BackdropMenu = ({ isOpen, handleClose }) => {
   const handleLinkClick = () => {
     handleClose();
   };
-  const [isTablet, setTabletDevice] = useState(isTabletDevice());
-  const isLogIn = useSelector(state => state.auth.token);
+  // const [isTablet, setTabletDevice] = useState(isTabletDevice());
+  // const isLogIn = useSelector(state => state.auth.token);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setTabletDevice(isTabletDevice());
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setTabletDevice(isTabletDevice());
+  //   };
 
-    window.addEventListener('resize', handleResize);
+  //   window.addEventListener('resize', handleResize);
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //   };
+  // }, []);
 
   return (
     <>
@@ -42,16 +42,18 @@ const BackdropMenu = ({ isOpen, handleClose }) => {
         <Backdrop>
           <Menu>
             <Logo handleLinkClick={handleLinkClick} />
-            {isLogIn && !isTablet ? (
+            {/* {isLogIn && !isTablet ?  */}
+            (
               <BackdropUser>
                 <UserNav handleLinkClick={handleLinkClick} />
               </BackdropUser>
-            ) : null}
-            {!isLogIn ? (
+            ) : null
+            {/* {!isLogIn ?  */}
+            (
               <BackdropAuth>
                 <AuthNav handleLinkClick={handleLinkClick} />
               </BackdropAuth>
-            ) : null}
+            ) : null
 
             <BackdropNav>
               <Nav handleLinkClick={handleLinkClick} />
@@ -62,5 +64,3 @@ const BackdropMenu = ({ isOpen, handleClose }) => {
     </>
   );
 };
-
-export default BackdropMenu;
