@@ -14,7 +14,7 @@ export const StyledContainer = styled.div`
   }
 
   @media screen and (${props => props.theme.media.lg}) {
-    width: 1200px;
+    width: 1280px;
     padding: 0 16px;
   }
 `;
