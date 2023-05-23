@@ -7,8 +7,6 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { AvatarUploadInput } from './AvatarUploadInput/AvatarUploadInput';
 
-// import { AvatarUploadInput } from './AvatarUploadInput/AvatarUploadInput';
-
 
 const ProfileSchema = yup.object().shape({
   name: yup.string().min(2).max(20).required(),
