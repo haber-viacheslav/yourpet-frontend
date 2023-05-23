@@ -1,10 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
-import { Spin as Hamburger } from 'hamburger-react';
-import BackdropMenu from '../Backdrop/Backdrop';
-// import { Wrapper } from './Burger.styled';
+// import { Spin as Hamburger } from 'hamburger-react';
+import {BackdropMenu} from '../Backdrop/Backdrop';
+import { Wrapper, HamburgerBtn } from './Burger.styled';
 
-function BurgerMenu() {
+export const BurgerBtn= () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
@@ -16,23 +16,25 @@ function BurgerMenu() {
   };
 
   return (
-    <>
-      <Hamburger
+    <Wrapper>
+   
+      <HamburgerBtn
         onClick={handleOpen}
         toggled={isOpen}
         toggle={setIsOpen}
-        rounded
+        rounded = "true"
         label="Show menu"
-        size={24}
+        size={20}
         color="#FFC107"
-        distance="lg"
+        distance="md"
         duration={0.6}
+        
       />
       {isOpen ? (
         <BackdropMenu isOpen={isOpen} handleClose={handleClose} />
       ) : null}
-    </>
+      </Wrapper>
+   
   );
 }
 
-export default BurgerMenu;
