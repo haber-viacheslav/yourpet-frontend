@@ -184,7 +184,7 @@ export const PasswordMessage = styled.div`
   font-family: ${props => props.theme.fonts.main};
   font-style: normal;
   font-weight: ${props => props.theme.fontWeights.regular};
-  font-size: ${props => props.theme.fontSizes[0]};
+  font-size: 12px;
   line-height: 1.33;
   color: ${props => props.theme.colors.red};
   top: 123px;
@@ -200,7 +200,7 @@ export const ConfirmMessage = styled.div`
   font-family: ${props => props.theme.fonts.main};
   font-style: normal;
   font-weight: ${props => props.theme.fontWeights.regular};
-  font-size: ${props => props.theme.fontSizes[0]};
+  font-size: 12px;
   line-height: 1.33;
   color: ${props => props.theme.colors.red};
   top: 195px;
