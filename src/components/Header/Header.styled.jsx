@@ -1,21 +1,28 @@
 import styled from 'styled-components';
 
 export const HeaderWrapper = styled.header`
-  /* position: fixed; */
   top: 0;
   left: 0;
-  width: 320px;
+  max-width: 100%;
+  height: 48px;
   z-index: 999;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 32px 24px 0px 24px;
+  margin: 22px 20px 0px 20px;
 
   @media screen and (${props => props.theme.media.md}) {
-    margin-top: 20px;
-    margin-right: 16px;
+    margin-top: 24px;
+    margin-right: 32px;
     margin-bottom: 0;
-    margin-left: 16px;
-    width: 1280px;
+    margin-left: 32px;
+    height: 44px;
+  }
+  @media screen and (${props=>props.theme.media.lg}){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
   }
 `;
