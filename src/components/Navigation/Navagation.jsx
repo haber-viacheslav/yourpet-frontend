@@ -19,7 +19,7 @@ function isTabletDevice() {
   return window.innerWidth > 767;
 }
 
-function Navigation() {
+export const Navigation = () => {
   const [isMobile, setIsMobile] = useState(isMobileDevice());
   const [isTablet, setTabletDevice] = useState(isTabletDevice());
   const isLogIn = useSelector(state => state.auth.token);
@@ -48,5 +48,5 @@ function Navigation() {
   );
 }
 
-export default Navigation;
+
 
