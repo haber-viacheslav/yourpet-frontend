@@ -8,12 +8,12 @@ export const Wrapper = styled.div`
   margin-right: auto;
   margin-top: 80px;
   width: 280px;
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  box-shadow: ${props => props.theme.shadows.mainShadow};
   border-radius: 40px;
   background-color: #ffffff;
   padding: 40px 12px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (${props => props.theme.media.md}) {
     width: 608px;
     padding: 60px 75px;
   }
@@ -37,30 +37,30 @@ export const Box = styled.div`
   margin-top: 40px;
   margin-bottom: 40px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (${props => props.theme.media.md}) {
     gap: 32px;
     margin-bottom: 52px;
   }
-  @media screen and (min-width: 1280px) {
+  @media screen and (${props => props.theme.media.lg}) {
     margin-bottom: 40px;
   }
 `;
 
 export const Title = styled.h2`
-  font-family: ${theme.fonts.main};
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
-  font-weight: ${theme.fontWeights.medium};
-  font-size: 24px;
-  line-height: 33px;
+  font-weight: ${props => props.theme.fontWeights.medium};
+  font-size: ${props => props.theme.fontSizes[5]};
+  line-height: 1.37;
   display: flex;
   align-items: center;
   text-align: center;
-  color: #111111;
+  color: ${props => props.theme.colors.dark};
 
   @media screen and (min-width: 768px) {
     font-weight: 500;
-    font-size: 36px;
-    line-height: 49px;
+    font-size: ${props => props.theme.fontSizes[14]};
+    line-height: 1.37;
   }
 `;
 
@@ -68,14 +68,14 @@ export const Input = styled(Field)`
   display: block;
   margin-left: auto;
   margin-right: auto;
-  font-family: ${theme.fonts.main};
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
-  font-weight: ${theme.fontWeights.regular};
+  font-weight: ${props => props.theme.fontWeights.regular};
   height: 48px;
   font-size: 16px;
   padding: 12px 16px;
   width: 100%;
-  border: 1px solid #54adff;
+  border: 1px solid;
   border-color: ${props => (props.invalid ? props.theme.colors.red : props.valid ? props.theme.colors.green : props.theme.colors.blue)};
   border-radius: 40px;
   cursor: pointer;

@@ -104,7 +104,6 @@ export const RegisterForm = () => {
                 placeholder="Email"
                 valid={touched.email && !errors.email}
                 invalid={touched.email && errors.email}
-
               />
               <ErrorMessage
                 name="email"
@@ -139,6 +138,11 @@ export const RegisterForm = () => {
                   <PasswordMessage>{password}</PasswordMessage>
                 )}
               />
+              {touched.password && !errors.password && <IconPass error={errors.email && touched.email && 'false'}>
+                  <SVG width={24} height={24}>
+                    <use href={icons + '#icon-check'}></use>
+                  </SVG>
+                </IconPass>}
               <IconPass onClick={togglePassInput}>{toggleIconPass}</IconPass>
               <ErrorMessage
                 name="confirm"
