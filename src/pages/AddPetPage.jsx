@@ -7,10 +7,10 @@ const AddPetPage = () => {
   return (
     <BgWrapper>
       <Section
-        padTopSm={'20px'}
-        padTopMd={'60px'}
-        padTopLg={'40px'}
-        
+        padTopSm={'68px'}
+        padTopMd={'128px'}
+        padTopLg={'108px'}
+        padBottomLg={'81px'}
       >
         <Container>
           <AddPetForm />
