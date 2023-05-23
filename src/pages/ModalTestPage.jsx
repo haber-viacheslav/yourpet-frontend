@@ -60,7 +60,7 @@ const ModalTestPage = () => {
         {isOpen3 && (
           <ModalApproveAction onClick={onClose3} variant={'logOut'} />
         )}
-        <Pagination />
+
         {/* Render if totalPages > 1 */}
         {totalPages > 1 && (
           <Pagination
