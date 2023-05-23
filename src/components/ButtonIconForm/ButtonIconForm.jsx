@@ -12,7 +12,7 @@ export const ButtonIconForm = ({ searchQuery, onClick }) => {
       {searchQuery !== '' && (
         <ButtonIcon
           type="button"
-          color="#757575"
+          color="#FFC107"
           fill={'#757575'}
           hovercolor="#F43F5E"
           onClick={onClick}
