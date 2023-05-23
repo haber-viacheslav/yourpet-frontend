@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   width: 280px;
   box-shadow: ${props => props.theme.shadows.mainShadow};
   border-radius: 40px;
-  background-color: #ffffff;
+  background-color: ${props => props.theme.colors.clearWhite};
   padding: 40px 12px;
 
   @media screen and (${props => props.theme.media.md}) {
