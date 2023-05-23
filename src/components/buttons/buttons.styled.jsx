@@ -46,10 +46,6 @@ export const BigBtnFavor = styled.button`
     background: ${theme.colors.blueGradient};
   }
 `;
-export const Arrow = styled.svg`
-  stroke: ${theme.colors.currentColor};
-  fill: ${theme.colors.currentColor};
-`;
 
 export const Pawprint = styled.svg`
   fill: ${theme.colors.white};
