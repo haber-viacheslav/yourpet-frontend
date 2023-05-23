@@ -1,12 +1,13 @@
 import { ProfileTitle, ProfileContainer } from './UserData.styled';
 import { ProfileWrapper, ProfileInputWrapper } from './UserData.styled';
 import { UserDataItem } from './UserDataItem/UserDataItem';
-import { UserAvatarInput } from './UserAvatarInput/UserAvatarInput';
 import { FlexContainer } from 'components/FlexContainer/FlexContainer';
 import { Logout } from './Logout/Logout';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import { AvatarUploadInput } from './AvatarUploadInput/AvatarUploadInput';
 
+// import { AvatarUploadInput } from './AvatarUploadInput/AvatarUploadInput';
 
 
 const ProfileSchema = yup.object().shape({
@@ -21,65 +22,63 @@ const ProfileSchema = yup.object().shape({
 export const UserData = () => {
   return (
     <ProfileContainer>
-    <ProfileWrapper 
-      border-radius={'20px'} 
-    >
-      <ProfileTitle>
-        My information:
-      </ProfileTitle>
+      <ProfileWrapper 
+        border-radius={'20px'} 
+      >
+        <ProfileTitle>
+          My information:
+        </ProfileTitle>
 
-      <FlexContainer>
-        <div>
-          <img 
-            src="" 
-            alt="user avatar" 
-            width={'182px'} 
-            height={'182px'} 
-          />
-        </div>
+        <FlexContainer flexDirection={'column'}>
+          
+          {/* <AvatarUploadInput
+            // errors={errors}
+            // touched={touched}
+          />     */}
 
-        <Formik
-          validationSchema={ProfileSchema}
-        >
-          <ProfileInputWrapper >
-            <UserAvatarInput/>
+          <AvatarUploadInput/>
 
-            <UserDataItem 
-              type='text'
-              name='name'
-              label='Name:'
-              placeholder='Enter your name'
-            />
-            <UserDataItem 
-              type='text'
-              name='email'
-              label='Email:'
-              placeholder='example@mail.com'
-            />
-            <UserDataItem 
-              type='text'
-              name='birthday'
-              label='Birthday:'
-              placeholder='00.00.0000'
-            />
-            <UserDataItem 
-              type='tel'
-              name='phone'
-              label='Phone:'
-              placeholder='+380000000000'
-            />
-            <UserDataItem 
-              type='text'
-              name='city'
-              label='City:'
-              placeholder='Kyiv'
-            />
-          </ProfileInputWrapper>
-        </Formik>
-      </FlexContainer>
+          <Formik
+            validationSchema={ProfileSchema}
+          >
+            <ProfileInputWrapper >
 
-      <Logout/>
-    </ProfileWrapper>
+              <UserDataItem 
+                type='text'
+                name='name'
+                label='Name:'
+                placeholder='Enter your name'
+              />
+              <UserDataItem 
+                type='text'
+                name='email'
+                label='Email:'
+                placeholder='example@mail.com'
+              />
+              <UserDataItem 
+                type='text'
+                name='birthday'
+                label='Birthday:'
+                placeholder='00.00.0000'
+              />
+              <UserDataItem 
+                type='tel'
+                name='phone'
+                label='Phone:'
+                placeholder='+380000000000'
+              />
+              <UserDataItem 
+                type='text'
+                name='city'
+                label='City:'
+                placeholder='Kyiv'
+              />
+            </ProfileInputWrapper>
+          </Formik>
+        </FlexContainer>
+
+        <Logout/>
+      </ProfileWrapper>
     </ProfileContainer>
   );
 };

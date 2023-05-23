@@ -1,17 +1,14 @@
+
 import { 
-  StyledLogout, 
-  StyledLogoutSvg, 
-  StyledLogoutWrapper } from "./Logout.styled";
-import icons from 'images/icons.svg';
+  LogoutTitle, 
+  LogoutWrapper } from './Logout.styled';
+import { LogoutIcon } from '../Icons/Icons';
 
 export const Logout = () => {
   return (
-    <StyledLogoutWrapper>
-      <StyledLogoutSvg width={24} height={24}>
-        <use href={icons + '#icon-logout'}></use>
-      </StyledLogoutSvg>
-
-      <StyledLogout>Log out</StyledLogout>
-    </StyledLogoutWrapper>
+    <LogoutWrapper>
+      <LogoutIcon/>
+      <LogoutTitle>Log out</LogoutTitle>
+    </LogoutWrapper>
   );
 };

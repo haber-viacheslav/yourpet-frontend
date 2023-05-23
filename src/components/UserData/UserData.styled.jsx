@@ -32,6 +32,7 @@ export const ProfileInputWrapper = styled.div`
   align-items: space-between;
   align-self: flex-start;
   gap: 12px;
+  margin-top: 22px;
 
 `;
 
@@ -45,4 +46,3 @@ export const ProfileWrapper = styled.div`
   border-radius: 20px;
   outline: ${props => props.outline || 'none'};
 `;
-

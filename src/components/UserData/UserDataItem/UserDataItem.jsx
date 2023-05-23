@@ -1,10 +1,8 @@
 import { 
   ProfileInputLabel, 
   ProfileInput,
-  SingleInputWrapper,
-  SVG 
-} from "./UserDataItem.styled";
-import icons from 'images/icons.svg';
+  SingleInputWrapper} from './UserDataItem.styled';
+import { CheckIcon, EditIcon } from '../Icons/Icons';
 
 
 export const UserDataItem = ({type, name, label, placeholder, value}) => {
@@ -17,13 +15,9 @@ export const UserDataItem = ({type, name, label, placeholder, value}) => {
             name={name} 
             placeholder={placeholder} 
           />
-          <SVG width={20} height={20}  stroke={'#00C3AD'}>
-            <use href={icons + '#icon-check'}></use>
-          </SVG>
+          <CheckIcon/>
+          <EditIcon/>
 
-          <SVG width={20} height={20} fill={'#54ADFF'} stroke={'#54ADFF'}>
-            <use href={icons + '#icon-edit'}></use>
-          </SVG>
         </SingleInputWrapper>
       </ProfileInputLabel>
     );

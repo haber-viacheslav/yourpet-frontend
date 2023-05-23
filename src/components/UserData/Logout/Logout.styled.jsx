@@ -1,12 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../../../theme/theme';
 
-export const StyledLogoutSvg = styled.svg`
-  fill: none;
-  stroke: ${theme.colors.blue};
-`;
-
-export const StyledLogout = styled.h3`
+export const LogoutTitle = styled.h3`
   display: flex;
   justify-content: space-between;
   font-style: none;
@@ -16,7 +11,7 @@ export const StyledLogout = styled.h3`
   color: ${theme.colors.grey};
 `;
 
-export const StyledLogoutWrapper = styled.div`
+export const LogoutWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 21px auto 0px 5px;
