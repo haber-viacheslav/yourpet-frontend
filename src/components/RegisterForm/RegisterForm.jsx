@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Formik, ErrorMessage  } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import { string, object, ref } from 'yup';
 import {
   Wrapper,
@@ -94,7 +94,7 @@ export const RegisterForm = () => {
         validationSchema={yupRegisterValidation}
         onSubmit={handleSubmit}
       >
-        {({ errors, touched}) => (
+        {({ errors, touched }) => (
           <RegisterFormStyled autoComplete="off">
             <Title>Registation</Title>
             <Box>
@@ -102,8 +102,8 @@ export const RegisterForm = () => {
                 type="text"
                 name="email"
                 placeholder="Email"
-                valid={touched.email && !errors.email}
-                invalid={touched.email && errors.email}
+                valid={touched.email && !errors.email }
+                invalid={touched.email && errors.email }
               />
               <ErrorMessage
                 name="email"
@@ -111,18 +111,20 @@ export const RegisterForm = () => {
                 id="email"
                 render={msg => <EmailMessage>{msg}</EmailMessage>}
               />
-              {errors.email && touched.email &&
+              {errors.email && touched.email && (
                 <IconMail error={errors.email && touched.email && 'false'}>
                   <SVG width={24} height={24}>
                     <use href={icons + '#icon-cross-small'}></use>
                   </SVG>
                 </IconMail>
-              }
-              {touched.email && !errors.email && <IconMail error={errors.email && touched.email && 'false'}>
+              )}
+              {touched.email && !errors.email && (
+                <IconMail error={errors.email && touched.email && 'false'}>
                   <SVG width={24} height={24}>
                     <use href={icons + '#icon-check'}></use>
                   </SVG>
-                </IconMail>}
+                </IconMail>
+              )}
               <Input
                 type={typePass}
                 id="password"
@@ -138,12 +140,16 @@ export const RegisterForm = () => {
                   <PasswordMessage>{password}</PasswordMessage>
                 )}
               />
-              {touched.password && !errors.password && <IconPass error={errors.email && touched.email && 'false'}>
+              {touched.password && !errors.password ? (
+                <IconPass error={errors.password && touched.password && 'false'}>
                   <SVG width={24} height={24}>
-                    <use href={icons + '#icon-check'}></use>
+                    <use href={icons + '#icon-check'} color="#00C3AD"></use>
                   </SVG>
-                </IconPass>}
-              <IconPass onClick={togglePassInput}>{toggleIconPass}</IconPass>
+                </IconPass>
+              ) : (
+                <IconPass onClick={togglePassInput}>{toggleIconPass}</IconPass>
+              )}
+
               <ErrorMessage
                 name="confirm"
                 type="confirm"
@@ -157,9 +163,17 @@ export const RegisterForm = () => {
                 valid={touched.confirm && !errors.confirm}
                 invalid={touched.confirm && errors.confirm}
               />
-              <IconConfirm onClick={toggleConfirmInput}>
-                {toggleIconConfirm}
-              </IconConfirm>
+              {touched.confirm && !errors.confirm ? (
+                <IconConfirm error={errors.confirm && touched.confirm && 'false'}>
+                  <SVG width={24} height={24}>
+                    <use href={icons + '#icon-check'} color="#00C3AD"></use>
+                  </SVG>
+                </IconConfirm>
+              ) : (
+                <IconConfirm onClick={toggleConfirmInput}>
+                  {toggleIconConfirm}
+                </IconConfirm>
+              )}
             </Box>
             <Button type="submit">Registation</Button>
             <Text>
