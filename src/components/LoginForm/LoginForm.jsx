@@ -5,6 +5,8 @@ import { string, object } from 'yup';
 import {
   Wrapper,
   Input,
+  IconMail,
+  IconPass,
   LoginFormStyled,
   Title,
   Box,
@@ -12,7 +14,6 @@ import {
   Text,
   Span,
   Link,
-  IconSpan,
   SVG,
   EmailMessage,
   PasswordMessage,
@@ -79,18 +80,47 @@ export const LoginForm = () => {
                 type="text"
                 name="email"
                 placeholder="Email"
-                error={errors.email && touched.email && 'false'}
+                valid={touched.email && !errors.email ? 'true' : undefined}
+                error={touched.email && errors.email}
               />
               <ErrorMessage
                 name="email"
                 type="email"
                 render={msg => <EmailMessage>{msg}</EmailMessage>}
               />
+              {errors.email && touched.email && (
+                <IconMail error={errors.email && touched.email && 'false'}>
+                  <SVG width={24} height={24}>
+                    <use href={icons + '#icon-cross-small'}></use>
+                  </SVG>
+                </IconMail>
+              )}
+              {touched.email && !errors.email && (
+                <IconMail error={errors.email && touched.email && 'false'}>
+                  <SVG width={24} height={24}>
+                    <use href={icons + '#icon-check'} color="#00C3AD"></use>
+                  </SVG>
+                </IconMail>
+              )}
+              {touched.password && !errors.password ? (
+                <IconPass
+                  error={errors.password && touched.password && 'false'}
+                >
+                  <SVG width={24} height={24}>
+                    <use href={icons + '#icon-check'} color="#00C3AD"></use>
+                  </SVG>
+                </IconPass>
+              ) : (
+                <IconPass onClick={togglePassInput}>{toggleIconPass}</IconPass>
+              )}
               <Input
                 type={typePass}
                 name="password"
                 placeholder="Password"
-                error={errors.password && touched.password && 'false'}
+                valid={
+                  touched.password && !errors.password ? 'true' : undefined
+                }
+                error={touched.password && errors.password}
               />
               <ErrorMessage
                 name="password"
@@ -99,7 +129,7 @@ export const LoginForm = () => {
                   <PasswordMessage>{password}</PasswordMessage>
                 )}
               />
-              <IconSpan onClick={togglePassInput}>{toggleIconPass}</IconSpan>
+             
             </Box>
             <Button type="submit">Login</Button>
             <Text>
