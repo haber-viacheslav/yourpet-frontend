@@ -1,30 +1,30 @@
 import { NavLink } from 'react-router-dom';
-import { Nav, NavItem } from './Nav.styled';
+import { NavList, NavItem } from './Nav.styled';
 
-export const Navig = ({ handleLinkClick }) => {
-  const handleClick = () => {
-    if (handleLinkClick) {
-      handleLinkClick();
-    }
-  };
+export const Nav = ({ handleLinkClick }) => {
+  // const handleClick = () => {
+  //   if (handleLinkClick) {
+  //     handleLinkClick();
+  //   }
+  // };
 
   return (
-    <Nav>
+    <NavList>
       <NavItem>
-        <NavLink to="/news" onClick={handleClick}>
+        <NavLink to="/news">
           News
         </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink to="/notices" onClick={handleClick}>
+        <NavLink to="/notices">
           Notices
         </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink to="/friends" onClick={handleClick}>
+        <NavLink to="/friends">
           Our Friends
         </NavLink>
       </NavItem>
-    </Nav>
+    </NavList>
   );
 };

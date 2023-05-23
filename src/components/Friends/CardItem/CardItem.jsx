@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+
 import {
   CardTitle,
   Wrapper,
@@ -20,9 +21,16 @@ import {
 } from './CardItem.styled';
 // import PropTypes from 'prop-types';
 
-import cat_sm_1x from '../../../images/pets-hero/cat_sm@1x.webp';
-
-export const CardItem = () => {
+export const CardItem = ({
+  email,
+  address,
+  url,
+  addressUrl,
+  imageUrl,
+  phone,
+  title,
+  workDays,
+}) => {
   const [showSchedule, SetShowSchedule] = useState(false);
   const [time, SetTime] = useState([]);
   const scheduleRef = useRef(null);
@@ -52,9 +60,7 @@ export const CardItem = () => {
       document.addEventListener('click', e => handleOnClick(e));
     }
 
-    return () => {
-      document.removeEventListener('click', e => handleOnClick(e));
-    };
+    return () => document.removeEventListener('click', e => handleOnClick(e));
   }, [showSchedule]);
 
   const handleOnClick = () => {
@@ -68,19 +74,94 @@ export const CardItem = () => {
     SetTime([day, time]);
   };
 
+  const minMN = workDays
+    ? workDays[0].isOpen
+      ? workDays[0].from + '-'
+      : 'closed'
+    : 'day & night';
+  const maxMN = workDays ? (workDays[0].isOpen ? workDays[0].to : '') : '';
+
+  const minTU = workDays
+    ? workDays[1].isOpen
+      ? workDays[1].from + '-'
+      : 'closed'
+    : 'day & night';
+  const maxTU = workDays ? (workDays[1].isOpen ? workDays[1].to : '') : '';
+
+  const minWE = workDays
+    ? workDays[2].isOpen
+      ? workDays[2].from + '-'
+      : 'closed'
+    : 'day & night';
+  const maxWE = workDays ? (workDays[2].isOpen ? workDays[2].to : '') : '';
+
+  const minTH = workDays
+    ? workDays[3].isOpen
+      ? workDays[3].from + '-'
+      : 'closed'
+    : 'day & night';
+  const maxTH = workDays ? (workDays[3].isOpen ? workDays[3].to : '') : '';
+
+  const minFR = workDays
+    ? workDays[4].isOpen
+      ? workDays[4].from + '-'
+      : 'closed'
+    : 'day & night';
+  const maxFR = workDays ? (workDays[4].isOpen ? workDays[4].to : '') : '';
+
+  const minSA = workDays
+    ? workDays[5].isOpen
+      ? workDays[5].from + '-'
+      : 'closed'
+    : 'day & night';
+  const maxSA = workDays ? (workDays[5].isOpen ? workDays[5].to : '') : '';
+
+  const minSU = workDays
+    ? workDays[6].isOpen
+      ? workDays[6].from + '-'
+      : 'closed'
+    : 'day & night';
+  const maxSU = workDays ? (workDays[6].isOpen ? workDays[6].to : '') : '';
+
+  let workTime;
+  switch (new Date().getDay()) {
+    case 0:
+      workTime = minMN + maxMN;
+      break;
+    case 1:
+      workTime = minTU + maxTU;
+      break;
+    case 2:
+      workTime = minWE + maxWE;
+      break;
+    case 3:
+      workTime = minTH + maxTH;
+      break;
+    case 4:
+      workTime = minFR + maxFR;
+      break;
+    case 5:
+      workTime = minSA + maxSA;
+      break;
+    case 6:
+      workTime = minSU + maxSU;
+      break;
+    default:
+  }
+
   return (
     <Wrapper>
       <CardTitle
-        href="https://happypaw.ua/ua/"
+        href={url}
         rel="noreferrer noopener"
         target="_blank"
         aria-label="Happy paw"
       >
-        Happy paw
+        {title}
       </CardTitle>
       <ContentWrapper>
         <LogoWrapper>
-          <LogoContent src={cat_sm_1x} alt="cat" loading="lazy"></LogoContent>
+          <LogoContent src={imageUrl} alt={title} loading="lazy"></LogoContent>
         </LogoWrapper>
         <TextContent>
           <ScheduleWrapper>
@@ -90,71 +171,78 @@ export const CardItem = () => {
               data-schedule={showSchedule}
             >
               <Title>Time:</Title>
-              <Text>09:00-19:00</Text>
+              <Text>{workTime}</Text>
             </ScheduleBtn>
             {showSchedule && (
               <Schedule>
                 <DayWrapper data-time={time} data-day={1}>
                   <Day>MN</Day>
                   <DayTime>
-                    <MinTime>8:00</MinTime>-<MaxTime>19:00</MaxTime>
+                    <MinTime>{minMN}</MinTime>
+                    <MaxTime>{maxMN}</MaxTime>
                   </DayTime>
                 </DayWrapper>
                 <DayWrapper data-time={time} data-day={2}>
                   <Day>TU</Day>
                   <DayTime>
-                    <MinTime>8:00</MinTime>-<MaxTime>19:00</MaxTime>
+                    <MinTime>{minTU}</MinTime>
+                    <MaxTime>{maxTU}</MaxTime>
                   </DayTime>
                 </DayWrapper>
                 <DayWrapper data-time={time} data-day={3}>
                   <Day>WE</Day>
                   <DayTime>
-                    <MinTime>8:00</MinTime>-<MaxTime>19:00</MaxTime>
+                    <MinTime>{minWE}</MinTime>
+                    <MaxTime>{maxWE}</MaxTime>
                   </DayTime>
                 </DayWrapper>
                 <DayWrapper data-time={time} data-day={4}>
                   <Day>TH</Day>
                   <DayTime>
-                    <MinTime>8:00</MinTime>-<MaxTime>19:00</MaxTime>
+                    <MinTime>{minTH}</MinTime>
+                    <MaxTime>{maxTH}</MaxTime>
                   </DayTime>
                 </DayWrapper>
                 <DayWrapper data-time={time} data-day={5}>
                   <Day>FR</Day>
                   <DayTime>
-                    <MinTime>8:00</MinTime>-<MaxTime>19:00</MaxTime>
+                    <MinTime>{minFR}</MinTime>
+                    <MaxTime>{maxFR}</MaxTime>
                   </DayTime>
                 </DayWrapper>
                 <DayWrapper data-time={time} data-day={6}>
                   <Day>SA</Day>
                   <DayTime>
-                    <MinTime>8:00</MinTime>-<MaxTime>19:00</MaxTime>
+                    <MinTime>{minSA}</MinTime>
+                    <MaxTime>{maxSA}</MaxTime>
                   </DayTime>
                 </DayWrapper>
                 <DayWrapper data-time={time} data-day={0}>
                   <Day>SU</Day>
                   <DayTime>
-                    <MinTime>8:00</MinTime>-<MaxTime>19:00</MaxTime>
+                    <MinTime>{minSU}</MinTime>
+                    <MaxTime>{maxSU}</MaxTime>
                   </DayTime>
                 </DayWrapper>
               </Schedule>
             )}
           </ScheduleWrapper>
           <Link
-            href="https://goo.gl/maps/o4fTwHgZk6BJGLU1A?coh=178572&entry=tt"
+            href={addressUrl}
             rel="noreferrer noopener"
             target="_blank"
             aria-label="address"
           >
             <Title>Address:</Title>
-            <Text>Chota Rystaveli Street, 44</Text>
+            <Text>{address}</Text>
           </Link>
-          <Link href="mailto:hello@happypaw.ua" aria-label="email">
+          <Link href={`mailto:${email || ''}`} aria-label="email">
             <Title>Email:</Title>
-            <Text>hello@happypaw.ua</Text>
+            <Text>{email}</Text>
           </Link>
-          <Link href="tel:+380 44 290-03-29" aria-label="phone number">
+          <Link href={`tel:${phone}`} aria-label="phone number">
             <Title>Phone:</Title>
-            <Text>+380 44 290-03-29</Text>
+            <Text>{phone}</Text>
           </Link>
         </TextContent>
       </ContentWrapper>

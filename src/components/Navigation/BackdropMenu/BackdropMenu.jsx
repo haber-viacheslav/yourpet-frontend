@@ -1,61 +1,57 @@
-import { React, useState, useEffect } from 'react';
-import {Backdrop, Menu, BackdropUser, BackdropAuth, BackdropNav} from './Backdrop.styled';
-import { useSelector } from 'react-redux';
-import AuthNav from '../AuthNav/AuthNav';
-import Nav from '../Nav/Nav';
-import Logo from 'components/Logo/Logo';
-import UserNav from '../UserNav/UserNav';
-import BurgerMenu from '../BurgerMenu/Burger';
+// import { React, useState, useEffect } from 'react';
+// import {Backdrop, Menu, BackdropUser, BackdropAuth, BackdropNav} from './BacdropMenu.styled';
+// import { useSelector } from 'react-redux';
+// import {AuthNav} from '../AuthNav/AuthNav';
+// import {Nav} from '../Nav/Nav';
+// import {Logo} from 'components/Logo/Logo';
+// import {UserNav} from '../UserNav/UserNav';
+import {BurgerMenu} from '../BurgerMenu/BurgerMenu';
+import {Box} from "./BackdropMenu.styled"
+// function isTabletDevice() {
+//   return window.innerWidth > 767;
+// }
 
-function isTabletDevice() {
-  return window.innerWidth > 767;
-}
+export const BackdropMenu = ({ isOpen, handleClose }) => {
+//   const handleLinkClick = () => {
+//     handleClose();
+//   };
+  // const [isTablet, setTabletDevice] = useState(isTabletDevice());
+  // const isLogIn = useSelector(state => state.auth.token);
 
-const BackdropMenu = ({ isOpen, handleClose }) => {
-  const handleLinkClick = () => {
-    handleClose();
-  };
-  const [isTablet, setTabletDevice] = useState(isTabletDevice());
-  const isLogIn = useSelector(state => state.auth.token);
+  // useEffect(() => {
+    // const handleResize = () => {
+    //   setTabletDevice(isTabletDevice());
+    // };
 
-  useEffect(() => {
-    const handleResize = () => {
-      setTabletDevice(isTabletDevice());
-    };
+  //   window.addEventListener('resize', handleResize);
 
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //   };
+  // }, []);
 
   return (
-    <>
+    <Box>
       <BurgerMenu/>
-      {isOpen && (
+      {/* {isOpen && (
         <Backdrop>
           <Menu>
             <Logo handleLinkClick={handleLinkClick} />
-            {isLogIn && !isTablet ? (
-              <BackdropUser>
+            {isLogIn && !isTablet ? 
+              ( <BackdropUser>
                 <UserNav handleLinkClick={handleLinkClick} />
               </BackdropUser>
             ) : null}
-            {!isLogIn ? (
-              <BackdropAuth>
-                <AuthNav handleLinkClick={handleLinkClick} />
+            {!isLogIn ? 
+            (  <BackdropAuth> 
+                 <AuthNav handleLinkClick={handleLinkClick} />
               </BackdropAuth>
-            ) : null}
-            <BackdropNav>
+            ) : null} 
+            <BackdropNav> 
               <Nav handleLinkClick={handleLinkClick} />
             </BackdropNav>
           </Menu>
-        </Backdrop>
-        
-      )}
-    </>
+        </Backdrop> )} */}
+    </Box>
   );
 };
-
-export default BackdropMenu;

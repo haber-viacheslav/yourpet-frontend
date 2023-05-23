@@ -53,7 +53,13 @@ export const ArrLeft = () => {
   );
 };
 
-
+export const SvgLogo = () => {
+  return (
+    <Pawprint width={24} height={24}>
+      <use href={icons + '#icon-pawprint'}></use>
+    </Pawprint>
+  );
+};
 
 export const SvgPawprint = () => {
   return (

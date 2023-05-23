@@ -3,14 +3,13 @@ import { NavLink } from 'react-router-dom';
 import { theme } from '../../../theme/theme';
 
 export const AuthNavMenu = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-
-  @media screen and (min-width: 768px) {
-    flex-direction: row;
-    justify-content: flex-end;
+  display: none;
+  @media screen and (${props => props.theme.media.md}) {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    /* flex-direction: row; */
+    /* justify-content: flex-end; */
   }
 `;
 
@@ -24,6 +23,8 @@ export const RegisterLink = styled(NavLink)`
   width: 165px;
   height: 36px;
   font-size: ${theme.fontSizes[2]}px;
+  font-weight: ${theme.fontWeights.semibold};
+  line-height: 1.36;
   color: ${theme.colors.orange};
   background-color: transparent;
   border: 2px solid ${theme.colors.orange};
@@ -41,6 +42,8 @@ export const LoginLink = styled(NavLink)`
   width: 165px;
   height: 40px;
   font-size: ${theme.fontSizes[2]}px;
+  font-weight: ${theme.fontWeights.bold};
+  line-height: 1.36;
   color: ${theme.colors.white};
   background-color: ${theme.colors.orange};
   border-radius: 40px;
