@@ -32,27 +32,9 @@ import {
   FilterCurcle,
   PetCategoryStyle,
   TexCategoyInfo,
-  Arrow,
 } from '../buttons/buttons.styled';
 
-// components svg
-
-export const ArrRight = () => {
-  return (
-    <Arrow width={17} height={17}>
-      <use href={icons + '#icon-arr-right'}></use>
-    </Arrow>
-  );
-};
-
-export const ArrLeft = () => {
-  return (
-    <Arrow width={17} height={17}>
-      <use href={icons + '#icon-arr-left'}></use>
-    </Arrow>
-  );
-};
-
+// componemnts svg
 export const SvgLogo = () => {
   return (
     <Pawprint width={24} height={24}>
@@ -60,7 +42,6 @@ export const SvgLogo = () => {
     </Pawprint>
   );
 };
-
 export const SvgPawprint = () => {
   return (
     <Pawprint width={24} height={24}>
