@@ -40,7 +40,7 @@ export const Pagination = ({
 
     return (
       <PaginationWrp>
-        <PaginationList className="pagination">
+        <PaginationList>
           <PaginationListItem>
             <PaginationArrowBtn
               onClick={() => handlePageChange(currentPage - 1)}

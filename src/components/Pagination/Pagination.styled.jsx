@@ -33,6 +33,7 @@ export const PaginationBtn = styled.button`
   display: inline-flex;
   width: 35px;
   height: 35px;
+  cursor: pointer;
 
   justify-content: center;
   align-items: center;
@@ -50,4 +51,18 @@ export const PaginationBtnActive = styled(PaginationBtn)`
   color: ${props => props.theme.colors.whity};
 `;
 
-export const PaginationArrowBtn = styled(PaginationBtn)``;
+export const PaginationArrowBtn = styled(PaginationBtn)`
+  border-color: ${props =>
+    props.disabled ? props.theme.colors.grey : props.theme.colors.blue};
+  background-color: ${props => props.theme.colors.whity};
+  color: ${props =>
+    props.disabled ? props.theme.colors.grey : props.theme.colors.blue};
+  &:hover,
+  :focus {
+    color: ${props =>
+      props.disabled ? props.theme.colors.grey : props.theme.colors.blue};
+    background-color: ${props =>
+      props.disabled ? props.theme.colors.whity : props.theme.colors.blueLight};
+    cursor: ${props => props.disabled && `not-allowed`};
+  }
+`;

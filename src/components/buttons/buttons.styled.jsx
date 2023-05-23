@@ -47,7 +47,8 @@ export const BigBtnFavor = styled.button`
   }
 `;
 export const Arrow = styled.svg`
-  fill: ${theme.colors.blue};
+  stroke: ${theme.colors.currentColor};
+  fill: ${theme.colors.currentColor};
 `;
 
 export const Pawprint = styled.svg`

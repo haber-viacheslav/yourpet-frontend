@@ -10,7 +10,7 @@ const ModalTestPage = () => {
   console.log('Current Page:', currentPage);
   const isTablet = window.matchMedia(theme.media.md).matches;
 
-  const total = 10; //from server data
+  const totalPages = 10; //from server data pages
   const handlePageChange = pageNumber => {
     setCurrentPage(pageNumber);
     // fetch
@@ -62,10 +62,11 @@ const ModalTestPage = () => {
           <ModalApproveAction onClick={onClose3} variant={'logOut'} />
         )}
       </Container>
-      {total > 0 && (
+      {/* Render if totalPages > 1 */}
+      {totalPages > 1 && (
         <Pagination
           currentPage={currentPage}
-          totalPages={total}
+          totalPages={totalPages}
           onPageChange={handlePageChange}
           paginationLength={isTablet ? 5 : 4}
         />
