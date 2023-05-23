@@ -174,6 +174,15 @@ const SvgCloseSmall = () => {
   );
 };
 
+//svg for UserMenu in Header 
+export const SvgUser = () => {
+  return(
+    <svg width={28} height={28}>
+      <use href={icons + '#icon-user'}></use>
+    </svg>
+  )
+}
+
 // components btn
 
 export const BtnCloseModal = ({ onClick }) => {
