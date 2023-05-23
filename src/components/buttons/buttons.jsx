@@ -33,6 +33,7 @@ import {
   PetCategoryStyle,
   TexCategoyInfo,
   Arrow,
+  Avatar
 } from '../buttons/buttons.styled';
 
 // components svg
@@ -58,6 +59,13 @@ export const SvgLogo = () => {
     <Pawprint width={24} height={24}>
       <use href={icons + '#icon-pawprint'}></use>
     </Pawprint>
+  );
+};
+export const SvgUser = () => {
+  return (
+    <Avatar width={28} height={28}>
+      <use href={icons + '#icon-user'}></use>
+    </Avatar>
   );
 };
 export const SvgPawprint = () => {
