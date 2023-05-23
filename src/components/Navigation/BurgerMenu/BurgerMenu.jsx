@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { BurgerBtn } from './Burger';
+import { BurgerBtn } from './BurgerBtn';
 import { BackdropMenu } from '../BackdropMenu/BackdropMenu';
 
 export const BurgerMenu = () => {

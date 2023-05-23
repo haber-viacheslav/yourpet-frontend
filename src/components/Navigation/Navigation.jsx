@@ -1,50 +1,55 @@
 import React from 'react';
-import Nav from './Nav/Nav';
-import { UserNav } from './UserNav/UserNav';
+import {Nav} from './Nav/Nav';
+// import { UserNav } from './UserNav/UserNav';
 import { AuthNav } from './AuthNav/AuthNav';
 import { BurgerMenu } from './BurgerMenu/BurgerMenu';
-import {BtnGroup} from './Navigation.styled';
-import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+// import { BtnGroup } from './../Navigation/';
+// import { useState, useEffect } from 'react';
+// import { useSelector } from 'react-redux';
 
+// function isMobileDevice() {
+//   return (
+//     window.innerWidth < 1024 ||
+//     typeof window.orientation !== 'undefined' ||
+//     navigator.userAgent.indexOf('IEMobile') !== -1
+//   );
+// }
 
-function isMobileDevice() {
-  return (
-    window.innerWidth < 1024 ||
-    typeof window.orientation !== 'undefined' ||
-    navigator.userAgent.indexOf('IEMobile') !== -1
-  );
-}
-
-function isTabletDevice() {
-  return window.innerWidth > 767;
-}
+// function isTabletDevice() {
+//   return window.innerWidth > 767;
+// }
 
 export const Navigation = () => {
-  const [isMobile, setIsMobile] = useState(isMobileDevice());
-  const [isTablet, setTabletDevice] = useState(isTabletDevice());
-  const isLogIn = useSelector(state => state.auth.token);
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(isMobileDevice());
-      setTabletDevice(isTabletDevice());
-    };
+  // const [isMobile, setIsMobile] = useState(isMobileDevice());
+  // const [isTablet, setTabletDevice] = useState(isTabletDevice());
+  // const isLogIn = useSelector(state => state.auth.token);
 
-    window.addEventListener('resize', handleResize);
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setIsMobile(isMobileDevice());
+  //     setTabletDevice(isTabletDevice());
+  //   };
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  //   window.addEventListener('resize', handleResize);
+
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //   };
+  // }, []);
 
   return (
     <>
-      {isMobile ? null : <Nav />}
-      <BtnGroup>
-        {isLogIn ? <UserNav /> : null}
+      {/* {isMobile ? null : <Nav />} */}
+      <Nav />
+      <div>
+        {/* {isLogIn ? <UserNav /> : null}
         {isTablet && !isLogIn ? <AuthNav /> : null}
         {isMobile ? <BurgerMenu /> : null}
-      </BtnGroup>
+         */}
+        {/* <UserNav/> */}
+        <AuthNav />
+        <BurgerMenu />
+      </div>
     </>
   );
-}
+};
