@@ -103,7 +103,7 @@ export const RegisterForm = () => {
                 name="email"
                 placeholder="Email"
                 valid={touched.email && !errors.email }
-                invalid={touched.email && errors.email }
+                error={touched.email && errors.email }
               />
               <ErrorMessage
                 name="email"
@@ -131,7 +131,7 @@ export const RegisterForm = () => {
                 name="password"
                 placeholder="Password"
                 valid={touched.password && !errors.password}
-                invalid={touched.password && errors.password}
+                error={touched.password && errors.password}
               />
               <ErrorMessage
                 name="password"
@@ -161,7 +161,7 @@ export const RegisterForm = () => {
                 id="confirm"
                 placeholder="Confirm password"
                 valid={touched.confirm && !errors.confirm}
-                invalid={touched.confirm && errors.confirm}
+                error={touched.confirm && errors.confirm}
               />
               {touched.confirm && !errors.confirm ? (
                 <IconConfirm error={errors.confirm && touched.confirm && 'false'}>

@@ -77,7 +77,7 @@ export const Input = styled(Field)`
   width: 100%;
   border: 1px solid;
   border-color: ${props =>
-    props.invalid
+    props.error
       ? props.theme.colors.red
       : props.valid
       ? props.theme.colors.green
