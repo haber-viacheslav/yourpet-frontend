@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import {
   BtnAddOption,
   BtnAddPet,
@@ -11,6 +13,7 @@ import {
 } from './NoticesCategoriesNav.styled';
 
 export const NoticesCategoriesNav = () => {
+  const navigate = useNavigate();
   return (
     <>
       <FiltersConteiner>
@@ -23,7 +26,7 @@ export const NoticesCategoriesNav = () => {
         </FilterAdsConteiner>
         <FiltersBtnConteiner>
           <BtnFilters />
-          <BtnAddPet />
+          <BtnAddPet onClick={() => navigate('/add-pet')} />
         </FiltersBtnConteiner>
         <BtnFiltersCircle />
       </FiltersConteiner>
