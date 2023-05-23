@@ -472,3 +472,7 @@ export const BtnCloseStyled = styled.button`
     width: 129px;
   }
 `;
+export const Arrow = styled.svg`
+  stroke: ${theme.colors.currentColor};
+  fill: ${theme.colors.currentColor};
+`;
