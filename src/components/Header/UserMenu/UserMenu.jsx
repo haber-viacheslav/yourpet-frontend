@@ -1,10 +1,13 @@
-import { SvgUser } from "../../buttons/buttons"
+import {SvgUser} from '../../buttons/buttons';
+import { Box, UserName } from './UserMenu.styled'
 
-export const UserMenu = () => {
-    return(
-        <>
-        <img src="" alt="avatar"/>
-        <SvgUser/>
-        </>
-    )
-}
+
+export const UserMenu = ( {name}) => {
+
+  return (
+    <Box>
+      <button><SvgUser /></button>
+      <UserName>{name}Anna</UserName>
+    </Box>
+  );
+};

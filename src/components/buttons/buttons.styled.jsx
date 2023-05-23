@@ -472,3 +472,7 @@ export const BtnCloseStyled = styled.button`
     width: 129px;
   }
 `;
+export const Avatar = styled.svg`
+  fill: ${theme.colors.orange};
+  /* stroke: ${theme.colors.orange}; */
+`;

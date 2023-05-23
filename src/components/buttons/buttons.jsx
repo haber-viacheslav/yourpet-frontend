@@ -32,6 +32,7 @@ import {
   FilterCurcle,
   PetCategoryStyle,
   TexCategoyInfo,
+  Avatar
 } from '../buttons/buttons.styled';
 
 // componemnts svg
@@ -40,6 +41,13 @@ export const SvgLogo = () => {
     <Pawprint width={24} height={24}>
       <use href={icons + '#icon-pawprint'}></use>
     </Pawprint>
+  );
+};
+export const SvgUser = () => {
+  return (
+    <Avatar width={28} height={28}>
+      <use href={icons + '#icon-user'}></use>
+    </Avatar>
   );
 };
 export const SvgPawprint = () => {
@@ -173,15 +181,6 @@ const SvgCloseSmall = () => {
     </Close>
   );
 };
-
-//svg for UserMenu in Header 
-export const SvgUser = () => {
-  return(
-    <svg width={28} height={28}>
-      <use href={icons + '#icon-user'}></use>
-    </svg>
-  )
-}
 
 // components btn
 
