@@ -76,7 +76,7 @@ export const Input = styled(Field)`
   padding: 12px 16px;
   width: 100%;
   border: 1px solid #54adff;
-  border-color: ${props => (props.error ? props.theme.colors.red  : props.theme.colors.blue)};
+  border-color: ${props => (props.invalid ? props.theme.colors.red : props.valid ? props.theme.colors.green : props.theme.colors.blue)};
   border-radius: 40px;
   cursor: pointer;
   outline: none;

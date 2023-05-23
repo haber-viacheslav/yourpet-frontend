@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Formik, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage  } from 'formik';
 import { string, object, ref } from 'yup';
 import {
   Wrapper,
@@ -94,7 +94,7 @@ export const RegisterForm = () => {
         validationSchema={yupRegisterValidation}
         onSubmit={handleSubmit}
       >
-        {({ errors, touched, isValid }) => (
+        {({ errors, touched}) => (
           <RegisterFormStyled autoComplete="off">
             <Title>Registation</Title>
             <Box>
@@ -102,7 +102,9 @@ export const RegisterForm = () => {
                 type="text"
                 name="email"
                 placeholder="Email"
-                error={errors.email && touched.email && 'false'}
+                valid={touched.email && !errors.email}
+                invalid={touched.email && errors.email}
+
               />
               <ErrorMessage
                 name="email"
@@ -110,23 +112,25 @@ export const RegisterForm = () => {
                 id="email"
                 render={msg => <EmailMessage>{msg}</EmailMessage>}
               />
-              {errors.email && touched.email ? (
+              {errors.email && touched.email &&
                 <IconMail error={errors.email && touched.email && 'false'}>
                   <SVG width={24} height={24}>
                     <use href={icons + '#icon-cross-small'}></use>
                   </SVG>
                 </IconMail>
-              ) : <IconMail error={errors.email && touched.email && 'false'}>
+              }
+              {touched.email && !errors.email && <IconMail error={errors.email && touched.email && 'false'}>
                   <SVG width={24} height={24}>
                     <use href={icons + '#icon-check'}></use>
                   </SVG>
-                </IconMail> }
+                </IconMail>}
               <Input
                 type={typePass}
                 id="password"
                 name="password"
                 placeholder="Password"
-                error={errors.password && touched.password && 'false'}
+                valid={touched.password && !errors.password}
+                invalid={touched.password && errors.password}
               />
               <ErrorMessage
                 name="password"
@@ -146,7 +150,8 @@ export const RegisterForm = () => {
                 name="confirm"
                 id="confirm"
                 placeholder="Confirm password"
-                error={errors.confirm && touched.confirm && 'false'}
+                valid={touched.confirm && !errors.confirm}
+                invalid={touched.confirm && errors.confirm}
               />
               <IconConfirm onClick={toggleConfirmInput}>
                 {toggleIconConfirm}
