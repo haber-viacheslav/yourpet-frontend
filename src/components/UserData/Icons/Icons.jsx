@@ -29,12 +29,12 @@ export const EditIcon = (props) => {
     </SVG>)
 };
 
-export const PlusIcon = (props) => {
+export const UserPhotoIcon = (props) => {
   return (
-    <SVG width={35} height={35} 
-      fill={theme.colors.blue} 
+    <SVG width={100} height={95} 
+      // fill={theme.colors.blue} 
       stroke={theme.colors.blue} {...props}>
-      <use href={icons + '#icon-plus'}></use>
+      <use href={icons + '#icon-user-photo'}></use>
     </SVG>)
 };
 
@@ -43,5 +43,22 @@ export const EditPhotoIcon = (props) => {
     <SVG width={24} height={24} 
       stroke={theme.colors.blue} {...props}>
       <use href={icons + '#icon-camera'}></use>
+    </SVG>)
+};
+
+export const ConfirmPhotoIcon = (props) => {
+  return (
+    <SVG width={26} height={24} 
+      stroke={theme.colors.blue} {...props}>
+      <use href={icons + '#icon-check'}></use>
+    </SVG>
+  )
+};
+
+export const CrossIcon = (props) => {
+  return (
+    <SVG width={24} height={24} 
+      stroke={theme.colors.white} {...props}>
+      <use href={icons + '#icon-cross-small'}></use>
     </SVG>)
 };

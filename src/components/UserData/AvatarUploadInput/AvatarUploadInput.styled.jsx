@@ -5,7 +5,6 @@ export const UploadFileLabel = styled.label`
   flex-direction: column-reverse;
   justify-content: center;
   align-items: center;
-  align-self: flex-start;
 
   font-weight: 400;
   font-size: 12px;
@@ -15,12 +14,12 @@ export const UploadFileLabel = styled.label`
   cursor: pointer;
 `;
 
-export const UploadLabelWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: ${props => props.width || '94px'};
-`;
+// export const UploadLabelWrapper = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   width: ${props => props.width || '94px'};
+// `;
 
 export const UploadFile = styled.input`
   display: none;
@@ -31,10 +30,6 @@ export const Photo = styled.img`
   height: 100%;
   border: none;
   border-radius: 40px;
-
-  @media screen and (${props => props.theme.media.md}) {
-    border-radius: 40px;
-  }
 `;
 
 export const PhotoPlaceWrapper = styled.div`
