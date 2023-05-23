@@ -33,6 +33,7 @@ import {
   PetCategoryStyle,
   TexCategoyInfo,
   Arrow,
+  Avatar
 } from '../buttons/buttons.styled';
 
 // components svg

@@ -476,3 +476,7 @@ export const Arrow = styled.svg`
   stroke: ${theme.colors.currentColor};
   fill: ${theme.colors.currentColor};
 `;
+export const Avatar = styled.svg`
+  fill: none;
+  stroke: ${theme.colors.orange};
+`;
