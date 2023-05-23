@@ -8,12 +8,12 @@ export const Wrapper = styled.div`
   margin-right: auto;
   margin-top: 80px;
   width: 280px;
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  box-shadow: ${props => props.theme.shadows.mainShadow};
   border-radius: 40px;
-  background-color: #ffffff;
+  background-color: ${props => props.theme.colors.clearWhite};
   padding: 40px 12px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (${props => props.theme.media.md}) {
     width: 608px;
     padding: 60px 75px;
   }
@@ -37,30 +37,30 @@ export const Box = styled.div`
   margin-top: 40px;
   margin-bottom: 80px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (${props => props.theme.media.md}) {
     gap: 32px;
     margin-bottom: 60px;
   }
-  @media screen and (min-width: 1280px) {
+  @media screen and (${props => props.theme.media.lg}) {
     margin-bottom: 40px;
   }
 `;
 
 export const Title = styled.h2`
-  font-family: ${theme.fonts.main};
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
-  font-weight: ${theme.fontWeights.medium};
-  font-size: 24px;
-  line-height: 33px;
+  font-weight: ${props => props.theme.fontWeights.medium};
+  font-size: ${props => props.theme.fontSizes[5]};
+  line-height: 1.37;
   display: flex;
   align-items: center;
   text-align: center;
-  color: #111111;
+  color: ${props => props.theme.colors.dark};
 
-  @media screen and (min-width: 768px) {
-    font-weight: 500;
-    font-size: 36px;
-    line-height: 49px;
+ @media screen and (${props => props.theme.media.md}) {
+    font-weight: ${props => props.theme.fontWeights.medium};
+    font-size: ${props => props.theme.fontSizes[14]};
+    line-height: 1.37;
   }
 `;
 
@@ -68,15 +68,20 @@ export const Input = styled(Field)`
   display: block;
   margin-left: auto;
   margin-right: auto;
-  font-family: ${theme.fonts.main};
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
-  font-weight: ${theme.fontWeights.regular};
+  font-weight: ${props => props.theme.fontWeights.regular};
   height: 48px;
-  font-size: 16px;
+  font-size: ${props => props.theme.fontSizes[2]};
   padding: 12px 16px;
   width: 100%;
   border: 1px solid;
-    border-color: ${props => (props.error ? props.theme.colors.red  : props.theme.colors.blue)};
+     border-color: ${props =>
+    props.error
+      ? props.theme.colors.red
+      : props.valid
+      ? props.theme.colors.green
+      : props.theme.colors.blue};
   border-radius: 40px;
   cursor: pointer;
   outline: none;
@@ -86,20 +91,20 @@ export const Button = styled.button`
   display: block;
   margin-left: auto;
   margin-right: auto;
-  font-family: 'Manrope';
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: ${props => props.theme.fontWeights.regular};
+  font-size: ${props => props.theme.fontSizes[2]};
   width: 100%;
   border: none;
   border-radius: 40px;
   height: 48px;
   cursor: pointer;
-  background: #54adff;
+  background: ${props => props.theme.colors.blue};
   margin-bottom: 24px;
-  color: #ffffff;
+  color: ${props => props.theme.colors.clearWhite};
 
-  @media screen and (min-width: 768px) {
+  @media screen and (${props => props.theme.media.md}) {
     margin-bottom: 20px;
   }
 `;
@@ -111,15 +116,15 @@ export const Text = styled.p`
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0.04em;
-  color: #888888;
+  color: ${props => props.theme.colors.grey};
 `;
 
 export const Span = styled.span`
   margin-left: 3px;
 `;
 export const Link = styled(NavLink)`
-  color: #54adff;
-  line-height: 16px;
+  color: ${props => props.theme.colors.blue};
+  line-height: 1.33;
 `;
 
 export const IconSpan = styled.span`
@@ -127,7 +132,7 @@ export const IconSpan = styled.span`
   cursor: pointer;
   top: 86px;
   right: 15px;
-  @media screen and (min-width: 768px) {
+  @media screen and (${props => props.theme.media.md}) {
      top: 92px;
   }
 `;
@@ -135,29 +140,52 @@ export const IconSpan = styled.span`
 export const SVG = styled.svg`
 display:block;
   fill: transparent;
-  stroke: #54adff;
+  stroke: currentColor;
+`;
+
+export const IconMail = styled.span`
+  position: absolute;
+  cursor: pointer;
+  color: ${props =>
+    props.error ? props.theme.colors.red : props.theme.colors.green};
+  top: 86px;
+  right: 15px;
+  @media screen and (${props => props.theme.media.md}) {
+    top: 12px;
+  }
+`;
+
+export const IconPass = styled.span`
+  color: ${props => props.theme.colors.blue};
+  position: absolute;
+  cursor: pointer;
+  top: 86px;
+  right: 15px;
+  @media screen and (${props => props.theme.media.md}) {
+    top: 92px;
+  }
 `;
 
 export const EmailMessage = styled.div`
  position: absolute;
-  font-family: 'Manrope';
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${props => props.theme.fontWeights.regular};
   font-size: 12px;
   line-height: 16px;
- color: #F43F5E;
+ color: ${props => props.theme.colors.red};
   top: 50px;
   left: 16px;
 `;
 
 export const PasswordMessage = styled.div`
  position: absolute;
-  font-family: 'Manrope';
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${props => props.theme.fontWeights.regular};
   font-size: 12px;
   line-height: 16px;
- color: #F43F5E;
+ color: ${props => props.theme.colors.red};
    top: 123px;
   left: 16px;
  @media screen and (min-width: 768px) {
@@ -166,3 +194,4 @@ export const PasswordMessage = styled.div`
   }
 
 `;
+
