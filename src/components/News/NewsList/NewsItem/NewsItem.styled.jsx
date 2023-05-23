@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as Notify } from '../../../../images/icons.svg';
+ import { ReactComponent as Notify } from '../../../../images/icons.svg';
 // import icons from 'images/icons.svg';
 
 

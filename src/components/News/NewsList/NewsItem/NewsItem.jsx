@@ -30,7 +30,7 @@ export const NewsItem = ({ imgUrl, title, text, date, url }) => {
             height="252"
           />
         ) : (
-          <Plug width={24} height={24}>
+          <Plug >
             <use href={icons + '#icon-pawprint'}></use>
           </Plug>
         )}

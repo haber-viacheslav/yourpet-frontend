@@ -9,7 +9,7 @@ import {
   selectTotalPage,
 } from 'redux/news/newsSelector';
 
-import { Loader } from 'components/Loader';
+import { Loader } from 'components/Loader/Loader';
 import { SearchNewsForm } from 'components/News/SearchNewsForm/SearchNewsForm';
 import ReusableTitle from 'components/ReusableTitle/ReusableTitle';
 import { NewsList } from 'components/News/NewsList/NewsList';
@@ -18,7 +18,7 @@ import { NotFound } from 'components/News/NewsNotFound/NewsNotFound';
 
 const initialState = { search: '', page: 1 };
 
-export const NewsPage = () => {
+export const NewsData = () => {
   const [state, setState] = useState({ ...initialState });
   const { search, page } = state;
 

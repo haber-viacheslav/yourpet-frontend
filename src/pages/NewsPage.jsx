@@ -12,12 +12,7 @@ const NewsPage = () => {
       padTopMd={'200px'}
     >
       <Container>
-        <FlexContainer
-          alignItems={'flex-start'}
-          flexDirection={'column'}
-          justifyContent={'flex-end'}
-          flexWrap={'wrap'}
-        >
+        <FlexContainer>
           <NewsData />
         </FlexContainer>
       </Container>
