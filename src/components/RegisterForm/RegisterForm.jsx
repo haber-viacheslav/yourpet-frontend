@@ -102,8 +102,8 @@ export const RegisterForm = () => {
                 type="text"
                 name="email"
                 placeholder="Email"
-                valid={touched.email && !errors.email }
-                error={touched.email && errors.email }
+                valid={touched.email && !errors.email ? 'true' : undefined}
+                error={touched.email && errors.email}
               />
               <ErrorMessage
                 name="email"
@@ -130,7 +130,9 @@ export const RegisterForm = () => {
                 id="password"
                 name="password"
                 placeholder="Password"
-                valid={touched.password && !errors.password}
+                valid={
+                  touched.password && !errors.password ? 'true' : undefined
+                }
                 error={touched.password && errors.password}
               />
               <ErrorMessage
@@ -141,7 +143,9 @@ export const RegisterForm = () => {
                 )}
               />
               {touched.password && !errors.password ? (
-                <IconPass error={errors.password && touched.password && 'false'}>
+                <IconPass
+                  error={errors.password && touched.password && 'false'}
+                >
                   <SVG width={24} height={24}>
                     <use href={icons + '#icon-check'} color="#00C3AD"></use>
                   </SVG>
@@ -160,11 +164,13 @@ export const RegisterForm = () => {
                 name="confirm"
                 id="confirm"
                 placeholder="Confirm password"
-                valid={touched.confirm && !errors.confirm}
+                valid={touched.confirm && !errors.confirm ? 'true' : undefined}
                 error={touched.confirm && errors.confirm}
               />
               {touched.confirm && !errors.confirm ? (
-                <IconConfirm error={errors.confirm && touched.confirm && 'false'}>
+                <IconConfirm
+                  error={errors.confirm && touched.confirm && 'false'}
+                >
                   <SVG width={24} height={24}>
                     <use href={icons + '#icon-check'} color="#00C3AD"></use>
                   </SVG>

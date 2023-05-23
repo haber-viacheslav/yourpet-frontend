@@ -76,7 +76,12 @@ export const Input = styled(Field)`
   padding: 12px 16px;
   width: 100%;
   border: 1px solid;
-    border-color: ${props => (props.error ? props.theme.colors.red  : props.theme.colors.blue)};
+     border-color: ${props =>
+    props.error
+      ? props.theme.colors.red
+      : props.valid
+      ? props.theme.colors.green
+      : props.theme.colors.blue};
   border-radius: 40px;
   cursor: pointer;
   outline: none;
@@ -138,6 +143,29 @@ display:block;
   stroke: ${props => props.theme.colors.blue};
 `;
 
+export const IconMail = styled.span`
+  position: absolute;
+  cursor: pointer;
+  color: ${props =>
+    props.error ? props.theme.colors.red : props.theme.colors.green};
+  top: 86px;
+  right: 15px;
+  @media screen and (${props => props.theme.media.md}) {
+    top: 12px;
+  }
+`;
+
+export const IconPass = styled.span`
+  color: ${props => props.theme.colors.blue};
+  position: absolute;
+  cursor: pointer;
+  top: 86px;
+  right: 15px;
+  @media screen and (${props => props.theme.media.md}) {
+    top: 92px;
+  }
+`;
+
 export const EmailMessage = styled.div`
  position: absolute;
   font-family: ${props => props.theme.fonts.main};
@@ -166,3 +194,4 @@ export const PasswordMessage = styled.div`
   }
 
 `;
+
