@@ -10,7 +10,7 @@ export const AvatarInputLabel = styled.label`
   font-weight: 400;
   font-size: 12px;
   line-height: 22px;
-  letter-space: 4%;
+  letter-spacing: 4%;
 `;
 
 export const AvatarInput = styled(Field)`
@@ -27,8 +27,6 @@ export const LabelContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
-
 `;
 
 export const AvatarInputWrapper = styled.div`
@@ -41,4 +39,3 @@ export const AvatarInputWrapper = styled.div`
   gap: 12px;
   outline: 1px solid blue;
 `;
-

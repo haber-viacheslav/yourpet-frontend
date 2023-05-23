@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import {
   BtnAddFavorite,
   BtnAddPetCurcle,
@@ -18,6 +20,7 @@ import {
 
 export const NoticesCategoryItem = ({ petList }) => {
   const { smImgUrl1x, sex, place, category } = petList;
+  const navigate = useNavigate();
   const Svg = () => {
     return sex === 'female' ? SvgFemale : SvgMale;
   };
@@ -27,7 +30,7 @@ export const NoticesCategoryItem = ({ petList }) => {
       <ConteinerCard>
         <Img src={smImgUrl1x} alt="" />
         <BtnAddFavorite />
-        <BtnAddPetCurcle />
+        <BtnAddPetCurcle onClick={() => navigate('/add-pet')} />
         <PetCategory text={`${category}`} />
         <ConteinerInfo>
           <PetInfo Svg={SvgLocation} text={`${place}`} />
