@@ -5,8 +5,9 @@ import { string, object, ref } from 'yup';
 import {
   Wrapper,
   RegisterFormStyled,
-  IconSpan,
-  IconSpan1,
+  IconMail,
+  IconPass,
+  IconConfirm,
   SVG,
   EmailMessage,
   PasswordMessage,
@@ -33,6 +34,22 @@ const iconOpen = () => {
   return (
     <SVG width={24} height={24}>
       <use href={icons + '#icon-eye-open'}></use>
+    </SVG>
+  );
+};
+
+const IconCrossSmall = () => {
+  return (
+    <SVG width={24} height={24}>
+      <use href={icons + '#icon-cross-small'}></use>
+    </SVG>
+  );
+};
+
+const IconCheck = () => {
+  return (
+    <SVG width={24} height={24}>
+      <use href={icons + '#icon-check'} color="#00C3AD"></use>
     </SVG>
   );
 };
@@ -101,7 +118,8 @@ export const RegisterForm = () => {
                 type="text"
                 name="email"
                 placeholder="Email"
-                error={errors.email && touched.email && 'false'}
+                valid={touched.email && !errors.email ? 'true' : undefined}
+                error={touched.email && errors.email}
               />
               <ErrorMessage
                 name="email"
@@ -109,12 +127,27 @@ export const RegisterForm = () => {
                 id="email"
                 render={msg => <EmailMessage>{msg}</EmailMessage>}
               />
+              {errors.email && touched.email && (
+                <IconMail error={errors.email && touched.email && 'false'}>
+                  <IconCrossSmall />
+                </IconMail>
+              )}
+              {touched.email && !errors.email && (
+                <IconMail error={errors.email && touched.email && 'false'}>
+                  <SVG width={24} height={24}>
+                    <use href={icons + '#icon-check'}></use>
+                  </SVG>
+                </IconMail>
+              )}
               <Input
                 type={typePass}
                 id="password"
                 name="password"
                 placeholder="Password"
-                error={errors.password && touched.password && 'false' }
+                valid={
+                  touched.password && !errors.password ? 'true' : undefined
+                }
+                error={touched.password && errors.password}
               />
               <ErrorMessage
                 name="password"
@@ -123,7 +156,16 @@ export const RegisterForm = () => {
                   <PasswordMessage>{password}</PasswordMessage>
                 )}
               />
-              <IconSpan onClick={togglePassInput}>{toggleIconPass}</IconSpan>
+              {touched.password && !errors.password ? (
+                <IconPass
+                  error={errors.password && touched.password && 'false'}
+                >
+                  <IconCheck />
+                </IconPass>
+              ) : (
+                <IconPass onClick={togglePassInput}>{toggleIconPass}</IconPass>
+              )}
+
               <ErrorMessage
                 name="confirm"
                 type="confirm"
@@ -134,11 +176,20 @@ export const RegisterForm = () => {
                 name="confirm"
                 id="confirm"
                 placeholder="Confirm password"
-                error={errors.confirm && touched.confirm && 'false'}
+                valid={touched.confirm && !errors.confirm ? 'true' : undefined}
+                error={touched.confirm && errors.confirm}
               />
-              <IconSpan1 onClick={toggleConfirmInput}>
-                {toggleIconConfirm}
-              </IconSpan1>
+              {touched.confirm && !errors.confirm ? (
+                <IconConfirm
+                  error={errors.confirm && touched.confirm && 'false'}
+                >
+                  <IconCheck />
+                </IconConfirm>
+              ) : (
+                <IconConfirm onClick={toggleConfirmInput}>
+                  {toggleIconConfirm}
+                </IconConfirm>
+              )}
             </Box>
             <Button type="submit">Registation</Button>
             <Text>
