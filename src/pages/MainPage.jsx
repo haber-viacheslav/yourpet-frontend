@@ -6,7 +6,7 @@ import { BgWrapper } from './Pages.styled';
 const MainPage = () => {
   return (
     <BgWrapper>
-      <Section padTopSm={'108px'} padTopMd={'148px'} padTopLg={'105px'}>
+      <Section padTopSm={'65px'} padTopMd={'80px'} padTopLg={'118px'}>
         <Container>
           <Hero />
         </Container>

@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import { Formik } from 'formik';
 
 import { UserDataItem } from './UserDataItem/UserDataItem';
-import { LogOut } from '../buttons/buttons';
 import { AvatarUploadInput } from './AvatarUploadInput/AvatarUploadInput';
+import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
+import { LogOut } from '../buttons/buttons';
 import { profileSchema } from 'helpers/yupValidation';
 import {
   ProfileTitle,
@@ -30,11 +31,26 @@ const InitialFormData = {
 
 export const UserData = () => {
   const [isEditingBlocked, setIsEditingBlocked] = useState(false);
+  const [logOut, setLogOut] = useState(false);
   const [initialValues, setinitialValues] = useState(InitialFormData);
 
   useEffect(() => {
     setinitialValues(InitialFormData);
   }, []);
+
+  const handleLogOut = () => {
+    setLogOut(true);
+  };
+
+  const handleLogOutCancel = () => {
+    setLogOut(false);
+  };
+
+  const handleLogOutYes = () => {
+    // Логаут і перенапралення юзера
+    alert('Закрив і вийшов!');
+    setLogOut(false);
+  };
 
   const handleOnSubmit = async values => {
     const formData = new FormData();
@@ -97,9 +113,16 @@ export const UserData = () => {
               );
             }}
           </Formik>
-          <LogOut />
+          <LogOut onClick={handleLogOut} />
         </ProfileInfo>
       </div>
+      {logOut && (
+        <ModalApproveAction
+          onActivate={handleLogOutYes}
+          onClick={handleLogOutCancel}
+          variant={'logOut'}
+        />
+      )}
     </>
   );
 };

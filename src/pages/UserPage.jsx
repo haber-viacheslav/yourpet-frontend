@@ -6,12 +6,7 @@ import { UserWrapper } from './Pages.styled';
 
 const UserPage = () => {
   return (
-    <Section
-      padTopSm={'88px'}
-      padTopMd={'128px'}
-      padTopLg={'130px'}
-      padBottomLg={'50px'}
-    >
+    <Section padTopSm={'40px'} padTopMd={'60px'} padTopLg={'62px'}>
       <Container>
         <UserWrapper>
           <UserData />

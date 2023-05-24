@@ -46,7 +46,7 @@ export const SingleInputWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 
-  padding: 4px 6px;
+  padding: 3px 6px;
   width: 190px;
   height: 28px;
   border: 1px solid #54adff;

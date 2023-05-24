@@ -52,6 +52,34 @@ export const BigBtnFavor = styled.button`
   margin: 0 auto 20px;
 `;
 
+export const PetFormBtn = styled.button`
+  height: 38px;
+  width: 248px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 40px;
+  padding-left: auto;
+  padding-right: auto;
+  border: 2px solid ${theme.colors.blue};
+  font-size: 16px;
+  color: ${theme.colors.clearWhite};
+  background-color: ${theme.colors.blue};
+  font-family: ${theme.fonts.main};
+  font-weight: ${theme.fontWeights.bold};
+  cursor: pointer;
+  padding-left: 36px;
+  :hover,
+  :focus {
+    padding-left: unset;
+    background: ${theme.colors.blue};
+    color: ${theme.colors.white};
+    border: none;
+  }
+`;
+
 export const Pawprint = styled.svg`
   fill: ${theme.colors.white};
   margin-left: 12px;
