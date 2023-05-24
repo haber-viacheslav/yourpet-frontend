@@ -1,8 +1,23 @@
-// import styled from 'styled-components';
+import styled from "styled-components";
 
-// export const StyledPetList = styled.petList`
-//  margin-right: auto;
-//  display: flex;
-//    align-items: center;
+import { theme } from "theme/theme";
 
-// `;
+//контейнер всіх тварин + заголовок
+export const PetListExtraWrapper = styled.div`
+  display flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  padding: 0;
+  border: none;  
+
+  @media screen and ${theme.media.md} {
+    gap: 22px;
+  };
+
+  @media screen and ${theme.media.lg} {
+    gap: 24px;
+  };
+`;

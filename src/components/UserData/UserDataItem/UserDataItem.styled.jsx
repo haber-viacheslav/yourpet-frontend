@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Field } from 'formik';
+import { theme } from "theme/theme";
 
 export const ProfileInputLabel = styled.label`
   position: relative;
@@ -10,6 +11,12 @@ export const ProfileInputLabel = styled.label`
   font-size: 14px;
   line-height: 19.2px;
   letter-space: 4%;
+
+  @media screen and ${theme.media.md} {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+  }
 `;
 
 export const ProfileInput = styled(Field)`
@@ -27,6 +34,12 @@ export const ProfileInput = styled(Field)`
     font-size: 12px;
     line-height: 16.39px;
   }
+
+  @media screen and ${theme.media.md} {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+  }
 `;
 
 export const SingleInputWrapper = styled.div`
@@ -38,6 +51,10 @@ export const SingleInputWrapper = styled.div`
   height: 28px;
   border: 1px solid #54adff;
   border-radius: 20px;
+
+  @media screen and ${theme.media.md} {
+    width: 255px;
+  }
 `;
 
 export const ProfileInputWrapper = styled.div`
