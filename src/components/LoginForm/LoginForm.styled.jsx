@@ -127,21 +127,6 @@ export const Link = styled(NavLink)`
   line-height: 1.33;
 `;
 
-export const IconSpan = styled.span`
-  position: absolute;
-  cursor: pointer;
-  top: 86px;
-  right: 15px;
-  @media screen and (${props => props.theme.media.md}) {
-     top: 92px;
-  }
-`;
-
-export const SVG = styled.svg`
-display:block;
-  fill: transparent;
-  stroke: currentColor;
-`;
 
 export const IconMail = styled.span`
   position: absolute;
@@ -195,3 +180,18 @@ export const PasswordMessage = styled.div`
 
 `;
 
+export const SuccessMessage = styled.p`
+  position: absolute;
+  font-family: ${props => props.theme.fonts.main};
+  font-style: normal;
+  font-weight: ${props => props.theme.fontWeights.regular};
+  font-size: 12px;
+  line-height: 16px;
+ color: ${props => props.theme.colors.green};
+   top: 123px;
+  left: 16px;
+ @media screen and (min-width: 768px) {
+    top: 130px;
+  left: 16px;
+  }
+`
