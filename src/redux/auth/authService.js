@@ -10,7 +10,8 @@ export const register = createAsyncThunk(
     console.log(credentials);
     try {
       const res = await axios.post('auth/register', credentials);
-      setAuthHeader(res.data.token);
+      console.log(res.data.accessToken);
+      setAuthHeader(res.data.accessToken);
       return res.data;
     } catch (error) {
       const { message } = error;
