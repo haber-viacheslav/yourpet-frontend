@@ -2,13 +2,13 @@ import React from 'react';
 import { useState } from 'react';
 import { Formik, ErrorMessage } from 'formik';
 import { string, object, ref } from 'yup';
+import {iconClose, iconOpen, IconCrossSmall, IconCheck} from './Icons/Icons'
 import {
   Wrapper,
   RegisterFormStyled,
   IconMail,
   IconPass,
   IconConfirm,
-  SVG,
   EmailMessage,
   PasswordMessage,
   ConfirmMessage,
@@ -20,41 +20,10 @@ import {
   Span,
   Link,
 } from './RegisterForm.styled';
-import icons from 'images/icons.svg';
 
-const iconClose = () => {
-  return (
-    <SVG width={24} height={24}>
-      <use href={icons + '#icon-eye-closed'}></use>
-    </SVG>
-  );
-};
-
-const iconOpen = () => {
-  return (
-    <SVG width={24} height={24}>
-      <use href={icons + '#icon-eye-open'}></use>
-    </SVG>
-  );
-};
-
-const IconCrossSmall = () => {
-  return (
-    <SVG width={24} height={24}>
-      <use href={icons + '#icon-cross-small'}></use>
-    </SVG>
-  );
-};
-
-const IconCheck = () => {
-  return (
-    <SVG width={24} height={24}>
-      <use href={icons + '#icon-check'} color="#00C3AD"></use>
-    </SVG>
-  );
-};
 
 export const RegisterForm = () => {
+  
   const [toggleIconPass, setToggleIconPass] = useState(iconClose);
   const [typePass, setTypePass] = useState('password');
   const [toggleIconConfirm, setToggleIconConfirm] = useState(iconClose);
@@ -134,9 +103,7 @@ export const RegisterForm = () => {
               )}
               {touched.email && !errors.email && (
                 <IconMail error={errors.email && touched.email && 'false'}>
-                  <SVG width={24} height={24}>
-                    <use href={icons + '#icon-check'}></use>
-                  </SVG>
+                  <IconCheck />
                 </IconMail>
               )}
               <Input

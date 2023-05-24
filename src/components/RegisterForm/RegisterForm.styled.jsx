@@ -161,11 +161,7 @@ export const IconConfirm = styled.span`
   }
 `;
 
-export const SVG = styled.svg`
-  display: block;
-  fill: transparent;
-  stroke: currentColor;
-`;
+
 
 export const EmailMessage = styled.div`
   position: absolute;
