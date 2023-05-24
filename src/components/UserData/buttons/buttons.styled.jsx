@@ -23,3 +23,10 @@ export const StyledConfirmPhotoBtn = styled(StyledEditPhotoBtn)`
   width: 79px;
 `;
 
+export const InputButton = styled.button`
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  border: none;
+`;
+

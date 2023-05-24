@@ -153,6 +153,7 @@ const SvgDelete = () => {
     </Delete>
   );
 };
+
 const SvgLogout = () => {
   return (
     <Logout width={24} height={24}>

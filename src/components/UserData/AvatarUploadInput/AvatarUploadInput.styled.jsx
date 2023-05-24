@@ -14,12 +14,12 @@ export const UploadFileLabel = styled.label`
   cursor: pointer;
 `;
 
-// export const UploadLabelWrapper = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   width: ${props => props.width || '94px'};
-// `;
+export const UploadLabelWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: ${props => props.width || '94px'};
+`;
 
 export const UploadFile = styled.input`
   display: none;

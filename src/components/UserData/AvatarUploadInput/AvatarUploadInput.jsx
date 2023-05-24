@@ -1,22 +1,30 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 // import { useFormikContext } from 'formik';
-import { UserPhotoIcon } from '../Icons/Icons';
-import { EditPhotoBtn, ConfirmPhotoBtn } from '../buttons/buttons';
+import {
+  UserPhotoIcon, 
+  EditPhotoIcon, 
+  CheckIcon 
+} from '../Icons/Icons';
+// import { EditPhotoBtn, ConfirmPhotoBtn } from '../buttons/buttons';
 import {
   PhotoWrapper,
   UploadFileLabel,
+  UploadLabelWrapper,
   UploadFile,
   // Photo,
   // ErrWrapper,
   PhotoPlaceWrapper,
 } from './AvatarUploadInput.styled';
-// import { theme } from "theme/theme";
+import { theme } from "theme/theme";
 import PropTypes from 'prop-types';
+
+
+
 
 export const AvatarUploadInput = (
   // { errors, touched }
   ) => {
-    // const [toggleEditPhotoBtn, setToggleEditPhotoBtn] = useState();
+    // const [toggleEditPhoto, setToggleEditPhoto] = useState();
   // const [photoPreview, SetPhotoPreview] = useState(null);
   // const { setFieldValue } = useFormikContext();
 
@@ -32,11 +40,22 @@ export const AvatarUploadInput = (
   return (
     <UploadFileLabel>
 
+    {/* BUTTONS!!! toggle! NOT WORK*/}
+    {/* <UploadLabelWrapper>
+        <EditPhotoBtn/>
+        <ConfirmPhotoBtn/>
+    </UploadLabelWrapper> */}
 
-{/* BUTTONS!!! toggle! */}
+      <UploadLabelWrapper>
+        <EditPhotoIcon/>
+        Edit photo
+      </UploadLabelWrapper>
 
-      <EditPhotoBtn/>
-      <ConfirmPhotoBtn/>
+      <UploadLabelWrapper width={'79'}>
+        <CheckIcon width={26} height={24} 
+          stroke={theme.colors.blue}/>
+        Confirm
+      </UploadLabelWrapper>
 
       <UploadFile
         type="file"

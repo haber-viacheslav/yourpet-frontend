@@ -16,4 +16,8 @@ export const LogoutWrapper = styled.div`
   justify-content: space-between;
   margin: 21px auto 0px 5px;
   width: 96px;
+
+  @media screen and ${theme.media.md} {
+    margin: 12px auto 0px 0px;
+  }
 `;

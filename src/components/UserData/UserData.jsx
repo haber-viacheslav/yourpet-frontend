@@ -1,7 +1,10 @@
-import { ProfileTitle, ProfileContainer } from './UserData.styled';
-import { ProfileWrapper, ProfileInputWrapper } from './UserData.styled';
+import { 
+  ProfileTitle, 
+  ProfileContainer, 
+  ProfileWrapper, 
+  ProfileInputWrapper, 
+  ProfileInfo } from './UserData.styled';
 import { UserDataItem } from './UserDataItem/UserDataItem';
-import { FlexContainer } from 'components/FlexContainer/FlexContainer';
 import { Logout } from './Logout/Logout';
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -20,14 +23,13 @@ const ProfileSchema = yup.object().shape({
 export const UserData = () => {
   return (
     <ProfileContainer>
-      <ProfileWrapper 
-        border-radius={'20px'} 
-      >
+      <ProfileWrapper>
+        
         <ProfileTitle>
           My information:
         </ProfileTitle>
 
-        <FlexContainer flexDirection={'column'}>
+        <ProfileInfo >
           
           {/* <AvatarUploadInput
             // errors={errors}
@@ -73,7 +75,7 @@ export const UserData = () => {
               />
             </ProfileInputWrapper>
           </Formik>
-        </FlexContainer>
+        </ProfileInfo>
 
         <Logout/>
       </ProfileWrapper>

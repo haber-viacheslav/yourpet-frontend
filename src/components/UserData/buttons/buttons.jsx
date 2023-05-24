@@ -1,8 +1,13 @@
 import { 
   StyledEditPhotoBtn, 
-  StyledConfirmPhotoBtn } from "./buttons.styled";
+  StyledConfirmPhotoBtn,
+  InputButton } from "./buttons.styled";
 
-import { EditPhotoIcon, ConfirmPhotoIcon  } from "../Icons/Icons";
+import { 
+  EditPhotoIcon, 
+  ConfirmPhotoIcon,
+  CheckIcon,
+  EditIcon  } from "../Icons/Icons";
 
 
 export const EditPhotoBtn = () => {
@@ -12,7 +17,7 @@ export const EditPhotoBtn = () => {
 
   return (
     <>
-      <StyledEditPhotoBtn type="button" onClick={onClick}>
+      <StyledEditPhotoBtn type='button' onClick={onClick}>
         <EditPhotoIcon/> 
         Edit Photo
       </StyledEditPhotoBtn>
@@ -28,10 +33,38 @@ export const ConfirmPhotoBtn = () => {
 
   return (
     <>
-      <StyledConfirmPhotoBtn type="submit" onClick={onClick}>
+      <StyledConfirmPhotoBtn type='submit' onClick={onClick}>
         <ConfirmPhotoIcon/> 
         Confirm
       </StyledConfirmPhotoBtn>
+    </>
+  );
+};
+
+
+export const InputCheckBtn = () => {
+  const onClick = () => {
+    console.log('InputCheckBtn clicked')
+  }
+  return (
+    <>
+      <InputButton type='submit' onClick={onClick}>
+        <CheckIcon/>
+      </InputButton>
+    </>
+  );
+};
+
+
+export const InputEditBtn = () => {
+  const onClick = () => {
+    console.log('InputEditBtn clicked')
+  }
+  return (
+    <>
+      <InputButton type='button' onClick={onClick}>
+        <EditIcon/>
+      </InputButton>
     </>
   );
 };

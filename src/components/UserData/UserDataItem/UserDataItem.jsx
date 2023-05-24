@@ -2,7 +2,8 @@ import {
   ProfileInputLabel, 
   ProfileInput,
   SingleInputWrapper} from './UserDataItem.styled';
-import { CheckIcon, EditIcon } from '../Icons/Icons';
+// import { CheckIcon, EditIcon } from '../Icons/Icons';
+import { InputEditBtn, InputCheckBtn } from '../buttons/buttons';
 
 
 export const UserDataItem = ({type, name, label, placeholder, value}) => {
@@ -15,8 +16,8 @@ export const UserDataItem = ({type, name, label, placeholder, value}) => {
             name={name} 
             placeholder={placeholder} 
           />
-          <CheckIcon/>
-          <EditIcon/>
+          <InputCheckBtn/>
+          <InputEditBtn/>
 
         </SingleInputWrapper>
       </ProfileInputLabel>
