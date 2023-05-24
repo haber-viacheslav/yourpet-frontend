@@ -21,6 +21,7 @@ export const ImgModal = styled.img`
   width: 240px;
   height: 240px;
   border-radius: 0px 0px 40px 40px;
+  object-fit: cover;
   @media screen and (${props => props.theme.media.md}) {
     width: 262px;
     height: 298px;

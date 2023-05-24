@@ -48,6 +48,7 @@ export const Img = styled.img`
   margin-bottom: 20px;
   width: 336px;
   height: 288px;
+  object-fit: cover;
   @media screen and (${props => props.theme.media.md}) {
     width: 336px;
   }
