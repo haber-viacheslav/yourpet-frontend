@@ -2,16 +2,18 @@ import React from 'react';
 import { useState } from 'react';
 import { Formik, ErrorMessage } from 'formik';
 import { string, object, ref } from 'yup';
+import { iconClose, iconOpen, IconCrossSmall, IconCheck } from './Icons/Icons';
 import {
   Wrapper,
   RegisterFormStyled,
   IconMail,
   IconPass,
   IconConfirm,
-  SVG,
   EmailMessage,
   PasswordMessage,
   ConfirmMessage,
+  SuccessMessagePass,
+  SuccessMessageConfirm,
   Input,
   Title,
   Box,
@@ -20,39 +22,6 @@ import {
   Span,
   Link,
 } from './RegisterForm.styled';
-import icons from 'images/icons.svg';
-
-const iconClose = () => {
-  return (
-    <SVG width={24} height={24}>
-      <use href={icons + '#icon-eye-closed'}></use>
-    </SVG>
-  );
-};
-
-const iconOpen = () => {
-  return (
-    <SVG width={24} height={24}>
-      <use href={icons + '#icon-eye-open'}></use>
-    </SVG>
-  );
-};
-
-const IconCrossSmall = () => {
-  return (
-    <SVG width={24} height={24}>
-      <use href={icons + '#icon-cross-small'}></use>
-    </SVG>
-  );
-};
-
-const IconCheck = () => {
-  return (
-    <SVG width={24} height={24}>
-      <use href={icons + '#icon-check'} color="#00C3AD"></use>
-    </SVG>
-  );
-};
 
 export const RegisterForm = () => {
   const [toggleIconPass, setToggleIconPass] = useState(iconClose);
@@ -64,7 +33,7 @@ export const RegisterForm = () => {
     email: string().email('Enter a Valid Email').required('Email is Required'),
     password: string()
       .required('Enter Your Password')
-      .min(8, 'Password Should be minimum 8 character')
+      .min(8, 'Password should be minimum 8 character')
       .max(50, 'Too long'),
     confirm: string()
       .oneOf([ref('password')], 'Password does not matched')
@@ -134,9 +103,7 @@ export const RegisterForm = () => {
               )}
               {touched.email && !errors.email && (
                 <IconMail error={errors.email && touched.email && 'false'}>
-                  <SVG width={24} height={24}>
-                    <use href={icons + '#icon-check'}></use>
-                  </SVG>
+                  <IconCheck />
                 </IconMail>
               )}
               <Input
@@ -149,13 +116,18 @@ export const RegisterForm = () => {
                 }
                 error={touched.password && errors.password}
               />
-              <ErrorMessage
-                name="password"
-                type="password"
-                render={password => (
-                  <PasswordMessage>{password}</PasswordMessage>
-                )}
-              />
+              {touched.password && errors.password && (
+                <ErrorMessage
+                  name="password"
+                  type="password"
+                  render={password => (
+                    <PasswordMessage>{password}</PasswordMessage>
+                  )}
+                />
+              )}
+              {touched.password && !errors.password && (
+                <SuccessMessagePass>Password is secure</SuccessMessagePass>
+              )}
               {touched.password && !errors.password ? (
                 <IconPass
                   error={errors.password && touched.password && 'false'}
@@ -165,12 +137,7 @@ export const RegisterForm = () => {
               ) : (
                 <IconPass onClick={togglePassInput}>{toggleIconPass}</IconPass>
               )}
-
-              <ErrorMessage
-                name="confirm"
-                type="confirm"
-                render={msg => <ConfirmMessage>{msg}</ConfirmMessage>}
-              />
+              
               <Input
                 type={typeCofirm}
                 name="confirm"
@@ -189,6 +156,17 @@ export const RegisterForm = () => {
                 <IconConfirm onClick={toggleConfirmInput}>
                   {toggleIconConfirm}
                 </IconConfirm>
+              )}
+
+              {touched.confirm && errors.confirm && (
+                <ErrorMessage
+                name="confirm"
+                type="confirm"
+                render={msg => <ConfirmMessage>{msg}</ConfirmMessage>}
+              />
+              )}
+              {touched.confirm && !errors.confirm && (
+                <SuccessMessageConfirm>Passwords is matched</SuccessMessageConfirm>
               )}
             </Box>
             <Button type="submit">Registation</Button>
