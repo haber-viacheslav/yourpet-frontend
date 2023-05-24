@@ -1,12 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { NavList, NavItem } from './Nav.styled';
 
-export const Nav = ({ handleLinkClick }) => {
-  // const handleClick = () => {
-  //   if (handleLinkClick) {
-  //     handleLinkClick();
-  //   }
-  // };
+export const Nav = () => {
 
   return (
     <NavList>
