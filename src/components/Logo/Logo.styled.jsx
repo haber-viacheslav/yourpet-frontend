@@ -7,7 +7,7 @@ export const LogoWrapper = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 50;
+  z-index: 100;
   @media screen and (${props => props.theme.media.md}) {
     margin-right: auto;
   }

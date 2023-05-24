@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Spin as Hamburger } from 'hamburger-react';
 import { Burger, BoxNav, BoxUser, Box } from './BurgerBtn.styled';
 import { Nav } from '../Nav/Nav';
@@ -9,67 +9,56 @@ import { AuthNav } from '../AuthNav/AuthNav';
 
 export const BurgerBtn = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef();
+  console.log(isOpen);
 
   const handleOpen = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(true);
   };
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
+  useEffect(() => {
+    const handler = e => {
+      if (menuRef.current.contains(e.target)) {
+        setIsOpen(true);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => {
+      document.removeEventListener('mousedown', handler);
+    };
+  }, []);
 
   return (
     <>
-    <Burger>
-      <Hamburger
-        isOpen={isOpen}
-        onClick={handleOpen}
-        toggled={isOpen}
-        toggle={setIsOpen}
-        easing="ease-in"
-        rounded="true"
-        label="Show menu"
-        size={20}
-        color="#FFC107"
-        distance="md"
-        duration={0.6}
-      />
-    </Burger>      
-      <Box isOpen={isOpen}>
+      <Burger>
+        <Hamburger
+          isOpen={isOpen}
+          onClick={handleOpen}
+          toggled={isOpen}
+          toggle={setIsOpen}
+          easing="ease-in"
+          rounded="true"
+          label="Show menu"
+          size={20}
+          color="#FFC107"
+          distance="md"
+          duration={0.6}
+        />
+      </Burger>
+      <Box isOpen={isOpen} onClick={handleClose} ref={menuRef}>
         <BoxNav>
           <Nav />
         </BoxNav>
         <BoxUser>
           <AuthNav />
-        {/* <UserMenu/> */}
+          {/* <UserMenu /> */}
         </BoxUser>
-        
       </Box>
     </>
   );
 };
 
 
-
-
-// export const BackdropMenu = ({ isOpen, handleClose }) => {
-  // const handleLinkClick = () => {
-  //   handleClose();
-  // };
-  // const [isTablet, setTabletDevice] = useState(isTabletDevice());
-  // const isLogIn = useSelector(state => state.auth.token);
-
-  // useEffect(() => {
-  // const handleResize = () => {
-  //   setTabletDevice(isTabletDevice());
-  // };
-
-  //   window.addEventListener('resize', handleResize);
-
-  //   return () => {
-  //     window.removeEventListener('resize', handleResize);
-  //   };
-  // }, []);
-
-  // return (
-    // <Box>
-     
-    // </Box>
-  // );
-// };

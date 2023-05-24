@@ -4,12 +4,13 @@ export const NavList = styled.ul`
   display: flex;
   gap: 20px;
   flex-direction: column;
-  
   align-items: center;
+  padding-bottom: 219px;
 
   @media screen and (${props => props.theme.media.lg}) {
     margin-right: 270px;
     flex-direction: row;
+    padding-bottom: 0;
     
   }
 `;

@@ -10,29 +10,36 @@ export const Burger = styled.div`
 // backdrop
 export const Box = styled.div`
   display: flex;
-  /* flex-flow: row nowrap; */
   justify-content: space-between;
   justify-content: space-evenly;
-  /*  */
+  
   @media (max-width: 1279px) {
     transform: ${({ isOpen }) =>
       isOpen ? 'translateX(0)' : 'translateX(100%)'};
     transition: transform cubic-bezier(0.39, 0.575, 0.565, 1);
     flex-direction: column-reverse;
-    flex-flow: column nowrap;
+    flex-flow: column-reserv nowrap;
     background-color: ${props => props.theme.colors.white};
     position: fixed;
     top: 0;
     right: 0;
-    height: 100vh;
+    height: 100%;
     width: 100%;
-    padding: 82px 70px 219px 70px;
+    padding: 22px 20px 22px 20px;
+    
   }
 `;
-export const BoxNav = styled.div``;
+export const BoxNav = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
 export const BoxUser = styled.div`
   display: flex;
   justify-content: space-around;
   gap: 20px;
-  
+  margin-top: 82px;
+  margin-bottom: 40px;
+  @media (min-width: 1279px){
+    margin-top: 0;
+  }
 `;
