@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchNews } from 'redux/news/newsoperations';
+// import { fetchNews } from 'redux/news/newsoperations';
 import {
   selectNews,
   selectIsLoading,
@@ -13,7 +13,7 @@ import { Loader } from 'components/Loader/Loader';
 import { SearchNewsForm } from 'components/News/SearchNewsForm/SearchNewsForm';
 import ReusableTitle from 'components/ReusableTitle/ReusableTitle';
 import { NewsList } from 'components/News/NewsList/NewsList';
-import Pagination from 'components/Pagination/Pagination';
+import { Pagination } from 'components/Pagination/Pagination';
 import { NotFound } from 'components/News/NewsNotFound/NewsNotFound';
 
 const initialState = { search: '', page: 1 };

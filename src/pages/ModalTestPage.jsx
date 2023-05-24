@@ -2,7 +2,7 @@ import { Container } from 'components/Container/Container';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 import { BtnNext } from 'components/buttons/buttons';
 import { useState } from 'react';
-import Pagination from 'components/Pagination/Pagination';
+import {Pagination} from 'components/Pagination/Pagination';
 const ModalTestPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen1, setIsOpen1] = useState(false);
