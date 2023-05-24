@@ -6,14 +6,14 @@ import {
   selectNews,
   selectIsLoading,
   selectError,
-  selectTotalPage,
+  // selectTotalPage,
 } from 'redux/news/newsSelector';
 
 import { Loader } from 'components/Loader/Loader';
 import { SearchNewsForm } from 'components/News/SearchNewsForm/SearchNewsForm';
 import ReusableTitle from 'components/ReusableTitle/ReusableTitle';
 import { NewsList } from 'components/News/NewsList/NewsList';
-import { Pagination } from 'components/Pagination/Pagination';
+// import { Pagination } from '../Pagination/Pagination'; Пагинация новая, то был шаблон
 import { NotFound } from 'components/News/NewsNotFound/NewsNotFound';
 
 const initialState = { search: '', page: 1 };
@@ -26,7 +26,7 @@ export const NewsData = () => {
   const newsItems = useSelector(selectNews);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
-  const pageQty = useSelector(selectTotalPage);
+  // const pageQty = useSelector(selectTotalPage);
 
   useEffect(() => {
     dispatch(fetchNews({ page: page, search: search }));
@@ -51,22 +51,22 @@ export const NewsData = () => {
       <ReusableTitle>News</ReusableTitle>
       <SearchNewsForm onSubmit={handleNewsSearchSubmit} onClick={showWarning} />
       {isLoading && !error && <Loader />}
-      {error && <p>Somthing wrong</p>}
+      {error && <p>Something wrong</p>}
       {!isLoading && newsItems.length === 0 && <NotFound />}
 
       {!isLoading && newsItems.length !== 0 && (
         <>
           <NewsList news={newsItems} />
-          <Pagination
+          {/* <Pagination Переделать под новую!!!!!!!!!!!!!!!!!!!!
             count={pageQty}
             page={page}
+            onPageChange -- тест есть на странице modals!!!!!!!!!!!
             onChange={(_, num) => {
               setState({ search: search, page: num });
             }}
-          />
+          /> */}
         </>
       )}
     </>
   );
 };
-

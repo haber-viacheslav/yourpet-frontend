@@ -34,17 +34,22 @@ export const BigBtnFavor = styled.button`
   border-radius: 40px;
   padding-left: auto;
   padding-right: auto;
-  border: none;
-  background: ${theme.colors.blue};
-  color: ${theme.colors.white};
+  border: 2px solid ${theme.colors.blue};
   font-size: 16px;
+  color: ${theme.colors.blue};
+  background-color: ${theme.colors.white};
   font-family: ${theme.fonts.main};
   font-weight: ${theme.fontWeights.bold};
   cursor: pointer;
+  padding-left: 36px;
   :hover,
   :focus {
-    background: ${theme.colors.blueGradient};
+    padding-left: unset;
+    background: ${theme.colors.blue};
+    color: ${theme.colors.white};
+    border: none;
   }
+  margin: 0 auto 20px;
 `;
 
 export const Pawprint = styled.svg`
@@ -191,6 +196,15 @@ export const FilterCurcle = styled.button`
   position: absolute;
   top: 0;
   right: 0;
+  stroke: ${theme.colors.blue};
+  fill: none;
+  :hover,
+  :focus & svg {
+    stroke: ${theme.colors.white};
+    color: ${theme.colors.white};
+    border: none;
+    background: ${theme.colors.blueGradient};
+  }
   @media screen and (${props => props.theme.media.md}) {
     display: none;
   }
@@ -244,21 +258,23 @@ export const BtnFilter = styled.button`
   font-family: ${theme.fonts.main};
   font-weight: ${theme.fontWeights.bold};
   cursor: pointer;
+  stroke: ${theme.colors.blue};
+  fill: none;
   :hover,
-  :focus {
+  :focus & svg {
+    stroke: ${theme.colors.white};
     color: ${theme.colors.white};
     border: none;
     background: ${theme.colors.blueGradient};
   }
 `;
-export const Filter = styled.svg`
-  fill: none;
-  stroke: ${theme.colors.blue};
-  :hover,
-  :focus {
-    stroke: ${theme.colors.white};
-  }
-`;
+// export const Filter = styled.svg`
+//   fill: none;
+//   stroke: ${theme.colors.blue};
+//   :hover,
+//   :focus {
+//   }
+// `;
 export const BtnOption = styled.button`
   height: 35px;
   border-radius: 40px;
@@ -475,4 +491,8 @@ export const BtnCloseStyled = styled.button`
 export const Arrow = styled.svg`
   stroke: ${theme.colors.currentColor};
   fill: ${theme.colors.currentColor};
+`;
+export const Avatar = styled.svg`
+  fill: none;
+  stroke: ${theme.colors.orange};
 `;

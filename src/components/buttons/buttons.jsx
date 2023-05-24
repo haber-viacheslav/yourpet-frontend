@@ -19,7 +19,7 @@ import {
   Add,
   AddCurcle,
   Heart,
-  Filter,
+  // Filter,
   ToHeart,
   City,
   Logout,
@@ -33,6 +33,7 @@ import {
   PetCategoryStyle,
   TexCategoyInfo,
   Arrow,
+  Avatar,
 } from '../buttons/buttons.styled';
 
 // components svg
@@ -58,6 +59,13 @@ export const SvgLogo = () => {
     <Pawprint width={24} height={24}>
       <use href={icons + '#icon-pawprint'}></use>
     </Pawprint>
+  );
+};
+export const SvgUser = () => {
+  return (
+    <Avatar width={28} height={28}>
+      <use href={icons + '#icon-user'}></use>
+    </Avatar>
   );
 };
 export const SvgPawprint = () => {
@@ -104,9 +112,9 @@ const SvgToHeart = () => {
 };
 const SvgFilter = () => {
   return (
-    <Filter width={24} height={24}>
+    <svg width={24} height={24}>
       <use href={icons + '#icon-filters-2'}></use>
-    </Filter>
+    </svg>
   );
 };
 
@@ -177,6 +185,7 @@ const SvgDelete = () => {
     </Delete>
   );
 };
+
 const SvgLogout = () => {
   return (
     <Logout width={24} height={24}>
@@ -225,7 +234,6 @@ export const BtnAuth = ({ onClick }) => {
 // button for Registration and Login, need write
 // "lost/foun, sell, in good hand, favorite ads, my ads" instead "text"
 export const BtnAddOption = ({ text, onClick }) => {
-  console.log(text);
   return (
     <>
       <BtnOption type="button" onClick={onClick}>

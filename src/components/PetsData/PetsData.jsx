@@ -1,11 +1,15 @@
 import { PetsList } from "./PetsList/PetsList";
+import { MyPetsTitleGroup } from "./MyPetTitleGroup/MyPetTitleGroup";
+import { PetListExtraWrapper } from "./PetsData.styled";
 
-export const PetsData = (petList) => {
+export const PetsData = () => {
   return (
-    <>
-      <h2>PetsData</h2>
+    <PetListExtraWrapper>
+
+      <MyPetsTitleGroup/>
 
       <PetsList/>
-    </>
+      
+    </PetListExtraWrapper>
   );
 };
