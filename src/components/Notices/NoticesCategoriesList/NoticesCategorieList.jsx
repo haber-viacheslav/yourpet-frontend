@@ -1,5 +1,5 @@
 import { NoticesCategoryItem } from 'components/Notices/NoticesCategoriesItem/NoticesCategoriesItem';
-import petsLists from '../../../mockData/petsList';
+import petsList from '../../../mockData/petsList';
 import { nanoid } from '@reduxjs/toolkit';
 import { List } from './NoticesCategoriesList.styled';
 import { useState } from 'react';
@@ -16,8 +16,12 @@ export const NoticesCategoriesList = () => {
   return (
     <>
       <List>
-        {isOpen && <Modal onClick={onClose}>{isOpen && <ModalItem />}</Modal>}
-        {petsLists.map(petItem => (
+        {isOpen && (
+          <Modal onClick={onClose}>
+            <ModalItem onClick={onClose} petsList={petsList} />
+          </Modal>
+        )}
+        {petsList.map(petItem => (
           <NoticesCategoryItem petList={petItem} key={nanoid()} />
         ))}
       </List>

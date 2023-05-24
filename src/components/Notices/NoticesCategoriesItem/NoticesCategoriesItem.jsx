@@ -25,7 +25,7 @@ export const NoticesCategoryItem = ({ petList }) => {
   return (
     <>
       <ConteinerCard>
-        <Img src={smImgUrl1x} alt="" />
+        <Img src={smImgUrl1x} alt="Pet image" />
         <BtnAddFavorite />
         <BtnAddPetCurcle />
         <PetCategory text={`${category}`} />
