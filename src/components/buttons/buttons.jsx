@@ -19,7 +19,6 @@ import {
   Add,
   AddCurcle,
   Heart,
-  // Filter,
   ToHeart,
   City,
   Logout,
