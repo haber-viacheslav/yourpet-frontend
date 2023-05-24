@@ -12,7 +12,8 @@ import {
   EmailMessage,
   PasswordMessage,
   ConfirmMessage,
-  SuccessMessage,
+  SuccessMessagePass,
+  SuccessMessageConfirm,
   Input,
   Title,
   Box,
@@ -123,9 +124,9 @@ export const RegisterForm = () => {
                     <PasswordMessage>{password}</PasswordMessage>
                   )}
                 />
-              )}{' '}
+              )}
               {touched.password && !errors.password && (
-                <SuccessMessage>Password is secure</SuccessMessage>
+                <SuccessMessagePass>Password is secure</SuccessMessagePass>
               )}
               {touched.password && !errors.password ? (
                 <IconPass
@@ -136,11 +137,7 @@ export const RegisterForm = () => {
               ) : (
                 <IconPass onClick={togglePassInput}>{toggleIconPass}</IconPass>
               )}
-              <ErrorMessage
-                name="confirm"
-                type="confirm"
-                render={msg => <ConfirmMessage>{msg}</ConfirmMessage>}
-              />
+              
               <Input
                 type={typeCofirm}
                 name="confirm"
@@ -160,6 +157,17 @@ export const RegisterForm = () => {
                   {toggleIconConfirm}
                 </IconConfirm>
               )}
+
+              {touched.confirm && errors.confirm && (
+                <ErrorMessage
+                name="confirm"
+                type="confirm"
+                render={msg => <ConfirmMessage>{msg}</ConfirmMessage>}
+              />
+              )}
+              {touched.confirm && !errors.confirm && (
+                <SuccessMessageConfirm>Passwords is matched</SuccessMessageConfirm>
+              )}
             </Box>
             <Button type="submit">Registation</Button>
             <Text>
@@ -174,5 +182,3 @@ export const RegisterForm = () => {
     </Wrapper>
   );
 };
-
-// passwords is matched
