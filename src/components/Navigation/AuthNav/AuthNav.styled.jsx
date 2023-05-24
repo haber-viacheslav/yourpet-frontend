@@ -3,7 +3,11 @@ import { NavLink } from 'react-router-dom';
 import { theme } from '../../../theme/theme';
 
 export const AuthNavMenu = styled.div`
-  display: none;
+  /* display: none; */
+     
+    :not(:last-child) {
+      margin-right: 20px;
+    }
   @media screen and (${props => props.theme.media.md}) {
     display: flex;
     align-items: center;
@@ -34,7 +38,7 @@ export const RegisterLink = styled(NavLink)`
 export const LoginLink = styled(NavLink)`
   position: relative;
   z-index: 1000;
-  margin-top: 82px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,6 +54,7 @@ export const LoginLink = styled(NavLink)`
 
   @media screen and (min-width: 767px) {
     margin-top: 0;
+    margin-bottom: 0;
   }
 `;
 export const SVG = styled.svg`

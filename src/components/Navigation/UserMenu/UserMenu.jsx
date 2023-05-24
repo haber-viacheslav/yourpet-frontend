@@ -1,13 +1,14 @@
 import { SvgUser } from '../../buttons/buttons';
-import { Box, UserName, AccountLink } from './UserMenu.styled';
+import { Box, UserName } from './UserMenu.styled';
+import { Link } from 'react-router-dom';
 
 export const UserMenu = ({ name }) => {
-  console.log(SvgUser);
+  
   return (
     <Box>
-      <AccountLink to="./user">
+      <Link to="./user">
         <SvgUser />
-      </AccountLink>
+      </Link>
       <UserName>{name}Anna</UserName>
     </Box>
   );

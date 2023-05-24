@@ -1,14 +1,27 @@
 import styled from 'styled-components';
 
 export const NavList = styled.ul`
-  display: none;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  
+  align-items: center;
 
   @media screen and (${props => props.theme.media.lg}) {
-    display: flex;
-    margin-right: auto;
-    margin-left: 159px;
+    margin-right: 270px;
+    flex-direction: row;
+    
+  }
+`;
 
-    a {
+export const NavItem = styled.li`
+  display: flex;
+  align-items: center;
+  font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeights.medium};
+  font-size: 32px;
+  line-height: 1.35;
+  a {
       text-decoration: none;
       color: ${props => props.theme.colors.black};
       :hover,
@@ -17,19 +30,13 @@ export const NavList = styled.ul`
         color: ${props => props.theme.colors.orange};
       }
     }
-  }
-`;
+  
 
-export const NavItem = styled.li`
-  display: flex;
-  align-items: center;
-  font-family: ${props => props.theme.fonts.main};
-  font-style: normal;
-  font-weight: ${props => props.theme.fontWeights.medium};
-  font-size: 20px;
-  line-height: 1.35;
-  letter-spacing: 0.04em;
-  :not(:last-child) {
-    margin-right: 20px;
+  @media screen and (${props => props.theme.media.lg}) {
+    font-size: 20px;
+    letter-spacing: 0.04em;
+    :not(:last-child) {
+      margin-right: 20px;
+    }
   }
 `;
