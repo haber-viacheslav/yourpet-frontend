@@ -1,23 +1,26 @@
 // import { React, useState, useEffect } from 'react';
-import { Backdrop, Menu, BackdropNav } from './BackdropMenu.styled';
-// BackdropUser, BackdropAuth,
+import { Backdrop, Menu, BackdropUser, BackdropAuth, 
+  // BackdropNav 
+} from './BackdropMenu.styled';
+
 
 // import { useSelector } from 'react-redux';
-// import {AuthNav} from '../AuthNav/AuthNav';
+import {AuthNav} from '../AuthNav/AuthNav';
 import { Nav } from '../Nav/Nav';
-import { Logo } from 'components/Logo/Logo';
-// import {UserNav} from '../UserNav/UserNav';
-import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
+// import { Logo } from 'components/Logo/Logo';
+import {UserNav} from '../UserNav/UserNav';
+// import { Backdrop } from '../Backdrop/Backdrop.styled';
+// import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
 import { Box } from './BackdropMenu.styled';
-import { BurgerBtn } from '../BurgerMenu/BurgerBtn';
+// import { BurgerBtn } from '../BurgerMenu/BurgerBtn';
 // function isTabletDevice() {
 //   return window.innerWidth > 767;
 // }
 
 export const BackdropMenu = ({ isOpen, handleClose }) => {
-  // const handleLinkClick = () => {
-  //   handleClose();
-  // };
+  const handleLinkClick = () => {
+    handleClose();
+  };
   // const [isTablet, setTabletDevice] = useState(isTabletDevice());
   // const isLogIn = useSelector(state => state.auth.token);
 
@@ -35,30 +38,23 @@ export const BackdropMenu = ({ isOpen, handleClose }) => {
 
   return (
     <Box>
-      <BurgerMenu />
-      {/* {/* {isOpen && ( */}
-      <Backdrop>
+    <Backdrop>     
         <Menu>
-          <div>
-            <Logo />
-            <BurgerBtn />
-          </div>
-
-          {/* {isLogIn && !isTablet ? 
-              ( <BackdropUser>
+                
+                   
+              <BackdropUser>
                 <UserNav handleLinkClick={handleLinkClick} />
               </BackdropUser>
-            ) : null}
-            {!isLogIn ? 
-            (  <BackdropAuth> 
+            
+               <BackdropAuth> 
                  <AuthNav handleLinkClick={handleLinkClick} />
               </BackdropAuth>
-            ) : null}  */}
-          <BackdropNav>
-            <Nav />
-          </BackdropNav>
-        </Menu>
+          
+</Menu>
+           <Nav />
+          
+         
       </Backdrop>
     </Box>
-  );
+  )
 };

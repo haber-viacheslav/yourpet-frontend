@@ -16,9 +16,9 @@ export const BurgerMenu = () => {
 
   return (
     <>
-      <BurgerBtn onClick={handleOpen} />
+      <BurgerBtn onClick={isOpen} />
       {isOpen ? (
-        <BackdropMenu isOpen={isOpen} handleClose={handleClose} />
+        <BackdropMenu isOpen={handleOpen} handleClose={handleClose} />
       ) : null}
     </>
   );

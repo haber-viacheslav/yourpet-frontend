@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 // import { Spin as Hamburger } from 'hamburger-react';
-import { BackdropMenu } from '../Backdrop/Backdrop';
+// import { BackdropMenu } from '../Backdrop/Backdrop';
 import { HamburgerBtn } from './BurgerBtn.styled';
 
 export const BurgerBtn = () => {
@@ -11,9 +11,9 @@ export const BurgerBtn = () => {
     setIsOpen(true);
   };
 
-  const handleClose = () => {
-    setIsOpen(false);
-  };
+  // const handleClose = () => {
+  //   setIsOpen(false);
+  // };
 
   return (
     <>
@@ -28,9 +28,9 @@ export const BurgerBtn = () => {
         distance="md"
         duration={0.6}
       />
-      {isOpen ? (
+      {/* {isOpen ? (
         <BackdropMenu isOpen={isOpen} handleClose={handleClose} />
-      ) : null}
+      ) : null} */}
     </>
   );
 };
