@@ -11,7 +11,7 @@ export const SearchNewsForm = ({ onSubmit, onClick }) => {
     e.preventDefault();
     if (searchQuery.trim() === '') {
       return toast.error('Enter your request, please', {
-            style: {
+        style: {
           position: 'top-center',
           duration: 1000,
           autoclose: 500,
