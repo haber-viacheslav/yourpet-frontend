@@ -366,7 +366,6 @@ export const BtnContact = styled.button`
   line-height: 1.35;
   color: ${theme.colors.blue};
   border: 2px solid ${theme.colors.blue};
-  margin-bottom: 8px;
 `;
 export const PetInfoStyle = styled.div`
   height: 28px;
