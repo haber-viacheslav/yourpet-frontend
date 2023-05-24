@@ -12,7 +12,7 @@ export const PetsTitleGroupWrapper = styled.div`
 export const MyPetsTitle = styled(ProfileTitle)`
   margin-bottom: 24px;
 
-  @media screen and ${theme.media.mdToLg} {
+  @media screen and (${theme.media.mdToLg}) {
     margin-bottom: 20px;
   }
 `;

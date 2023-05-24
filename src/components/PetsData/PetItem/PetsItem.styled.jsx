@@ -1,35 +1,34 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { theme } from "theme/theme";
-import { SvgDelete} from 'components\buttons\buttons.jsx';
+import { theme } from '../../../theme/theme';
+import { SvgDelete } from '../../buttons/buttons';
 
 export const PetImage = styled.img`
   width: 240px;
-  hight: 240px;
+  height: 240px;
   margin-bottom: 20px;
 
-  @media and ${theme.media.md} {
+  @media screen and ((${theme.media.md})) {
     width: 161px;
-    hight: 161px;
+    height: 161px;
     margin-bottom: auto;
-  };
+  }
 
-  @media and ${theme.media.md} {
+  @media screen and (${theme.media.lg}) {
     width: 128px;
-    hight: 128px;
-  };
+    height: 128px;
+  }
 `;
 
-export const  DeletePetBtn = () => {
+export const DeletePetBtn = () => {
   return (
     <>
-      <Button type='button'>
-        <SvgDelete/>
-      </Button>
+      <button type="button">
+        <SvgDelete />
+      </button>
     </>
   );
 };
-
 
 export const PetsItemWrapper = styled.div`
   width: 100%;
@@ -39,69 +38,69 @@ export const PetsItemWrapper = styled.div`
   padding: 16px 20px 40px;
   border-radius: 20px;
 
-  @media screen and ${theme.media.md} {
+  @media screen and (${theme.media.md}) {
     padding: 20px;
     border-radius: 40px;
-  };
-  `;
-
+  }
+`;
 
 export const PetsInfo = styled.div`
   width: 100%;
 
-  display flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 12px;
 
   padding: 0;
-  border: none;  
+  border: none;
 
-  @media screen and ${theme.media.md} {
+  @media screen and (${theme.media.md}) {
     gap: 22px;
-  };
+  }
 
-  @media screen and ${theme.media.lg} {
+  @media screen and (${theme.media.lg}) {
     gap: 24px;
-  };
+  }
 `;
 
 export const InfoTitle = styled.h3`
-  font-weight:700;
+  font-weight: 700;
   font-size: 14px;
-  line-height:19px;
-  letter-spacing: 4%;  
+  line-height: 19px;
+  letter-spacing: 4%;
 
-  @media screen and ${theme.media.md} {
-    font-weight:600;
-
-  @media screen and ${theme.media.lg} {
+  @media screen and (${theme.media.md}) {
+    font-weight: 600;
+  }
+  @media screen and (${theme.media.lg}) {
     font-size: 16px;
-  };
+  }
 `;
 
-export  const InfoContent = styled(InfoTitle)`
-  font-weight:400;
+export const InfoContent = styled(InfoTitle)`
+  font-weight: 400;
 
-  @media screen and ${theme.media.md} {
-    font-weight:600;
+  @media screen and (${theme.media.md}) {
+    font-weight: 600;
+  }
 `;
-
 
 export const InfoTitleComments = styled(InfoTitle)`
-  line-height:22px;
+  line-height: 22px;
 
-  @media screen and ${theme.media.md} {
-    font-weight:600;
-    line-height:18px;
+  @media screen and (${theme.media.md}) {
+    font-weight: 600;
+    line-height: 18px;
     font-size: 16px;
 
-  @media screen and ${theme.media.lg} {
-    line-height:22px
-  };
+    @media screen and (${theme.media.lg}) {
+      line-height: 22px;
+    }
+  }
 `;
 
 export const InfoContentComments = styled(InfoTitleComments)`
-font-weight:400;
+  font-weight: 400;
 `;
