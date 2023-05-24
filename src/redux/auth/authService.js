@@ -27,7 +27,8 @@ export const logIn = createAsyncThunk(
     console.log(values);
     try {
       const res = await axios.post('auth/login', values);
-      setAuthHeader(res.data.token);
+      console.log(res.data.accessToken);
+      setAuthHeader(res.data.accessToken);
       return res.data;
     } catch (error) {
       const { message } = error;
