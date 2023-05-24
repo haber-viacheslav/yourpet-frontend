@@ -161,11 +161,7 @@ export const IconConfirm = styled.span`
   }
 `;
 
-export const SVG = styled.svg`
-  display: block;
-  fill: transparent;
-  stroke: currentColor;
-`;
+
 
 export const EmailMessage = styled.div`
   position: absolute;
@@ -203,6 +199,37 @@ export const ConfirmMessage = styled.div`
   font-size: 12px;
   line-height: 1.33;
   color: ${props => props.theme.colors.red};
+  top: 195px;
+  left: 16px;
+  @media screen and (${props => props.theme.media.md}) {
+    top: 210px;
+  }
+`;
+
+export const SuccessMessagePass = styled.div`
+  position: absolute;
+  font-family: ${props => props.theme.fonts.main};
+  font-style: normal;
+  font-weight: ${props => props.theme.fontWeights.regular};
+  font-size: 12px;
+  line-height: 1.33;
+  color: ${props => props.theme.colors.green};
+  top: 123px;
+  left: 16px;
+  @media screen and (${props => props.theme.media.md}) {
+    top: 130px;
+    left: 16px;
+  }
+`;
+
+export const SuccessMessageConfirm = styled.div`
+  position: absolute;
+  font-family: ${props => props.theme.fonts.main};
+  font-style: normal;
+  font-weight: ${props => props.theme.fontWeights.regular};
+  font-size: 12px;
+  line-height: 1.33;
+  color: ${props => props.theme.colors.green};
   top: 195px;
   left: 16px;
   @media screen and (${props => props.theme.media.md}) {

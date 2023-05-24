@@ -19,7 +19,7 @@ import {
   Add,
   AddCurcle,
   Heart,
-  Filter,
+  // Filter,
   ToHeart,
   City,
   Logout,
@@ -33,7 +33,7 @@ import {
   PetCategoryStyle,
   TexCategoyInfo,
   Arrow,
-  Avatar
+  Avatar,
 } from '../buttons/buttons.styled';
 
 // components svg
@@ -112,9 +112,9 @@ const SvgToHeart = () => {
 };
 const SvgFilter = () => {
   return (
-    <Filter width={24} height={24}>
+    <svg width={24} height={24}>
       <use href={icons + '#icon-filters-2'}></use>
-    </Filter>
+    </svg>
   );
 };
 
@@ -185,6 +185,7 @@ const SvgDelete = () => {
     </Delete>
   );
 };
+
 const SvgLogout = () => {
   return (
     <Logout width={24} height={24}>
