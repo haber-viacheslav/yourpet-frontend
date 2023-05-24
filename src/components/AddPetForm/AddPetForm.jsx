@@ -9,6 +9,7 @@ import { Title } from './Title/Title';
 import { StageIndicator } from './StageIndicator/StageIndicator';
 import { SexIcon } from './Icon/Icon';
 import { addPetFormSchema } from 'helpers/yupValidation';
+import { createPet, createNotice } from 'redux/pets/petsService';
 
 import { Formik } from 'formik';
 
@@ -103,16 +104,45 @@ export const AddPetForm = () => {
   };
 
   const handleOnSubmit = async (values, { resetForm }) => {
-    const formKeys = Object.keys(values);
     const formData = new FormData();
 
-    formKeys.forEach(el => {
-      if (el !== 'file') {
-        formData.append(el, values[el]);
-      } else {
-        formData.append(el, values[el], 'Pet`s photo');
-      }
-    });
+    switch (values.category) {
+      case 'your pet':
+        formData.append('name', values.name);
+        formData.append('date', values.date);
+        formData.append('breed', values.breed);
+        formData.append('comments', values.comments);
+        formData.append('file', values.file, 'Pet`s photo');
+        try {
+          await createPet(formData);
+        } catch (error) {
+          console.log(error);
+        }
+
+        break;
+      default:
+        formData.append('title', values.title);
+        formData.append('category', values.category);
+        formData.append('name', values.name);
+        formData.append('date', values.date);
+        formData.append('breed', values.breed);
+        formData.append('sex', values.sex.toLowerCase());
+        formData.append('location', values.location);
+        formData.append('price', values.price);
+        formData.append('comments', values.comments);
+        formData.append('file', values.file, 'Pet`s photo');
+
+        try {
+          await createNotice(formData);
+        } catch (error) {
+          console.log(error);
+        }
+    }
+
+    for (const [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+
     alert('SUBMIT!');
     // localStorage.removeItem('formValues');
     // localStorage.removeItem('stage');
@@ -130,6 +160,7 @@ export const AddPetForm = () => {
         validationSchema={addPetFormSchema}
       >
         {({ values, errors, touched, validateForm }) => {
+          // console.log(values);
           const { category, sex } = values;
           const isFieldInvalid = errors.sex && touched.sex;
           return (
@@ -160,9 +191,9 @@ export const AddPetForm = () => {
                         <GroupSexWrapper role="group" aria-labelledby="sex">
                           <GroupTitle id="sex">The sex</GroupTitle>
                           <SexWrapper>
-                            {sexes.map((option, i) => {
+                            {sexes.map((option, index) => {
                               const iconLabel =
-                                i === 0 ? '#icon-female' : '#icon-male';
+                                index === 0 ? '#icon-female' : '#icon-male';
                               const selected = option === sex;
 
                               return (
@@ -176,7 +207,7 @@ export const AddPetForm = () => {
                                 >
                                   <SexIcon
                                     iconName={iconLabel}
-                                    index={i}
+                                    index={index}
                                     selected={selected}
                                     sex={sex}
                                   />
