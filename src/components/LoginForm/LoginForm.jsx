@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik, ErrorMessage } from 'formik';
 import { useState } from 'react';
 import { string, object } from 'yup';
+import {iconClose, iconOpen, IconCrossSmall, IconCheck} from './Icons/Icons'
 import {
   Wrapper,
   Input,
@@ -14,17 +15,16 @@ import {
   Text,
   Span,
   Link,
-  SVG,
   EmailMessage,
   PasswordMessage,
 } from './LoginForm.styled';
-import icons from 'images/icons.svg';
+
+
+
 
 export const LoginForm = () => {
   const [toggleIconPass, setToggleIconPass] = useState(
-    <SVG width={24} height={24}>
-      <use href={icons + '#icon-eye-closed'}></use>
-    </SVG>
+    iconClose
   );
   const [typePass, setTypePass] = useState('password');
 
@@ -51,16 +51,12 @@ export const LoginForm = () => {
     if (typePass === 'password') {
       setTypePass('text');
       setToggleIconPass(
-        <SVG width={24} height={24}>
-          <use href={icons + '#icon-eye-open'}></use>
-        </SVG>
+        iconOpen
       );
     } else {
       setTypePass('password');
       setToggleIconPass(
-        <SVG width={24} height={24}>
-          <use href={icons + '#icon-eye-closed'}></use>
-        </SVG>
+        iconClose
       );
     }
   };
@@ -90,25 +86,19 @@ export const LoginForm = () => {
               />
               {errors.email && touched.email && (
                 <IconMail error={errors.email && touched.email && 'false'}>
-                  <SVG width={24} height={24}>
-                    <use href={icons + '#icon-cross-small'}></use>
-                  </SVG>
+                  <IconCrossSmall/>
                 </IconMail>
               )}
               {touched.email && !errors.email && (
                 <IconMail error={errors.email && touched.email && 'false'}>
-                  <SVG width={24} height={24}>
-                    <use href={icons + '#icon-check'} color="#00C3AD"></use>
-                  </SVG>
+                  <IconCheck/>
                 </IconMail>
               )}
               {touched.password && !errors.password ? (
                 <IconPass
                   error={errors.password && touched.password && 'false'}
                 >
-                  <SVG width={24} height={24}>
-                    <use href={icons + '#icon-check'} color="#00C3AD"></use>
-                  </SVG>
+                  <IconCheck/>
                 </IconPass>
               ) : (
                 <IconPass onClick={togglePassInput}>{toggleIconPass}</IconPass>
@@ -129,7 +119,6 @@ export const LoginForm = () => {
                   <PasswordMessage>{password}</PasswordMessage>
                 )}
               />
-             
             </Box>
             <Button type="submit">Login</Button>
             <Text>
