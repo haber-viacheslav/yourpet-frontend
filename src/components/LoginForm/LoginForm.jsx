@@ -20,8 +20,6 @@ import {
 } from './LoginForm.styled';
 
 
-
-
 export const LoginForm = () => {
   const [toggleIconPass, setToggleIconPass] = useState(
     iconClose
