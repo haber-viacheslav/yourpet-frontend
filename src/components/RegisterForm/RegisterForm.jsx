@@ -2,15 +2,18 @@ import React from 'react';
 import { useState } from 'react';
 import { Formik, ErrorMessage } from 'formik';
 import { string, object, ref } from 'yup';
+import { iconClose, iconOpen, IconCrossSmall, IconCheck } from './Icons/Icons';
 import {
   Wrapper,
   RegisterFormStyled,
-  IconSpan,
-  IconSpan1,
-  SVG,
+  IconMail,
+  IconPass,
+  IconConfirm,
   EmailMessage,
   PasswordMessage,
   ConfirmMessage,
+  SuccessMessagePass,
+  SuccessMessageConfirm,
   Input,
   Title,
   Box,
@@ -19,23 +22,6 @@ import {
   Span,
   Link,
 } from './RegisterForm.styled';
-import icons from 'images/icons.svg';
-
-const iconClose = () => {
-  return (
-    <SVG width={24} height={24}>
-      <use href={icons + '#icon-eye-closed'}></use>
-    </SVG>
-  );
-};
-
-const iconOpen = () => {
-  return (
-    <SVG width={24} height={24}>
-      <use href={icons + '#icon-eye-open'}></use>
-    </SVG>
-  );
-};
 
 export const RegisterForm = () => {
   const [toggleIconPass, setToggleIconPass] = useState(iconClose);
@@ -47,7 +33,7 @@ export const RegisterForm = () => {
     email: string().email('Enter a Valid Email').required('Email is Required'),
     password: string()
       .required('Enter Your Password')
-      .min(8, 'Password Should be minimum 8 character')
+      .min(8, 'Password should be minimum 8 character')
       .max(50, 'Too long'),
     confirm: string()
       .oneOf([ref('password')], 'Password does not matched')
@@ -101,7 +87,8 @@ export const RegisterForm = () => {
                 type="text"
                 name="email"
                 placeholder="Email"
-                error={errors.email && touched.email && 'false'}
+                valid={touched.email && !errors.email ? 'true' : undefined}
+                error={touched.email && errors.email}
               />
               <ErrorMessage
                 name="email"
@@ -109,36 +96,78 @@ export const RegisterForm = () => {
                 id="email"
                 render={msg => <EmailMessage>{msg}</EmailMessage>}
               />
+              {errors.email && touched.email && (
+                <IconMail error={errors.email && touched.email && 'false'}>
+                  <IconCrossSmall />
+                </IconMail>
+              )}
+              {touched.email && !errors.email && (
+                <IconMail error={errors.email && touched.email && 'false'}>
+                  <IconCheck />
+                </IconMail>
+              )}
               <Input
                 type={typePass}
                 id="password"
                 name="password"
                 placeholder="Password"
-                error={errors.password && touched.password && 'false' }
+                valid={
+                  touched.password && !errors.password ? 'true' : undefined
+                }
+                error={touched.password && errors.password}
               />
-              <ErrorMessage
-                name="password"
-                type="password"
-                render={password => (
-                  <PasswordMessage>{password}</PasswordMessage>
-                )}
-              />
-              <IconSpan onClick={togglePassInput}>{toggleIconPass}</IconSpan>
-              <ErrorMessage
-                name="confirm"
-                type="confirm"
-                render={msg => <ConfirmMessage>{msg}</ConfirmMessage>}
-              />
+              {touched.password && errors.password && (
+                <ErrorMessage
+                  name="password"
+                  type="password"
+                  render={password => (
+                    <PasswordMessage>{password}</PasswordMessage>
+                  )}
+                />
+              )}
+              {touched.password && !errors.password && (
+                <SuccessMessagePass>Password is secure</SuccessMessagePass>
+              )}
+              {touched.password && !errors.password ? (
+                <IconPass
+                  error={errors.password && touched.password && 'false'}
+                >
+                  <IconCheck />
+                </IconPass>
+              ) : (
+                <IconPass onClick={togglePassInput}>{toggleIconPass}</IconPass>
+              )}
+              
               <Input
                 type={typeCofirm}
                 name="confirm"
                 id="confirm"
                 placeholder="Confirm password"
-                error={errors.confirm && touched.confirm && 'false'}
+                valid={touched.confirm && !errors.confirm ? 'true' : undefined}
+                error={touched.confirm && errors.confirm}
               />
-              <IconSpan1 onClick={toggleConfirmInput}>
-                {toggleIconConfirm}
-              </IconSpan1>
+              {touched.confirm && !errors.confirm ? (
+                <IconConfirm
+                  error={errors.confirm && touched.confirm && 'false'}
+                >
+                  <IconCheck />
+                </IconConfirm>
+              ) : (
+                <IconConfirm onClick={toggleConfirmInput}>
+                  {toggleIconConfirm}
+                </IconConfirm>
+              )}
+
+              {touched.confirm && errors.confirm && (
+                <ErrorMessage
+                name="confirm"
+                type="confirm"
+                render={msg => <ConfirmMessage>{msg}</ConfirmMessage>}
+              />
+              )}
+              {touched.confirm && !errors.confirm && (
+                <SuccessMessageConfirm>Passwords is matched</SuccessMessageConfirm>
+              )}
             </Box>
             <Button type="submit">Registation</Button>
             <Text>

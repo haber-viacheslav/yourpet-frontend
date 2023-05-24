@@ -144,6 +144,9 @@ export const BtnAddCurcle = styled.button`
   position: absolute;
   top: 108px;
   right: 0;
+  @media screen and (${props => props.theme.media.md}) {
+    display: none;
+  }
 `;
 export const Add = styled.svg`
   stroke: ${theme.colors.white};
@@ -188,6 +191,9 @@ export const FilterCurcle = styled.button`
   position: absolute;
   top: 0;
   right: 0;
+  @media screen and (${props => props.theme.media.md}) {
+    display: none;
+  }
 `;
 
 export const Heart = styled.svg`
@@ -465,4 +471,12 @@ export const BtnCloseStyled = styled.button`
   @media screen and (${props => props.theme.media.md}) {
     width: 129px;
   }
+`;
+export const Arrow = styled.svg`
+  stroke: ${theme.colors.currentColor};
+  fill: ${theme.colors.currentColor};
+`;
+export const Avatar = styled.svg`
+  fill: none;
+  stroke: ${theme.colors.orange};
 `;

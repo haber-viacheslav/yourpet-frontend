@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
+import { useSchedule } from 'hooks/useSchedule';
+
 import {
   CardTitle,
   Wrapper,
@@ -20,11 +22,19 @@ import {
 } from './CardItem.styled';
 // import PropTypes from 'prop-types';
 
-import cat_sm_1x from '../../../images/pets-hero/cat_sm@1x.webp';
-
-export const CardItem = () => {
+export const CardItem = ({
+  email,
+  address,
+  url,
+  addressUrl,
+  imageUrl,
+  phone,
+  title,
+  workDays,
+}) => {
   const [showSchedule, SetShowSchedule] = useState(false);
   const [time, SetTime] = useState([]);
+  const [workTime, weekSchedule] = useSchedule(workDays);
   const scheduleRef = useRef(null);
 
   useEffect(() => {
@@ -52,9 +62,7 @@ export const CardItem = () => {
       document.addEventListener('click', e => handleOnClick(e));
     }
 
-    return () => {
-      document.removeEventListener('click', e => handleOnClick(e));
-    };
+    return () => document.removeEventListener('click', e => handleOnClick(e));
   }, [showSchedule]);
 
   const handleOnClick = () => {
@@ -71,16 +79,16 @@ export const CardItem = () => {
   return (
     <Wrapper>
       <CardTitle
-        href="https://happypaw.ua/ua/"
+        href={url}
         rel="noreferrer noopener"
         target="_blank"
         aria-label="Happy paw"
       >
-        Happy paw
+        {title}
       </CardTitle>
       <ContentWrapper>
         <LogoWrapper>
-          <LogoContent src={cat_sm_1x} alt="cat" loading="lazy"></LogoContent>
+          <LogoContent src={imageUrl} alt={title} loading="lazy"></LogoContent>
         </LogoWrapper>
         <TextContent>
           <ScheduleWrapper>
@@ -90,71 +98,78 @@ export const CardItem = () => {
               data-schedule={showSchedule}
             >
               <Title>Time:</Title>
-              <Text>09:00-19:00</Text>
+              <Text>{workTime}</Text>
             </ScheduleBtn>
             {showSchedule && (
               <Schedule>
                 <DayWrapper data-time={time} data-day={1}>
                   <Day>MN</Day>
                   <DayTime>
-                    <MinTime>8:00</MinTime>-<MaxTime>19:00</MaxTime>
+                    <MinTime>{weekSchedule[0].start}</MinTime>
+                    <MaxTime>{weekSchedule[0].end}</MaxTime>
                   </DayTime>
                 </DayWrapper>
                 <DayWrapper data-time={time} data-day={2}>
                   <Day>TU</Day>
                   <DayTime>
-                    <MinTime>8:00</MinTime>-<MaxTime>19:00</MaxTime>
+                    <MinTime>{weekSchedule[1].start}</MinTime>
+                    <MaxTime>{weekSchedule[1].end}</MaxTime>
                   </DayTime>
                 </DayWrapper>
                 <DayWrapper data-time={time} data-day={3}>
                   <Day>WE</Day>
                   <DayTime>
-                    <MinTime>8:00</MinTime>-<MaxTime>19:00</MaxTime>
+                    <MinTime>{weekSchedule[2].start}</MinTime>
+                    <MaxTime>{weekSchedule[2].end}</MaxTime>
                   </DayTime>
                 </DayWrapper>
                 <DayWrapper data-time={time} data-day={4}>
                   <Day>TH</Day>
                   <DayTime>
-                    <MinTime>8:00</MinTime>-<MaxTime>19:00</MaxTime>
+                    <MinTime>{weekSchedule[3].start}</MinTime>
+                    <MaxTime>{weekSchedule[3].end}</MaxTime>
                   </DayTime>
                 </DayWrapper>
                 <DayWrapper data-time={time} data-day={5}>
                   <Day>FR</Day>
                   <DayTime>
-                    <MinTime>8:00</MinTime>-<MaxTime>19:00</MaxTime>
+                    <MinTime>{weekSchedule[4].start}</MinTime>
+                    <MaxTime>{weekSchedule[4].end}</MaxTime>
                   </DayTime>
                 </DayWrapper>
                 <DayWrapper data-time={time} data-day={6}>
                   <Day>SA</Day>
                   <DayTime>
-                    <MinTime>8:00</MinTime>-<MaxTime>19:00</MaxTime>
+                    <MinTime>{weekSchedule[5].start}</MinTime>
+                    <MaxTime>{weekSchedule[5].end}</MaxTime>
                   </DayTime>
                 </DayWrapper>
                 <DayWrapper data-time={time} data-day={0}>
                   <Day>SU</Day>
                   <DayTime>
-                    <MinTime>8:00</MinTime>-<MaxTime>19:00</MaxTime>
+                    <MinTime>{weekSchedule[6].start}</MinTime>
+                    <MaxTime>{weekSchedule[6].end}</MaxTime>
                   </DayTime>
                 </DayWrapper>
               </Schedule>
             )}
           </ScheduleWrapper>
           <Link
-            href="https://goo.gl/maps/o4fTwHgZk6BJGLU1A?coh=178572&entry=tt"
+            href={addressUrl}
             rel="noreferrer noopener"
             target="_blank"
             aria-label="address"
           >
             <Title>Address:</Title>
-            <Text>Chota Rystaveli Street, 44</Text>
+            <Text>{address}</Text>
           </Link>
-          <Link href="mailto:hello@happypaw.ua" aria-label="email">
+          <Link href={`mailto:${email || ''}`} aria-label="email">
             <Title>Email:</Title>
-            <Text>hello@happypaw.ua</Text>
+            <Text>{email}</Text>
           </Link>
-          <Link href="tel:+380 44 290-03-29" aria-label="phone number">
+          <Link href={`tel:${phone}`} aria-label="phone number">
             <Title>Phone:</Title>
-            <Text>+380 44 290-03-29</Text>
+            <Text>{phone}</Text>
           </Link>
         </TextContent>
       </ContentWrapper>
@@ -163,8 +178,12 @@ export const CardItem = () => {
 };
 
 // CardItem.propTypes = {
-//   emulTouch: PropTypes.arrayOf(PropTypes.string).isRequired,
-//   errors: PropTypes.object.isRequired,
-//   touched: PropTypes.object.isRequired,
-//   category: PropTypes.string.isRequired,
+//   email: PropTypes.string.isRequired,
+//   address: PropTypes.string.isRequired,
+//   url: PropTypes.string.isRequired,
+//   addressUrl: PropTypes.string.isRequired,
+//   imageUrl: PropTypes.string.isRequired,
+//   phone: PropTypes.string.isRequired,
+//   title: PropTypes.string.isRequired,
+//   workDays: PropTypes.string.isRequired,
 // };

@@ -7,20 +7,23 @@ export const LogoWrapper = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-
   z-index: 50;
+  @media screen and (${props => props.theme.media.md}) {
+    margin-right: auto;
+  }
+  @media screen and (${props => props.theme.media.lg}) {
+    margin-right: 0;
+  }
 `;
 
 export const LogoIcon = styled.img`
-  @media screen and (min-width: 481px) {
-    display: initial;
+  max-width: 116px;
+  height: 20px;
+  @media screen and (${props => props.theme.media.md}) {
+    max-width: 168px;
+    height: 28px;
+    display: inherit;
   }
-  display: none;
 `;
 
-export const LogoIconSm = styled.img`
-  @media screen and (max-width: 480px) {
-    display: initial;
-  }
-  display: none;
-`;
+

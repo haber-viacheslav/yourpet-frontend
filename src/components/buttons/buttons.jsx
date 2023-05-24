@@ -32,10 +32,42 @@ import {
   FilterCurcle,
   PetCategoryStyle,
   TexCategoyInfo,
+  Arrow,
+  Avatar
 } from '../buttons/buttons.styled';
 
-// componemnts svg
+// components svg
 
+export const ArrRight = () => {
+  return (
+    <Arrow width={17} height={17}>
+      <use href={icons + '#icon-arr-right'}></use>
+    </Arrow>
+  );
+};
+
+export const ArrLeft = () => {
+  return (
+    <Arrow width={17} height={17}>
+      <use href={icons + '#icon-arr-left'}></use>
+    </Arrow>
+  );
+};
+
+export const SvgLogo = () => {
+  return (
+    <Pawprint width={24} height={24}>
+      <use href={icons + '#icon-pawprint'}></use>
+    </Pawprint>
+  );
+};
+export const SvgUser = () => {
+  return (
+    <Avatar width={28} height={28}>
+      <use href={icons + '#icon-user'}></use>
+    </Avatar>
+  );
+};
 export const SvgPawprint = () => {
   return (
     <Pawprint width={24} height={24}>
@@ -202,7 +234,6 @@ export const BtnAuth = ({ onClick }) => {
 // button for Registration and Login, need write
 // "lost/foun, sell, in good hand, favorite ads, my ads" instead "text"
 export const BtnAddOption = ({ text, onClick }) => {
-  console.log(text);
   return (
     <>
       <BtnOption type="button" onClick={onClick}>

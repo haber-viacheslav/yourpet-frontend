@@ -2,9 +2,12 @@ import React from 'react';
 import { Formik, ErrorMessage } from 'formik';
 import { useState } from 'react';
 import { string, object } from 'yup';
+import { iconClose, iconOpen, IconCrossSmall, IconCheck } from './Icons/Icons';
 import {
   Wrapper,
   Input,
+  IconMail,
+  IconPass,
   LoginFormStyled,
   Title,
   Box,
@@ -12,19 +15,13 @@ import {
   Text,
   Span,
   Link,
-  IconSpan,
-  SVG,
   EmailMessage,
   PasswordMessage,
+  SuccessMessage
 } from './LoginForm.styled';
-import icons from 'images/icons.svg';
 
 export const LoginForm = () => {
-  const [toggleIconPass, setToggleIconPass] = useState(
-    <SVG width={24} height={24}>
-      <use href={icons + '#icon-eye-closed'}></use>
-    </SVG>
-  );
+  const [toggleIconPass, setToggleIconPass] = useState(iconClose);
   const [typePass, setTypePass] = useState('password');
 
   const yupLoginValidation = object().shape({
@@ -49,18 +46,10 @@ export const LoginForm = () => {
   const togglePassInput = e => {
     if (typePass === 'password') {
       setTypePass('text');
-      setToggleIconPass(
-        <SVG width={24} height={24}>
-          <use href={icons + '#icon-eye-open'}></use>
-        </SVG>
-      );
+      setToggleIconPass(iconOpen);
     } else {
       setTypePass('password');
-      setToggleIconPass(
-        <SVG width={24} height={24}>
-          <use href={icons + '#icon-eye-closed'}></use>
-        </SVG>
-      );
+      setToggleIconPass(iconClose);
     }
   };
 
@@ -79,27 +68,53 @@ export const LoginForm = () => {
                 type="text"
                 name="email"
                 placeholder="Email"
-                error={errors.email && touched.email && 'false'}
+                valid={touched.email && !errors.email ? 'true' : undefined}
+                error={touched.email && errors.email}
               />
               <ErrorMessage
                 name="email"
                 type="email"
                 render={msg => <EmailMessage>{msg}</EmailMessage>}
               />
+              {errors.email && touched.email && (
+                <IconMail error={errors.email && touched.email && 'false'}>
+                  <IconCrossSmall />
+                </IconMail>
+              )}
+              {touched.email && !errors.email && (
+                <IconMail error={errors.email && touched.email && 'false'}>
+                  <IconCheck />
+                </IconMail>
+              )}
+              {touched.password && !errors.password ? (
+                <IconPass
+                  error={errors.password && touched.password && 'false'}
+                >
+                  <IconCheck />
+                </IconPass>
+              ) : (
+                <IconPass onClick={togglePassInput}>{toggleIconPass}</IconPass>
+              )}
               <Input
                 type={typePass}
                 name="password"
                 placeholder="Password"
-                error={errors.password && touched.password && 'false'}
+                valid={
+                  touched.password && !errors.password ? 'true' : undefined
+                }
+                error={touched.password && errors.password}
               />
-              <ErrorMessage
-                name="password"
-                type="password"
-                render={password => (
-                  <PasswordMessage>{password}</PasswordMessage>
-                )}
-              />
-              <IconSpan onClick={togglePassInput}>{toggleIconPass}</IconSpan>
+              {touched.password && errors.password && (
+                <ErrorMessage
+                  name="password"
+                  type="password"
+                  render={password => (
+                    <PasswordMessage>{password}</PasswordMessage>
+                  )}
+                />
+              )}  {touched.password && !errors.password && (
+                <SuccessMessage>Password is secure</SuccessMessage>
+              )}
             </Box>
             <Button type="submit">Login</Button>
             <Text>
