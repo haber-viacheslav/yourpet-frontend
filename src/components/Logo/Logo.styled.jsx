@@ -7,14 +7,11 @@ export const LogoWrapper = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 4px;
   z-index: 50;
   @media screen and (${props => props.theme.media.md}) {
-    padding-top: 8px;
-    margin-right: 167px;
+    margin-right: auto;
   }
   @media screen and (${props => props.theme.media.lg}) {
-    padding-top: 10px;
     margin-right: 0;
   }
 `;

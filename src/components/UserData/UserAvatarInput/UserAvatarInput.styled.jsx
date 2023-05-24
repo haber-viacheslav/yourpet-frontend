@@ -10,7 +10,7 @@ export const AvatarInputLabel = styled.label`
   font-weight: 400;
   font-size: 12px;
   line-height: 22px;
-  letter-spacing: 4%;
+  letter-space: 4%;
 `;
 
 export const AvatarInput = styled(Field)`
