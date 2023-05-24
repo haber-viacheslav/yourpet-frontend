@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { register } from '../../redux/auth/authService';
 import { Formik, ErrorMessage } from 'formik';
 import { string, object, ref } from 'yup';
 import { iconClose, iconOpen, IconCrossSmall, IconCheck } from './Icons/Icons';
@@ -29,6 +31,8 @@ export const RegisterForm = () => {
   const [toggleIconConfirm, setToggleIconConfirm] = useState(iconClose);
   const [typeCofirm, setTypeCofirm] = useState('password');
 
+  const dispatch = useDispatch();
+
   const yupRegisterValidation = object().shape({
     email: string().email('Enter a Valid Email').required('Email is Required'),
     password: string()
@@ -46,9 +50,8 @@ export const RegisterForm = () => {
     confirm: '',
   };
 
-  const handleSubmit = (values, { resetForm }) => {
-    console.log(values);
-    // console.log(actions);
+  const handleSubmit = ({email, password}, { resetForm }) => {
+    dispatch(register({email, password}));
     resetForm();
   };
 
