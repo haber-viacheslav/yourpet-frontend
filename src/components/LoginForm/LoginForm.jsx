@@ -1,6 +1,8 @@
 import React from 'react';
 import { Formik, ErrorMessage } from 'formik';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { logIn } from 'redux/auth/operations';
 import { string, object } from 'yup';
 import { iconClose, iconOpen, IconCrossSmall, IconCheck } from './Icons/Icons';
 import {
@@ -24,6 +26,8 @@ export const LoginForm = () => {
   const [toggleIconPass, setToggleIconPass] = useState(iconClose);
   const [typePass, setTypePass] = useState('password');
 
+  const dispatch = useDispatch();
+
   const yupLoginValidation = object().shape({
     email: string().email('Enter a Valid Email').required('Email is Required'),
     password: string()
@@ -39,7 +43,7 @@ export const LoginForm = () => {
 
   const handleSubmit = (values, { resetForm }) => {
     console.log(values);
-    // console.log(actions);
+    dispatch(logIn({ values }));
     resetForm();
   };
 
