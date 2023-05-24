@@ -5,6 +5,7 @@ import { theme } from '../../theme/theme';
 import {
   BtnLM,
   BigBtnFavor,
+  PetFormBtn,
   BtnCancelArrow,
   BtnBackArrow,
   BtnAddCurcle,
@@ -345,20 +346,20 @@ export const BtnToGo = ({ onClick }) => {
 export const BtnDone = () => {
   return (
     <>
-      <BigBtnFavor type="submit">
+      <PetFormBtn type="submit">
         Done
         <SvgPawprint />
-      </BigBtnFavor>
+      </PetFormBtn>
     </>
   );
 };
 export const BtnNext = ({ onClick }) => {
   return (
     <>
-      <BigBtnFavor type="button" onClick={onClick}>
+      <PetFormBtn type="button" onClick={onClick}>
         Next
         <SvgPawprint />
-      </BigBtnFavor>
+      </PetFormBtn>
     </>
   );
 };

@@ -13,7 +13,7 @@ export const setAuthHeader = token => {
 // };
 
 export const getOurFriends = async () => {
-  const responce = await axios.get('');
+  const responce = await axios.get('/friends');
   return responce;
 };
 
