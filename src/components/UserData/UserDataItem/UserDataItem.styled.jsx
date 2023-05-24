@@ -1,18 +1,17 @@
 import styled from 'styled-components';
 import { Field } from 'formik';
-import { theme } from "theme/theme";
+import { theme } from 'theme/theme';
 
 export const ProfileInputLabel = styled.label`
-  position: relative;
   display: flex;
-  flex-direction: row;
+  align-items: center;
   justify-content: space-between;
   font-weight: 600;
   font-size: 14px;
   line-height: 19.2px;
-  letter-space: 4%;
+  letter-spacing: 4%;
 
-  @media screen and ${theme.media.md} {
+  @media screen and (${theme.media.md}) {
     font-weight: 600;
     font-size: 18px;
     line-height: 25px;
@@ -20,11 +19,11 @@ export const ProfileInputLabel = styled.label`
 `;
 
 export const ProfileInput = styled(Field)`
-  width: 120px;
   margin-top: 0;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 12px;
   line-height: 16.39px;
+  color: ${props => props.theme.colors.black};
 
   border: none;
   outline: none;
@@ -33,9 +32,10 @@ export const ProfileInput = styled(Field)`
     font-weight: 400;
     font-size: 12px;
     line-height: 16.39px;
+    color: ${props => props.theme.colors.grey};
   }
 
-  @media screen and ${theme.media.md} {
+  @media screen and (${props => props.theme.media.md}) {
     font-weight: 400;
     font-size: 16px;
     line-height: 22px;
@@ -46,13 +46,13 @@ export const SingleInputWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 
-  padding: 4px 12px;
+  padding: 4px 6px;
   width: 190px;
   height: 28px;
   border: 1px solid #54adff;
   border-radius: 20px;
 
-  @media screen and ${theme.media.md} {
+  @media screen and (${props => props.theme.media.md}) {
     width: 255px;
   }
 `;
@@ -67,7 +67,15 @@ export const ProfileInputWrapper = styled.div`
   gap: 12px;
 `;
 
-export const SVG = styled.svg`
-  fill: ${props => props.fill || 'transparent'};
-  stroke: ${props => props.stroke || 'transparent'};
+export const ErrWrapper = styled.span`
+  position: absolute;
+  text-align: right;
+  right: 30px;
+  width: 250px;
+  top: -18px;
+  padding-left: 16px;
+  font-weight: ${props => props.theme.fontWeights.regular};
+  font-size: 12px;
+  line-height: 1.35;
+  color: ${props => props.theme.colors.red};
 `;

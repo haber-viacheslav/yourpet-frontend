@@ -1,19 +1,24 @@
 import { UserData } from '../components/UserData/UserData';
-
 import { PetsData } from '../components/PetsData/PetsData';
-// import { AddPetBtn } from 'components/PetsData/MyPetTitleGroup/AddPetBtn';
+import { Section } from 'components/Section/Section';
 import { Container } from 'components/Container/Container';
-
-// import { Logout } from 'components/UserData/Logout/Logout';
+import { UserWrapper } from './Pages.styled';
 
 const UserPage = () => {
   return (
-    <Container>
-
-      <UserData />
-      <PetsData />
-      
-    </Container>
+    <Section
+      padTopSm={'88px'}
+      padTopMd={'128px'}
+      padTopLg={'130px'}
+      padBottomLg={'50px'}
+    >
+      <Container>
+        <UserWrapper>
+          <UserData />
+          <PetsData />
+        </UserWrapper>
+      </Container>
+    </Section>
   );
 };
 

@@ -41,8 +41,8 @@ export const addPetFormSchema = yup.object().shape({
     then: yup
       .string()
       .min(2, 'Minimum 2 characters')
-      .max(16, 'Maximum 16 characters')
-      .required('Enter a title (min 2, max 16 characters)'),
+      .max(50, 'Maximum 50 characters')
+      .required('Enter a title (min 2, max 50 characters)'),
     otherwise: yup.string(),
   }),
   date: yup.string().required('Choose a date of birth'),
@@ -101,4 +101,19 @@ export const addPetFormSchema = yup.object().shape({
       'File size is too large',
       value => value?.size <= 3145728
     ),
+});
+
+export const profileSchema = yup.object().shape({
+  name: yup
+    .string()
+    .min(2, 'min 2 characters')
+    .max(20, 'max 20 characters')
+    .required('Set your name'),
+  email: yup.string().email('Enter a valid email').required('Set your email'),
+  birthday: yup.string().required('Choose your birthday'),
+  city: yup
+    .string()
+    .matches(/^[A-Z][a-zA-Z]*$/, 'City begins with capitalize character'),
+  phone: yup.string().matches(/^\+\d{12}$/, 'UA format number'),
+  file: '',
 });
