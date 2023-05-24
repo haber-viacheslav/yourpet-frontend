@@ -50,8 +50,8 @@ export const RegisterForm = () => {
     confirm: '',
   };
 
-  const handleSubmit = (values, { resetForm }) => {
-    dispatch(register(values));
+  const handleSubmit = ({email, password}, { resetForm }) => {
+    dispatch(register({email, password}));
     resetForm();
   };
 
