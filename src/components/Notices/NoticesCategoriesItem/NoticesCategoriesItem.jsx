@@ -18,6 +18,7 @@ import {
 
 export const NoticesCategoryItem = ({ petList }) => {
   const { smImgUrl1x, sex, place, category } = petList;
+
   const Svg = () => {
     return sex === 'female' ? SvgFemale : SvgMale;
   };

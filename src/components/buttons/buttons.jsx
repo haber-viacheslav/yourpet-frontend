@@ -1,4 +1,6 @@
+import { useNavigate } from 'react-router-dom';
 import icons from 'images/icons.svg';
+import { theme } from '../../theme/theme';
 
 import {
   BtnLM,
@@ -13,6 +15,7 @@ import {
   BtnOption,
   BtnToHeart,
   BtnContact,
+  DeletePet,
   YesBtn,
   ArrowLeft,
   Pawprint,
@@ -22,9 +25,10 @@ import {
   ToHeart,
   City,
   Logout,
-  Delete,
   BtnClose,
   Close,
+  LogOutWrapper,
+  LogOutTitle,
   BtnCloseStyled,
   PetInfoStyle,
   TexStyletInfo,
@@ -33,6 +37,10 @@ import {
   TexCategoyInfo,
   Arrow,
   Avatar,
+  InputButton,
+  StyledEditPhotoBtn,
+  StyledConfirmPhotoBtn,
+  SVG,
 } from '../buttons/buttons.styled';
 
 // components svg
@@ -117,6 +125,14 @@ const SvgFilter = () => {
   );
 };
 
+const LogOutIcon = props => {
+  return (
+    <SVG width={24} height={24} stroke={theme.colors.blue} {...props}>
+      <use href={icons + '#icon-logout'}></use>
+    </SVG>
+  );
+};
+
 // Svg and hendle for pet info
 
 export const SvgLocation = () => {
@@ -179,9 +195,9 @@ export const PetCategory = ({ text, onClick }) => {
 
 const SvgDelete = () => {
   return (
-    <Delete width={24} height={24}>
+    <SVG width={24} height={24} stroke={theme.colors.blue}>
       <use href={icons + '#icon-trash'}></use>
-    </Delete>
+    </SVG>
   );
 };
 
@@ -197,6 +213,44 @@ const SvgCloseSmall = () => {
     <Close width={24} height={24}>
       <use href={icons + '#icon-cross-small'}></use>
     </Close>
+  );
+};
+
+const CheckIcon = props => {
+  return (
+    <SVG width={20} height={20} stroke={theme.colors.green} {...props}>
+      <use href={icons + '#icon-check'}></use>
+    </SVG>
+  );
+};
+
+const EditIcon = props => {
+  return (
+    <SVG
+      width={20}
+      height={20}
+      fill={theme.colors.blue}
+      stroke={theme.colors.blue}
+      {...props}
+    >
+      <use href={icons + '#icon-edit'}></use>
+    </SVG>
+  );
+};
+
+const EditPhotoIcon = props => {
+  return (
+    <SVG width={24} height={24} stroke={theme.colors.blue} {...props}>
+      <use href={icons + '#icon-camera'}></use>
+    </SVG>
+  );
+};
+
+const ConfirmPhotoIcon = props => {
+  return (
+    <SVG width={26} height={24} stroke={theme.colors.blue} {...props}>
+      <use href={icons + '#icon-check'}></use>
+    </SVG>
   );
 };
 
@@ -328,20 +382,22 @@ export const BtnBack = ({ onClick }) => {
     </>
   );
 };
-export const BtnAddPet = ({ onClick }) => {
+export const BtnAddPet = () => {
+  const navigate = useNavigate();
   return (
     <>
-      <BtnAdd type="button" onClick={onClick}>
+      <BtnAdd type="button" onClick={() => navigate('/add-pet')}>
         Add Pet
         <SvgAdd />
       </BtnAdd>
     </>
   );
 };
-export const BtnAddPetCurcle = ({ onClick }) => {
+export const BtnAddPetCurcle = () => {
+  const navigate = useNavigate();
   return (
     <>
-      <BtnAddCurcle type="button" onClick={onClick}>
+      <BtnAddCurcle type="button" onClick={() => navigate('/add-pet')}>
         <SvgAddCurcle />
         Add Pet
       </BtnAddCurcle>
@@ -400,5 +456,74 @@ export const BtnClearCancel = ({ onClick }) => {
     <BtnCloseStyled type="button" onClick={onClick}>
       Cancel
     </BtnCloseStyled>
+  );
+};
+
+export const InputCheckBtn = ({ onClick, error }) => {
+  return (
+    <>
+      <InputButton
+        type="button"
+        onClick={onClick}
+        disabled={error ? true : false}
+      >
+        <CheckIcon />
+      </InputButton>
+    </>
+  );
+};
+
+export const InputEditBtn = ({ onClick, isEditingBlocked }) => {
+  return (
+    <>
+      <InputButton
+        type="button"
+        onClick={onClick}
+        disabled={isEditingBlocked ? true : false}
+      >
+        <EditIcon />
+      </InputButton>
+    </>
+  );
+};
+
+export const EditPhotoBtn = ({ onClick }) => {
+  return (
+    <>
+      <StyledEditPhotoBtn type="button" onClick={onClick}>
+        <EditPhotoIcon />
+        Edit Photo
+      </StyledEditPhotoBtn>
+    </>
+  );
+};
+
+export const ConfirmPhotoBtn = ({ onClick }) => {
+  return (
+    <>
+      <StyledConfirmPhotoBtn type="button" onClick={onClick}>
+        <ConfirmPhotoIcon />
+        Confirm
+      </StyledConfirmPhotoBtn>
+    </>
+  );
+};
+
+export const LogOut = ({ onClick }) => {
+  return (
+    <LogOutWrapper type="button" onClick={onClick}>
+      <LogOutIcon />
+      <LogOutTitle>Log Out</LogOutTitle>
+    </LogOutWrapper>
+  );
+};
+
+export const DeletePetBtn = ({ onClick }) => {
+  return (
+    <>
+      <DeletePet type="button" onClick={onClick}>
+        <SvgDelete />
+      </DeletePet>
+    </>
   );
 };

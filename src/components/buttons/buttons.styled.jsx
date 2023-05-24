@@ -497,3 +497,102 @@ export const Avatar = styled.svg`
   fill: none;
   stroke: ${theme.colors.orange};
 `;
+
+export const StyledEditPhotoBtn = styled.button`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 94px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  border: none;
+  color: ${theme.colors.dark};
+  font-weight: ${theme.fontWeights.regular};
+  font-size: 12px;
+  line-height: calc(22 / 12);
+  letter-spacing: 0.04em;
+  cursor: pointer;
+`;
+
+export const StyledConfirmPhotoBtn = styled(StyledEditPhotoBtn)`
+  width: 79px;
+  cursor: pointer;
+`;
+
+export const InputButton = styled.button`
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+`;
+
+export const SVG = styled.svg`
+  fill: ${props => props.fill || 'none'};
+  stroke: ${props => props.stroke || 'none'};
+`;
+
+export const LogOutTitle = styled.h3`
+  display: flex;
+  justify-content: space-between;
+  font-style: none;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21.86px;
+  color: ${theme.colors.grey};
+`;
+
+export const LogOutWrapper = styled.button`
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 96px;
+  left: 10px;
+  bottom: 25px;
+  padding: 0;
+
+  font-weight: ${props => props.theme.fontWeights.regular};
+  font-size: 16px;
+  line-height: 22px;
+
+  background-color: ${props => props.theme.colors.transparent};
+
+  outline: none;
+  border: none;
+  cursor: pointer;
+
+  @media screen and (${props => props.theme.media.md}) {
+    left: 20px;
+    bottom: 21px;
+  }
+
+  @media screen and (${props => props.theme.media.lg}) {
+    left: 16px;
+    bottom: 20px;
+  }
+`;
+
+export const DeletePet = styled.button`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 16px;
+  top: 272px;
+
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: ${props => props.theme.colors.transparent};
+
+  @media screen and (${props => props.theme.media.md}) {
+    right: 20px;
+    top: 20px;
+  }
+
+  @media screen and (${props => props.theme.media.lg}) {
+    right: 23px;
+    top: 24px;
+  }
+`;
