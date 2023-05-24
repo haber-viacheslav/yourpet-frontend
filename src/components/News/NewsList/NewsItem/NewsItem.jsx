@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import {
   Item,
@@ -50,10 +50,10 @@ export const NewsItem = ({ imgUrl, title, text, date, url }) => {
   );
 };
 
-NewsItem.propTypes = {
-  imgUrl: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
-};
+// NewsItem.propTypes = {
+//   imgUrl: PropTypes.string,
+//   title: PropTypes.string.isRequired,
+//   text: PropTypes.string.isRequired,
+//   date: PropTypes.string.isRequired,
+//   url: PropTypes.string.isRequired,
+// };

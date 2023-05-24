@@ -22,7 +22,6 @@ import {
   Add,
   AddCurcle,
   Heart,
-  Filter,
   ToHeart,
   City,
   Logout,
@@ -120,9 +119,9 @@ const SvgToHeart = () => {
 };
 const SvgFilter = () => {
   return (
-    <Filter width={24} height={24}>
+    <svg width={24} height={24}>
       <use href={icons + '#icon-filters-2'}></use>
-    </Filter>
+    </svg>
   );
 };
 

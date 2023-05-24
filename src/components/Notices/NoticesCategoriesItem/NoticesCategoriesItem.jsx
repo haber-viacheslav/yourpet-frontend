@@ -1,7 +1,7 @@
 import {
   BtnAddFavorite,
   BtnAddPetCurcle,
-  BtnLearnMore,
+  BtnLearnMoreFavorite,
   PetCategory,
   PetInfo,
   SvgClock,
@@ -26,7 +26,7 @@ export const NoticesCategoryItem = ({ petList }) => {
   return (
     <>
       <ConteinerCard>
-        <Img src={smImgUrl1x} alt="" />
+        <Img src={smImgUrl1x} alt="Pet image" />
         <BtnAddFavorite />
         <BtnAddPetCurcle />
         <PetCategory text={`${category}`} />
@@ -36,7 +36,7 @@ export const NoticesCategoryItem = ({ petList }) => {
           <PetInfo Svg={Svg()} text={`${sex}`} />
         </ConteinerInfo>
         <Text>Сute dog looking for a home</Text>
-        <BtnLearnMore />
+        <BtnLearnMoreFavorite />
       </ConteinerCard>
     </>
   );

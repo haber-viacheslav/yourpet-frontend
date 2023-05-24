@@ -38,7 +38,7 @@ export const ModalApproveAction = ({
         </ModalDescr>
         <FlexContainer flexGap={'17px'}>
           <BtnClearCancel onClick={onClick} />
-          <BtnYesDelete onClick={onClick}></BtnYesDelete>
+          <BtnYesDelete onClick={onActivate}></BtnYesDelete>
         </FlexContainer>
       </>
     ),
@@ -52,7 +52,7 @@ export const ModalApproveAction = ({
         </ModalDescr>
         <FlexContainer flexGap={'17px'}>
           <BtnClearCancel onClick={onClick} />
-          <BtnYesDelete onClick={onClick}></BtnYesDelete>
+          <BtnYesDelete onClick={onActivate}></BtnYesDelete>
         </FlexContainer>
       </>
     ),
@@ -70,7 +70,7 @@ export const ModalApproveAction = ({
         <LogOutModalTitle>Already leaving?</LogOutModalTitle>
         <FlexContainer flexGap={'17px'}>
           <BtnClearCancel onClick={onClick} />
-          <BtnYesLogout onClick={onClick} />
+          <BtnYesLogout onClick={onActivate} />
         </FlexContainer>
       </>
     ),
