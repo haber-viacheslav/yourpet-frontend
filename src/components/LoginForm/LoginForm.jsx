@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, ErrorMessage } from 'formik';
 import { useState } from 'react';
 import { string, object } from 'yup';
-import {iconClose, iconOpen, IconCrossSmall, IconCheck} from './Icons/Icons'
+import { iconClose, iconOpen, IconCrossSmall, IconCheck } from './Icons/Icons';
 import {
   Wrapper,
   Input,
@@ -19,11 +19,8 @@ import {
   PasswordMessage,
 } from './LoginForm.styled';
 
-
 export const LoginForm = () => {
-  const [toggleIconPass, setToggleIconPass] = useState(
-    iconClose
-  );
+  const [toggleIconPass, setToggleIconPass] = useState(iconClose);
   const [typePass, setTypePass] = useState('password');
 
   const yupLoginValidation = object().shape({
@@ -48,18 +45,12 @@ export const LoginForm = () => {
   const togglePassInput = e => {
     if (typePass === 'password') {
       setTypePass('text');
-      setToggleIconPass(
-        iconOpen
-      );
+      setToggleIconPass(iconOpen);
     } else {
       setTypePass('password');
-      setToggleIconPass(
-        iconClose
-      );
+      setToggleIconPass(iconClose);
     }
   };
-
- 
 
   return (
     <Wrapper>
@@ -86,19 +77,19 @@ export const LoginForm = () => {
               />
               {errors.email && touched.email && (
                 <IconMail error={errors.email && touched.email && 'false'}>
-                  <IconCrossSmall/>
+                  <IconCrossSmall />
                 </IconMail>
               )}
               {touched.email && !errors.email && (
                 <IconMail error={errors.email && touched.email && 'false'}>
-                  <IconCheck/>
+                  <IconCheck />
                 </IconMail>
               )}
               {touched.password && !errors.password ? (
                 <IconPass
                   error={errors.password && touched.password && 'false'}
                 >
-                  <IconCheck/>
+                  <IconCheck />
                 </IconPass>
               ) : (
                 <IconPass onClick={togglePassInput}>{toggleIconPass}</IconPass>
