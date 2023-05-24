@@ -17,8 +17,8 @@ export const ModalBody = styled.div`
   left: 50%;
   transform: translateX(-50%);
   width: 95vw;
-  height: 287px;
-  padding: 68px 16px 60px;
+
+  padding: 44px 20px 16px;
   box-shadow: ${props => props.theme.shadows.mainShadow};
   border-radius: 20px;
   background-color: ${props => props.theme.colors.clearWhite};

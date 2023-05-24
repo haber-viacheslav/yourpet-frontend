@@ -297,7 +297,7 @@ export const BtnOption = styled.button`
 `;
 export const BtnToHeart = styled.button`
   height: 40px;
-  width: 129px;
+  width: 256px;
   border-radius: 40px;
   padding-top: 9px;
   padding-bottom: 9px;
@@ -323,7 +323,7 @@ export const ToHeart = styled.svg`
 `;
 export const BtnContact = styled.button`
   height: 40px;
-  width: 129px;
+  width: 256px;
   border-radius: 40px;
   padding-top: 9px;
   padding-bottom: 9px;
@@ -338,6 +338,7 @@ export const BtnContact = styled.button`
   line-height: 1.35;
   color: ${theme.colors.blue};
   border: 2px solid ${theme.colors.blue};
+  margin-bottom: 8px;
 `;
 export const PetInfoStyle = styled.div`
   height: 28px;
@@ -433,8 +434,8 @@ export const Logout = styled.svg`
 
 export const BtnClose = styled.button`
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 12px;
+  right: 12px;
   height: 24px;
   width: 24px;
   background-color: ${theme.colors.transparent};
