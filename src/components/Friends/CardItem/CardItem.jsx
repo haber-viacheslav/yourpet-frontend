@@ -20,7 +20,6 @@ import {
   MinTime,
   MaxTime,
 } from './CardItem.styled';
-// import PropTypes from 'prop-types';
 
 export const CardItem = ({
   email,
@@ -176,14 +175,3 @@ export const CardItem = ({
     </Wrapper>
   );
 };
-
-// CardItem.propTypes = {
-//   email: PropTypes.string.isRequired,
-//   address: PropTypes.string.isRequired,
-//   url: PropTypes.string.isRequired,
-//   addressUrl: PropTypes.string.isRequired,
-//   imageUrl: PropTypes.string.isRequired,
-//   phone: PropTypes.string.isRequired,
-//   title: PropTypes.string.isRequired,
-//   workDays: PropTypes.string.isRequired,
-// };

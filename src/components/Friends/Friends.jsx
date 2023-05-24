@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-// import { getOurFriends } from 'redux/pets/petsService';
-import dataFriends from './sponsors.json';
+import { getOurFriends } from 'redux/pets/petsService';
+// import dataFriends from './sponsors.json';
 
 import { CardItem } from './CardItem/CardItem';
 import { Title, Wrapper, CardList } from './Friends.styled';
@@ -9,16 +9,16 @@ export const OurFriends = () => {
   const [data, SetData] = useState([]);
 
   useEffect(() => {
-    // const fetchFriends = async () => {
-    //   try {
-    //     const friendsData = await getOurFriends();
-    //     console.log(friendsData);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // };
-    // fetchFriends();
-    SetData(dataFriends);
+    const fetchFriends = async () => {
+      try {
+        const friendsData = await getOurFriends();
+        console.log(friendsData.data);
+        SetData([...friendsData.data]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchFriends();
   }, []);
 
   return (
@@ -27,6 +27,7 @@ export const OurFriends = () => {
       <CardList>
         {data.map(friend => {
           const {
+            _id: id,
             email,
             address,
             url,
@@ -36,9 +37,10 @@ export const OurFriends = () => {
             title,
             workDays,
           } = friend;
+          console.log(workDays);
           return (
             <CardItem
-              key={title}
+              key={id}
               email={email}
               address={address}
               url={url}

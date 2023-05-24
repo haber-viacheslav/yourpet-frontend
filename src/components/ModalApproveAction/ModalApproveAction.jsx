@@ -20,6 +20,7 @@ import {
 } from '../buttons/buttons';
 import { textCutter } from 'helpers/textCutter';
 const modalRoot = document.querySelector('#modal-root');
+
 export const ModalApproveAction = ({
   onActivate,
   onClick,
@@ -92,6 +93,7 @@ export const ModalApproveAction = ({
       onClick();
     }
   };
+
   return createPortal(
     <Overlay onClick={handleBackdropClick}>
       <ModalBody>
