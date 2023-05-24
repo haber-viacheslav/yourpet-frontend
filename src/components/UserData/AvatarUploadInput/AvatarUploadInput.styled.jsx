@@ -37,6 +37,7 @@ export const Photo = styled.img`
   height: 100%;
   border: none;
   border-radius: 40px;
+  object-fit: contain;
 `;
 
 export const PhotoPlaceWrapper = styled.div`
@@ -50,14 +51,14 @@ export const PhotoWrapper = styled.span`
   align-items: center;
   width: 182px;
   height: 182px;
-  background: ${props => props.theme.colors.blueLight};
+  background: ${props => {
+    if (!props['data-color']) {
+      return props.theme.colors.blueLight;
+    } else {
+      return props.theme.colors.transparentght;
+    }
+  }};
   border-radius: 40px;
-
-  @media screen and (${props => props.theme.media.md}) {
-    width: 182px;
-    height: 182px;
-    border-radius: 40px;
-  }
 `;
 
 export const ErrWrapper = styled.span`

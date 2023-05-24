@@ -56,9 +56,9 @@ export const AvatarUploadInput = ({
           disabled={isEditing ? false : true}
         />
         <PhotoPlaceWrapper>
-          <PhotoWrapper>
+          <PhotoWrapper data-color={photoPreview}>
             {photoPreview && <Photo src={photoPreview} />}
-            <UserPhotoIcon />
+            {!photoPreview && <UserPhotoIcon />}
           </PhotoWrapper>
           {isFieldInvalid && <ErrWrapper>{errors.file}</ErrWrapper>}
         </PhotoPlaceWrapper>
