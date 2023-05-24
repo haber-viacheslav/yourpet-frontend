@@ -86,7 +86,6 @@ export const NewsData = () => {
 
 
 
-
 // const initialState = { search: '', page: 1 };
 
 // export const NewsData = () => {
