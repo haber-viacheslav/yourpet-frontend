@@ -1,9 +1,5 @@
 import axios from 'axios';
 
-export const getOurFriends = async () => {
-  const responce = await axios.get('');
-  return responce;
-};
 const baseServerURL = `https://your-pet-api.onrender.com`;
 const baseAPIEndpoint = '/api/v1';
 axios.defaults.baseURL = baseServerURL + baseAPIEndpoint;
@@ -16,11 +12,16 @@ export const setAuthHeader = token => {
 //   axios.defaults.headers.common.Authorization = '';
 // };
 
-export const createPet = async function (body) {
+export const getOurFriends = async () => {
+  const responce = await axios.get('');
+  return responce;
+};
+
+export const createPet = async body => {
   return await axios.post(`/pets`);
 };
 
-export const createNotice = async function (body) {
+export const createNotice = async body => {
   return await axios.post(`/notices`);
 };
 

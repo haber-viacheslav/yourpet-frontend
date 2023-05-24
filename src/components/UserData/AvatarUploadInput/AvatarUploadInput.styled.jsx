@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+`;
+
 export const UploadFileLabel = styled.label`
   display: flex;
   flex-direction: column-reverse;
@@ -8,8 +15,8 @@ export const UploadFileLabel = styled.label`
 
   font-weight: 400;
   font-size: 12px;
-  line-height: calc(22/12);
-  letter-space: 4%;
+  line-height: calc(22 / 12);
+  letter-spacing: 4%;
   gap: 15px;
   cursor: pointer;
 `;

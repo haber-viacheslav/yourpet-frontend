@@ -102,3 +102,18 @@ export const addPetFormSchema = yup.object().shape({
       value => value?.size <= 3145728
     ),
 });
+
+export const profileSchema = yup.object().shape({
+  name: yup
+    .string()
+    .min(2, 'min 2 characters')
+    .max(20, 'max 20 characters')
+    .required('Set your name'),
+  email: yup.string().email('Enter a valid email').required('Set your email'),
+  birthday: yup.string().required('Choose your birthday'),
+  city: yup
+    .string()
+    .matches(/^[A-Z][a-zA-Z]*$/, 'City begins with capitalize character'),
+  phone: yup.string().matches(/^\+\d{12}$/, 'UA format number'),
+  file: '',
+});

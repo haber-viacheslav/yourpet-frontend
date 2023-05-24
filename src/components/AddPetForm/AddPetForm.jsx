@@ -160,7 +160,6 @@ export const AddPetForm = () => {
         validationSchema={addPetFormSchema}
       >
         {({ values, errors, touched, validateForm }) => {
-          // console.log(values);
           const { category, sex } = values;
           const isFieldInvalid = errors.sex && touched.sex;
           return (
