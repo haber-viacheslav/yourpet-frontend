@@ -29,7 +29,7 @@ export const ModalBody = styled.div`
 
   @media screen and (${props => props.theme.media.md}) {
     top: 200px;
-    padding: 32px 32px px 24px;
+    padding: 32px 32px 24px;
     width: 681px;
     height: 540px;
   }

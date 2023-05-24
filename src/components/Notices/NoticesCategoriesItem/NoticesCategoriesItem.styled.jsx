@@ -38,7 +38,11 @@ export const Text = styled.h3`
   font-weight: 700;
   font-size: 24px;
   line-height: 33px;
-  padding: 0px 20px 20px;
+  padding: 0px 20px 20px 0;
+  @media screen and (${props => props.theme.media.md}) {
+    font-size: 28px;
+    line-height: 38px;
+  }
 `;
 export const Img = styled.img`
   margin-bottom: 20px;
