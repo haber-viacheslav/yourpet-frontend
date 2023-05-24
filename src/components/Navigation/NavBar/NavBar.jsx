@@ -1,9 +1,7 @@
 import React from 'react';
-import {Nav} from './Nav/Nav';
-// import { UserNav } from './UserNav/UserNav';
-import { AuthNav } from './AuthNav/AuthNav';
-import { BurgerMenu } from './BurgerMenu/BurgerMenu';
-// import { BtnGroup } from './../Navigation/';
+import { Logo } from '../../Logo/Logo';
+import { BurgerBtn } from '../BurgerMenu/BurgerBtn';
+import { Navigate } from './NavBar.styled';
 // import { useState, useEffect } from 'react';
 // import { useSelector } from 'react-redux';
 
@@ -19,7 +17,7 @@ import { BurgerMenu } from './BurgerMenu/BurgerMenu';
 //   return window.innerWidth > 767;
 // }
 
-export const Navigation = () => {
+export const NavBar = () => {
   // const [isMobile, setIsMobile] = useState(isMobileDevice());
   // const [isTablet, setTabletDevice] = useState(isTabletDevice());
   // const isLogIn = useSelector(state => state.auth.token);
@@ -38,18 +36,9 @@ export const Navigation = () => {
   // }, []);
 
   return (
-    <>
-      {/* {isMobile ? null : <Nav />} */}
-      <Nav />
-      <div>
-        {/* {isLogIn ? <UserNav /> : null}
-        {isTablet && !isLogIn ? <AuthNav /> : null}
-        {isMobile ? <BurgerMenu /> : null}
-         */}
-        {/* <UserNav/> */}
-        <AuthNav />
-        <BurgerMenu />
-      </div>
-    </>
+    <Navigate>
+      <Logo />
+      <BurgerBtn />
+    </Navigate>
   );
 };

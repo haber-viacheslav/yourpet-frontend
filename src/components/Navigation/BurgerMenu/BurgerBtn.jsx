@@ -1,26 +1,28 @@
 import React from 'react';
 import { useState } from 'react';
-// import { Spin as Hamburger } from 'hamburger-react';
-// import { BackdropMenu } from '../Backdrop/Backdrop';
-import { HamburgerBtn } from './BurgerBtn.styled';
+import { Spin as Hamburger } from 'hamburger-react';
+import { Burger, BoxNav, BoxUser, Box } from './BurgerBtn.styled';
+import { Nav } from '../Nav/Nav';
+import { AuthNav } from '../AuthNav/AuthNav';
+// import { UserNav } from '../../Navigation/UserNav/UserNav';
+// import { UserMenu } from 'components/Navigation/UserMenu/UserMenu';
 
 export const BurgerBtn = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
-    setIsOpen(true);
+    setIsOpen(!isOpen);
   };
-
-  // const handleClose = () => {
-  //   setIsOpen(false);
-  // };
 
   return (
     <>
-      <HamburgerBtn
+    <Burger>
+      <Hamburger
+        isOpen={isOpen}
         onClick={handleOpen}
         toggled={isOpen}
         toggle={setIsOpen}
+        easing="ease-in"
         rounded="true"
         label="Show menu"
         size={20}
@@ -28,9 +30,46 @@ export const BurgerBtn = () => {
         distance="md"
         duration={0.6}
       />
-      {/* {isOpen ? (
-        <BackdropMenu isOpen={isOpen} handleClose={handleClose} />
-      ) : null} */}
+    </Burger>      
+      <Box isOpen={isOpen}>
+        <BoxNav>
+          <Nav />
+        </BoxNav>
+        <BoxUser>
+          <AuthNav />
+        {/* <UserMenu/> */}
+        </BoxUser>
+        
+      </Box>
     </>
   );
 };
+
+
+
+
+// export const BackdropMenu = ({ isOpen, handleClose }) => {
+  // const handleLinkClick = () => {
+  //   handleClose();
+  // };
+  // const [isTablet, setTabletDevice] = useState(isTabletDevice());
+  // const isLogIn = useSelector(state => state.auth.token);
+
+  // useEffect(() => {
+  // const handleResize = () => {
+  //   setTabletDevice(isTabletDevice());
+  // };
+
+  //   window.addEventListener('resize', handleResize);
+
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //   };
+  // }, []);
+
+  // return (
+    // <Box>
+     
+    // </Box>
+  // );
+// };
