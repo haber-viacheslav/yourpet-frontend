@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Formik, ErrorMessage } from 'formik';
 import { string, object, ref } from 'yup';
-import {iconClose, iconOpen, IconCrossSmall, IconCheck} from './Icons/Icons'
+import { iconClose, iconOpen, IconCrossSmall, IconCheck } from './Icons/Icons';
 import {
   Wrapper,
   RegisterFormStyled,
@@ -12,6 +12,7 @@ import {
   EmailMessage,
   PasswordMessage,
   ConfirmMessage,
+  SuccessMessage,
   Input,
   Title,
   Box,
@@ -21,9 +22,7 @@ import {
   Link,
 } from './RegisterForm.styled';
 
-
 export const RegisterForm = () => {
-  
   const [toggleIconPass, setToggleIconPass] = useState(iconClose);
   const [typePass, setTypePass] = useState('password');
   const [toggleIconConfirm, setToggleIconConfirm] = useState(iconClose);
@@ -33,7 +32,7 @@ export const RegisterForm = () => {
     email: string().email('Enter a Valid Email').required('Email is Required'),
     password: string()
       .required('Enter Your Password')
-      .min(8, 'Password Should be minimum 8 character')
+      .min(8, 'Password should be minimum 8 character')
       .max(50, 'Too long'),
     confirm: string()
       .oneOf([ref('password')], 'Password does not matched')
@@ -116,13 +115,18 @@ export const RegisterForm = () => {
                 }
                 error={touched.password && errors.password}
               />
-              <ErrorMessage
-                name="password"
-                type="password"
-                render={password => (
-                  <PasswordMessage>{password}</PasswordMessage>
-                )}
-              />
+              {touched.password && errors.password && (
+                <ErrorMessage
+                  name="password"
+                  type="password"
+                  render={password => (
+                    <PasswordMessage>{password}</PasswordMessage>
+                  )}
+                />
+              )}{' '}
+              {touched.password && !errors.password && (
+                <SuccessMessage>Password is secure</SuccessMessage>
+              )}
               {touched.password && !errors.password ? (
                 <IconPass
                   error={errors.password && touched.password && 'false'}
@@ -132,7 +136,6 @@ export const RegisterForm = () => {
               ) : (
                 <IconPass onClick={togglePassInput}>{toggleIconPass}</IconPass>
               )}
-
               <ErrorMessage
                 name="confirm"
                 type="confirm"
@@ -171,3 +174,5 @@ export const RegisterForm = () => {
     </Wrapper>
   );
 };
+
+// passwords is matched

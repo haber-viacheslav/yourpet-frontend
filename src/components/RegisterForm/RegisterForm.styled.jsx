@@ -205,3 +205,19 @@ export const ConfirmMessage = styled.div`
     top: 210px;
   }
 `;
+
+export const SuccessMessage = styled.div`
+  position: absolute;
+  font-family: ${props => props.theme.fonts.main};
+  font-style: normal;
+  font-weight: ${props => props.theme.fontWeights.regular};
+  font-size: 12px;
+  line-height: 1.33;
+  color: ${props => props.theme.colors.green};
+  top: 123px;
+  left: 16px;
+  @media screen and (${props => props.theme.media.md}) {
+    top: 130px;
+    left: 16px;
+  }
+`;

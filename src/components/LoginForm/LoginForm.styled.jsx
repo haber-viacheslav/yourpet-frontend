@@ -180,3 +180,18 @@ export const PasswordMessage = styled.div`
 
 `;
 
+export const SuccessMessage = styled.p`
+  position: absolute;
+  font-family: ${props => props.theme.fonts.main};
+  font-style: normal;
+  font-weight: ${props => props.theme.fontWeights.regular};
+  font-size: 12px;
+  line-height: 16px;
+ color: ${props => props.theme.colors.green};
+   top: 123px;
+  left: 16px;
+ @media screen and (min-width: 768px) {
+    top: 130px;
+  left: 16px;
+  }
+`

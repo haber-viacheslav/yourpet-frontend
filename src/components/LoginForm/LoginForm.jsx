@@ -17,6 +17,7 @@ import {
   Link,
   EmailMessage,
   PasswordMessage,
+  SuccessMessage
 } from './LoginForm.styled';
 
 export const LoginForm = () => {
@@ -103,13 +104,17 @@ export const LoginForm = () => {
                 }
                 error={touched.password && errors.password}
               />
-              <ErrorMessage
-                name="password"
-                type="password"
-                render={password => (
-                  <PasswordMessage>{password}</PasswordMessage>
-                )}
-              />
+              {touched.password && errors.password && (
+                <ErrorMessage
+                  name="password"
+                  type="password"
+                  render={password => (
+                    <PasswordMessage>{password}</PasswordMessage>
+                  )}
+                />
+              )}  {touched.password && !errors.password && (
+                <SuccessMessage>Password is secure</SuccessMessage>
+              )}
             </Box>
             <Button type="submit">Login</Button>
             <Text>
