@@ -34,17 +34,22 @@ export const BigBtnFavor = styled.button`
   border-radius: 40px;
   padding-left: auto;
   padding-right: auto;
-  border: none;
-  background: ${theme.colors.blue};
-  color: ${theme.colors.white};
+  border: 2px solid ${theme.colors.blue};
   font-size: 16px;
+  color: ${theme.colors.blue};
+  background-color: ${theme.colors.white};
   font-family: ${theme.fonts.main};
   font-weight: ${theme.fontWeights.bold};
   cursor: pointer;
+  padding-left: 36px;
   :hover,
   :focus {
-    background: ${theme.colors.blueGradient};
+    padding-left: unset;
+    background: ${theme.colors.blue};
+    color: ${theme.colors.white};
+    border: none;
   }
+  margin: 0 auto 20px;
 `;
 
 export const Pawprint = styled.svg`

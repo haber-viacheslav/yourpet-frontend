@@ -1,3 +1,3 @@
 export const ModalItem = () => {
-  return <h1>hello world</h1>;
+  return <h1>Modal</h1>;
 };
