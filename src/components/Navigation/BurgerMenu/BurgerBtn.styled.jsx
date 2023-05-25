@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Burger = styled.div`
   z-index: 20;
   
-  @media (min-width: 1279px) {
+  @media (min-width: 1280px) {
     display: none;
   }
 `;
@@ -14,7 +14,7 @@ export const Box = styled.div`
   justify-content: space-between;
   justify-content: space-evenly;
   
-  @media (max-width: 769px) {
+  @media (max-width: 768px) {
     transform: ${({ isOpen }) =>
       isOpen ? 'translateX(0)' : 'translateX(100%)'};
     transition: transform cubic-bezier(0.39, 0.575, 0.565, 1);
@@ -26,8 +26,10 @@ export const Box = styled.div`
     right: 0;
     height: 100%;
     width: 100%;
-    padding: 22px 20px 22px 20px;
-    
+    padding: 22px 20px 22px 20px;    
+  }
+  @media (min-width: 768px) {
+    display: none;
   }
 `;
 export const BoxNav = styled.div`
@@ -47,13 +49,8 @@ export const BoxUser = styled.div`
 `;
 export const BoxUserHeader = styled.div`
   z-index: 0;
-  /* :first-child{
-    :first-child{
-      display: block;
-    } */
-  /* display: none ;
-  @media (min-width: 768px) {
-    /* display: inherit; */
-   
-  
+  @media (max-width: 767px) {
+  display: none;
+    
+  }
 `;

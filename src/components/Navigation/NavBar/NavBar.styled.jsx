@@ -5,6 +5,7 @@ export const Navigate = styled.div`
   height: 48px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   z-index: 100; 
 
 `;
