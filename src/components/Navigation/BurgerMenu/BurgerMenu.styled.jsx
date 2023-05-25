@@ -24,9 +24,9 @@ export const Box = styled.div`
     height: 100%;
     width: 100%;
     padding: 22px 20px 22px 20px;
-    z-index: 900;
+    z-index: 9999;
     position: fixed;
- 
+    overflow: hidden;
   }
 `;
 export const BoxNav = styled.div`

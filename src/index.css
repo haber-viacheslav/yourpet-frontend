@@ -13,7 +13,7 @@ body {
   background-color: #fef9f9;
 
   /* backdrop */
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 h1,
 h2,
