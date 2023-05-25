@@ -1,29 +1,28 @@
 import axios from 'axios';
+// import { setAgituthHeader, clearAuthHeader } from 'redux/auth/utility/authUtility';
 
 const baseServerURL = `https://your-pet-api.onrender.com`;
 const baseAPIEndpoint = '/api/v1';
 axios.defaults.baseURL = baseServerURL + baseAPIEndpoint;
 
-export const setAuthHeader = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+export const getFriends = async () => {
+  const response = await axios.get('/friends');
+  return response;
 };
 
-// const clearAuthHeader = () => {
-//   axios.defaults.headers.common.Authorization = '';
-// };
-
-export const getOurFriends = async () => {
-  const responce = await axios.get('/friends');
-  return responce;
-};
-
-export const getYourPets = async () => {
-  const responce = await axios.get('/pets');
-  return responce;
+export const getPets = async () => {
+  // setAuthHeader(token);
+  const response = await axios.get('/pets');
+  return response;
 };
 
 export const createPet = async body => {
   return await axios.post(`/pets`);
+};
+
+export const deletePet = async id => {
+  // setAuthHeader(token);
+  return await axios.delete(`/pets/${id}`);
 };
 
 export const createNotice = async body => {

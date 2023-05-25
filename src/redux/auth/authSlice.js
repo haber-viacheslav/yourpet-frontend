@@ -26,7 +26,6 @@ const authSlice = createSlice({
           email: action.payload.body.email,
         };
         state.user = user;
-
         state.accessToken = action.payload.body.accessToken;
         state.refreshToken = action.payload.body.refreshToken;
         state.isLoggedIn = true;
@@ -37,7 +36,6 @@ const authSlice = createSlice({
           email: action.payload.body.email,
         };
         state.user = user;
-        console.log(action.payload.body);
         state.accessToken = action.payload.body.accessToken;
         state.refreshToken = action.payload.body.refreshToken;
         state.isLoggedIn = true;

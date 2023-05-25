@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Formik, ErrorMessage } from 'formik';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logIn, refreshTokens } from '../../redux/auth/authService';
 import { string, object } from 'yup';
 import { iconClose, iconOpen, IconCrossSmall, IconCheck } from './Icons/Icons';
+// import { setAuthHeader } from 'redux/auth/utility/authUtility';
 import {
   Wrapper,
   Input,
@@ -26,6 +28,7 @@ import { refreshingTokensExecutor } from 'helpers/refreshingTokensExecutor';
 export const LoginForm = () => {
   const [toggleIconPass, setToggleIconPass] = useState(iconClose);
   const [typePass, setTypePass] = useState('password');
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   // ACHTUNG
@@ -49,7 +52,7 @@ export const LoginForm = () => {
          * @param { dispatch} *link to the dispatch
          * @param { action} *an action that using in dispatch, like "dispatch(someAction())"
          */
-        const result = refreshingTokensExecutor({
+        refreshingTokensExecutor({
           error: {
             // This path is an EXAMPLE ONLY , send ONLY the catch error obj in the arguments of this func!!!
             response: { data: { code: 403, message: 'expired' } },
@@ -57,13 +60,14 @@ export const LoginForm = () => {
           dispatch,
           action: refreshTokens,
         });
-        console.log(result); // if error 403 result would be "expired" (type String) and you could do some logic if you want
+        // console.log(result); // if error 403 result would be "expired" (type String) and you could do some logic if you want
         // if error has  any codes except 403 the result would be "error" (type Object)!!
       }
     })();
 
     // dispatch(refreshTokens());
   }, [dispatch]);
+
   const yupLoginValidation = object().shape({
     email: string().email('Enter a Valid Email').required('Email is Required'),
     password: string()
@@ -82,8 +86,8 @@ export const LoginForm = () => {
   };
 
   const handleSubmit = (values, { resetForm }) => {
-    console.log(values);
     dispatch(logIn({ values }));
+    navigate('/user');
     resetForm();
   };
 
@@ -130,7 +134,6 @@ export const LoginForm = () => {
                   <IconCheck />
                 </IconMail>
               )}
-              
               <Input
                 type={typePass}
                 name="password"
@@ -153,15 +156,14 @@ export const LoginForm = () => {
                 <SuccessMessage>Password is secure</SuccessMessage>
               )}
               {touched.password && !errors.password && (
-                <IconPass position={'40px'}
+                <IconPass
+                  position={'40px'}
                   error={errors.password && touched.password && 'false'}
                 >
                   <IconCheck />
                 </IconPass>
               )}
-              <IconPass  onClick={togglePassInput}>
-                {toggleIconPass}
-              </IconPass>
+              <IconPass onClick={togglePassInput}>{toggleIconPass}</IconPass>
             </Box>
             <Button type="submit">Login</Button>
             <Text>

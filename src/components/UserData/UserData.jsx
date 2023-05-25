@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Formik } from 'formik';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'redux/auth/selectors';
 
 import { UserDataItem } from './UserDataItem/UserDataItem';
 import { AvatarUploadInput } from './AvatarUploadInput/AvatarUploadInput';
@@ -12,7 +14,7 @@ import {
   ProfileInfo,
 } from './UserData.styled';
 
-const inputes = [
+const inputs = [
   { type: 'text', name: 'name', placeholder: 'Enter your name' },
   { type: 'text', name: 'email', placeholder: 'example@mail.com' },
   { type: 'date', name: 'birthday', placeholder: '00.00.0000' },
@@ -21,9 +23,9 @@ const inputes = [
 ];
 
 const InitialFormData = {
-  name: 'Andrii',
-  email: 'a.hokhman@gmail.com',
-  birthday: '1983-06-24',
+  name: '',
+  email: '',
+  birthday: '',
   phone: '',
   city: '',
   file: '',
@@ -32,11 +34,14 @@ const InitialFormData = {
 export const UserData = () => {
   const [isEditingBlocked, setIsEditingBlocked] = useState(false);
   const [logOut, setLogOut] = useState(false);
-  const [initialValues, setinitialValues] = useState(InitialFormData);
+  const [initialValues, setInitialValues] = useState(InitialFormData);
+  const user = useSelector(selectUser);
+
+  // console.log(user);
 
   useEffect(() => {
-    setinitialValues(InitialFormData);
-  }, []);
+    setInitialValues(user);
+  }, [user]);
 
   const handleLogOut = () => {
     setLogOut(true);
@@ -81,7 +86,8 @@ export const UserData = () => {
             onSubmit={handleOnSubmit}
             validationSchema={profileSchema}
           >
-            {({ errors, touched, handleSubmit }) => {
+            {({ values, errors, touched, handleSubmit }) => {
+              console.log(values);
               return (
                 <>
                   <AvatarUploadInput
@@ -92,8 +98,8 @@ export const UserData = () => {
                     setIsEditingBlocked={setIsEditingBlocked}
                   />
                   <ProfileInputWrapper>
-                    {inputes.map(inpute => {
-                      const { type, name, placeholder } = inpute;
+                    {inputs.map(input => {
+                      const { type, name, placeholder } = input;
                       return (
                         <UserDataItem
                           key={name}

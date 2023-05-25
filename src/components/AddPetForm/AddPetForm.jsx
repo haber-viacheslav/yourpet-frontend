@@ -115,9 +115,7 @@ export const AddPetForm = () => {
         formData.append('file', values.file, 'Pet`s photo');
         try {
           await createPet(formData);
-        } catch (error) {
-          console.log(error);
-        }
+        } catch (error) {}
 
         break;
       default:
