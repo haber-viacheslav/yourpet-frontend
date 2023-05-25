@@ -6,10 +6,10 @@ import { NewsData } from '../components/NewsData/NewsData';
 const NewsPage = () => {
   return (
     <Section
-      padTopSm={'10px'}
+      padTopSm={'40px'}
       padBottomLg={'150px'}
-      padTopLg={'300px'}
-      padTopMd={'200px'}
+      padTopLg={'30px'}
+      padTopMd={'0px'}
     >
       <Container>
         <FlexContainer>
