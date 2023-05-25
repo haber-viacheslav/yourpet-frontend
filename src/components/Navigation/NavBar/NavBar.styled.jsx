@@ -6,7 +6,28 @@ export const Navigate = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 100; 
-
+  flex-wrap: wrap;
+  z-index: 100;
 `;
 
+export const BoxUser = styled.div`
+  z-index: 0;
+  @media (max-width: 1279px) {
+  }
+`;
+export const BoxAuth = styled.div`
+  display: none;
+  @media (min-width: 768px) {
+    display: inherit;
+  }
+`;
+export const BoxNavigate = styled.div`
+  display: none;
+  @media screen and (${props => props.theme.media.lg}) {
+    display: inherit;
+    margin-left: 270px;
+    margin-right: auto;
+    flex-direction: row;
+    padding-bottom: 0;
+  }
+`;

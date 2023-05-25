@@ -3,23 +3,20 @@ import { NavLink } from 'react-router-dom';
 
 export const NavList = styled.ul`
   display: flex;
-  gap: 20px;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 219px;
+  gap: 20px;
   @media (min-width: 769px) {
-    display: none;
-    
-  }
+  gap: 60px;
+  };
   @media screen and (${props => props.theme.media.lg}) {
-    display: inherit;
-    margin-right: 270px;
-    flex-direction: row;
-    padding-bottom: 0;
-    
-  }
-`;
+  justify-content: space-between;
+  gap: 40px;
+  align-items: center;
+  flex-direction: row;
+  };
 
+`;
 export const NavItem = styled.li`
   display: flex;
   align-items: center;
@@ -27,7 +24,10 @@ export const NavItem = styled.li`
   font-weight: ${props => props.theme.fontWeights.medium};
   font-size: 32px;
   line-height: 1.35;
-
+  @media (min-width: 769px) {
+  font-size: 48px;
+  line-height: 1.36;
+  };
   @media screen and (${props => props.theme.media.lg}) {
     font-size: 20px;
     letter-spacing: 0.04em;
@@ -36,19 +36,12 @@ export const NavItem = styled.li`
     }
   }
 `;
-
-
-
-
-  export const NavLinkItem = styled(NavLink)`
+export const NavLinkItem = styled(NavLink)`
   color: ${props => props.theme.colors.black};
-  
+
   :hover,
   :focus,
   :active {
     color: ${props => props.theme.colors.orange};
   }
 `;
-
-
-  

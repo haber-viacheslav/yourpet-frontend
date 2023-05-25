@@ -1,25 +1,25 @@
 import styled from 'styled-components';
 
 export const Burger = styled.div`
-  z-index: 20;
-  
-  @media (min-width: 1280px) {
+  z-index: 20;  
+  @media (min-width: 1279px) {
     display: none;
   }
 `;
 
 // backdrop
 export const Box = styled.div`
-  display: flex;
-  justify-content: space-between;
-  justify-content: space-evenly;
+  display: none;
+  /* justify-content: space-between;
+  justify-content: space-evenly; */
   
-  @media (max-width: 768px) {
+  @media (max-width: 1279px) {
+    display: inherit;
     transform: ${({ isOpen }) =>
       isOpen ? 'translateX(0)' : 'translateX(100%)'};
     transition: transform cubic-bezier(0.39, 0.575, 0.565, 1);
-    flex-direction: column-reverse;
-    flex-flow: column-reserv nowrap;
+    /* /* flex-direction: column-reverse; */
+    flex-flow: column;
     background-color: ${props => props.theme.colors.white};
     position: fixed;
     top: 0;
@@ -28,29 +28,44 @@ export const Box = styled.div`
     width: 100%;
     padding: 22px 20px 22px 20px;    
   }
-  @media (min-width: 768px) {
+  /* @media (min-width: 1280px) {
     display: none;
-  }
+  } */
 `;
 export const BoxNav = styled.div`
   display: flex;
   justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 219px;
+  
+   @media (min-width: 769px) {
+      padding-top: 160px;
+      
+  } 
+  /* @media screen and (${props => props.theme.media.lg}) {
+    display: inherit;
+
+  } */
+
 `;
 export const BoxUser = styled.div`
   display: flex;
   justify-content: space-around;
   margin-top: 82px;
   margin-bottom: 40px;
-
+  @media (min-width: 768px){
+    display: none;
+  };
   @media (min-width: 1279px){
     margin-top: 0;
     margin-bottom: 0;
-  }
-`;
-export const BoxUserHeader = styled.div`
-  z-index: 0;
-  @media (max-width: 767px) {
-  display: none;
     
   }
 `;
+// export const BoxUserHeader = styled.div`
+//   z-index: 0;
+//   @media (max-width: 1279px) {
+    
+//   }
+// `;
