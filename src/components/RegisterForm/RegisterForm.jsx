@@ -29,7 +29,7 @@ export const RegisterForm = () => {
   const [toggleIconPass, setToggleIconPass] = useState(iconClose);
   const [typePass, setTypePass] = useState('password');
   const [toggleIconConfirm, setToggleIconConfirm] = useState(iconClose);
-  const [typeCofirm, setTypeCofirm] = useState('password');
+  const [typeConfirm, setTypeConfirm] = useState('password');
 
   const dispatch = useDispatch();
 
@@ -69,11 +69,11 @@ export const RegisterForm = () => {
   };
 
   const toggleConfirmInput = e => {
-    if (typeCofirm === 'password') {
-      setTypeCofirm('text');
+    if (typeConfirm === 'password') {
+      setTypeConfirm('text');
       setToggleIconConfirm(iconOpen);
     } else {
-      setTypeCofirm('password');
+      setTypeConfirm('password');
       setToggleIconConfirm(iconClose);
     }
   };
@@ -87,7 +87,7 @@ export const RegisterForm = () => {
       >
         {({ errors, touched }) => (
           <RegisterFormStyled autoComplete="off">
-            <Title>Registation</Title>
+            <Title>Registration</Title>
             <Box>
               <Input
                 type="text"
@@ -145,7 +145,7 @@ export const RegisterForm = () => {
               <IconPass onClick={togglePassInput}>{toggleIconPass}</IconPass>
 
               <Input
-                type={typeCofirm}
+                type={typeConfirm}
                 name="confirm"
                 id="confirm"
                 placeholder="Confirm password"
@@ -177,7 +177,7 @@ export const RegisterForm = () => {
                 </SuccessMessageConfirm>
               )}
             </Box>
-            <Button type="submit">Registation</Button>
+            <Button type="submit">Registration</Button>
             <Text>
               Already have an account?
               <Span>
