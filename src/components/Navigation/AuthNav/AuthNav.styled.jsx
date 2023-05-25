@@ -18,8 +18,6 @@ export const AuthNavMenu = styled.div`
 `;
 
 export const RegisterLink = styled(NavLink)`
-  position: relative;
-  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,8 +34,6 @@ export const RegisterLink = styled(NavLink)`
 `;
 
 export const LoginLink = styled(NavLink)`
-  position: relative;
-  z-index: 1000;
   margin-bottom: 20px;
   display: flex;
   justify-content: center;
