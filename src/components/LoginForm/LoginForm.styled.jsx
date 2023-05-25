@@ -133,9 +133,10 @@ export const IconMail = styled.span`
   cursor: pointer;
   color: ${props =>
     props.error ? props.theme.colors.red : props.theme.colors.green};
-  top: 86px;
-  right: 15px;
+  top: 13px;
+  right: 40px;
   @media screen and (${props => props.theme.media.md}) {
+    top: 86px;
     top: 12px;
   }
 `;
@@ -145,7 +146,7 @@ export const IconPass = styled.span`
   position: absolute;
   cursor: pointer;
   top: 86px;
-  right: 15px;
+  right: ${props => props.position || '15px'};
   @media screen and (${props => props.theme.media.md}) {
     top: 92px;
   }
