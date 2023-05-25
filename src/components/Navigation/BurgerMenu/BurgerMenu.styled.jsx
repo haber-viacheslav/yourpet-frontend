@@ -1,18 +1,17 @@
 import styled from 'styled-components';
 
 export const Burger = styled.div`
+  /* position: ${({ isOpen }) => (isOpen ? 'static' : 'none')}; */
   z-index: 1000;
   @media (min-width: 1279px) {
     display: none;
-  }
+  } 
 `;
 
 // backdrop
 export const Box = styled.div`
   display: none;
-  /* justify-content: space-between;
-  justify-content: space-evenly; */
-  
+
   @media (max-width: 1279px) {
     display: inherit;
     transform: ${({ isOpen }) =>
@@ -20,14 +19,14 @@ export const Box = styled.div`
     transition: transform cubic-bezier(0.39, 0.575, 0.565, 1);
     flex-flow: column;
     background-color: ${props => props.theme.colors.white};
-    position: fixed;
     top: 0;
     right: 0;
     height: 100%;
     width: 100%;
     padding: 22px 20px 22px 20px;
-    z-index: 999;
+    z-index: 900;
     position: fixed;
+ 
   }
 `;
 export const BoxNav = styled.div`
@@ -40,7 +39,6 @@ export const BoxNav = styled.div`
   @media (min-width: 769px) {
     padding-top: 160px;
   }
-
 `;
 export const BoxUser = styled.div`
   display: flex;

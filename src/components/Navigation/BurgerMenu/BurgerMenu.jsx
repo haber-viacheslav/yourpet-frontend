@@ -24,7 +24,7 @@ export const BurgerMenu = ({ name }) => {
   const handleClose = () => {
     setIsOpen(false);
   };
-
+  
   useEffect(() => {
     const handler = e => {
       if (menuRef.current.contains(e.target)) {
@@ -32,18 +32,19 @@ export const BurgerMenu = ({ name }) => {
       }
     };
     document.addEventListener('mousedown', handler);
+    
     return () => {
       document.removeEventListener('mousedown', handler);
     };
   }, []);
 
   return (
-    <div ref={menuRef}>
+    <div ref={menuRef} >
       {/* <BoxUserHeader>
           <AuthNav />
           {/* <UserMenu /> */}
       {/* </BoxUserHeader> */}
-      <Burger>
+      <Burger >
         <Hamburger
           isOpen={isOpen}
           onClick={handleOpen}

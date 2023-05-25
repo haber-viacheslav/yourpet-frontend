@@ -7,7 +7,7 @@ export const Navigate = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  z-index: 100;
+  /* z-index: 1000; */
 `;
 
 export const BoxUser = styled.div`
