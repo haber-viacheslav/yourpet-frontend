@@ -33,12 +33,15 @@ export const WrapImg = styled.div`
   overflow: hidden;
   margin-bottom: 16px;
   border-radius: 20px;
+  object-fit: cover;
+  width: 100%;
+  height: 252px;
 `;
 
 export const Img = styled.img`
-  /* display: block; */
-  /* width: 100%;
-  object-fit: cover; */
+  display: block;
+  height: 100%;
+  width: 100%;
 `;
 export const Plug = styled(Notify)`
   background-image: url('images/icon-pawprint/icons.svg');
@@ -61,27 +64,18 @@ export const Wrap = styled.div`
 export const Title = styled.h2`
   margin-left: 0;
   margin-bottom: 16px;
-  /* height: 24px; */
   font-weight: 700;
   font-size: 24px;
   line-height: 1.37;
   letter-spacing: -0.01em;
   overflow: hidden;
-  /* text-overflow: ellipsis; */
-  display: -webkit-box;
-  /* -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical; */
+  height: 100px;
 `;
 
 export const Decsr = styled.p`
   font-weight: 400;
   line-height: 1.37;
-  height: 110px;
-  /* overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box; */
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
+  height: 100px;
 `;
 
 export const WrapBottom = styled.div`
@@ -99,8 +93,6 @@ export const Date = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
 `;
 
 export const Link = styled.a`

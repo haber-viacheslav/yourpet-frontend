@@ -13,7 +13,6 @@ export const LoaderColor = () => (
     }}
     wrapperClass="blocks-wrapper"
     colors={['#9ef48a', '#b1fdd5', '#9ef48a', '#b1fdd5', '#9ef48a']}
-
   />
 );
 
@@ -26,6 +25,9 @@ export const Loader = ({
   return (
     <div
       style={{
+        position: 'absolute',
+        left: '50%',
+        transform: 'translateX(-50%)',
         display: 'flex',
         justifyContent: 'center',
         marginTop: marginTop,
@@ -43,4 +45,3 @@ export const Loader = ({
     </div>
   );
 };
-

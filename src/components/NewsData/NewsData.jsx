@@ -19,22 +19,19 @@ import { fetchNews } from 'redux/news/newsService';
 import { Container } from 'components/Container/Container';
 
 export const NewsData = () => {
+  const limit = 6;
   const [search, setSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [limit, setLimit] = useState(10);
-  const [media, setMedia] = useState('');
+
   const isLoading = useSelector(selectIsLoading);
   const isError = useSelector(selectError);
   const totalPages = useSelector(selectTotalPages);
   const dispatch = useDispatch();
   const news = useSelector(selectNews);
-
+  const isTablet = window.matchMedia(theme.media.md).matches;
   useEffect(() => {
     dispatch(fetchNews({ search, currentPage, limit }));
-    if (search === '') {
-      setCurrentPage(1);
-    }
-  }, [dispatch, search, currentPage, limit]);
+  }, [dispatch, search, currentPage]);
 
   const handleNewsSearchSubmit = value => {
     setSearch(prevState => {
@@ -47,8 +44,6 @@ export const NewsData = () => {
     });
   };
 
-  const isTablet = window.matchMedia(theme.media.md).matches;
-
   const handlePageChange = pageNumber => {
     setCurrentPage(pageNumber);
   };
@@ -58,16 +53,18 @@ export const NewsData = () => {
       <ReusableTitle>News</ReusableTitle>
 
       {isLoading && <Loader />}
-      {isError && <NotFound />}
+      {isError && !news.length && <NotFound />}
 
       <SearchNewsForm onSubmit={handleNewsSearchSubmit} />
-      <NewsList news={news} />
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-        paginationLength={isTablet ? 5 : 4}
-      />
+      {news && news.length > 0 && <NewsList news={news} />}
+      {news && news.length > 0 && totalPages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          paginationLength={isTablet ? 5 : 4}
+        />
+      )}
     </Container>
   );
 };
