@@ -1,13 +1,19 @@
 import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { Spin as Hamburger } from 'hamburger-react';
-import { Burger, BoxNav, BoxUser, Box } from './BurgerMenu.styled';
+import {
+  Burger,
+  BoxNav,
+  BoxUser,
+  Box, 
+  
+} from './BurgerMenu.styled';
 import { Nav } from '../Nav/Nav';
 import { AuthNav } from '../AuthNav/AuthNav';
 // import { UserNav } from '../../Navigation/UserNav/UserNav';
 // import { UserMenu } from 'components/Navigation/UserMenu/UserMenu';
 
-export const BurgerMenu = () => {
+export const BurgerMenu = ({ name }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef();
   console.log(isOpen);
@@ -33,10 +39,10 @@ export const BurgerMenu = () => {
 
   return (
     <>
-    {/* <BoxUserHeader>
+      {/* <BoxUserHeader>
           <AuthNav />
           {/* <UserMenu /> */}
-      {/* </BoxUserHeader> */} 
+      {/* </BoxUserHeader> */}
       <Burger>
         <Hamburger
           isOpen={isOpen}
@@ -50,22 +56,21 @@ export const BurgerMenu = () => {
           color="#FFC107"
           distance="md"
           duration={0.6}
-        />        
+        />
       </Burger>
 
       {/* // backdrop */}
       <Box isOpen={isOpen} onClick={handleClose} ref={menuRef}>
-      <BoxUser>
-          <AuthNav />
-          {/* <UserMenu /> */}
-        </BoxUser>
-      <BoxNav>
-          <Nav />
-      </BoxNav>
         
+        <BoxUser>
+          <AuthNav />
+          {/* <UserMenu isOpen={isOpen}/> */}
+    
+        </BoxUser>
+        <BoxNav>
+          <Nav />
+        </BoxNav>
       </Box>
     </>
   );
 };
-
-

@@ -11,7 +11,7 @@ export const Navigate = styled.div`
 `;
 
 export const BoxUser = styled.div`
-  z-index: 0;
+  margin-left: auto;
   @media (max-width: 1279px) {
   }
 `;
