@@ -1,44 +1,26 @@
 import React from 'react';
+// import { BoxUser} from './NavBar.styled';
+import {BoxAuth } from './NavBar.styled';
 import { Logo } from '../../Logo/Logo';
-import { BurgerBtn } from '../BurgerMenu/BurgerBtn';
-import { Navigate } from './NavBar.styled';
-// import { useState, useEffect } from 'react';
-// import { useSelector } from 'react-redux';
-
-// function isMobileDevice() {
-//   return (
-//     window.innerWidth < 1024 ||
-//     typeof window.orientation !== 'undefined' ||
-//     navigator.userAgent.indexOf('IEMobile') !== -1
-//   );
-// }
-
-// function isTabletDevice() {
-//   return window.innerWidth > 767;
-// }
-
+import { AuthNav } from '../AuthNav/AuthNav';
+// import { UserMenu } from '../UserMenu/UserMenu';
+import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
+import { Navigate, BoxNavigate } from './NavBar.styled';
+import { Nav } from '../Nav/Nav'
 export const NavBar = () => {
-  // const [isMobile, setIsMobile] = useState(isMobileDevice());
-  // const [isTablet, setTabletDevice] = useState(isTabletDevice());
-  // const isLogIn = useSelector(state => state.auth.token);
-
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     setIsMobile(isMobileDevice());
-  //     setTabletDevice(isTabletDevice());
-  //   };
-
-  //   window.addEventListener('resize', handleResize);
-
-  //   return () => {
-  //     window.removeEventListener('resize', handleResize);
-  //   };
-  // }, []);
-
   return (
     <Navigate>
       <Logo />
-      <BurgerBtn />
+      <BoxNavigate>
+        <Nav />
+      </BoxNavigate>      
+      <BoxAuth>
+          <AuthNav />
+      </BoxAuth>
+      {/* <BoxUser>
+          <UserMenu />
+      </BoxUser> */}
+      <BurgerMenu />
     </Navigate>
   );
 };
