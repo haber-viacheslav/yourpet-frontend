@@ -13,7 +13,7 @@ export const Overlay = styled.div`
 
 export const ModalBody = styled.div`
   position: absolute;
-  top: 92px;
+  top: 100px;
   left: 50%;
   transform: translateX(-50%);
   width: 95vw;
@@ -28,14 +28,13 @@ export const ModalBody = styled.div`
   }
 
   @media screen and (${props => props.theme.media.md}) {
-    top: 148px;
-    padding: 60px 129px;
-    width: 608px;
-    height: 345px;
+    top: 200px;
+    padding: 32px 32px 24px;
+    width: 681px;
+    height: 540px;
   }
 
   @media screen and (${props => props.theme.media.lg}) {
-    top: 112px;
   }
 `;
 
