@@ -74,8 +74,6 @@ export const refreshTokens = createAsyncThunk(
         refreshToken: oldRefreshToken,
       });
       setAuthHeader(data.body.accessToken);
-      console.log(data.body.accessToken);
-      console.log(axios.defaults.headers.common.Authorization);
       return data;
     } catch (error) {
       console.log(error.response);
