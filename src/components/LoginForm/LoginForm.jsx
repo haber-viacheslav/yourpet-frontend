@@ -32,6 +32,7 @@ export const LoginForm = () => {
   // EXAMPLE
   useEffect(() => {
     // use async IIEF or named  async func
+    console.log(axios.defaults.headers.common.Authorization);
     (async () => {
       const resp = await fetchDecorator(dispatch, refreshTokens, () =>
         axios.get('news')
@@ -107,7 +108,6 @@ export const LoginForm = () => {
                   <IconCheck />
                 </IconMail>
               )}
-              
               <Input
                 type={typePass}
                 name="password"
@@ -130,15 +130,14 @@ export const LoginForm = () => {
                 <SuccessMessage>Password is secure</SuccessMessage>
               )}
               {touched.password && !errors.password && (
-                <IconPass position={'40px'}
+                <IconPass
+                  position={'40px'}
                   error={errors.password && touched.password && 'false'}
                 >
                   <IconCheck />
                 </IconPass>
               )}
-              <IconPass  onClick={togglePassInput}>
-                {toggleIconPass}
-              </IconPass>
+              <IconPass onClick={togglePassInput}>{toggleIconPass}</IconPass>
             </Box>
             <Button type="submit">Login</Button>
             <Text>
