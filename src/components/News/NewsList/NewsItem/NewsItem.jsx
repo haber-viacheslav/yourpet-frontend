@@ -22,15 +22,9 @@ export const NewsItem = ({ imgUrl, title, text, date, url }) => {
     <Item>
       <WrapImg>
         {{ imgUrl } !== '' ? (
-          <Img
-            src={imgUrl}
-            alt={title}
-            loading="lazy"
-            width="280"
-            height="252"
-          />
+          <Img src={imgUrl} alt={title} loading="lazy" width="280" />
         ) : (
-          <Plug >
+          <Plug>
             <use href={icons + '#icon-pawprint'}></use>
           </Plug>
         )}

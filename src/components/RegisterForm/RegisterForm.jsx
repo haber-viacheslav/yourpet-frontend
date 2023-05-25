@@ -39,10 +39,9 @@ export const RegisterForm = () => {
       .required('Enter Your Password')
       .min(6, 'Password should be minimum 6 character')
       .max(16, 'Too long')
-      .matches(
-        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,16}$/,
-        'Password must contain at least one uppercase letter, one lowercase letter, one digit, and be 6-16 characters long'
-      ),
+      .matches(/[0-9]/, 'Password requires a number')
+      .matches(/[a-z]/, 'Password requires a lowercase letter')
+      .matches(/[A-Z]/, 'Password requires an uppercase letter'),
     confirm: string()
       .oneOf([ref('password')], 'Password does not matched')
       .required('Confirm Password is Required'),
@@ -136,15 +135,14 @@ export const RegisterForm = () => {
                 <SuccessMessagePass>Password is secure</SuccessMessagePass>
               )}
               {touched.password && !errors.password && (
-                <IconPass position={'40px'}
+                <IconPass
+                  position={'40px'}
                   error={errors.password && touched.password && 'false'}
                 >
                   <IconCheck />
                 </IconPass>
               )}
-              <IconPass  onClick={togglePassInput}>
-                {toggleIconPass}
-              </IconPass>
+              <IconPass onClick={togglePassInput}>{toggleIconPass}</IconPass>
 
               <Input
                 type={typeCofirm}
@@ -154,16 +152,17 @@ export const RegisterForm = () => {
                 valid={touched.confirm && !errors.confirm ? 'true' : undefined}
                 error={touched.confirm && errors.confirm}
               />
-              {touched.confirm && !errors.confirm &&
-                <IconConfirm position={'40px'}
+              {touched.confirm && !errors.confirm && (
+                <IconConfirm
+                  position={'40px'}
                   error={errors.confirm && touched.confirm && 'false'}
                 >
                   <IconCheck />
                 </IconConfirm>
-             }
+              )}
               <IconConfirm onClick={toggleConfirmInput}>
-                  {toggleIconConfirm}
-                </IconConfirm>
+                {toggleIconConfirm}
+              </IconConfirm>
 
               {touched.confirm && errors.confirm && (
                 <ErrorMessage

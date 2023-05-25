@@ -5,6 +5,29 @@ export const Navigate = styled.div`
   height: 48px;
   display: flex;
   justify-content: space-between;
-  z-index: 100;
+  align-items: center;
+  flex-wrap: wrap;
+  /* z-index: 1000; */
 `;
 
+export const BoxUser = styled.div`
+  margin-left: auto;
+  @media (max-width: 1279px) {
+  }
+`;
+export const BoxAuth = styled.div`
+  display: none;
+  @media (min-width: 768px) {
+    display: inherit;
+  }
+`;
+export const BoxNavigate = styled.div`
+  display: none;
+  @media screen and (${props => props.theme.media.lg}) {
+    display: inherit;
+    margin-left: 270px;
+    margin-right: auto;
+    flex-direction: row;
+    padding-bottom: 0;
+  }
+`;

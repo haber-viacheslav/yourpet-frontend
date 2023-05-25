@@ -25,6 +25,7 @@ export const logIn = createAsyncThunk(
   async ({ values }, thunkAPI) => {
     try {
       const { data } = await axios.post('auth/login', values);
+      console.log(data.body.accessToken);
       setAuthHeader(data.body.accessToken);
       return data;
     } catch (error) {
@@ -72,6 +73,8 @@ export const refreshTokens = createAsyncThunk(
         refreshToken: oldRefreshToken,
       });
       setAuthHeader(data.body.accessToken);
+      console.log(data.body.accessToken);
+      console.log(axios.defaults.headers.common.Authorization);
       return data;
     } catch (error) {
       if (error.response.data.code === 401) {
