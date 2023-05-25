@@ -17,6 +17,11 @@ export const getOurFriends = async () => {
   return responce;
 };
 
+export const getYourPets = async () => {
+  const responce = await axios.get('/pets');
+  return responce;
+};
+
 export const createPet = async body => {
   return await axios.post(`/pets`);
 };

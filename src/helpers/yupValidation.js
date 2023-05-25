@@ -115,5 +115,19 @@ export const profileSchema = yup.object().shape({
     .string()
     .matches(/^[A-Z][a-zA-Z]*$/, 'City begins with capitalize character'),
   phone: yup.string().matches(/^\+\d{12}$/, 'UA format number'),
-  file: '',
+  file: yup
+    .mixed()
+    .required('Upload photo')
+
+    .test(
+      'fileType',
+      'Only image files are allowed',
+      value =>
+        !value || ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type)
+    )
+    .test(
+      'fileSize',
+      'File size is too large',
+      value => value?.size <= 3145728
+    ),
 });

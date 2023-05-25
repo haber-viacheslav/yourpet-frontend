@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { getOurFriends } from 'redux/pets/petsService';
-// import dataFriends from './sponsors.json';
 
 import { CardItem } from './CardItem/CardItem';
 import { Title, Wrapper, CardList } from './Friends.styled';
@@ -12,7 +11,6 @@ export const OurFriends = () => {
     const fetchFriends = async () => {
       try {
         const friendsData = await getOurFriends();
-        console.log(friendsData.data);
         SetData([...friendsData.data]);
       } catch (error) {
         console.log(error);

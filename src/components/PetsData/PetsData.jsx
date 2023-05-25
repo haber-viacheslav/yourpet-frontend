@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { BtnAddPet } from 'components/buttons/buttons';
-
-import { Title, Wrapper, PetsList, TitleWrapper } from './PetsData.styled';
-
 import { PetsItem } from './PetsItem/PetsItem';
+import { Title, Wrapper, PetsList, TitleWrapper } from './PetsData.styled';
+import { getYourPets } from 'redux/pets/petsService';
 import petsData from './pets.json';
 
 export const PetsData = () => {
@@ -12,8 +11,8 @@ export const PetsData = () => {
   useEffect(() => {
     // const fetchPets = async () => {
     //   try {
-    //     const petsData = await getPets();
-    //     console.log(petsData);
+    //     const petsData = await getYourPets();
+    //     SetData(petsData);
     //   } catch (error) {
     //     console.log(error);
     //   }
@@ -30,15 +29,16 @@ export const PetsData = () => {
       </TitleWrapper>
       <PetsList>
         {data.map(pet => {
-          const { name, date, breed, comments, photo } = pet;
+          const { _id: id, name, date, breed, comments, avatarURL } = pet;
           return (
             <PetsItem
-              key={name}
+              key={id}
               name={name}
               date={date}
               breed={breed}
               comments={comments}
-              url={photo}
+              url={avatarURL}
+              id={id}
             />
           );
         })}

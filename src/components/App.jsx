@@ -79,7 +79,6 @@ export const App = () => {
                 <PrivateRoute component={AddPetPage} redirectTo="/login" />
               }
             />
-            <Route path="modals" element={<ModalTestPage />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes> */}

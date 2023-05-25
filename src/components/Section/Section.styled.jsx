@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledSection = styled.section`
-  height: 100vh;
+  /* height: 100vh; */
   padding-top: ${props => props.padTopSm || '40px'};
   padding-bottom: ${props => props.padBottomSM || '100px'};
   @media screen and (${props => props.theme.media.mdToLg}) {

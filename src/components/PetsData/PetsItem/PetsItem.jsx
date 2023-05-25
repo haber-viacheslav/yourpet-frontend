@@ -21,19 +21,19 @@ export const PetsItem = ({ url, name, date, breed, comments }) => {
       </ImageWrapper>
       <TextWrapper>
         <TextContent>
-          <Title>Name: </Title>
-          <Text> {name}</Text>
+          <Title>
+            Name: <Text>{name}</Text>
+          </Title>
         </TextContent>
         <TextContent>
-          <Title>Date of birth: </Title>
-          <Text>
-            {''}
-            {date}
-          </Text>
+          <Title>
+            Date of birth: <Text>{date}</Text>
+          </Title>
         </TextContent>
         <TextContent>
-          <Title>Breed: </Title>
-          <Text> {breed}</Text>
+          <Title>
+            Breed: <Text> {breed}</Text>
+          </Title>
         </TextContent>
         <TextContent>
           <Title>
