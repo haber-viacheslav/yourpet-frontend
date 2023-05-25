@@ -41,8 +41,7 @@ export const RegisterForm = () => {
       .max(16, 'Too long')
       .matches(/[0-9]/, 'Password requires a number')
       .matches(/[a-z]/, 'Password requires a lowercase letter')
-      .matches(/[A-Z]/, 'Password requires an uppercase letter')
-      .matches(/[^\w]/, 'Password requires a symbol'),
+      .matches(/[A-Z]/, 'Password requires an uppercase letter'),
     confirm: string()
       .oneOf([ref('password')], 'Password does not matched')
       .required('Confirm Password is Required'),

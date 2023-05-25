@@ -72,8 +72,7 @@ export const LoginForm = () => {
       .max(16, 'Too long')
       .matches(/[0-9]/, 'Password requires a number')
       .matches(/[a-z]/, 'Password requires a lowercase letter')
-      .matches(/[A-Z]/, 'Password requires an uppercase letter')
-      .matches(/[^\w]/, 'Password requires a symbol'),
+      .matches(/[A-Z]/, 'Password requires an uppercase letter'),
   });
 
   const initialValues = {
