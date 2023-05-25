@@ -41,7 +41,7 @@ export const RegisterForm = () => {
       .max(16, 'Too long')
       .matches(
         /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,16}$/,
-        'Password must contain at least one uppercase letter, one lowercase letter, one digit, and be 6-16 characters long'
+        'Password must contain one uppercase letter, one lowercase letter, one digit'
       ),
     confirm: string()
       .oneOf([ref('password')], 'Password does not matched')
