@@ -1,137 +1,73 @@
-import React, { useState } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-// import { fetchNews } from 'redux/news/newsoperations';
-// import {
-//   selectNews,
-//   selectIsLoading,
-//   selectError,
-//   selectTotalPage,
-// } from 'redux/news/newsSelector';
+import {
+  selectIsLoading,
+  selectError,
+  selectTotalPages,
+  selectNews,
+} from 'redux/news/selectors';
 
 import { Loader } from 'components/Loader/Loader';
 import { SearchNewsForm } from 'components/News/SearchNewsForm/SearchNewsForm';
 import { ReusableTitle } from 'components/ReusableTitle/ReusableTitle';
-// import { NewsList } from 'components/News/NewsList/NewsList';
+import { NewsList } from '../../components/News/NewsList/NewsList';
 import { Pagination } from '../Pagination/Pagination';
-import { NotFound } from 'components/News/NewsNotFound/NewsNotFound';
-// import  dataNews from '../News/news.json';
+import { NotFound } from '../News/NewsNotFound/NewsNotFound';
 import { theme } from '../../theme/theme';
-
-// const initialState = { search: '', page: 1 };
+import { fetchNews } from 'redux/news/newsService';
+import { Container } from 'components/Container/Container';
 
 export const NewsData = () => {
-  //  const [state, setState] = useState({ ...initialState });
-  // const { search, page } = state;
-
-  // const dispatch = useDispatch();
-  // const newsItems = useSelector(selectNews);
-  // const isLoading = useSelector(selectIsLoading);
-  // const error = useSelector(selectError);
-  // const pageQty = useSelector(selectTotalPage);
-  //   const [data, SetData] = useState([]);
-  //    useEffect(() => {
-  //   //   dispatch(fetchNews({ page: page, search: search }));
-  //   // }, [dispatch, page, search]);
-  //   SetData(dataNews);
-  //  }, []);
-
-  // const handleNewsSearchSubmit = value => {
-  //   setState(prevState => {
-  //     if (prevState.search !== value) {
-  //       setState({ search: value, page: 1 });
-  //     }
-
-  //     return setState({ search: value });
-  //   });
-  // };
-
+  const [search, setSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  console.log('Current Page:', currentPage);
-  const isTablet = window.matchMedia(theme.media.md).matches;
+  const [limit, setLimit] = useState(10);
+  const [media, setMedia] = useState('');
+  const isLoading = useSelector(selectIsLoading);
+  const isError = useSelector(selectError);
+  const totalPages = useSelector(selectTotalPages);
+  const dispatch = useDispatch();
+  const news = useSelector(selectNews);
 
-  const totalPages = 10; //from server data pages
-  const handlePageChange = pageNumber => {
-    setCurrentPage(pageNumber);
-    // fetch
+  useEffect(() => {
+    dispatch(fetchNews({ search, currentPage, limit }));
+    if (search === '') {
+      setCurrentPage(1);
+    }
+  }, [dispatch, search, currentPage, limit]);
+
+  const handleNewsSearchSubmit = value => {
+    setSearch(prevState => {
+      if (prevState.search !== value) {
+        setSearch(value);
+        setCurrentPage(1);
+      }
+
+      return setSearch(value);
+    });
   };
 
-  // const showWarning = () => {
-  // dispatch(fetchNews());
-  //   setState({ search: '' });
-  // };
+  const isTablet = window.matchMedia(theme.media.md).matches;
+
+  const handlePageChange = pageNumber => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
-    <>
+    <Container>
       <ReusableTitle>News</ReusableTitle>
-      <SearchNewsForm />
-      <Loader />
-      <p>Something wrong</p>
-      <NotFound />
-      <>
-        {/* <NewsList /> */}
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-          paginationLength={isTablet ? 5 : 4}
-        />
-      </>
-      {/* )} */}
-    </>
+
+      {isLoading && <Loader />}
+      {isError && <NotFound />}
+
+      <SearchNewsForm onSubmit={handleNewsSearchSubmit} />
+      <NewsList news={news} />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+        paginationLength={isTablet ? 5 : 4}
+      />
+    </Container>
   );
 };
-
-// const initialState = { search: '', page: 1 };
-
-// export const NewsData = () => {
-//   const [state, setState] = useState({ ...initialState });
-//   const { search, page } = state;
-
-//   const dispatch = useDispatch();
-//   const newsItems = useSelector(selectNews);
-//   const isLoading = useSelector(selectIsLoading);
-//   const error = useSelector(selectError);
-//   const pageQty = useSelector(selectTotalPage);
-
-//   useEffect(() => {
-//     dispatch(fetchNews({ page: page, search: search }));
-//   }, [dispatch, page, search]);
-
-//   const handleNewsSearchSubmit = value => {
-//     setState(prevState => {
-//       if (prevState.search !== value) {
-//         setState({ search: value, page: 1 });
-//       }
-
-//       return setState({ search: value });
-//     });
-//   };
-
-//   const showWarning = () => {
-//     dispatch(fetchNews());
-//     setState({ search: '' });
-//   };
-//   return (
-//     <>
-//       <ReusableTitle>News</ReusableTitle>
-//       <SearchNewsForm onSubmit={handleNewsSearchSubmit} onClick={showWarning} />
-//       {isLoading && !error && <Loader />}
-//       {error && <p>Something wrong</p>}
-//       {!isLoading && newsItems.length === 0 && <NotFound />}
-
-//       {!isLoading && newsItems.length !== 0 && (
-//         <>
-//           <NewsList news={newsItems} />
-//           <Pagination
-//           count={pageQty}
-//           page={page}
-//           onPageChange
-//           onChange={(_, num) => {
-//             setState({ search: search, page: num });
-//           }}
-//         />
-//       </>
-//     )}
-//   </>
-// );
-// };

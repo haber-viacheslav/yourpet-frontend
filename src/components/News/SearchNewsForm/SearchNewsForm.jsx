@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
-
 import { ButtonIconForm } from 'components/ButtonIconForm/ButtonIconForm';
 import { FormSearch, InputSearch } from './SearchNewsForm.styled';
 
-export const SearchNewsForm = ({ onSubmit, onClick }) => {
+export const SearchNewsForm = ({ onSubmit }) => {
   const [searchQuery, setSearchQuery] = useState('');
+  console.log('searchQuery', searchQuery);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -30,7 +30,7 @@ export const SearchNewsForm = ({ onSubmit, onClick }) => {
 
   const handleReset = () => {
     setSearchQuery('');
-    onClick(searchQuery);
+    onSubmit(searchQuery);
   };
 
   return (
@@ -42,7 +42,7 @@ export const SearchNewsForm = ({ onSubmit, onClick }) => {
         value={searchQuery}
         onChange={e => handleChange(e)}
       />
-      <ButtonIconForm searchQuery={searchQuery} onClick={handleReset} />
+      <ButtonIconForm onClick={handleReset} />
     </FormSearch>
   );
 };

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const List = styled.ul`
   margin: 0 auto;
   display: grid;
+  margin-bottom: 40px;
   row-gap: 42px;
   width: 100%;
   @media screen and (max-width: 767px) {
