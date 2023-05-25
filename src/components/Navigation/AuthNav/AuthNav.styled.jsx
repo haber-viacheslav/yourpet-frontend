@@ -3,8 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { theme } from '../../../theme/theme';
 
 export const AuthNavMenu = styled.div`
-  /* display: none; */
-     
+  display: none;     
     :not(:last-child) {
       margin-right: 20px;
     }
@@ -12,8 +11,6 @@ export const AuthNavMenu = styled.div`
     display: flex;
     align-items: center;
     gap: 20px;
-    /* flex-direction: row; */
-    /* justify-content: flex-end; */
   }
 `;
 

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const NavList = styled.ul`
   display: flex;
@@ -22,7 +23,8 @@ export const NavItem = styled.li`
   font-weight: ${props => props.theme.fontWeights.medium};
   font-size: 32px;
   line-height: 1.35;
-  a {
+
+  /* a {
       text-decoration: none;
       color: ${props => props.theme.colors.black};
       :hover,
@@ -30,9 +32,7 @@ export const NavItem = styled.li`
       :active {
         color: ${props => props.theme.colors.orange};
       }
-    }
-  
-
+    } */
   @media screen and (${props => props.theme.media.lg}) {
     font-size: 20px;
     letter-spacing: 0.04em;
@@ -41,3 +41,24 @@ export const NavItem = styled.li`
     }
   }
 `;
+
+
+
+
+  export const NavLinkItem = styled(NavLink)`
+  /* padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: black;
+  font-weight: 700; */
+  color: ${props => props.theme.colors.black};
+  
+  :hover,
+  :focus,
+  :active {
+    color: ${props => props.theme.colors.orange};
+  }
+`;
+
+
+  

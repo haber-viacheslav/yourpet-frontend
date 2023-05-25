@@ -1,5 +1,5 @@
-import { NavLink } from 'react-router-dom';
-import { NavList, NavItem } from './Nav.styled';
+// import { NavLink } from 'react-router-dom';
+import { NavList, NavItem, NavLinkItem } from './Nav.styled';
 import { useEffect, useState } from 'react';
 
 export const Nav = () => {
@@ -29,13 +29,13 @@ export const Nav = () => {
   return (
     <NavList >
       <NavItem>
-        <NavLink to="/news">News</NavLink>
+        <NavLinkItem to="/news">News</NavLinkItem>
       </NavItem>
       <NavItem>
-        <NavLink to="/notices">{nameLink}</NavLink>
+        <NavLinkItem to="/notices">{nameLink}</NavLinkItem>
       </NavItem>
       <NavItem>
-        <NavLink to="/friends">Our Friends</NavLink>
+        <NavLinkItem to="/friends">Our Friends</NavLinkItem>
       </NavItem>
     </NavList>
   );

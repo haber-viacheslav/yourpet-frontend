@@ -47,6 +47,8 @@ export const BurgerBtn = () => {
           distance="md"
           duration={0.6}
         />
+
+        
       </Burger>
       <Box isOpen={isOpen} onClick={handleClose} ref={menuRef}>
         <BoxNav>

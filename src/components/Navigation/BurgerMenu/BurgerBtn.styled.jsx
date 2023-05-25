@@ -13,7 +13,7 @@ export const Box = styled.div`
   justify-content: space-between;
   justify-content: space-evenly;
   
-  @media (max-width: 1279px) {
+  @media (max-width: 769px) {
     transform: ${({ isOpen }) =>
       isOpen ? 'translateX(0)' : 'translateX(100%)'};
     transition: transform cubic-bezier(0.39, 0.575, 0.565, 1);
@@ -36,10 +36,11 @@ export const BoxNav = styled.div`
 export const BoxUser = styled.div`
   display: flex;
   justify-content: space-around;
-  gap: 20px;
   margin-top: 82px;
   margin-bottom: 40px;
+
   @media (min-width: 1279px){
     margin-top: 0;
+    margin-bottom: 0;
   }
 `;

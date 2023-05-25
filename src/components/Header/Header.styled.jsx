@@ -10,13 +10,13 @@ export const HeaderWrapper = styled.header`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 22px 20px 0px 20px;
+  padding: 22px 20px 0px 20px;
 
   @media screen and (${props => props.theme.media.md}) {
-    margin-top: 24px;
-    margin-right: 32px;
-    margin-bottom: 0;
-    margin-left: 32px;
+    padding-top: 24px;
+    padding-right: 32px;
+    padding-bottom: 0;
+    padding-left: 32px;
     height: 44px;
   }
   @media screen and (${props=>props.theme.media.lg}){
