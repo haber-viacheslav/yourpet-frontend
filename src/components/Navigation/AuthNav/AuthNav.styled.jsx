@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { theme } from '../../../theme/theme';
 
 export const AuthNavMenu = styled.div`
-  display: none;     
+  display: block;     
     :not(:last-child) {
       margin-right: 20px;
     }

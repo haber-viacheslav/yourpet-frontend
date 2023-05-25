@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Burger = styled.div`
   z-index: 20;
+  
   @media (min-width: 1279px) {
     display: none;
   }
@@ -43,4 +44,16 @@ export const BoxUser = styled.div`
     margin-top: 0;
     margin-bottom: 0;
   }
+`;
+export const BoxUserHeader = styled.div`
+  z-index: 0;
+  /* :first-child{
+    :first-child{
+      display: block;
+    } */
+  /* display: none ;
+  @media (min-width: 768px) {
+    /* display: inherit; */
+   
+  
 `;

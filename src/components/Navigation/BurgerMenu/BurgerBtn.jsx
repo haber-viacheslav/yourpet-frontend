@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { Spin as Hamburger } from 'hamburger-react';
-import { Burger, BoxNav, BoxUser, Box } from './BurgerBtn.styled';
+import { Burger, BoxNav, BoxUser, Box, BoxUserHeader } from './BurgerBtn.styled';
 import { Nav } from '../Nav/Nav';
 import { AuthNav } from '../AuthNav/AuthNav';
 // import { UserNav } from '../../Navigation/UserNav/UserNav';
@@ -33,6 +33,10 @@ export const BurgerBtn = () => {
 
   return (
     <>
+    <BoxUserHeader>
+          <AuthNav />
+          {/* <UserMenu /> */}
+      </BoxUserHeader>
       <Burger>
         <Hamburger
           isOpen={isOpen}
@@ -50,7 +54,9 @@ export const BurgerBtn = () => {
 
         
       </Burger>
+      
       <Box isOpen={isOpen} onClick={handleClose} ref={menuRef}>
+      
         <BoxNav>
           <Nav />
         </BoxNav>

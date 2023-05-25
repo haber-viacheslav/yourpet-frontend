@@ -7,8 +7,12 @@ export const NavList = styled.ul`
   flex-direction: column;
   align-items: center;
   padding-bottom: 219px;
-
+  @media (min-width: 769px) {
+    display: none;
+    
+  }
   @media screen and (${props => props.theme.media.lg}) {
+    display: inherit;
     margin-right: 270px;
     flex-direction: row;
     padding-bottom: 0;
@@ -24,15 +28,6 @@ export const NavItem = styled.li`
   font-size: 32px;
   line-height: 1.35;
 
-  /* a {
-      text-decoration: none;
-      color: ${props => props.theme.colors.black};
-      :hover,
-      :focus,
-      :active {
-        color: ${props => props.theme.colors.orange};
-      }
-    } */
   @media screen and (${props => props.theme.media.lg}) {
     font-size: 20px;
     letter-spacing: 0.04em;
@@ -46,11 +41,6 @@ export const NavItem = styled.li`
 
 
   export const NavLinkItem = styled(NavLink)`
-  /* padding: 8px 16px;
-  border-radius: 4px;
-  text-decoration: none;
-  color: black;
-  font-weight: 700; */
   color: ${props => props.theme.colors.black};
   
   :hover,
