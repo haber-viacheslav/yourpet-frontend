@@ -32,12 +32,12 @@ export const LoginForm = () => {
   // EXAMPLE
   useEffect(() => {
     // use async IIEF or named  async func
-    console.log(axios.defaults.headers.common.Authorization);
     (async () => {
       const resp = await fetchDecorator(dispatch, refreshTokens, () =>
         axios.get('news')
       );
       console.log(resp);
+      console.log(axios.defaults.headers.common.Authorization);
     })();
   }, [dispatch]);
   // -----------------------------------
