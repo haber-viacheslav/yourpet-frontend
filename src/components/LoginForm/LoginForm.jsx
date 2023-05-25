@@ -48,10 +48,9 @@ export const LoginForm = () => {
       .required('Enter Your Password')
       .min(6, 'Password should be minimum 6 character')
       .max(16, 'Too long')
-      .matches(
-        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,16}$/,
-        'Password must contain at least one uppercase letter, one lowercase letter, one digit, and be 6-16 characters long'
-      ),
+      .matches(/[0-9]/, 'Password requires a number')
+      .matches(/[a-z]/, 'Password requires a lowercase letter')
+      .matches(/[A-Z]/, 'Password requires an uppercase letter'),
   });
 
   const initialValues = {
