@@ -133,9 +133,10 @@ export const IconMail = styled.span`
   cursor: pointer;
   color: ${props =>
     props.error ? props.theme.colors.red : props.theme.colors.green};
-  top: 86px;
+  top: 13px;
   right: 40px;
   @media screen and (${props => props.theme.media.md}) {
+    top: 86px;
     top: 12px;
   }
 `;
