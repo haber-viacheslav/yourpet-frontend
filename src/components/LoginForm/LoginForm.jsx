@@ -70,10 +70,10 @@ export const LoginForm = () => {
       .required('Enter Your Password')
       .min(6, 'Password should be minimum 6 character')
       .max(16, 'Too long')
-      .matches(
-        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,16}$/,
-        'Password must contain one uppercase letter, one lowercase letter, one digit'
-      ),
+      .matches(/[0-9]/, 'Password requires a number')
+      .matches(/[a-z]/, 'Password requires a lowercase letter')
+      .matches(/[A-Z]/, 'Password requires an uppercase letter')
+      .matches(/[^\w]/, 'Password requires a symbol'),
   });
 
   const initialValues = {
@@ -130,7 +130,6 @@ export const LoginForm = () => {
                   <IconCheck />
                 </IconMail>
               )}
-              
               <Input
                 type={typePass}
                 name="password"
@@ -153,15 +152,14 @@ export const LoginForm = () => {
                 <SuccessMessage>Password is secure</SuccessMessage>
               )}
               {touched.password && !errors.password && (
-                <IconPass position={'40px'}
+                <IconPass
+                  position={'40px'}
                   error={errors.password && touched.password && 'false'}
                 >
                   <IconCheck />
                 </IconPass>
               )}
-              <IconPass  onClick={togglePassInput}>
-                {toggleIconPass}
-              </IconPass>
+              <IconPass onClick={togglePassInput}>{toggleIconPass}</IconPass>
             </Box>
             <Button type="submit">Login</Button>
             <Text>
