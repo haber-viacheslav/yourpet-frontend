@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Burger = styled.div`
-  z-index: 20;
+  z-index: 1000;
   @media (min-width: 1279px) {
     display: none;
   }
@@ -26,6 +26,8 @@ export const Box = styled.div`
     height: 100%;
     width: 100%;
     padding: 22px 20px 22px 20px;
+    z-index: 999;
+    position: fixed;
   }
 `;
 export const BoxNav = styled.div`

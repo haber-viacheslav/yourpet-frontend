@@ -38,7 +38,7 @@ export const BurgerMenu = ({ name }) => {
   }, []);
 
   return (
-    <>
+    <div ref={menuRef}>
       {/* <BoxUserHeader>
           <AuthNav />
           {/* <UserMenu /> */}
@@ -60,7 +60,7 @@ export const BurgerMenu = ({ name }) => {
       </Burger>
 
       {/* // backdrop */}
-      <Box isOpen={isOpen} onClick={handleClose} ref={menuRef}>
+      <Box isOpen={isOpen} onClick={handleClose} >
         
         <BoxUser>
           <AuthNav />
@@ -71,6 +71,6 @@ export const BurgerMenu = ({ name }) => {
           <Nav />
         </BoxNav>
       </Box>
-    </>
+    </div>
   );
 };
