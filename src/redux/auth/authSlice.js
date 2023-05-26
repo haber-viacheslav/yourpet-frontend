@@ -15,6 +15,7 @@ const initialState = {
     phone: null,
     city: null,
     avatarURL: null,
+    newUser: null,
   },
   isLoggedIn: false,
   isRefreshing: false,
@@ -30,6 +31,7 @@ const authSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, action) => {
         state.user.email = action.payload.body.email;
+        state.user.newUser = action.payload.body.newUser;
         state.isLoggedIn = true;
       })
       .addCase(register.rejected, state => {
@@ -46,6 +48,7 @@ const authSlice = createSlice({
           phone: action.payload.body.phone,
           city: action.payload.body.city,
           avatarURL: action.payload.body.avatarURL,
+          newUser: action.payload.body.newUser,
         };
         state.isLoggedIn = true;
       })
@@ -63,6 +66,7 @@ const authSlice = createSlice({
           phone: null,
           city: null,
           avatarURL: null,
+          newUser: null,
         };
         state.isLoggedIn = false;
       })
@@ -80,6 +84,7 @@ const authSlice = createSlice({
           phone: action.payload.body.phone,
           city: action.payload.body.city,
           avatarURL: action.payload.body.avatarURL,
+          newUser: action.payload.body.newUser,
         };
         state.isLoggedIn = true;
         state.isRefreshing = false;
@@ -91,7 +96,6 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        console.log(action);
         state.user = {
           name: action.payload.body.name,
           email: action.payload.body.email,
@@ -99,6 +103,7 @@ const authSlice = createSlice({
           phone: action.payload.body.phone,
           city: action.payload.body.city,
           avatarURL: action.payload.body.avatarURL,
+          newUser: action.payload.body.newUser,
         };
       })
       .addCase(updateUser.rejected, state => {
