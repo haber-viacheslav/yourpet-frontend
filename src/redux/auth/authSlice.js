@@ -4,7 +4,6 @@ import {
   logIn,
   logOut,
   userCurrent,
-  refreshTokens,
   updateUser,
 } from './authService';
 
@@ -17,8 +16,6 @@ const initialState = {
     city: null,
     avatarURL: null,
   },
-  accessToken: null,
-  refreshToken: null,
   isLoggedIn: false,
   isRefreshing: false,
 };
@@ -33,8 +30,6 @@ const authSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, action) => {
         state.user.email = action.payload.body.email;
-        state.accessToken = action.payload.body.accessToken;
-        state.refreshToken = action.payload.body.refreshToken;
         state.isLoggedIn = true;
       })
       .addCase(register.rejected, state => {
@@ -52,8 +47,6 @@ const authSlice = createSlice({
           city: action.payload.body.city,
           avatarURL: action.payload.body.avatarURL,
         };
-        state.accessToken = action.payload.body.accessToken;
-        state.refreshToken = action.payload.body.refreshToken;
         state.isLoggedIn = true;
       })
       .addCase(logIn.rejected, state => {
@@ -71,8 +64,6 @@ const authSlice = createSlice({
           city: null,
           avatarURL: null,
         };
-        state.accessToken = null;
-        state.refreshToken = null;
         state.isLoggedIn = false;
       })
       .addCase(logOut.rejected, state => {
@@ -95,23 +86,6 @@ const authSlice = createSlice({
       })
       .addCase(userCurrent.rejected, state => {
         state.isRefreshing = false;
-      })
-      .addCase(refreshTokens.fulfilled, (state, action) => {
-        state.accessToken = action.payload.body.accessToken;
-        state.refreshToken = action.payload.body.refreshToken;
-      })
-      .addCase(refreshTokens.rejected, (state, action) => {
-        state.user = {
-          name: null,
-          email: null,
-          birthday: null,
-          phone: null,
-          city: null,
-          avatarURL: null,
-        };
-        state.accessToken = null;
-        state.refreshToken = null;
-        state.isLoggedIn = false;
       })
       .addCase(updateUser.pending, state => {
         state.isLoading = true;

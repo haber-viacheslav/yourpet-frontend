@@ -7,16 +7,16 @@ import {
 } from 'components/buttons/buttons';
 import { Text } from '../NoticesCategoriesItem/NoticesCategoriesItem.styled';
 import {
-  BtnConteiner,
-  ComentInfo,
+  BtnContainer,
+  CommentInfo,
   FlexBlock,
-  ImagConteiner,
+  ImgContainer,
   ImgModal,
   InfoFlag,
   InfoValue,
   MailInfo,
   PetInfoList,
-  PetInfoitem,
+  PetInfoItem,
   TelInfo,
 } from './ModalNotice.styled';
 
@@ -39,12 +39,12 @@ export const ModalItem = ({ onClick, petsList }) => {
       <FlexContainer flexDirection={'column'}>
         <FlexBlock>
           <BtnCloseModal onClick={onClick} />
-          <ImagConteiner>
+          <ImgContainer>
             <ImgModal src={smImgUrl1x} alt="Pet image" />
             <PetCategory text={`${category}`} />
-          </ImagConteiner>
+          </ImgContainer>
           <div>
-            <Text>Сute dog looking for a home</Text>
+            <Text>Cute dog looking for a home</Text>
             <PetInfoList>
               <li>
                 <InfoFlag>Name:</InfoFlag>
@@ -55,7 +55,7 @@ export const ModalItem = ({ onClick, petsList }) => {
                 <InfoFlag>Email:</InfoFlag>
                 <InfoFlag>Phone:</InfoFlag>
               </li>
-              <PetInfoitem>
+              <PetInfoItem>
                 <InfoValue>{name}</InfoValue>
                 <InfoValue>{birthday}</InfoValue>
                 <InfoValue>{breed}</InfoValue>
@@ -63,16 +63,16 @@ export const ModalItem = ({ onClick, petsList }) => {
                 <InfoValue>{sex}</InfoValue>
                 <MailInfo href="mailto:">{email}</MailInfo>
                 <TelInfo href="tel:+">{phone}</TelInfo>
-              </PetInfoitem>
+              </PetInfoItem>
             </PetInfoList>
           </div>
         </FlexBlock>
 
-        <ComentInfo>Comments: {comments}</ComentInfo>
-        <BtnConteiner>
+        <CommentInfo>Comments: {comments}</CommentInfo>
+        <BtnContainer>
           <BtnCall />
           <BtnAddTo />
-        </BtnConteiner>
+        </BtnContainer>
       </FlexContainer>
     </>
   );

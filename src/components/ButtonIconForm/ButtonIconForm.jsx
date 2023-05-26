@@ -9,6 +9,7 @@ export const ButtonIconForm = ({ searchQuery, onClick }) => {
           <use href={icons + '#icon-search'}></use>
         </svg>
       </ButtonIcon>
+
       {searchQuery !== '' && (
         <ButtonIcon
           type="button"

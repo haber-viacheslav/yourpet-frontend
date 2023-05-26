@@ -1,14 +1,20 @@
-import axios from 'axios';
+// import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setAuthHeader, clearAuthHeader } from './utility/authUtility';
-
-axios.defaults.baseURL = 'https://your-pet-api.onrender.com/api/v1';
+import {
+  registerFetch,
+  loginFetch,
+  currentFetch,
+  logoutFetch,
+  updateFetch,
+} from 'api/auth';
 
 export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await axios.post('auth/register', credentials);
+      // console.log('data');
+
+      const data = await registerFetch(credentials);
       return data;
     } catch (error) {
       if (error.message === 'Request failed with status code 409') {
@@ -23,16 +29,15 @@ export const register = createAsyncThunk(
 
 export const logIn = createAsyncThunk(
   'auth/login',
-  async ({ values }, thunkAPI) => {
+  async (credentials, thunkAPI) => {
     try {
-      const { data } = await axios.post('auth/login', values);
-      setAuthHeader(data.body.accessToken);
-      console.log(data);
+      console.log(credentials);
+      const data = await loginFetch(credentials);
       return data;
     } catch (error) {
       if (error.message === 'Request failed with status code 401') {
         alert(
-          `User "${values.email}" is not found please register and try again`
+          `User "${credentials.email}" is not found please register and try again`
         );
       }
       return thunkAPI.rejectWithValue(error.message);
@@ -42,15 +47,14 @@ export const logIn = createAsyncThunk(
 
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await axios.post('auth/logout');
-    clearAuthHeader();
+    await logoutFetch();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
 export const userCurrent = createAsyncThunk(
-  'auth/userCurrent',
+  'auth/refresh',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.accessToken;
@@ -58,52 +62,40 @@ export const userCurrent = createAsyncThunk(
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
     try {
-      setAuthHeader(persistedToken);
-      const { data } = await axios.get('auth/current');
+      const data = await currentFetch();
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
-export const refreshTokens = createAsyncThunk(
-  'auth/refreshTokens',
-  async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const oldRefreshToken = state.auth.refreshToken;
-
-    try {
-      const { data } = await axios.post('auth/refresh', {
-        refreshToken: oldRefreshToken,
-      });
-      setAuthHeader(data.body.accessToken);
-      return data;
-    } catch (error) {
-      if (error.response.data.code === 401) {
-        clearAuthHeader();
-      }
-      return thunkAPI.rejectWithValue(error.response.data.message);
-    }
-  }
-);
-
 export const updateUser = createAsyncThunk(
-  'auth/update',
-  async (formData, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const token = state.auth.accessToken;
-    setAuthHeader(token);
+  'auth/updateUser',
+  async (_, thunkAPI) => {
     try {
-      const { data } = await axios.put('auth/update', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-      console.log('updateUser payload: ', data);
+      const data = await updateFetch(); // need provide data to update
       return data;
     } catch (error) {
-      if (error.response.data.code === 401) {
-        clearAuthHeader();
-      }
-      return thunkAPI.rejectWithValue(error.response.data.message);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
+// export const refreshTokens = createAsyncThunk(
+//   'auth/refreshTokens',
+//   async (_, thunkAPI) => {
+//     const state = thunkAPI.getState();
+//     const oldRefreshToken = state.auth.refreshToken;
+//     console.log(oldRefreshToken);
+//     try {
+//       const data = await axios.post('auth/refresh', {
+//         refreshToken: oldRefreshToken,
+//       });
+//       return data;
+//     } catch (error) {
+//       console.log(error.response);
+//       if (error.response.data.code === 401) {
+//       }
+//       return thunkAPI.rejectWithValue(error.response.data.message);
+//     }
+//   }
+// );

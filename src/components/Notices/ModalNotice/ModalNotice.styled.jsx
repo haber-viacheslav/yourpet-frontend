@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ImagConteiner = styled.div`
+export const ImgContainer = styled.div`
   position: relative;
   margin-bottom: 12px;
   @media screen and (${props => props.theme.media.md}) {
@@ -42,7 +42,7 @@ export const PetInfoList = styled.ul`
   }
 `;
 
-export const PetInfoitem = styled.li`
+export const PetInfoItem = styled.li`
   margin-left: 20px;
   padding-top: 2px;
   @media screen and (${props => props.theme.media.md}) {
@@ -97,7 +97,7 @@ export const InfoFlag = styled(MailInfo)`
   }
 `;
 export const TelInfo = styled(MailInfo)``;
-export const ComentInfo = styled.p`
+export const CommentInfo = styled.p`
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 600;
@@ -114,7 +114,7 @@ export const ComentInfo = styled.p`
   @media screen and (${props => props.theme.media.lg}) {
   }
 `;
-export const BtnConteiner = styled.div`
+export const BtnContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
