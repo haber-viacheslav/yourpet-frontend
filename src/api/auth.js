@@ -18,10 +18,17 @@ export const setToken = async token => {
 axios.interceptors.response.use(
   resp => resp,
   async error => {
-    if (error.response.data.code === 403) {
+    console.log(error.response.data.code);
+    if (
+      error.response.data.code === 403 ||
+      error.response.data.message.includes('authorization')
+    ) {
       const oldRefreshToken = localStorageService.getItem('refreshToken');
+      console.log(oldRefreshToken);
       try {
-        const { data } = await axios.post('/auth/refresh', oldRefreshToken);
+        const { data } = await axios.post('/auth/refresh', {
+          refreshToken: oldRefreshToken,
+        });
         const { accessToken, refreshToken } = data.body;
         setToken(accessToken);
         localStorageService.setItem('refreshToken', refreshToken);

@@ -13,6 +13,7 @@ const authSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(register.fulfilled, (state, action) => {
+        console.log(action.payload);
         const user = {
           name: action.payload.body.name,
           email: action.payload.body.email,

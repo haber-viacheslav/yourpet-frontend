@@ -21,6 +21,7 @@ import {
   PasswordMessage,
   SuccessMessage,
 } from './LoginForm.styled';
+import { currentFetch } from 'api/auth';
 // import { fetchDecorator } from 'helpers/fetchDecorator';
 // import axios from 'axios';
 
