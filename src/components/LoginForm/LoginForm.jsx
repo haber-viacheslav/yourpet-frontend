@@ -31,23 +31,6 @@ export const LoginForm = () => {
   const [typePass, setTypePass] = useState('password');
   const navigate = useNavigate();
 
-  // const dispatch = useDispatch();
-
-  // EXAMPLE
-  // useEffect(() => {
-  //   // use async IIEF or named  async func
-  //   (async () => {
-  //     const resp = await fetchDecorator(
-  //       () => {},
-  //       () => {},
-  //       () => axios.get('auth/current')
-  //     );
-  //     console.log(resp);
-  //     console.log(axios.defaults.headers.common.Authorization);
-  //   })();
-  // }, [dispatch]);
-  // -----------------------------------
-
   const yupLoginValidation = object().shape({
     email: string().email('Enter a Valid Email').required('Email is Required'),
     password: string()

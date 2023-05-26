@@ -10,6 +10,7 @@ import {
   FiltersBtnContainer,
   FiltersContainer,
 } from './NoticesCategoriesNav.styled';
+import { FilterCards } from '../FilterCards/FilterCards';
 
 export const NoticesCategoriesNav = () => {
   return (
@@ -33,7 +34,7 @@ export const NoticesCategoriesNav = () => {
             </NavLink>
         </FilterAdsContainer>
         <FiltersBtnContainer>
-          <BtnFilters />
+          <FilterCards/>
           <BtnAddPet />
         </FiltersBtnContainer>
         <BtnFiltersCircle />
