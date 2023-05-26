@@ -7,6 +7,7 @@ import {
   logoutFetch,
   updateFetch,
 } from 'api/auth';
+import axios from 'axios';
 
 export const register = createAsyncThunk(
   'auth/register',
@@ -78,22 +79,19 @@ export const updateUser = createAsyncThunk(
     }
   }
 );
-// export const refreshTokens = createAsyncThunk(
-//   'auth/refreshTokens',
-//   async (_, thunkAPI) => {
-//     const state = thunkAPI.getState();
-//     const oldRefreshToken = state.auth.refreshToken;
-//     console.log(oldRefreshToken);
-//     try {
-//       const data = await axios.post('auth/refresh', {
-//         refreshToken: oldRefreshToken,
-//       });
-//       return data;
-//     } catch (error) {
-//       console.log(error.response);
-//       if (error.response.data.code === 401) {
-//       }
-//       return thunkAPI.rejectWithValue(error.response.data.message);
-//     }
-//   }
-// );
+export const refreshTokens = createAsyncThunk(
+  'auth/refreshTokens',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const oldRefreshToken = state.auth.refreshToken;
+    console.log(oldRefreshToken);
+    try {
+      const data = await axios.post('auth/refresh', {
+        refreshToken: oldRefreshToken,
+      });
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);

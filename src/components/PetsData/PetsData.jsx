@@ -9,14 +9,14 @@ import { deletePet } from 'redux/pets/petsService';
 export const PetsData = () => {
   const [data, SetData] = useState([]);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const result = await getPets();
-        SetData([...result.data.body.data]);
-      } catch (error) {}
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       const result = await getPets();
+  //       SetData([...result.data.body.data]);
+  //     } catch (error) {}
+  //   })();
+  // }, []);
 
   const handleDeleteBtn = async id => {
     try {

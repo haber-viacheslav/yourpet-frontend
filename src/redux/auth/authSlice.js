@@ -5,6 +5,7 @@ import {
   logOut,
   userCurrent,
   updateUser,
+  refreshTokens,
 } from './authService';
 
 const initialState = {
@@ -17,6 +18,8 @@ const initialState = {
     avatarURL: null,
     newUser: null,
   },
+  refreshToken: null,
+  accessToken: null,
   isLoggedIn: false,
   isRefreshing: false,
 };
@@ -30,10 +33,13 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(register.fulfilled, (state, action) => {
+        state.refreshToken = action.payload.body.refreshToken;
+        state.accessToken = action.payload.body.accessToken;
         state.user.email = action.payload.body.email;
         state.user.newUser = action.payload.body.newUser;
         state.isLoggedIn = true;
       })
+
       .addCase(register.rejected, state => {
         state.isLoading = false;
       })
@@ -41,6 +47,8 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(logIn.fulfilled, (state, action) => {
+        state.refreshToken = action.payload.body.refreshToken;
+        state.accessToken = action.payload.body.accessToken;
         state.user = {
           name: action.payload.body.name,
           email: action.payload.body.email,
@@ -59,6 +67,8 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(logOut.fulfilled, (state, action) => {
+        state.refreshToken = null;
+        state.accessToken = null;
         state.user = {
           name: null,
           email: null,
@@ -91,6 +101,14 @@ const authSlice = createSlice({
       })
       .addCase(userCurrent.rejected, state => {
         state.isRefreshing = false;
+      })
+      .addCase(refreshTokens.fulfilled, (state, action) => {
+        state.refreshToken = action.payload.body.refreshToken;
+        state.accessToken = action.payload.body.accessToken;
+      })
+      .addCase(refreshTokens.rejected, state => {
+        state.refreshToken = null;
+        state.accessToken = null;
       })
       .addCase(updateUser.pending, state => {
         state.isLoading = true;

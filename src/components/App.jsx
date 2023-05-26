@@ -3,7 +3,7 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import { lazy } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../theme/theme';
-import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList/NoticesCategorieList'
+import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList/NoticesCategorieList';
 
 import { useEffect } from 'react';
 import { userCurrent } from 'redux/auth/authService';
@@ -42,7 +42,7 @@ export const App = () => {
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<Register />} />
             <Route path="user" element={<UserPage />} />
-            <Route path="/notices" element={<NoticesPage />}>
+            <Route path="notices" element={<NoticesPage />}>
               <Route index element={<NoticesCategoriesList />} />
               <Route path="sell" element={<NoticesCategoriesList />} />
               <Route path="lost-found" element={<NoticesCategoriesList />} />

@@ -23,6 +23,8 @@ import {
   PasswordMessage,
   SuccessMessage,
 } from './LoginForm.styled';
+import { dispatch } from 'redux/store';
+import { logIn } from 'redux/auth/authService';
 // import { fetchDecorator } from 'helpers/fetchDecorator';
 // import axios from 'axios';
 
@@ -65,10 +67,10 @@ export const LoginForm = () => {
   };
 
   const handleSubmit = async (values, { resetForm }) => {
-    setTimeout(() => {
-      navigate('/user');
-    }, 1000);
-
+    dispatch(logIn(values));
+    // setTimeout(() => {
+    //   navigate('/user');
+    // }, 1000);
     resetForm();
   };
 
