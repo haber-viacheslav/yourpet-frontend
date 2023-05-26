@@ -1,9 +1,16 @@
-import { useState, useEffect } from 'react';
+import {
+  useState,
+  // useEffect
+} from 'react';
 import { Formik } from 'formik';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
 import { useDispatch } from 'react-redux';
-import { logOut, updateUser, userCurrent } from 'redux/auth/authService';
+import {
+  logOut,
+  updateUser,
+  // userCurrent
+} from 'redux/auth/authService';
 import { useNavigate } from 'react-router-dom';
 import { UserDataItem } from './UserDataItem/UserDataItem';
 import { AvatarUploadInput } from './AvatarUploadInput/AvatarUploadInput';
@@ -31,9 +38,9 @@ export const UserData = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    dispatch(userCurrent);
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(userCurrent);
+  // }, [dispatch]);
 
   const avatar = user.avatarURL;
   const initialValues = {
