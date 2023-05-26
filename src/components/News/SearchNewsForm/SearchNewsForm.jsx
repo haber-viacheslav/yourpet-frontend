@@ -42,7 +42,7 @@ export const SearchNewsForm = ({ onSubmit }) => {
         value={searchQuery}
         onChange={e => handleChange(e)}
       />
-      <ButtonIconForm onClick={handleReset} />
+      <ButtonIconForm onClick={handleReset} searchQuery={searchQuery} />
     </FormSearch>
   );
 };
