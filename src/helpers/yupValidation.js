@@ -42,7 +42,7 @@ export const addPetFormSchema = yup.object().shape({
       .string()
       .min(2, 'Minimum 2 characters')
       .max(50, 'Maximum 50 characters')
-      .required('Enter a title (min 2, max 50 characters)'),
+      .required('Enter a title'),
     otherwise: yup.string(),
   }),
   date: yup.string().required('Choose a date of birth'),
@@ -50,17 +50,17 @@ export const addPetFormSchema = yup.object().shape({
     .string('Must be a string')
     .min(2, 'Minimum 2 characters')
     .max(16, 'Maximum 16 characters')
-    .required('Enter a pet`s breed (min 2, max 16 characters)'),
+    .required('Enter a pet`s breed '),
   name: yup
     .string()
     .min(2, 'Minimum 2 characters')
     .max(16, 'Maximum 16 characters')
-    .required('Enter a pet`s name (min 2, max 16 characters)'),
+    .required('Enter a pet`s name'),
   location: yup.string().when('category', {
     is: value => value !== 'your pet',
     then: yup
       .string()
-      .matches(/^[A-Z][a-zA-Z]*$/, 'Location begins with capitalize character')
+      .matches(/^[A-Z][a-zA-Z]*$/, 'Starts with capitalize character')
       .required('Enter your location'),
     otherwise: yup.string(),
   }),
@@ -113,7 +113,7 @@ export const profileSchema = yup.object().shape({
   birthday: yup.string().required('Choose your birthday'),
   city: yup
     .string()
-    .matches(/^[A-Z][a-zA-Z]*$/, 'City begins with capitalize character'),
+    .matches(/^[A-Z][a-zA-Z]*$/, 'Starts with capitalize character'),
   phone: yup.string().matches(/^\+\d{12}$/, 'UA format number'),
   file: yup
     .mixed()

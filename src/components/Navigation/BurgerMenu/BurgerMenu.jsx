@@ -1,13 +1,7 @@
 import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { Spin as Hamburger } from 'hamburger-react';
-import {
-  Burger,
-  BoxNav,
-  BoxUser,
-  Box, 
-  
-} from './BurgerMenu.styled';
+import { Burger, BoxNav, BoxUser, Box } from './BurgerMenu.styled';
 import { Nav } from '../Nav/Nav';
 import { AuthNav } from '../AuthNav/AuthNav';
 // import { UserNav } from '../../Navigation/UserNav/UserNav';
@@ -16,7 +10,7 @@ import { AuthNav } from '../AuthNav/AuthNav';
 export const BurgerMenu = ({ name }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef();
-  console.log(isOpen);
+  // console.log(isOpen);
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -24,7 +18,7 @@ export const BurgerMenu = ({ name }) => {
   const handleClose = () => {
     setIsOpen(false);
   };
-  
+
   useEffect(() => {
     const handler = e => {
       if (menuRef.current.contains(e.target)) {
@@ -32,19 +26,30 @@ export const BurgerMenu = ({ name }) => {
       }
     };
     document.addEventListener('mousedown', handler);
-    
+
     return () => {
       document.removeEventListener('mousedown', handler);
     };
   }, []);
 
   return (
-    <div ref={menuRef} >
+    <div ref={menuRef}>
       {/* <BoxUserHeader>
           <AuthNav />
           {/* <UserMenu /> */}
       {/* </BoxUserHeader> */}
-      <Burger >
+
+      {/* // backdrop */}
+      <Box isOpen={isOpen} onClick={handleClose}>
+        <BoxUser>
+          <AuthNav />
+          {/* <UserMenu isOpen={isOpen}/> */}
+        </BoxUser>
+        <BoxNav>
+          <Nav />
+        </BoxNav>
+      </Box>
+      <Burger>
         <Hamburger
           isOpen={isOpen}
           onClick={handleOpen}
@@ -59,19 +64,6 @@ export const BurgerMenu = ({ name }) => {
           duration={0.6}
         />
       </Burger>
-
-      {/* // backdrop */}
-      <Box isOpen={isOpen} onClick={handleClose} >
-        
-        <BoxUser>
-          <AuthNav />
-          {/* <UserMenu isOpen={isOpen}/> */}
-    
-        </BoxUser>
-        <BoxNav>
-          <Nav />
-        </BoxNav>
-      </Box>
     </div>
   );
 };

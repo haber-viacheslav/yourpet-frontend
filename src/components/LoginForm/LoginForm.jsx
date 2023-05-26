@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react';
+// import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, ErrorMessage } from 'formik';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { logIn, refreshTokens } from '../../redux/auth/authService';
+import {
+  logIn,
+  // , refreshTokens
+} from '../../redux/auth/authService';
 import { string, object } from 'yup';
 import { iconClose, iconOpen, IconCrossSmall, IconCheck } from './Icons/Icons';
 // import { setAuthHeader } from 'redux/auth/utility/authUtility';
@@ -23,8 +26,8 @@ import {
   PasswordMessage,
   SuccessMessage,
 } from './LoginForm.styled';
-import { fetchDecorator } from 'helpers/fetchDecorator';
-import axios from 'axios';
+// import { fetchDecorator } from 'helpers/fetchDecorator';
+// import axios from 'axios';
 
 export const LoginForm = () => {
   const [toggleIconPass, setToggleIconPass] = useState(iconClose);
@@ -33,15 +36,15 @@ export const LoginForm = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    (async () => {
-      const resp = await fetchDecorator(dispatch, refreshTokens, () =>
-        axios.get('news')
-      );
-      console.log(resp);
-      console.log(axios.defaults.headers.common.Authorization);
-    })();
-  }, [dispatch]);
+  // useEffect(() => {
+  //   // (async () => {
+  //   //   const resp = await fetchDecorator(dispatch, refreshTokens, () =>
+  //   //     axios.get('news')
+  //   //   );
+  //   //   console.log(resp);
+  //   //   console.log('Форма логіну:', axios.defaults.headers.common.Authorization);
+  //   // })();
+  // }, [dispatch]);
 
   const yupLoginValidation = object().shape({
     email: string().email('Enter a Valid Email').required('Email is Required'),

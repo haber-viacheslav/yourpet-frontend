@@ -1,4 +1,5 @@
 import { DeletePetBtn } from 'components/buttons/buttons';
+import { deletePet } from 'redux/pets/petsService';
 import {
   Wrapper,
   ImageWrapper,
@@ -10,9 +11,12 @@ import {
 } from './PetsItem.styled';
 import PropTypes from 'prop-types';
 
-export const PetsItem = ({ url, name, date, breed, comments }) => {
-  const handlDeleteBtn = () => {};
-  // логіка видалення питомця;
+export const PetsItem = ({ id, url, name, date, breed, comments }) => {
+  const handleDeleteBtn = async id => {
+    try {
+      deletePet(id);
+    } catch (error) {}
+  };
 
   return (
     <Wrapper>
@@ -41,7 +45,7 @@ export const PetsItem = ({ url, name, date, breed, comments }) => {
           </Title>
         </TextContent>
       </TextWrapper>
-      <DeletePetBtn onClick={handlDeleteBtn} />
+      <DeletePetBtn onClick={() => handleDeleteBtn(id)} />
     </Wrapper>
   );
 };
@@ -51,5 +55,5 @@ PetsItem.propTypes = {
   name: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   breed: PropTypes.string.isRequired,
-  comments: PropTypes.string.isRequired,
+  comments: PropTypes.string,
 };

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from 'hooks/useAuth';
 import { RadioBtn } from './RadioBtn/RadioBtn';
 import { InputField } from './InputField/InputField';
 import { CommentField } from './CommentField/CommentField';
@@ -18,7 +19,7 @@ import {
   Wrapper,
   InputWrapper,
   GroupWrapper,
-  BtnWrappper,
+  BtnWrapper,
   ExtraWrapper,
   SexWrapper,
   GroupTitle,
@@ -56,6 +57,7 @@ export const AddPetForm = () => {
   const [stage, SetStage] = useState(() => initialsStage);
   const [emulTouch, SetEmulTouch] = useState([]);
   const navigate = useNavigate();
+  const { token } = useAuth();
 
   const handleOnNextClick = async (values, errors, validateForm) => {
     let formIsValid;
@@ -105,6 +107,7 @@ export const AddPetForm = () => {
 
   const handleOnSubmit = async (values, { resetForm }) => {
     const formData = new FormData();
+    console.log('handle:', token);
 
     switch (values.category) {
       case 'your pet':
@@ -115,6 +118,7 @@ export const AddPetForm = () => {
         formData.append('file', values.file, 'Pet`s photo');
         try {
           await createPet(formData);
+          navigate('/user');
         } catch (error) {}
 
         break;
@@ -132,22 +136,17 @@ export const AddPetForm = () => {
 
         try {
           await createNotice(formData);
+          navigate('/notices');
         } catch (error) {
           console.log(error);
         }
     }
 
-    for (const [key, value] of formData.entries()) {
-      console.log(key, value);
-    }
-
-    alert('SUBMIT!');
     // localStorage.removeItem('formValues');
     // localStorage.removeItem('stage');
     // resetForm({});
     // SetStage(1);
-    SetEmulTouch([]);
-    // navigate('/add-pet');
+    // SetEmulTouch([]);
   };
 
   return (
@@ -307,7 +306,7 @@ export const AddPetForm = () => {
                   </InputWrapper>
                 </FlexWrapper>
                 {stage !== 3 && (
-                  <BtnWrappper>
+                  <BtnWrapper>
                     <BtnNext
                       onClick={() =>
                         handleOnNextClick(values, errors, validateForm)
@@ -315,13 +314,13 @@ export const AddPetForm = () => {
                     />
                     {stage === 1 && <BtnCancel onClick={handleOnCancelClick} />}
                     {stage === 2 && <BtnBack onClick={handleOnBackClick} />}
-                  </BtnWrappper>
+                  </BtnWrapper>
                 )}
                 {stage === 3 && (
-                  <BtnWrappper>
+                  <BtnWrapper>
                     <BtnDone />
                     <BtnBack onClick={handleOnBackClick} />
-                  </BtnWrappper>
+                  </BtnWrapper>
                 )}
               </FormWrapper>
             </Wrapper>

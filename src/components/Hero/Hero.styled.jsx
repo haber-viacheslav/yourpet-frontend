@@ -34,6 +34,7 @@ export const SectionWrapper = styled.div`
 
 export const ImageWrapper = styled.div`
   position: absolute;
+  /* overflow: hidden; */
   top: 108px;
   right: -60px;
   width: 474px;
@@ -50,7 +51,7 @@ export const ImageWrapper = styled.div`
     top: 30px;
     right: 0;
     width: 917px;
-    height: 920px;
+    height: 800px;
   }
 `;
 
@@ -59,7 +60,7 @@ export const DogImage = styled.img`
   top: 0;
   right: 0;
   transform-origin: 0% 100%;
-  animation-name: ${anim};
+  /* animation-name: ${anim}; */
   animation-duration: 5s;
   animation-iteration-count: infinite;
 
@@ -80,7 +81,7 @@ export const CatImage = styled.img`
   right: 45px;
 
   transform-origin: 0% 50%;
-  animation-name: ${anim};
+  /* animation-name: ${anim}; */
 
   animation-duration: 5s;
   animation-iteration-count: infinite;

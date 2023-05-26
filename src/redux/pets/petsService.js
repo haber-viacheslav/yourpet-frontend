@@ -1,5 +1,5 @@
 import axios from 'axios';
-// import { setAgituthHeader, clearAuthHeader } from 'redux/auth/utility/authUtility';
+// import { setAuthHeader, clearAuthHeader } from 'redux/auth/utility/authUtility';
 
 const baseServerURL = `https://your-pet-api.onrender.com`;
 const baseAPIEndpoint = '/api/v1';
@@ -11,22 +11,24 @@ export const getFriends = async () => {
 };
 
 export const getPets = async () => {
-  // setAuthHeader(token);
   const response = await axios.get('/pets');
   return response;
 };
 
 export const createPet = async body => {
-  return await axios.post(`/pets`);
+  return await axios.post(`/pets`, body, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
 };
 
 export const deletePet = async id => {
-  // setAuthHeader(token);
   return await axios.delete(`/pets/${id}`);
 };
 
 export const createNotice = async body => {
-  return await axios.post(`/notices`);
+  return await axios.post(`/notices`, body, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
 };
 
 // export const registerUser = async function (body) {

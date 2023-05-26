@@ -1,10 +1,13 @@
 import { HeaderWrapper } from './Header.styled';
-import { NavBar } from "../Navigation/NavBar/NavBar";
+import { Container } from '../Container/Container';
+import { NavBar } from '../Navigation/NavBar/NavBar';
 
 export const Header = () => {
   return (
-    <HeaderWrapper>
+    <Container>
+      <HeaderWrapper>
         <NavBar />
-    </HeaderWrapper>
+      </HeaderWrapper>
+    </Container>
   );
 };

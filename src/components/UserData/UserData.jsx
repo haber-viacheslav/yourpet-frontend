@@ -1,7 +1,13 @@
-import { useState, useEffect } from 'react';
+import {
+  useState,
+  // , useEffect
+} from 'react';
 import { Formik } from 'formik';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
+import { useDispatch } from 'react-redux';
+import { logOut, updateUser } from 'redux/auth/authService';
+import { useNavigate } from 'react-router-dom';
 
 import { UserDataItem } from './UserDataItem/UserDataItem';
 import { AvatarUploadInput } from './AvatarUploadInput/AvatarUploadInput';
@@ -22,58 +28,61 @@ const inputs = [
   { type: 'text', name: 'city', placeholder: 'Kyiv' },
 ];
 
-const InitialFormData = {
-  name: '',
-  email: '',
-  birthday: '',
-  phone: '',
-  city: '',
-  file: '',
-};
-
 export const UserData = () => {
   const [isEditingBlocked, setIsEditingBlocked] = useState(false);
-  const [logOut, setLogOut] = useState(false);
-  const [initialValues, setInitialValues] = useState(InitialFormData);
+  const [isLogOut, setIsLogOut] = useState(false);
   const user = useSelector(selectUser);
+  console.log(user.birthday.slice(0, 10));
+  const initialValues = {
+    name: user.name || 'And',
+    email: user.email || '',
+    birthday: user.birthday.slice(0, 10) || '2222-05-01',
+    phone: user.phone || '',
+    city: user.city || '',
+    file: user.avatarURL || '',
+  };
 
-  // console.log(user);
-
-  useEffect(() => {
-    setInitialValues(user);
-  }, [user]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogOut = () => {
-    setLogOut(true);
+    setIsLogOut(true);
   };
 
   const handleLogOutCancel = () => {
-    setLogOut(false);
+    setIsLogOut(false);
   };
 
-  const handleLogOutYes = () => {
-    // Логаут і перенапралення юзера
-    alert('Закрив і вийшов!');
-    setLogOut(false);
+  const handleLogOutYes = async () => {
+    try {
+      dispatch(logOut());
+      setIsLogOut(false);
+      navigate('/');
+    } catch (error) {}
   };
 
   const handleOnSubmit = async values => {
+    const keys = Object.keys(values);
+    // console.log(777, values);
     const formData = new FormData();
-    formData.append('name', values.name);
-    formData.append('email', values.email);
-    formData.append('birthday', values.birthday);
-    formData.append('phone', values.phone);
-    formData.append('city', values.city);
+    keys.forEach(key => {
+      if (values[key] && key !== 'file') {
+        formData.append(key, values[key]);
+      }
+    });
+
     if (values.file) {
       formData.append('file', values.file, 'User`s photo');
     }
+    for (const pair of formData.entries()) {
+      console.log(pair[0] + ': ' + pair[1]);
+    }
 
     try {
-      //  await createNotice(formData);
+      dispatch(updateUser(formData));
     } catch (error) {
       console.log(error);
     }
-    alert('SUBMIT!!!');
   };
 
   return (
@@ -88,6 +97,7 @@ export const UserData = () => {
           >
             {({ values, errors, touched, handleSubmit }) => {
               console.log(values);
+              // console.log(errors);
               return (
                 <>
                   <AvatarUploadInput
@@ -122,7 +132,7 @@ export const UserData = () => {
           <LogOut onClick={handleLogOut} />
         </ProfileInfo>
       </div>
-      {logOut && (
+      {isLogOut && (
         <ModalApproveAction
           onActivate={handleLogOutYes}
           onClick={handleLogOutCancel}

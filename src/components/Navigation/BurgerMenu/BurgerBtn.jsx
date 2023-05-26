@@ -18,6 +18,15 @@ export const BurgerBtn = () => {
 
   return (
     <>
+      <Box isOpen={isOpen}>
+        <BoxNav>
+          <Nav />
+        </BoxNav>
+        <BoxUser>
+          {!isLoggedIn && <AuthNav />}
+          {isLoggedIn && <UserMenu />}
+        </BoxUser>
+      </Box>
       <Burger>
         <Hamburger
           isOpen={isOpen}
@@ -33,15 +42,6 @@ export const BurgerBtn = () => {
           duration={0.6}
         />
       </Burger>
-      <Box isOpen={isOpen}>
-        <BoxNav>
-          <Nav />
-        </BoxNav>
-        <BoxUser>
-          {!isLoggedIn && <AuthNav />}
-          {isLoggedIn && <UserMenu />}
-        </BoxUser>
-      </Box>
     </>
   );
 };
