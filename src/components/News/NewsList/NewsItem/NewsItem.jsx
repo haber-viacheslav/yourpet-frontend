@@ -7,7 +7,7 @@ import {
   Img,
   Plug,
   Title,
-  Decsr,
+  Description,
   WrapBottom,
   Date,
   Link,
@@ -31,15 +31,14 @@ export const NewsItem = ({ imgUrl, title, text, date, url }) => {
       </WrapImg>
       <Wrap>
         <Title>{title}</Title>
-
-        <Decsr>{text}</Decsr>
+        <Description>{text}</Description>
+        <WrapBottom>
+          <Date>{transformDate(date)}</Date>
+          <Link href={url} target="_blank" rel="noreferrer noopener">
+            Read more
+          </Link>
+        </WrapBottom>
       </Wrap>
-      <WrapBottom>
-        <Date>{transformDate(date)}</Date>
-        <Link href={url} target="_blank" rel="noreferrer noopener">
-          Read more
-        </Link>
-      </WrapBottom>
     </Item>
   );
 };

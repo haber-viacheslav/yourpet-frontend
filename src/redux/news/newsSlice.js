@@ -14,6 +14,8 @@ const newsSlice = createSlice({
     builder
       .addCase(fetchNews.fulfilled, (state, action) => {
         state.items = action.payload.data;
+        console.log('PayloadData', action.payload.data);
+
         state.totalPages = action.payload.totalPages;
         state.error = null;
         state.isLoading = false;

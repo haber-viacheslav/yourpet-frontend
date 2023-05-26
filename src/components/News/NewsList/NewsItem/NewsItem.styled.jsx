@@ -57,9 +57,7 @@ export const Plug = styled(Notify)`
 `;
 
 export const Wrap = styled.div`
-  margin-bottom: 40px;
-  padding-left: 8px;
-  padding-right: 8px;
+  padding: 0 12px 12px;
 `;
 export const Title = styled.h2`
   margin-left: 0;
@@ -72,7 +70,7 @@ export const Title = styled.h2`
   height: 100px;
 `;
 
-export const Decsr = styled.p`
+export const Description = styled.p`
   font-weight: 400;
   line-height: 1.37;
   height: 100px;
@@ -82,9 +80,6 @@ export const WrapBottom = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
-  padding-left: 8px;
-  padding-right: 8px;
 `;
 export const Date = styled.p`
   font-weight: 400;
