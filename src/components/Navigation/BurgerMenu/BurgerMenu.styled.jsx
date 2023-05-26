@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Burger = styled.div`
   z-index: 100;
-  @media screen and (${props => props.theme.media.smToLg}){
+  @media screen and (${props => props.theme.media.lg}){
     display: none;
   } 
 `;
