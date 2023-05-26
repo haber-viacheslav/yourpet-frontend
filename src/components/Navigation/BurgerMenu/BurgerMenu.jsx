@@ -7,11 +7,10 @@ import { AuthNav } from '../AuthNav/AuthNav';
 
 // import { UserMenu } from 'components/Navigation/UserMenu/UserMenu';
 
-
 export const BurgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef();
-  console.log(isOpen);
+  // console.log(isOpen);
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -28,25 +27,18 @@ export const BurgerMenu = () => {
     };
 
     document.addEventListener('mousedown', handler);
+
     return () => {
       document.removeEventListener('mousedown', handler);
     };
   }, []);
 
   useEffect(() => {
-    const scroleStop = e => {
-      const backdrop = document.querySelector('body');
-
-      if (isOpen) {
-        backdrop.style.overflow = "hidden";
-      }else{
-        backdrop.style.overflow = "visible";
-      }
-    };
-    window.addEventListener('mousemove', scroleStop);
-    return () => {
-    window.removeEventListener('mousemove', scroleStop);
-    };
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'visible';
+    }
   }, [isOpen]);
 
   return (
@@ -76,7 +68,6 @@ export const BurgerMenu = () => {
           <Nav />
         </BoxNav>
       </Box>
-      
     </>
   );
 };

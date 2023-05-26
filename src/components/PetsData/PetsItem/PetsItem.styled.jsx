@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   gap: 20px;
   padding: 16px 20px 40px;
@@ -29,21 +29,29 @@ export const Wrapper = styled.div`
 `;
 
 export const ImageWrapper = styled.div`
-  min-width: 240px;
+  width: 240px;
+  height: 240px;
 
   border-radius: 20px;
+  /* overflow: hidden; */
 
   @media screen and (${props => props.theme.media.md}) {
-    min-width: 128px;
+    width: 128px;
+    height: 128px;
   }
 
   @media screen and (${props => props.theme.media.lg}) {
-    min-width: 161px;
+    width: 161px;
+    height: 161px;
   }
 `;
 
 export const Image = styled.img`
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: top center;
+  border-radius: 20px;
 `;
 
 export const TextWrapper = styled.div`

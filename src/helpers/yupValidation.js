@@ -37,12 +37,12 @@ export const yupLoginValidation = yup.object().shape({
 
 export const addPetFormSchema = yup.object().shape({
   title: yup.string().when('category', {
-    is: value => value !== 'your pet',
+    is: value => value !== 'my pet',
     then: yup
       .string()
       .min(2, 'Minimum 2 characters')
       .max(50, 'Maximum 50 characters')
-      .required('Enter a title (min 2, max 50 characters)'),
+      .required('Enter a title'),
     otherwise: yup.string(),
   }),
   date: yup.string().required('Choose a date of birth'),
@@ -50,17 +50,17 @@ export const addPetFormSchema = yup.object().shape({
     .string('Must be a string')
     .min(2, 'Minimum 2 characters')
     .max(16, 'Maximum 16 characters')
-    .required('Enter a pet`s breed (min 2, max 16 characters)'),
+    .required('Enter a pet`s breed '),
   name: yup
     .string()
     .min(2, 'Minimum 2 characters')
     .max(16, 'Maximum 16 characters')
-    .required('Enter a pet`s name (min 2, max 16 characters)'),
+    .required('Enter a pet`s name'),
   location: yup.string().when('category', {
-    is: value => value !== 'your pet',
+    is: value => value !== 'my pet',
     then: yup
       .string()
-      .matches(/^[A-Z][a-zA-Z]*$/, 'Location begins with capitalize character')
+      .matches(/^[A-Z][a-zA-Z]*$/, 'Starts with capitalize character')
       .required('Enter your location'),
     otherwise: yup.string(),
   }),
@@ -78,13 +78,13 @@ export const addPetFormSchema = yup.object().shape({
     .max(120, 'Maximum 120 characters'),
   sex: yup.string().when('category', {
     is: value =>
-      value === 'sell' || value === 'lost/found' || value === 'in good hands',
-    then: yup.string().oneOf(['Female', 'Male']).required('Choose a pet`s sex'),
+      value === 'sell' || value === 'lost-found' || value === 'for-free',
+    then: yup.string().oneOf(['female', 'male']).required('Choose a pet`s sex'),
     otherwise: yup.string(),
   }),
   category: yup
     .string()
-    .oneOf(['your pet', 'sell', 'lost/found', 'in good hands'])
+    .oneOf(['my pet', 'sell', 'lost-found', 'for-free'])
     .required(),
   file: yup
     .mixed()
@@ -113,7 +113,21 @@ export const profileSchema = yup.object().shape({
   birthday: yup.string().required('Choose your birthday'),
   city: yup
     .string()
-    .matches(/^[A-Z][a-zA-Z]*$/, 'City begins with capitalize character'),
+    .matches(/^[A-Z][a-zA-Z]*$/, 'Starts with capitalize character'),
   phone: yup.string().matches(/^\+\d{12}$/, 'UA format number'),
-  file: '',
+  file: yup
+    .mixed()
+    .required('Upload photo')
+
+    .test(
+      'fileType',
+      'Only image files are allowed',
+      value =>
+        !value || ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type)
+    )
+    .test(
+      'fileSize',
+      'File size is too large',
+      value => value?.size <= 3145728
+    ),
 });

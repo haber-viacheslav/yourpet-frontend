@@ -19,9 +19,10 @@ export const AvatarUploadInput = ({
   handleSubmit,
   isEditingBlocked,
   setIsEditingBlocked,
+  avatar,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [photoPreview, SetPhotoPreview] = useState(null);
+  const [photoPreview, SetPhotoPreview] = useState(avatar || null);
   const { setFieldValue } = useFormikContext();
 
   const handleOnEdit = () => {

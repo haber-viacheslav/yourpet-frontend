@@ -1,28 +1,34 @@
 import axios from 'axios';
+// import { setAuthHeader, clearAuthHeader } from 'redux/auth/utility/authUtility';
 
 const baseServerURL = `https://your-pet-api.onrender.com`;
 const baseAPIEndpoint = '/api/v1';
 axios.defaults.baseURL = baseServerURL + baseAPIEndpoint;
-
-export const setAuthHeader = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+// getFriends
+export const getFriends = async () => {
+  const response = await axios.get('/friends');
+  return response;
 };
-
-// const clearAuthHeader = () => {
-//   axios.defaults.headers.common.Authorization = '';
-// };
-
-export const getOurFriends = async () => {
-  const responce = await axios.get('/friends');
-  return responce;
+// getPets
+export const getPets = async () => {
+  const response = await axios.get('/pets');
+  return response;
 };
-
-export const createPet = async body => {
-  return await axios.post(`/pets`);
-};
-
+// createNotice
 export const createNotice = async body => {
-  return await axios.post(`/notices`);
+  return await axios.post(`/notices`, body, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+};
+// createPet
+export const createPet = async body => {
+  return await axios.post(`/pets`, body, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+};
+// deletePet
+export const deletePet = async id => {
+  return await axios.delete(`/pets/${id}`);
 };
 
 // export const registerUser = async function (body) {

@@ -160,15 +160,15 @@ export const CardItem = ({
             aria-label="address"
           >
             <Title>Address:</Title>
-            <Text>{address}</Text>
+            <Text>{address ? address : '-- -- -- -- --'}</Text>
           </Link>
           <Link href={`mailto:${email || ''}`} aria-label="email">
             <Title>Email:</Title>
-            <Text>{email}</Text>
+            <Text>{email ? email : '-- -- -- -- --'}</Text>
           </Link>
           <Link href={`tel:${phone}`} aria-label="phone number">
             <Title>Phone:</Title>
-            <Text>{phone}</Text>
+            <Text>{phone ? phone : '-- -- -- -- --'}</Text>
           </Link>
         </TextContent>
       </ContentWrapper>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { RadioBtn } from './RadioBtn/RadioBtn';
 import { InputField } from './InputField/InputField';
 import { CommentField } from './CommentField/CommentField';
@@ -18,7 +19,7 @@ import {
   Wrapper,
   InputWrapper,
   GroupWrapper,
-  BtnWrappper,
+  BtnWrapper,
   ExtraWrapper,
   SexWrapper,
   GroupTitle,
@@ -40,9 +41,16 @@ const initialsValues = {
   category: 'your pet',
   file: '',
 };
-
-const statuses = ['your pet', 'sell', 'lost/found', 'in good hands'];
-const sexes = ['Female', 'Male'];
+const statuses = [
+  ['your pet', 'my pet'],
+  ['sell', 'sell'],
+  ['lost/found', 'lost-found'],
+  ['in good hands', 'for-free'],
+];
+const sexes = [
+  ['Female', 'female'],
+  ['Male', 'male'],
+];
 
 const formTempValues = localStorage.getItem('formValues');
 const initialsFormState = formTempValues
@@ -107,49 +115,55 @@ export const AddPetForm = () => {
     const formData = new FormData();
 
     switch (values.category) {
-      case 'your pet':
+      case 'my pet':
         formData.append('name', values.name);
         formData.append('date', values.date);
         formData.append('breed', values.breed);
-        formData.append('comments', values.comments);
         formData.append('file', values.file, 'Pet`s photo');
+        if (values.comments) {
+          formData.append('comments', values.comments);
+        }
+
         try {
           await createPet(formData);
-        } catch (error) {
-          console.log(error);
-        }
+          navigate('/user');
+        } catch (error) {}
 
         break;
       default:
-        formData.append('title', values.title);
         formData.append('category', values.category);
+        formData.append('title', values.title);
         formData.append('name', values.name);
-        formData.append('date', values.date);
         formData.append('breed', values.breed);
-        formData.append('sex', values.sex.toLowerCase());
+        formData.append('date', values.date);
         formData.append('location', values.location);
-        formData.append('price', values.price);
-        formData.append('comments', values.comments);
         formData.append('file', values.file, 'Pet`s photo');
+        formData.append('sex', values.sex);
+        if (values.comments) {
+          formData.append('comments', values.comments);
+        }
+        if (values.category === 'sell') {
+          formData.append('price', values.price);
+        }
+
+        //   for (const pair of formData.entries()) {
+        //   console.log(pair[0] + ': ' + pair[1]);
+        // }
 
         try {
+          console.log('SUBMIT NOTICE');
           await createNotice(formData);
+          navigate('/notices');
         } catch (error) {
           console.log(error);
         }
     }
 
-    for (const [key, value] of formData.entries()) {
-      console.log(key, value);
-    }
-
-    alert('SUBMIT!');
     // localStorage.removeItem('formValues');
     // localStorage.removeItem('stage');
     // resetForm({});
     // SetStage(1);
-    SetEmulTouch([]);
-    // navigate('/add-pet');
+    // SetEmulTouch([]);
   };
 
   return (
@@ -159,7 +173,15 @@ export const AddPetForm = () => {
         onSubmit={handleOnSubmit}
         validationSchema={addPetFormSchema}
       >
-        {({ values, errors, touched, validateForm }) => {
+        {({
+          props,
+          values,
+          errors,
+          touched,
+          validateForm,
+          handleChange,
+          handleBlur,
+        }) => {
           const { category, sex } = values;
           const isFieldInvalid = errors.sex && touched.sex;
           return (
@@ -170,10 +192,10 @@ export const AddPetForm = () => {
                 {stage === 1 && (
                   <GroupWrapper role="group">
                     {statuses.map(status => {
-                      const selected = status === category;
+                      const selected = status[1] === category;
                       return (
                         <RadioBtn
-                          key={status}
+                          key={status[0]}
                           value={status}
                           name="category"
                           selected={selected}
@@ -186,18 +208,18 @@ export const AddPetForm = () => {
                 <FlexWrapper data-category={category}>
                   {stage === 3 && (
                     <SexUploadWrapper>
-                      {category !== 'your pet' && (
+                      {category !== 'my pet' && (
                         <GroupSexWrapper role="group" aria-labelledby="sex">
                           <GroupTitle id="sex">The sex</GroupTitle>
                           <SexWrapper>
                             {sexes.map((option, index) => {
                               const iconLabel =
                                 index === 0 ? '#icon-female' : '#icon-male';
-                              const selected = option === sex;
+                              const selected = option[1] === sex;
 
                               return (
                                 <RadioBtn
-                                  key={option}
+                                  key={option[0]}
                                   value={option}
                                   name="sex"
                                   selected={selected}
@@ -227,7 +249,7 @@ export const AddPetForm = () => {
                     </SexUploadWrapper>
                   )}
                   <InputWrapper>
-                    {stage === 2 && category !== 'your pet' && (
+                    {stage === 2 && category !== 'my pet' && (
                       <InputField
                         type="text"
                         name="title"
@@ -275,7 +297,7 @@ export const AddPetForm = () => {
                       />
                     )}
 
-                    {stage === 3 && category !== 'your pet' && (
+                    {stage === 3 && category !== 'my pet' && (
                       <InputField
                         type="text"
                         name="location"
@@ -304,12 +326,15 @@ export const AddPetForm = () => {
                         touched={touched}
                         category={category}
                         emulTouch={emulTouch}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.comments}
                       />
                     )}
                   </InputWrapper>
                 </FlexWrapper>
                 {stage !== 3 && (
-                  <BtnWrappper>
+                  <BtnWrapper>
                     <BtnNext
                       onClick={() =>
                         handleOnNextClick(values, errors, validateForm)
@@ -317,13 +342,13 @@ export const AddPetForm = () => {
                     />
                     {stage === 1 && <BtnCancel onClick={handleOnCancelClick} />}
                     {stage === 2 && <BtnBack onClick={handleOnBackClick} />}
-                  </BtnWrappper>
+                  </BtnWrapper>
                 )}
                 {stage === 3 && (
-                  <BtnWrappper>
+                  <BtnWrapper>
                     <BtnDone />
                     <BtnBack onClick={handleOnBackClick} />
-                  </BtnWrappper>
+                  </BtnWrapper>
                 )}
               </FormWrapper>
             </Wrapper>

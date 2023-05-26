@@ -488,10 +488,14 @@ export const InputEditBtn = ({ onClick, isEditingBlocked }) => {
   );
 };
 
-export const EditPhotoBtn = ({ onClick }) => {
+export const EditPhotoBtn = ({ onClick, isEditingBlocked }) => {
   return (
     <>
-      <StyledEditPhotoBtn type="button" onClick={onClick}>
+      <StyledEditPhotoBtn
+        type="button"
+        onClick={onClick}
+        disabled={isEditingBlocked}
+      >
         <EditPhotoIcon />
         Edit Photo
       </StyledEditPhotoBtn>

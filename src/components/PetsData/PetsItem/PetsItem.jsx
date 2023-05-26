@@ -1,4 +1,5 @@
 import { DeletePetBtn } from 'components/buttons/buttons';
+
 import {
   Wrapper,
   ImageWrapper,
@@ -10,10 +11,7 @@ import {
 } from './PetsItem.styled';
 import PropTypes from 'prop-types';
 
-export const PetsItem = ({ url, name, date, breed, comments }) => {
-  const handlDeleteBtn = () => {};
-  // логіка видалення питомця;
-
+export const PetsItem = ({ id, url, name, date, breed, comments, delPet }) => {
   return (
     <Wrapper>
       <ImageWrapper>
@@ -21,19 +19,19 @@ export const PetsItem = ({ url, name, date, breed, comments }) => {
       </ImageWrapper>
       <TextWrapper>
         <TextContent>
-          <Title>Name: </Title>
-          <Text> {name}</Text>
+          <Title>
+            Name: <Text>{name}</Text>
+          </Title>
         </TextContent>
         <TextContent>
-          <Title>Date of birth: </Title>
-          <Text>
-            {''}
-            {date}
-          </Text>
+          <Title>
+            Date of birth: <Text>{date}</Text>
+          </Title>
         </TextContent>
         <TextContent>
-          <Title>Breed: </Title>
-          <Text> {breed}</Text>
+          <Title>
+            Breed: <Text> {breed}</Text>
+          </Title>
         </TextContent>
         <TextContent>
           <Title>
@@ -41,7 +39,7 @@ export const PetsItem = ({ url, name, date, breed, comments }) => {
           </Title>
         </TextContent>
       </TextWrapper>
-      <DeletePetBtn onClick={handlDeleteBtn} />
+      <DeletePetBtn onClick={() => delPet(id)} />
     </Wrapper>
   );
 };
@@ -51,5 +49,5 @@ PetsItem.propTypes = {
   name: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   breed: PropTypes.string.isRequired,
-  comments: PropTypes.string.isRequired,
+  comments: PropTypes.string,
 };

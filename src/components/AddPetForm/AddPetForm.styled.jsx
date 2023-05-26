@@ -133,7 +133,7 @@ export const FlexWrapper = styled.div`
   }
 `;
 
-export const BtnWrappper = styled.div`
+export const BtnWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
