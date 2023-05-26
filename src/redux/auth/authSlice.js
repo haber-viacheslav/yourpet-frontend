@@ -19,7 +19,6 @@ const authSlice = createSlice({
           email: action.payload.body.email,
         };
         state.user = user;
-
         state.isLoggedIn = true;
       })
       .addCase(logIn.fulfilled, (state, action) => {
