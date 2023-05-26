@@ -31,6 +31,9 @@ export const NewsData = () => {
   useEffect(() => {
     dispatch(fetchNews({ search, page, limit }));
   }, [dispatch, search, page]);
+  useEffect(() => {
+    dispatch(fetchNews({ search }));
+  }, [dispatch, search]);
 
   const handleNewsSearchSubmit = value => {
     setSearch(prevState => {
