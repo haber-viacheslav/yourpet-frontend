@@ -5,8 +5,8 @@ export const RadioBtn = ({ value, selected, name, children }) => {
   return (
     <InputLabel selected={selected} name={name}>
       {children}
-      {value}
-      <RadioInput type="radio" name={name} value={value} />
+      {value[0]}
+      <RadioInput type="radio" name={name} value={value[1]} />
     </InputLabel>
   );
 };
@@ -14,6 +14,6 @@ export const RadioBtn = ({ value, selected, name, children }) => {
 RadioBtn.propTypes = {
   children: PropTypes.node,
   selected: PropTypes.bool.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.PropTypes.array.isRequired,
   name: PropTypes.string.isRequired,
 };

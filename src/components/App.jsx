@@ -5,8 +5,13 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from '../theme/theme';
 import { NoticesCategoriesList } from './Notices/NoticesCategoriesList/NoticesCategoriesList';
 
-// import { RestrictedRoute } from './routes/RestrictedRoute';
-// import { PrivateRoute } from './routes/PrivateRoute';
+import { useEffect } from 'react';
+import { userCurrent } from 'redux/auth/authService';
+// import { useAuth } from 'hooks/useAuth';
+import { useDispatch } from 'react-redux';
+
+// import { RestrictedRoute } from '../routes/RestrictedRoute';
+// import { PrivateRoute } from '../routes/PrivateRoute';
 
 const MainPage = lazy(() => import('../pages/MainPage'));
 const Register = lazy(() => import('../pages/RegisterPage'));
@@ -18,18 +23,14 @@ const OurFriendsPage = lazy(() => import('../pages/OurFriendsPage'));
 const AddPetPage = lazy(() => import('../pages/AddPetPage'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 const ModalTestPage = lazy(() => import('../pages/ModalTestPage'));
-// import { useEffect } from 'react';
-// import { userCurrent } from 'redux/auth/authService';
-// import { useAuth } from 'hooks/useAuth';
-// import { useDispatch } from 'react-redux';
 
 export const App = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const { isRefreshing } = useAuth();
 
-  // useEffect(() => {
-  //   dispatch(userCurrent());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(userCurrent());
+  }, [dispatch]);
 
   return (
     // !isRefreshing &&
@@ -87,7 +88,6 @@ export const App = () => {
                 <PrivateRoute component={AddPetPage} redirectTo="/login" />
               }
             />
-            <Route path="modals" element={<ModalTestPage />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes> */}
