@@ -27,12 +27,18 @@ export const BurgerMenu = () => {
       }
     };
     document.addEventListener('mousedown', handler);
+
     return () => {
     document.removeEventListener('mousedown', handler);
     };
   }, []);
 
   useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'visible';
+    }
     if (isOpen) {
       document.body.style.overflow = 'hidden';
     } else {

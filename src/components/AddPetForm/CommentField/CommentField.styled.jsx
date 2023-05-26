@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { Field } from 'formik';
 
-export const CommentInput = styled(Field)`
+export const CommentInput = styled.textarea`
   width: 264px;
   height: 92px;
   padding: 8px 16px;
@@ -44,7 +43,7 @@ export const CommentsLabel = styled.label`
 
   font-weight: ${props => props.theme.fontWeights.medium};
   font-size: 14px;
-  line-height: 1.35;  
+  line-height: 1.35;
 
   @media screen and (${props => props.theme.media.md}) {
     font-size: 20px;

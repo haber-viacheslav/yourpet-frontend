@@ -1,26 +1,32 @@
 import { useState, useEffect } from 'react';
+// import { useAuth } from 'hooks/useAuth';
 import { BtnAddPet } from 'components/buttons/buttons';
-
-import { Title, Wrapper, PetsList, TitleWrapper } from './PetsData.styled';
-
 import { PetsItem } from './PetsItem/PetsItem';
-import petsData from './pets.json';
+import { Title, Wrapper, PetsList, TitleWrapper } from './PetsData.styled';
+import { getPets } from 'redux/pets/petsService';
+import { deletePet } from 'redux/pets/petsService';
 
 export const PetsData = () => {
   const [data, SetData] = useState([]);
 
   useEffect(() => {
-    // const fetchPets = async () => {
-    //   try {
-    //     const petsData = await getPets();
-    //     console.log(petsData);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // };
-    // fetchPets();
-    SetData(petsData);
+    (async () => {
+      try {
+        const result = await getPets();
+        SetData([...result.data.body.data]);
+      } catch (error) {}
+    })();
   }, []);
+
+  const handleDeleteBtn = async id => {
+    try {
+      const index = data.findIndex(el => el['_id'] === id);
+      const updateData = [...data];
+      updateData.splice(index, 1);
+      SetData(updateData);
+      deletePet(id);
+    } catch (error) {}
+  };
 
   return (
     <Wrapper>
@@ -30,15 +36,17 @@ export const PetsData = () => {
       </TitleWrapper>
       <PetsList>
         {data.map(pet => {
-          const { name, date, breed, comments, photo } = pet;
+          const { _id: id, name, date, breed, comments, avatarURL } = pet;
           return (
             <PetsItem
-              key={name}
+              key={id}
               name={name}
               date={date}
               breed={breed}
               comments={comments}
-              url={photo}
+              url={avatarURL}
+              id={id}
+              delPet={handleDeleteBtn}
             />
           );
         })}

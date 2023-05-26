@@ -1,7 +1,15 @@
 import { CommentsLabel, CommentInput, ErrWrapper } from './CommentField.styled';
 import PropTypes from 'prop-types';
 
-export const CommentField = ({ errors, touched, category, emulTouch }) => {
+export const CommentField = ({
+  onChange,
+  onBlur,
+  value,
+  errors,
+  touched,
+  category,
+  emulTouch,
+}) => {
   const isFieldInvalid =
     (errors.comments && touched.comments) ||
     (errors.comments && emulTouch.includes('comments'));
@@ -9,8 +17,10 @@ export const CommentField = ({ errors, touched, category, emulTouch }) => {
     <CommentsLabel>
       Comments
       <CommentInput
-        as="textarea"
         name="comments"
+        onChange={onChange}
+        onBlur={onBlur}
+        value={value}
         placeholder="Type your comments here..."
         data-invalid={isFieldInvalid}
         data-category={category}

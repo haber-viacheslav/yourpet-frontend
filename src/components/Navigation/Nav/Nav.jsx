@@ -7,12 +7,13 @@ export const Nav = () => {
   const [screenSize, setScreenSize] = useState({ width: 1279 });
 
   useEffect(() => {
+  useEffect(() => {
     function handleResize() {
       const currentWidth = window.innerWidth;
       setScreenSize(currentWidth);
       if (currentWidth > screenSize.width) {
         setNameLink('Notices');
-        console.log(nameLink);
+        // console.log(nameLink);
       }
     }
     handleResize();
@@ -22,7 +23,10 @@ export const Nav = () => {
     };
   }, [nameLink, screenSize.width]);
 
+  }, [nameLink, screenSize.width]);
+
   return (
+    <NavList>
     <NavList>
       <NavItem>
         <NavLinkItem to="/news">News</NavLinkItem>
@@ -37,6 +41,6 @@ export const Nav = () => {
   );
 };
 
-Nav.propTypes = {
+{/* Nav.propTypes = {
   nameLink: PropTypes.string.isRequired,
-}.isRequired;
+}.isRequired; */}
