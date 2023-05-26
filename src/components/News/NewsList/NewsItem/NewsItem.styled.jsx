@@ -62,17 +62,24 @@ export const Title = styled.h2`
   margin-left: 0;
   margin-bottom: 16px;
   font-weight: ${props => props.theme.fontWeights.bold};
-  font-size: 24px;
+  font-size: ${props => props.theme.fontSizes[5]}px;
   line-height: 1.37;
   letter-spacing: -0.01em;
   overflow: hidden;
-  height: 100px;
+  height: 66px;
 `;
 
 export const Description = styled.p`
   font-weight: ${props => props.theme.fontWeights.regular};
   line-height: 1.37;
-  height: 160px;
+  height: 154px;
+  margin-bottom: 40px;
+  @media screen and (${props => props.theme.media.md}) {
+    height: 132px;
+  }
+  @media screen and (${props => props.theme.media.lg}) {
+    height: 110px;
+  }
 `;
 
 export const WrapBottom = styled.div`

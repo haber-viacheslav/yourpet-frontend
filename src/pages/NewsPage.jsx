@@ -1,5 +1,4 @@
 import { FlexContainer } from 'components/FlexContainer/FlexContainer';
-import { Container } from 'components/Container/Container';
 import { Section } from 'components/Section/Section';
 import { NewsData } from '../components/NewsData/NewsData';
 
@@ -11,11 +10,9 @@ const NewsPage = () => {
       padTopLg={'30px'}
       padTopMd={'0px'}
     >
-      <Container>
-        <FlexContainer>
-          <NewsData />
-        </FlexContainer>
-      </Container>
+      <FlexContainer>
+        <NewsData />
+      </FlexContainer>
     </Section>
   );
 };

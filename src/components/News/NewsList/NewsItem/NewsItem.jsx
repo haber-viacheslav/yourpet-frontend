@@ -1,5 +1,5 @@
-// import PropTypes from 'prop-types';
-
+import PropTypes from 'prop-types';
+import { textCutter } from 'helpers/textCutter';
 import {
   Item,
   Wrap,
@@ -30,8 +30,8 @@ export const NewsItem = ({ imgUrl, title, text, date, url }) => {
         )}
       </WrapImg>
       <Wrap>
-        <Title>{title}</Title>
-        <Description>{text}</Description>
+        <Title>{textCutter(title, 40)}</Title>
+        <Description>{textCutter(text, 160)}</Description>
         <WrapBottom>
           <Date>{transformDate(date)}</Date>
           <Link href={url} target="_blank" rel="noreferrer noopener">
@@ -43,10 +43,10 @@ export const NewsItem = ({ imgUrl, title, text, date, url }) => {
   );
 };
 
-// NewsItem.propTypes = {
-//   imgUrl: PropTypes.string,
-//   title: PropTypes.string.isRequired,
-//   text: PropTypes.string.isRequired,
-//   date: PropTypes.string.isRequired,
-//   url: PropTypes.string.isRequired,
-// };
+NewsItem.propTypes = {
+  imgUrl: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+};

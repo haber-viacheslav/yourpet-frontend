@@ -28,7 +28,10 @@ export const NewsData = () => {
   const dispatch = useDispatch();
   const news = useSelector(selectNews);
   const isTablet = window.matchMedia(theme.media.md).matches;
+
   useEffect(() => {
+    console.log('search', search);
+
     dispatch(fetchNews({ search, page, limit }));
   }, [dispatch, search, page]);
 
@@ -52,7 +55,7 @@ export const NewsData = () => {
       <ReusableTitle>News</ReusableTitle>
 
       {isLoading && <Loader />}
-      {!news.length && <NotFound />}
+      {isError && !news.length && <NotFound />}
 
       <SearchNewsForm onSubmit={handleNewsSearchSubmit} />
       {news && news.length > 0 && <NewsList news={news} />}

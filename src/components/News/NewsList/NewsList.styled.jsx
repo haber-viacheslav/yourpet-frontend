@@ -6,9 +6,9 @@ export const List = styled.ul`
   display: grid;
   row-gap: 44px;
   width: 100%;
-  @media screen and (${props => props.theme.media.toMd}) {
+  /* @media screen and (${props => props.theme.media.toMd}) {
     width: 280px;
-  }
+  } */
   @media screen and (${props => props.theme.media.md}) {
     display: flex;
     flex-wrap: wrap;
