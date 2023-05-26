@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const FiltersConteiner = styled.div`
+export const FiltersContainer = styled.div`
   position: relative;
   padding-bottom: 24px;
   @media screen and (${props => props.theme.media.lg}) {
@@ -8,9 +8,9 @@ export const FiltersConteiner = styled.div`
   }
 `;
 
-export const FilterAdsConteiner = styled.div``;
+export const FilterAdsContainer = styled.div``;
 
-export const FiltersBtnConteiner = styled.div`
+export const FiltersBtnContainer = styled.div`
   display: none;
   @media screen and (${props => props.theme.media.md}) {
     display: flex;
