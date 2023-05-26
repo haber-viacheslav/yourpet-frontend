@@ -34,7 +34,7 @@ instance.interceptors.response.use(
   }
 );
 // --REGISTER OPERATION--
-export const register = async credentials => {
+export const registerFetch = async credentials => {
   const { data } = await instance.post('/auth/register', credentials);
   const { accessToken, refreshToken } = data.body;
   setToken(accessToken);
@@ -42,7 +42,7 @@ export const register = async credentials => {
   return data;
 };
 // --LOGIN OPERATION--
-export const login = async credentials => {
+export const loginFetch = async credentials => {
   const { data } = await instance.post('/auth/login', credentials);
   const { accessToken, refreshToken } = data.body;
   setToken(accessToken);
@@ -50,20 +50,20 @@ export const login = async credentials => {
   return data;
 };
 // --CURRENT OPERATION--
-export const current = async () => {
+export const currentFetch = async () => {
   const { data } = await instance.get('/auth/current');
 
   return data;
 };
 // --LOGOUT OPERATION--
-export const logout = async () => {
+export const logoutFetch = async () => {
   const { data } = await instance.post('/auth/logout');
   setToken();
   localStorageService.setItem('refreshToken', null);
   return data;
 };
 // --UPDATE OPERATION--
-export const update = async userData => {
+export const updateFetch = async userData => {
   const { data } = await instance.put('/auth/update', userData);
   return data;
 };
