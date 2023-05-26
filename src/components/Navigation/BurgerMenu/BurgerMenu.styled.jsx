@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const Burger = styled.div`
-  /* position: ${({ isOpen }) => (isOpen ? 'static' : 'none')}; */
-  z-index: 1000;
+  z-index: 100;
   @media (min-width: 1279px) {
     display: none;
   } 
@@ -24,9 +23,8 @@ export const Box = styled.div`
     height: 100%;
     width: 100%;
     padding: 22px 20px 22px 20px;
-    z-index: 900;
-    position: fixed;
- 
+    z-index: 99;
+    position: fixed;       
   }
 `;
 export const BoxNav = styled.div`
@@ -36,7 +34,7 @@ export const BoxNav = styled.div`
   align-items: center;
   padding-bottom: 219px;
 
-  @media (min-width: 769px) {
+  @media screen and (${props => props.theme.media.md}){
     padding-top: 160px;
   }
 `;
