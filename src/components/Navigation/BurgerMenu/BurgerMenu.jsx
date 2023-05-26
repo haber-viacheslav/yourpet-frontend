@@ -4,10 +4,10 @@ import { Spin as Hamburger } from 'hamburger-react';
 import { Burger, BoxNav, BoxUser, Box } from './BurgerMenu.styled';
 import { Nav } from '../Nav/Nav';
 import { AuthNav } from '../AuthNav/AuthNav';
-// import { UserNav } from '../../Navigation/UserNav/UserNav';
+
 // import { UserMenu } from 'components/Navigation/UserMenu/UserMenu';
 
-export const BurgerMenu = ({ name }) => {
+export const BurgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef();
   // console.log(isOpen);
@@ -25,6 +25,7 @@ export const BurgerMenu = ({ name }) => {
         setIsOpen(true);
       }
     };
+
     document.addEventListener('mousedown', handler);
 
     return () => {
@@ -32,23 +33,24 @@ export const BurgerMenu = ({ name }) => {
     };
   }, []);
 
-  return (
-    <div ref={menuRef}>
-      {/* <BoxUserHeader>
-          <AuthNav />
-          {/* <UserMenu /> */}
-      {/* </BoxUserHeader> */}
+  useEffect(() => {
+    const scroleStop = e => {
+      const backdrop = document.querySelector('body');
 
-      {/* // backdrop */}
-      <Box isOpen={isOpen} onClick={handleClose}>
-        <BoxUser>
-          <AuthNav />
-          {/* <UserMenu isOpen={isOpen}/> */}
-        </BoxUser>
-        <BoxNav>
-          <Nav />
-        </BoxNav>
-      </Box>
+      if (isOpen) {
+        backdrop.style.overflow = 'hidden';
+      } else {
+        backdrop.style.overflow = 'visible';
+      }
+    };
+    window.addEventListener('mousemove', scroleStop);
+    return () => {
+      window.removeEventListener('mousemove', scroleStop);
+    };
+  }, [isOpen]);
+
+  return (
+    <>
       <Burger>
         <Hamburger
           isOpen={isOpen}
@@ -64,6 +66,16 @@ export const BurgerMenu = ({ name }) => {
           duration={0.6}
         />
       </Burger>
-    </div>
+
+      <Box isOpen={isOpen} onClick={handleClose} ref={menuRef}>
+        <BoxUser>
+          <AuthNav />
+          {/* <UserMenu isOpen={isOpen}/> */}
+        </BoxUser>
+        <BoxNav>
+          <Nav />
+        </BoxNav>
+      </Box>
+    </>
   );
 };

@@ -21,13 +21,6 @@ export const UploadFileLabel = styled.label`
   cursor: pointer;
 `;
 
-export const UploadLabelWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: ${props => props.width || '94px'};
-`;
-
 export const UploadFile = styled.input`
   display: none;
 `;
@@ -37,7 +30,7 @@ export const Photo = styled.img`
   height: 100%;
   border: none;
   border-radius: 40px;
-  object-fit: contain;
+  object-fit: cover;
 `;
 
 export const PhotoPlaceWrapper = styled.div`
@@ -55,7 +48,7 @@ export const PhotoWrapper = styled.span`
     if (!props['data-color']) {
       return props.theme.colors.blueLight;
     } else {
-      return props.theme.colors.transparentght;
+      return props.theme.colors.transparent;
     }
   }};
   border-radius: 40px;
@@ -65,7 +58,7 @@ export const ErrWrapper = styled.span`
   position: absolute;
   display: inline-block;
   width: 180px;
-  bottom: -25px;
+  bottom: -16px;
   text-align: center;
 
   font-size: 12px;

@@ -15,7 +15,7 @@ const initialState = {
     birthday: null,
     phone: null,
     city: null,
-    file: null,
+    avatarURL: null,
   },
   accessToken: null,
   refreshToken: null,
@@ -50,7 +50,7 @@ const authSlice = createSlice({
           birthday: action.payload.body.birthday,
           phone: action.payload.body.phone,
           city: action.payload.body.city,
-          file: action.payload.body.avatarURL,
+          avatarURL: action.payload.body.avatarURL,
         };
         state.accessToken = action.payload.body.accessToken;
         state.refreshToken = action.payload.body.refreshToken;
@@ -69,7 +69,7 @@ const authSlice = createSlice({
           birthday: null,
           phone: null,
           city: null,
-          file: null,
+          avatarURL: null,
         };
         state.accessToken = null;
         state.refreshToken = null;
@@ -82,7 +82,14 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(userCurrent.fulfilled, (state, action) => {
-        state.user = action.payload.body;
+        state.user = {
+          name: action.payload.body.name,
+          email: action.payload.body.email,
+          birthday: action.payload.body.birthday,
+          phone: action.payload.body.phone,
+          city: action.payload.body.city,
+          avatarURL: action.payload.body.avatarURL,
+        };
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
@@ -100,7 +107,7 @@ const authSlice = createSlice({
           birthday: null,
           phone: null,
           city: null,
-          file: null,
+          avatarURL: null,
         };
         state.accessToken = null;
         state.refreshToken = null;
@@ -117,7 +124,7 @@ const authSlice = createSlice({
           birthday: action.payload.body.birthday,
           phone: action.payload.body.phone,
           city: action.payload.body.city,
-          file: action.payload.body.avatarURL,
+          avatarURL: action.payload.body.avatarURL,
         };
       })
       .addCase(updateUser.rejected, state => {

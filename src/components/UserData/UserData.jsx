@@ -32,14 +32,15 @@ export const UserData = () => {
   const [isEditingBlocked, setIsEditingBlocked] = useState(false);
   const [isLogOut, setIsLogOut] = useState(false);
   const user = useSelector(selectUser);
-  console.log(user.birthday.slice(0, 10));
+
+  const avatar = user.avatarURL;
   const initialValues = {
-    name: user.name || 'And',
-    email: user.email || '',
-    birthday: user.birthday.slice(0, 10) || '2222-05-01',
+    name: user.name || 'User',
+    email: user.email || 'example@mail.com',
+    birthday: user.birthday ? user.birthday.slice(0, 10) : '1900-01-01',
     phone: user.phone || '',
     city: user.city || '',
-    file: user.avatarURL || '',
+    file: '',
   };
 
   const dispatch = useDispatch();
@@ -74,9 +75,9 @@ export const UserData = () => {
     if (values.file) {
       formData.append('file', values.file, 'User`s photo');
     }
-    for (const pair of formData.entries()) {
-      console.log(pair[0] + ': ' + pair[1]);
-    }
+    // for (const pair of formData.entries()) {
+    //   console.log(pair[0] + ': ' + pair[1]);
+    // }
 
     try {
       dispatch(updateUser(formData));
@@ -96,7 +97,7 @@ export const UserData = () => {
             validationSchema={profileSchema}
           >
             {({ values, errors, touched, handleSubmit }) => {
-              console.log(values);
+              // console.log(values);
               // console.log(errors);
               return (
                 <>
@@ -106,6 +107,7 @@ export const UserData = () => {
                     handleSubmit={handleSubmit}
                     isEditingBlocked={isEditingBlocked}
                     setIsEditingBlocked={setIsEditingBlocked}
+                    avatar={avatar}
                   />
                   <ProfileInputWrapper>
                     {inputs.map(input => {

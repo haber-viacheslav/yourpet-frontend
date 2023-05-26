@@ -6,7 +6,7 @@ export const NavList = styled.ul`
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  @media (min-width: 769px) {
+  @media screen and (${props => props.theme.media.md}) {
   gap: 60px;
   };
   @media screen and (${props => props.theme.media.lg}) {

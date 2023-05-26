@@ -7,15 +7,10 @@ const MainPage = () => {
   return (
     <BgWrapper>
       <Section
-        // padTopSm={'0'}
-        // padTopMd={'0'}
-        // padTopLg={'0'}
-        padBottomSM={'0'}
-        padBottomMd={'0'}
-        padBottomLg={'0'}
         padTopSm={'65px'}
         padTopMd={'80px'}
         padTopLg={'118px'}
+        padBottomLg={'81px'}
       >
         <Container>
           <Hero />
