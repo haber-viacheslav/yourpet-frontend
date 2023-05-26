@@ -1,5 +1,5 @@
 import { DeletePetBtn } from 'components/buttons/buttons';
-import { deletePet } from 'redux/pets/petsService';
+
 import {
   Wrapper,
   ImageWrapper,
@@ -11,13 +11,7 @@ import {
 } from './PetsItem.styled';
 import PropTypes from 'prop-types';
 
-export const PetsItem = ({ id, url, name, date, breed, comments }) => {
-  const handleDeleteBtn = async id => {
-    try {
-      deletePet(id);
-    } catch (error) {}
-  };
-
+export const PetsItem = ({ id, url, name, date, breed, comments, delPet }) => {
   return (
     <Wrapper>
       <ImageWrapper>
@@ -45,7 +39,7 @@ export const PetsItem = ({ id, url, name, date, breed, comments }) => {
           </Title>
         </TextContent>
       </TextWrapper>
-      <DeletePetBtn onClick={() => handleDeleteBtn(id)} />
+      <DeletePetBtn onClick={() => delPet(id)} />
     </Wrapper>
   );
 };

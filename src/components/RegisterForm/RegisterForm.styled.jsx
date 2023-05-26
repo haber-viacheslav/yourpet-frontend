@@ -6,7 +6,6 @@ import { Form, Field } from 'formik';
 export const Wrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
-  margin-top: 80px;
   width: 280px;
   box-shadow: ${props => props.theme.shadows.mainShadow};
   border-radius: 40px;

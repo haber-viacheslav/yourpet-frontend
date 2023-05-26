@@ -9,17 +9,15 @@ export const HeaderWrapper = styled.header`
   justify-content: space-between;
   align-items: center;
 
-  padding-top: 20px;
+  padding: 20px 0;
 
   @media screen and (${props => props.theme.media.md}) {
-    padding-top: 24px;
-    padding-bottom: 0;
+    padding: 24px 0;
   }
   @media screen and (${props => props.theme.media.lg}) {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    padding-top: 20px;
+    padding: 20px 0;
   }
 `;

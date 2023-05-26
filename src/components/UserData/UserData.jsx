@@ -1,14 +1,10 @@
-import {
-  useState,
-  // , useEffect
-} from 'react';
+import { useState, useEffect } from 'react';
 import { Formik } from 'formik';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
 import { useDispatch } from 'react-redux';
-import { logOut, updateUser } from 'redux/auth/authService';
+import { logOut, updateUser, userCurrent } from 'redux/auth/authService';
 import { useNavigate } from 'react-router-dom';
-
 import { UserDataItem } from './UserDataItem/UserDataItem';
 import { AvatarUploadInput } from './AvatarUploadInput/AvatarUploadInput';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
@@ -23,7 +19,7 @@ import {
 const inputs = [
   { type: 'text', name: 'name', placeholder: 'Enter your name' },
   { type: 'text', name: 'email', placeholder: 'example@mail.com' },
-  { type: 'date', name: 'birthday', placeholder: '00.00.0000' },
+  { type: 'date', name: 'birthday', placeholder: '01.01.2000' },
   { type: 'tel', name: 'phone', placeholder: '+380000000000' },
   { type: 'text', name: 'city', placeholder: 'Kyiv' },
 ];
@@ -32,6 +28,12 @@ export const UserData = () => {
   const [isEditingBlocked, setIsEditingBlocked] = useState(false);
   const [isLogOut, setIsLogOut] = useState(false);
   const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(userCurrent);
+  }, [dispatch]);
 
   const avatar = user.avatarURL;
   const initialValues = {
@@ -42,9 +44,6 @@ export const UserData = () => {
     city: user.city || '',
     file: '',
   };
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleLogOut = () => {
     setIsLogOut(true);
@@ -64,8 +63,8 @@ export const UserData = () => {
 
   const handleOnSubmit = async values => {
     const keys = Object.keys(values);
-    // console.log(777, values);
     const formData = new FormData();
+
     keys.forEach(key => {
       if (values[key] && key !== 'file') {
         formData.append(key, values[key]);

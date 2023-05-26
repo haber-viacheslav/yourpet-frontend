@@ -37,7 +37,7 @@ export const yupLoginValidation = yup.object().shape({
 
 export const addPetFormSchema = yup.object().shape({
   title: yup.string().when('category', {
-    is: value => value !== 'your pet',
+    is: value => value !== 'my pet',
     then: yup
       .string()
       .min(2, 'Minimum 2 characters')
@@ -57,7 +57,7 @@ export const addPetFormSchema = yup.object().shape({
     .max(16, 'Maximum 16 characters')
     .required('Enter a pet`s name'),
   location: yup.string().when('category', {
-    is: value => value !== 'your pet',
+    is: value => value !== 'my pet',
     then: yup
       .string()
       .matches(/^[A-Z][a-zA-Z]*$/, 'Starts with capitalize character')
@@ -78,13 +78,13 @@ export const addPetFormSchema = yup.object().shape({
     .max(120, 'Maximum 120 characters'),
   sex: yup.string().when('category', {
     is: value =>
-      value === 'sell' || value === 'lost/found' || value === 'in good hands',
-    then: yup.string().oneOf(['Female', 'Male']).required('Choose a pet`s sex'),
+      value === 'sell' || value === 'lost-found' || value === 'for-free',
+    then: yup.string().oneOf(['female', 'male']).required('Choose a pet`s sex'),
     otherwise: yup.string(),
   }),
   category: yup
     .string()
-    .oneOf(['your pet', 'sell', 'lost/found', 'in good hands'])
+    .oneOf(['my pet', 'sell', 'lost-found', 'for-free'])
     .required(),
   file: yup
     .mixed()

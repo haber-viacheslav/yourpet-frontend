@@ -35,7 +35,7 @@ export const OurFriends = () => {
             title,
             workDays,
           } = friend;
-          console.log(workDays);
+
           return (
             <CardItem
               key={id}

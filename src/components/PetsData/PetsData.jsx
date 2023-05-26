@@ -1,37 +1,32 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 // import { useAuth } from 'hooks/useAuth';
 import { BtnAddPet } from 'components/buttons/buttons';
 import { PetsItem } from './PetsItem/PetsItem';
 import { Title, Wrapper, PetsList, TitleWrapper } from './PetsData.styled';
 import { getPets } from 'redux/pets/petsService';
-import { refreshingTokensExecutor } from 'helpers/refreshingTokensExecutor';
-import { refreshTokens } from '../../redux/auth/authService';
-// import petsData from './pets.json';
+import { deletePet } from 'redux/pets/petsService';
 
 export const PetsData = () => {
   const [data, SetData] = useState([]);
-  // const { token } = useAuth();
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchPets = async () => {
+    (async () => {
       try {
         const result = await getPets();
         SetData([...result.data.body.data]);
-      } catch (error) {
-        refreshingTokensExecutor({
-          error: {
-            response: { data: { code: 403, message: 'expired' } },
-          },
-          dispatch,
-          action: refreshTokens,
-        });
-      }
-    };
+      } catch (error) {}
+    })();
+  }, []);
 
-    fetchPets();
-  }, [dispatch]);
+  const handleDeleteBtn = async id => {
+    try {
+      const index = data.findIndex(el => el['_id'] === id);
+      const updateData = [...data];
+      updateData.splice(index, 1);
+      SetData(updateData);
+      deletePet(id);
+    } catch (error) {}
+  };
 
   return (
     <Wrapper>
@@ -51,6 +46,7 @@ export const PetsData = () => {
               comments={comments}
               url={avatarURL}
               id={id}
+              delPet={handleDeleteBtn}
             />
           );
         })}

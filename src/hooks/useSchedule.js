@@ -102,26 +102,27 @@ export const useSchedule = workDays => {
   ];
 
   let workTime;
+
   switch (new Date().getDay()) {
-    case 0:
+    case 1:
       workTime = minMN + maxMN;
       break;
-    case 1:
+    case 2:
       workTime = minTU + maxTU;
       break;
-    case 2:
+    case 3:
       workTime = minWE + maxWE;
       break;
-    case 3:
+    case 4:
       workTime = minTH + maxTH;
       break;
-    case 4:
+    case 5:
       workTime = minFR + maxFR;
       break;
-    case 5:
+    case 6:
       workTime = minSA + maxSA;
       break;
-    case 6:
+    case 0:
       workTime = minSU + maxSU;
       break;
     default:
