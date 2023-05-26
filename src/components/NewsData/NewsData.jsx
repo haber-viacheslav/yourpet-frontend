@@ -31,9 +31,6 @@ export const NewsData = () => {
   useEffect(() => {
     dispatch(fetchNews({ search, page, limit }));
   }, [dispatch, search, page]);
-  useEffect(() => {
-    dispatch(fetchNews({ search }));
-  }, [dispatch, search]);
 
   const handleNewsSearchSubmit = value => {
     setSearch(prevState => {
@@ -55,7 +52,7 @@ export const NewsData = () => {
       <ReusableTitle>News</ReusableTitle>
 
       {isLoading && <Loader />}
-      {isError && !news.length && <NotFound />}
+      {!news.length && <NotFound />}
 
       <SearchNewsForm onSubmit={handleNewsSearchSubmit} />
       {news && news.length > 0 && <NewsList news={news} />}
