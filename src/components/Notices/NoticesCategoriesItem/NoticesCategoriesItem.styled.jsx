@@ -17,7 +17,7 @@ export const ContainerCard = styled.li`
     width: 288px;
   }
 `;
-export const ConteinerInfo = styled.div`
+export const ContainerInfo = styled.div`
   display: flex;
   gap: 12px;
   position: absolute;
