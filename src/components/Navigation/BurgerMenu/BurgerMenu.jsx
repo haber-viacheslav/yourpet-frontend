@@ -32,23 +32,15 @@ export const BurgerMenu = () => {
       document.removeEventListener('mousedown', handler);
     };
   }, []);
-
+  
   useEffect(() => {
-    const scroleStop = e => {
-      const backdrop = document.querySelector('body');
-
-      if (isOpen) {
-        backdrop.style.overflow = "hidden";
-      }else{
-        backdrop.style.overflow = "visible";
-      }
-    };
-    window.addEventListener('mousemove', scroleStop);
-    return () => {
-    window.removeEventListener('mousemove', scroleStop);
-    };
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'visible';
+    }
   }, [isOpen]);
-
+  
   return (
     <>
       <Burger>
