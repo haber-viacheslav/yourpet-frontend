@@ -10,7 +10,6 @@ import {
 const initialState = {
   user: { name: null, email: null },
   accessToken: null,
-  refreshToken: null,
   isLoggedIn: false,
   isRefreshing: false,
 };
@@ -28,7 +27,7 @@ const authSlice = createSlice({
         state.user = user;
 
         state.accessToken = action.payload.body.accessToken;
-        state.refreshToken = action.payload.body.refreshToken;
+        // state.refreshToken = action.payload.body.refreshToken;
         state.isLoggedIn = true;
       })
       .addCase(logIn.fulfilled, (state, action) => {
@@ -39,13 +38,13 @@ const authSlice = createSlice({
         state.user = user;
         console.log(action.payload.body);
         state.accessToken = action.payload.body.accessToken;
-        state.refreshToken = action.payload.body.refreshToken;
+        // state.refreshToken = action.payload.body.refreshToken;
         state.isLoggedIn = true;
       })
       .addCase(logOut.fulfilled, (state, action) => {
         state.user = { name: null, email: null };
         state.accessToken = null;
-        state.refreshToken = null;
+        // state.refreshToken = null;
         state.isLoggedIn = false;
       })
       .addCase(userCurrent.pending, state => {
@@ -61,12 +60,12 @@ const authSlice = createSlice({
       })
       .addCase(refreshTokens.fulfilled, (state, action) => {
         state.accessToken = action.payload.body.accessToken;
-        state.refreshToken = action.payload.body.refreshToken;
+        // state.refreshToken = action.payload.body.refreshToken;
       })
       .addCase(refreshTokens.rejected, (state, action) => {
         state.user = { name: null, email: null };
         state.accessToken = null;
-        state.refreshToken = null;
+        // state.refreshToken = null;
         state.isLoggedIn = false;
       }),
 });

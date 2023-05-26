@@ -86,3 +86,19 @@ export const refreshTokens = createAsyncThunk(
     }
   }
 );
+
+axios.interceptors.response.use(
+  resp => console.log('INTERCEPTOR', resp),
+  async error => {
+    const code = error.response.data.code;
+    const oldRefreshToken = localStorage.getItem('persist:auth');
+    console.log(oldRefreshToken);
+
+    if (code === 403) {
+      // const { data } = await axios.post('auth/refresh');
+    }
+
+    console.log('INTERCEPTOR ERROR', error.response.data.code);
+    return Promise.reject(error);
+  }
+);
