@@ -3,7 +3,7 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import { lazy } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../theme/theme';
-import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList/NoticesCategorieList'
+import { NoticesCategoriesList } from './Notices/NoticesCategoriesList/NoticesCategoriesList';
 
 // import { RestrictedRoute } from './routes/RestrictedRoute';
 // import { PrivateRoute } from './routes/PrivateRoute';
