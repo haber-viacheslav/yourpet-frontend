@@ -44,10 +44,10 @@ axios.interceptors.response.use(
 // --REGISTER OPERATION--
 export const registerFetch = async credentials => {
   const { data } = await axios.post('/auth/register', credentials);
-  //   const { accessToken, refreshToken } = data.body;
+  const { accessToken, refreshToken } = data.body;
   console.log(data);
-  //   setToken(accessToken);
-  //   localStorageService.setItem('refreshToken', refreshToken);
+  setToken(accessToken);
+  localStorageService.setItem('refreshToken', refreshToken);
   return data;
 };
 // --LOGIN OPERATION--
