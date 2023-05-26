@@ -11,6 +11,8 @@ body {
   line-height: 1.5;
   margin: 0;
   background-color: #fef9f9;
+
+  /* backdrop */
 }
 h1,
 h2,
@@ -33,5 +35,5 @@ img {
   height: auto;
 }
 a {
-  text-decoration: none;  
+  text-decoration: none;
 }

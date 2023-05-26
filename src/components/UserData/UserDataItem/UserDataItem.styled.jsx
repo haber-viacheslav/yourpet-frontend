@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Field } from 'formik';
-import { theme } from 'theme/theme';
 
 export const ProfileInputLabel = styled.label`
   display: flex;
@@ -11,7 +10,7 @@ export const ProfileInputLabel = styled.label`
   line-height: 19.2px;
   letter-spacing: 4%;
 
-  @media screen and (${theme.media.md}) {
+  @media screen and (${props => props.theme.media.md}) {
     font-weight: 600;
     font-size: 18px;
     line-height: 25px;

@@ -12,6 +12,7 @@ export const FormSearch = styled.form`
   }
   @media screen and (min-width: 1024px) {
     width: 608px;
+    margin-bottom: 82px;
   }
 `;
 
@@ -32,7 +33,7 @@ export const InputSearch = styled.input`
   }
   @media screen and (min-width: 1024px) {
     width: 608px;
-    &:: placeholder {
+    &::placeholder {
       font-size: 20px;
     }
   }

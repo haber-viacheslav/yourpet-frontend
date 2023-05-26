@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 export const List = styled.ul`
   margin: 0 auto;
+  margin-bottom: 40px;
   display: grid;
-  row-gap: 42px;
+  row-gap: 44px;
   width: 100%;
   @media screen and (max-width: 767px) {
     width: 280px;
@@ -12,5 +13,11 @@ export const List = styled.ul`
     display: flex;
     flex-wrap: wrap;
     column-gap: 32px;
+    row-gap: 46px;
+    margin-bottom: 60px;
+  }
+  @media screen and (${props => props.theme.media.lg}) {
+    column-gap: 32px;
+    row-gap: 46px;
   }
 `;
