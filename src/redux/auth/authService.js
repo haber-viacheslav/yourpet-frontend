@@ -12,8 +12,6 @@ export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
-      // console.log('data');
-
       const data = await registerFetch(credentials);
       return data;
     } catch (error) {
@@ -71,7 +69,7 @@ export const userCurrent = createAsyncThunk(
 );
 export const updateUser = createAsyncThunk(
   'auth/updateUser',
-  async (_, thunkAPI) => {
+  async (dy, thunkAPI) => {
     try {
       const data = await updateFetch(); // need provide data to update
       return data;

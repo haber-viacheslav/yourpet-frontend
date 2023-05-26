@@ -1,10 +1,12 @@
 import React from 'react';
 import { Formik, ErrorMessage } from 'formik';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { logIn } from '../../redux/auth/authService';
+import { useNavigate } from 'react-router-dom';
+// import { useDispatch } from 'react-redux';
+// import { logIn } from '../../redux/auth/authService';
 import { string, object } from 'yup';
 import { iconClose, iconOpen, IconCrossSmall, IconCheck } from './Icons/Icons';
+// import { setAuthHeader } from 'redux/auth/utility/authUtility';
 import {
   Wrapper,
   Input,
@@ -27,8 +29,10 @@ import {
 export const LoginForm = () => {
   const [toggleIconPass, setToggleIconPass] = useState(iconClose);
   const [typePass, setTypePass] = useState('password');
+  const navigate = useNavigate();
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+
   // EXAMPLE
   // useEffect(() => {
   //   // use async IIEF or named  async func
@@ -60,8 +64,11 @@ export const LoginForm = () => {
     password: '',
   };
 
-  const handleSubmit = (values, { resetForm }) => {
-    dispatch(logIn(values));
+  const handleSubmit = async (values, { resetForm }) => {
+    setTimeout(() => {
+      navigate('/user');
+    }, 1000);
+
     resetForm();
   };
 

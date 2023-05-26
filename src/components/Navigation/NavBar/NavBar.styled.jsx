@@ -7,18 +7,14 @@ export const Navigate = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  /* z-index: 1000;
-  overflow: hidden; */
 `;
 
 export const BoxUser = styled.div`
   margin-left: auto;
-  @media (max-width: 1279px) {
-  }
 `;
 export const BoxAuth = styled.div`
   display: none;
-  @media (min-width: 768px) {
+  @media screen and (${props => props.theme.media.md}) {
     display: inherit;
   }
 `;

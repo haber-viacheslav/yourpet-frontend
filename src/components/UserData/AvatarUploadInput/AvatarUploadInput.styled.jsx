@@ -30,7 +30,7 @@ export const Photo = styled.img`
   height: 100%;
   border: none;
   border-radius: 40px;
-  object-fit: contain;
+  object-fit: cover;
 `;
 
 export const PhotoPlaceWrapper = styled.div`
@@ -58,7 +58,7 @@ export const ErrWrapper = styled.span`
   position: absolute;
   display: inline-block;
   width: 180px;
-  bottom: -25px;
+  bottom: -16px;
   text-align: center;
 
   font-size: 12px;
