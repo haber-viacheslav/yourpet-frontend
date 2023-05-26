@@ -61,7 +61,7 @@ export const LoginForm = () => {
   };
 
   const handleSubmit = (values, { resetForm }) => {
-    dispatch(logIn({ values }));
+    dispatch(logIn(values));
     resetForm();
   };
 
