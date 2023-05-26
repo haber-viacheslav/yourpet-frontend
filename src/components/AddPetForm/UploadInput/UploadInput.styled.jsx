@@ -25,6 +25,8 @@ export const UploadFile = styled.input`
 `;
 
 export const Photo = styled.img`
+  object-fit: cover;
+  object-fit: top center;
   width: 100%;
   height: 100%;
   border: none;

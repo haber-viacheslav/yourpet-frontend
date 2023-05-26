@@ -24,7 +24,7 @@ export const NavItem = styled.li`
   font-weight: ${props => props.theme.fontWeights.medium};
   font-size: 32px;
   line-height: 1.35;
-  @media (min-width: 769px) {
+  @media screen and (${props => props.theme.media.md}) {
   font-size: 48px;
   line-height: 1.36;
   };
@@ -38,7 +38,6 @@ export const NavItem = styled.li`
 `;
 export const NavLinkItem = styled(NavLink)`
   color: ${props => props.theme.colors.black};
-
   :hover,
   :focus,
   :active {
