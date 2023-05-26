@@ -1,11 +1,10 @@
-import Cat from '../../images/walking-cat.gif';
 import { createPortal } from 'react-dom';
 import { LoaderContainer } from './Loader.styled';
 const loader = document.querySelector('#loader');
-export const Loader = ({ size = 200 }) => {
+export const Loader = ({ size = 200, loaderSrc }) => {
   return createPortal(
     <LoaderContainer>
-      <img src={Cat} alt="Loading" width={size} />
+      <img src={loaderSrc} alt="Loading" width={size} />
     </LoaderContainer>,
     loader
   );

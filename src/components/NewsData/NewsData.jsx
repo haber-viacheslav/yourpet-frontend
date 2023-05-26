@@ -7,7 +7,7 @@ import {
   selectTotalPages,
   selectNews,
 } from 'redux/news/selectors';
-
+import Cat from '../../images/walking-cat.gif';
 import { Loader } from 'components/Loader/Loader';
 import { SearchNewsForm } from 'components/News/SearchNewsForm/SearchNewsForm';
 import { ReusableTitle } from 'components/ReusableTitle/ReusableTitle';
@@ -54,7 +54,7 @@ export const NewsData = () => {
     <Container>
       <ReusableTitle>News</ReusableTitle>
 
-      {isLoading && <Loader />}
+      {isLoading && <Loader loaderSrc={Cat} size={160} />}
       {isError && !news.length && <NotFound />}
 
       <SearchNewsForm onSubmit={handleNewsSearchSubmit} />
