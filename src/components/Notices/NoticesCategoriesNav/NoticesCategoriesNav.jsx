@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import {
   BtnAddOption,
   BtnAddPet,
@@ -5,28 +6,38 @@ import {
   BtnFiltersCircle,
 } from 'components/buttons/buttons';
 import {
-  FilterAdsConteiner,
-  FiltersBtnConteiner,
-  FiltersConteiner,
+  FilterAdsContainer,
+  FiltersBtnContainer,
+  FiltersContainer,
 } from './NoticesCategoriesNav.styled';
 
 export const NoticesCategoriesNav = () => {
   return (
     <>
-      <FiltersConteiner>
-        <BtnAddOption text={'sell'} />
-        <BtnAddOption text={'lost/found'} />
-        <BtnAddOption text={'in good hands'} />
-        <FilterAdsConteiner>
-          <BtnAddOption text={'favorite ads'} />
-          <BtnAddOption text={'my ads'} />
-        </FilterAdsConteiner>
-        <FiltersBtnConteiner>
+      <FiltersContainer>
+        <NavLink  to={'/notices/sell'}>
+          <BtnAddOption text={'sell'} />
+        </NavLink>
+        <NavLink to={'/notices/lost-found'}>
+          <BtnAddOption text={'lost/found'} />
+        </NavLink>
+        <NavLink to={'/notices/for-free'}>
+          <BtnAddOption text={'in good hands'} />
+          </NavLink>
+        <FilterAdsContainer>
+          <NavLink to={'/notices/favorite'}>
+            <BtnAddOption text={'favorite ads'} />
+          </NavLink>
+          <NavLink to={'/notices/own'}>
+            <BtnAddOption text={'my ads'} />
+            </NavLink>
+        </FilterAdsContainer>
+        <FiltersBtnContainer>
           <BtnFilters />
           <BtnAddPet />
-        </FiltersBtnConteiner>
+        </FiltersBtnContainer>
         <BtnFiltersCircle />
-      </FiltersConteiner>
+      </FiltersContainer>
     </>
   );
 };
