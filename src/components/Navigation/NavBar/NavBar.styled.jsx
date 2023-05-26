@@ -7,7 +7,8 @@ export const Navigate = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  /* z-index: 1000; */
+  /* z-index: 1000;
+  overflow: hidden; */
 `;
 
 export const BoxUser = styled.div`
