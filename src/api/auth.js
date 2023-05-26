@@ -9,17 +9,28 @@ export const setToken = async token => {
   return (instance.defaults.headers.authorization = `Bearer ${token}`);
 };
 // INTERCEPTORS
-instance.interceptors.request.use(config => {
-  const accessToken = localStorageService.getItem('accessToken');
-  config.headers.common.authorization = `Bearer ${accessToken}`;
-  return config;
-});
+// instance.interceptors.request.use(config => {
+//   const accessToken = localStorageService.getItem('accessToken');
+//   config.headers.common.authorization = `Bearer ${accessToken}`;
+//   return config;
+// });
 instance.interceptors.response.use(
   resp => resp,
-  error => {
+  async error => {
     if (error.response.data.code === 403) {
-      const refreshToken = localStorageService.getItem('refreshToken');
+      const oldRefreshToken = localStorageService.getItem('refreshToken');
+      try {
+        const { data } = await instance.post('/auth/refresh', oldRefreshToken);
+        const { accessToken, refreshToken } = data.body;
+        setToken(accessToken);
+        localStorageService.setItem('refreshToken', refreshToken);
+        return instance(error.config);
+      } catch (error) {
+        return Promise.reject(error);
+      }
     }
+
+    return Promise.reject(error);
   }
 );
 // --REGISTER OPERATION--
@@ -47,15 +58,12 @@ export const current = async () => {
 // --LOGOUT OPERATION--
 export const logout = async () => {
   const { data } = await instance.post('/auth/logout');
+  setToken();
+  localStorageService.setItem('refreshToken', null);
   return data;
 };
 // --UPDATE OPERATION--
 export const update = async userData => {
-  const { data } = await instance.put('/auth/update');
-  return data;
-};
-// --REFRESH TOKENS OPERATION--
-export const refreshTokens = async credentials => {
-  const { data } = await instance.post('/auth/refresh');
+  const { data } = await instance.put('/auth/update', userData);
   return data;
 };
