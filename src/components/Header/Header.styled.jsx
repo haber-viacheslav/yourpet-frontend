@@ -8,17 +8,16 @@ export const HeaderWrapper = styled.header`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 20px ;
-  
+  padding: 20px 0 ;  
 
   @media screen and (${props => props.theme.media.md}) {
-    padding: 24px 32px;       
+    padding: 24px 0;       
   };
   @media screen and (${props=>props.theme.media.lg}){
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 16px;
+    padding: 20px 0;
     
   }
 `;
