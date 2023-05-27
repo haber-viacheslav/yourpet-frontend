@@ -1,7 +1,4 @@
-import {
-  useState,
-  // useEffect
-} from 'react';
+import { useState, useEffect } from 'react';
 import { Formik } from 'formik';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
@@ -34,13 +31,12 @@ const inputs = [
 export const UserData = () => {
   const [isEditingBlocked, setIsEditingBlocked] = useState(false);
   const [isLogOut, setIsLogOut] = useState(false);
+  const [isNewUser, setIsNewUser] = useState(true);
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   dispatch(userCurrent);
-  // }, [dispatch]);
+  useEffect(() => {}, []);
 
   const avatar = user.avatarURL;
   const initialValues = {
@@ -50,6 +46,10 @@ export const UserData = () => {
     phone: user.phone || '',
     city: user.city || '',
     file: '',
+  };
+
+  const handleCongratsOut = () => {
+    setIsNewUser(false);
   };
 
   const handleLogOut = () => {
@@ -81,9 +81,6 @@ export const UserData = () => {
     if (values.file) {
       formData.append('file', values.file, 'User`s photo');
     }
-    // for (const pair of formData.entries()) {
-    //   console.log(pair[0] + ': ' + pair[1]);
-    // }
 
     try {
       dispatch(updateUser(formData));
@@ -103,8 +100,6 @@ export const UserData = () => {
             validationSchema={profileSchema}
           >
             {({ values, errors, touched, handleSubmit }) => {
-              // console.log(values);
-              // console.log(errors);
               return (
                 <>
                   <AvatarUploadInput
@@ -146,6 +141,9 @@ export const UserData = () => {
           onClick={handleLogOutCancel}
           variant={'logOut'}
         />
+      )}
+      {isNewUser && (
+        <ModalApproveAction onClick={handleCongratsOut} variant={'congrats'} />
       )}
     </>
   );

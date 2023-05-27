@@ -3,7 +3,8 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import { lazy } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../theme/theme';
-import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList/NoticesCategorieList'
+
+import { NoticesCategoriesList } from './Notices/NoticesCategoriesList/NoticesCategoriesList';
 
 import { useEffect } from 'react';
 import { userCurrent } from 'redux/auth/authService';
@@ -27,7 +28,9 @@ const ModalTestPage = lazy(() => import('../pages/ModalTestPage'));
 export const App = () => {
   const dispatch = useDispatch();
   // const { isRefreshing } = useAuth();
-
+  // setInterval(() => {
+  //   dispatch(userCurrent());
+  // }, 8000);
   useEffect(() => {
     dispatch(userCurrent());
   }, [dispatch]);

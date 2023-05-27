@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Burger = styled.div`
   z-index: 100;
-  @media (min-width: 1279px) {
+  @media screen and (${props => props.theme.media.lg}){
     display: none;
   } 
 `;
@@ -11,7 +11,7 @@ export const Burger = styled.div`
 export const Box = styled.div`
   display: none;
 
-  @media (max-width: 1279px) {
+  @media screen and (${props => props.theme.media.smToLg}) {
     display: inherit;
     transform: ${({ isOpen }) =>
       isOpen ? 'translateX(0)' : 'translateX(100%)'};
@@ -43,10 +43,10 @@ export const BoxUser = styled.div`
   justify-content: space-around;
   margin-top: 82px;
   margin-bottom: 40px;
-  @media (min-width: 768px) {
+  @media screen and (${props => props.theme.media.md}) {
     display: none;
   }
-  @media (min-width: 1279px) {
+  @media screen and (${props => props.theme.media.lg}) {
     margin-top: 0;
     margin-bottom: 0;
   }

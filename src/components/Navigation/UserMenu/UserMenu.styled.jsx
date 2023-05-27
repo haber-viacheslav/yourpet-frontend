@@ -17,7 +17,6 @@ export const Box = styled.div`
 export const UserName = styled.span`
   display: inherit;
   margin-left: 12px;
-
   display: ${({ isOpen }) =>
       isOpen ? "display" : "none"};
   @media screen and (${props => props.theme.media.md}) {

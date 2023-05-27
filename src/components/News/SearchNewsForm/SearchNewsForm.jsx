@@ -28,9 +28,9 @@ export const SearchNewsForm = ({ onSubmit }) => {
     setSearchQuery(e.target.value.toLowerCase().trim());
   };
 
-  const handleReset = () => {
+  const handleReset = async () => {
     setSearchQuery('');
-    onSubmit(searchQuery);
+    await onSubmit(searchQuery);
   };
 
   return (

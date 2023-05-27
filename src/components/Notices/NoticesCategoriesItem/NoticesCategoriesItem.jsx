@@ -10,8 +10,8 @@ import {
   SvgMale,
 } from 'components/buttons/buttons';
 import {
-  ConteinerCard,
-  ConteinerInfo,
+  ContainerCard,
+  ContainerInfo,
   Img,
   Text,
 } from './NoticesCategoriesItem.styled';
@@ -25,19 +25,19 @@ export const NoticesCategoryItem = ({ petList }) => {
 
   return (
     <>
-      <ConteinerCard>
+      <ContainerCard>
         <Img src={smImgUrl1x} alt="Pet image" />
         <BtnAddFavorite />
         <BtnAddPetCurcle />
         <PetCategory text={`${category}`} />
-        <ConteinerInfo>
+        <ContainerInfo>
           <PetInfo Svg={SvgLocation} text={`${place}`} />
           <PetInfo Svg={SvgClock} text={'1 year'} />
           <PetInfo Svg={Svg()} text={`${sex}`} />
-        </ConteinerInfo>
+        </ContainerInfo>
         <Text>Сute dog looking for a home</Text>
         <BtnLearnMoreFavorite />
-      </ConteinerCard>
+      </ContainerCard>
     </>
   );
 };

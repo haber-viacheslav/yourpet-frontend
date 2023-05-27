@@ -38,7 +38,7 @@ const initialsValues = {
   price: '',
   comments: '',
   sex: '',
-  category: 'your pet',
+  category: 'my pet',
   file: '',
 };
 const statuses = [

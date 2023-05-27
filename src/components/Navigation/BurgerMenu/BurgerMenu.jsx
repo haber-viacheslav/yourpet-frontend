@@ -4,13 +4,14 @@ import { Spin as Hamburger } from 'hamburger-react';
 import { Burger, BoxNav, BoxUser, Box } from './BurgerMenu.styled';
 import { Nav } from '../Nav/Nav';
 import { AuthNav } from '../AuthNav/AuthNav';
-
+import PropTypes from 'prop-types';
 // import { UserMenu } from 'components/Navigation/UserMenu/UserMenu';
 
 export const BurgerMenu = () => {
+  // const { isLoggedIn } = useAuth();
+
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef();
-  // console.log(isOpen);
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -25,15 +26,19 @@ export const BurgerMenu = () => {
         setIsOpen(true);
       }
     };
-
     document.addEventListener('mousedown', handler);
 
     return () => {
-      document.removeEventListener('mousedown', handler);
+    document.removeEventListener('mousedown', handler);
     };
   }, []);
 
   useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'visible';
+    }
     if (isOpen) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -62,7 +67,7 @@ export const BurgerMenu = () => {
       <Box isOpen={isOpen} onClick={handleClose} ref={menuRef}>
         <BoxUser>
           <AuthNav />
-          {/* <UserMenu isOpen={isOpen}/> */}
+          {/* {isLoaddIn ?  <AuthNav /> : <UserMenu isOpen={isOpen}/>} */}
         </BoxUser>
         <BoxNav>
           <Nav />
@@ -71,3 +76,11 @@ export const BurgerMenu = () => {
     </>
   );
 };
+
+BurgerMenu.protoTypes = {
+  isOpen: PropTypes.bool,
+  handleClose: PropTypes.func,
+  toggled: PropTypes.bool,
+  toggle: PropTypes.bool,
+  menuRef: PropTypes.element,
+}.isRequired;
