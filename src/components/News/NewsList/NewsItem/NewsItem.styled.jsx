@@ -17,7 +17,7 @@ export const Item = styled.li`
     border-radius: 4px;
     background-color: ${props => props.theme.colors.blue};
     background: ${props => props.theme.colors.blueGradient};
-    @media screen and (min-width: 768px) {
+    @media screen and (${props => props.theme.media.md}) {
       top: -22px;
     }
   }
@@ -25,13 +25,12 @@ export const Item = styled.li`
     flex-basis: calc((100% - 32px) / 2);
   }
   @media screen and (${props => props.theme.media.lg}) {
-    flex-basis: calc((100% - 2 * 32px) / 3);
+    flex-basis: calc((100% - 2 * 31px) / 3);
   }
 `;
 
 export const WrapImg = styled.div`
   overflow: hidden;
-  margin-bottom: 16px;
   border-radius: 20px;
   object-fit: cover;
   width: 100%;
@@ -49,7 +48,7 @@ export const Plug = styled(Notify)`
   height: 252px;
   fill: #54adff;
   @media screen and (${props => props.theme.media.md}) {
-    width: 366px;
+    width: 336px;
   }
   @media screen and (${props => props.theme.media.md}) {
     width: 395px;
@@ -57,37 +56,39 @@ export const Plug = styled(Notify)`
 `;
 
 export const Wrap = styled.div`
-  margin-bottom: 40px;
-  padding-left: 8px;
-  padding-right: 8px;
+  padding: 16px 12px 12px 12px;
 `;
 export const Title = styled.h2`
   margin-left: 0;
   margin-bottom: 16px;
-  font-weight: 700;
-  font-size: 24px;
+  font-weight: ${props => props.theme.fontWeights.bold};
+  font-size: ${props => props.theme.fontSizes[5]}px;
   line-height: 1.37;
   letter-spacing: -0.01em;
   overflow: hidden;
-  height: 100px;
+  height: 66px;
 `;
 
-export const Decsr = styled.p`
-  font-weight: 400;
+export const Description = styled.p`
+  font-weight: ${props => props.theme.fontWeights.regular};
   line-height: 1.37;
-  height: 100px;
+  height: 154px;
+  margin-bottom: 40px;
+  @media screen and (${props => props.theme.media.md}) {
+    height: 132px;
+  }
+  @media screen and (${props => props.theme.media.lg}) {
+    height: 110px;
+  }
 `;
 
 export const WrapBottom = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
-  padding-left: 8px;
-  padding-right: 8px;
 `;
 export const Date = styled.p`
-  font-weight: 400;
+  font-weight: ${props => props.theme.fontWeights.regular};
   line-height: 1.37;
   color: ${props => props.theme.colors.grey};
   overflow: hidden;

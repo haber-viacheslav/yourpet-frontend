@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, ErrorMessage } from 'formik';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 // import { useDispatch } from 'react-redux';
 // import { logIn } from '../../redux/auth/authService';
 import { string, object } from 'yup';
@@ -26,12 +26,11 @@ import {
 import { logIn } from 'redux/auth/authService';
 import { useDispatch } from 'react-redux';
 // import { fetchDecorator } from 'helpers/fetchDecorator';
-import axios from 'axios';
 
 export const LoginForm = () => {
   const [toggleIconPass, setToggleIconPass] = useState(iconClose);
   const [typePass, setTypePass] = useState('password');
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
