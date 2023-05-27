@@ -53,7 +53,7 @@ export const FilterCards = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenAge, setIsOpenAge] = useState(false);
   const [isOpenGender, setIsOpenGender] = useState(false);
-   const [checkedItems, setCheckedItems] = useState({
+  const [checkedItems, setCheckedItems] = useState({
     'age-3-12m': false,
     'age-1-year': false,
     'age-2-year': false,
@@ -95,14 +95,15 @@ export const FilterCards = () => {
     setIsOpenGender(!isOpenGender);
   };
 
-  const handleCheckboxChange = (event) => {
+  const handleCheckboxChange = event => {
     const { name } = event.target;
-  console.log(name)
-    setCheckedItems((prevCheckedItems) => ({
+    console.log(name);
+    setCheckedItems(prevCheckedItems => ({
       ...prevCheckedItems,
       [name]: !prevCheckedItems[name],
     }));
   };
+  console.log(checkedItems);
 
   return (
     <>
@@ -119,36 +120,50 @@ export const FilterCards = () => {
                 <Menu>
                   <Item>
                     <Label>
-                      {checkedItems['age-3-12m'] ? <IconCheck /> : <IconCheckRound />}
+                      {checkedItems['age-3-12m'] ? (
+                        <IconCheckRound />
+                      ) : (
+                        <IconCheck />
+                      )}
                       <CheckBox
                         type="checkbox"
                         checked={checkedItems['age-3-12m']}
                         onChange={handleCheckboxChange}
-                        name = {'age-3-12m'}
+                        name={'age-3-12m'}
                       />
                       3-12m
                     </Label>
                   </Item>
                   <Item>
                     <Label>
-                      {checkedItems['age-1-year'] ? <IconCheck /> : <IconCheckRound />}
+                      {checkedItems['age-1-year'] ? (
+                        <IconCheckRound />
+                      ) : (
+                        <IconCheck />
+                      )}
                       <CheckBox
                         type="checkbox"
                         checked={checkedItems['age-1-year']}
                         onChange={handleCheckboxChange}
-                        name = {'age-1-year'}
-                      />1 year
+                        name={'age-1-year'}
+                      />
+                      1 year
                     </Label>
                   </Item>
                   <Item>
                     <Label>
-                      {checkedItems['age-2-year'] ? <IconCheck /> : <IconCheckRound />}
+                      {checkedItems['age-2-year'] ? (
+                        <IconCheckRound />
+                      ) : (
+                        <IconCheck />
+                      )}
                       <CheckBox
                         type="checkbox"
                         checked={checkedItems['age-2-year']}
                         onChange={handleCheckboxChange}
-                        name = {checkedItems['age-2-year']}
-                      />2 year
+                        name={'age-2-year'}
+                      />
+                      2 year
                     </Label>
                   </Item>
                 </Menu>
