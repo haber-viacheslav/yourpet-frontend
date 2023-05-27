@@ -37,7 +37,7 @@ export const ModalItem = ({ onClick, id }) => {
   //   // user,
   // } = petsDetails;
 
-  const fetchPetsDetail = async () => {
+  const fetchPetsDetail = async id => {
     const response = await axios.get(
       `https://your-pet-api.onrender.com/api/v1/notices/${id}`
     );
@@ -46,8 +46,8 @@ export const ModalItem = ({ onClick, id }) => {
   };
   console.log(petsDetails);
   useEffect(() => {
-    fetchPetsDetail();
-  }, []);
+    fetchPetsDetail(id);
+  }, [id]);
 
   // useEffect(() => {
   //   axios
