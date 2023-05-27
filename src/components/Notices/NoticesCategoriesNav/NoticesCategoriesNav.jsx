@@ -3,10 +3,9 @@ import {
   BtnAddOption,
   BtnAddPet,
   BtnFiltersCircle,
-  FilterAdsContainer,
 } from 'components/buttons/buttons';
 import {
-  // FilterAdsContainer,
+  FilterAdsContainer,
   FiltersBtnContainer,
   FiltersContainer,
 } from './NoticesCategoriesNav.styled';
