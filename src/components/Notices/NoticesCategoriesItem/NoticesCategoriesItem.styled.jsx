@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ConteinerCard = styled.li`
+export const ContainerCard = styled.li`
   position: relative;
   width: 280px;
   border-block: solid 0px #ffffff;
@@ -17,7 +17,7 @@ export const ConteinerCard = styled.li`
     width: 288px;
   }
 `;
-export const ConteinerInfo = styled.div`
+export const ContainerInfo = styled.div`
   display: flex;
   gap: 12px;
   position: absolute;

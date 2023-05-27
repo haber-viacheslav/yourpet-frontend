@@ -1,6 +1,6 @@
-// import { NavLink } from 'react-router-dom';
 import { NavList, NavItem, NavLinkItem } from './Nav.styled';
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 export const Nav = () => {
   const [nameLink, setNameLink] = useState('Find pet');
@@ -9,12 +9,9 @@ export const Nav = () => {
   useEffect(() => {
     function handleResize() {
       const currentWidth = window.innerWidth;
-      // console.log(currentWidth);
       setScreenSize(currentWidth);
-      // console.log(screenSize.width);
       if (currentWidth > screenSize.width) {
         setNameLink('Notices');
-        // console.log(nameLink);
       }
     }
     handleResize();
@@ -38,3 +35,7 @@ export const Nav = () => {
     </NavList>
   );
 };
+
+Nav.propTypes = {
+  nameLink: PropTypes.string.isRequired,
+}.isRequired;

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { theme } from '../../../theme/theme';
 
 export const AuthNavMenu = styled.div`
   display: block;     
@@ -21,12 +20,12 @@ export const RegisterLink = styled(NavLink)`
   text-decoration: none;
   width: 165px;
   height: 36px;
-  font-size: ${theme.fontSizes[2]}px;
-  font-weight: ${theme.fontWeights.semibold};
+  font-size: ${props => props.theme.fontSizes[2]}px;
+  font-weight: ${props => props.theme.fontWeights.semibold};
   line-height: 1.36;
-  color: ${theme.colors.orange};
+  color: ${props => props.theme.colors.orange};
   background-color: transparent;
-  border: 2px solid ${theme.colors.orange};
+  border: 2px solid ${props => props.theme.colors.orange};
   border-radius: 40px;
 `;
 
@@ -38,11 +37,11 @@ export const LoginLink = styled(NavLink)`
   text-decoration: none;
   width: 165px;
   height: 40px;
-  font-size: ${theme.fontSizes[2]}px;
-  font-weight: ${theme.fontWeights.bold};
+  font-size: ${props => props.theme.fontSizes[2]}px;
+  font-weight: ${props => props.theme.fontWeights.bold};
   line-height: 1.36;
-  color: ${theme.colors.white};
-  background-color: ${theme.colors.orange};
+  color: ${props => props.theme.colors.white};
+  background-color: ${props => props.theme.colors.orange};
   border-radius: 40px;
 
   @media screen and (min-width: 767px) {
