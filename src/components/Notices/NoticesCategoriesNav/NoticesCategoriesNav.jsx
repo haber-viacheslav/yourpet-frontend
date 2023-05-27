@@ -3,6 +3,7 @@ import {
   BtnAddOption,
   BtnAddPet,
   BtnFiltersCircle,
+  FilterAdsContainer,
 } from 'components/buttons/buttons';
 import {
   // FilterAdsContainer,
@@ -15,7 +16,7 @@ export const NoticesCategoriesNav = () => {
   return (
     <>
       <FiltersContainer>
-        <NavLink  to={'/notices/sell'}>
+        <NavLink to={'/notices/sell'}>
           <BtnAddOption text={'sell'} />
         </NavLink>
         <NavLink to={'/notices/lost-found'}>
@@ -23,16 +24,17 @@ export const NoticesCategoriesNav = () => {
         </NavLink>
         <NavLink to={'/notices/for-free'}>
           <BtnAddOption text={'in good hands'} />
-          </NavLink>
-
+        </NavLink>
+        <FilterAdsContainer>
           <NavLink to={'/notices/favorite'}>
             <BtnAddOption text={'favorite ads'} />
           </NavLink>
-          <NavLink to={'/notices/own'}>
-            <BtnAddOption text={'my ads'} />
-            </NavLink>
+        </FilterAdsContainer>
+        <NavLink to={'/notices/own'}>
+          <BtnAddOption text={'my ads'} />
+        </NavLink>
         <FiltersBtnContainer>
-          <FilterCards/>
+          <FilterCards />
           <BtnAddPet />
         </FiltersBtnContainer>
         <BtnFiltersCircle />
