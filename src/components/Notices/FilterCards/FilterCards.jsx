@@ -53,7 +53,11 @@ export const FilterCards = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenAge, setIsOpenAge] = useState(false);
   const [isOpenGender, setIsOpenGender] = useState(false);
-  const [checkedItems, setCheckedItems] = useState({});
+   const [checkedItems, setCheckedItems] = useState({
+    'age-3-12m': false,
+    'age-1-year': false,
+    'age-2-year': false,
+  });
 
   const dropdownRef = useRef(null);
 
@@ -93,6 +97,7 @@ export const FilterCards = () => {
 
   const handleCheckboxChange = (event) => {
     const { name } = event.target;
+  console.log(name)
     setCheckedItems((prevCheckedItems) => ({
       ...prevCheckedItems,
       [name]: !prevCheckedItems[name],
