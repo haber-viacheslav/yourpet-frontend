@@ -30,7 +30,6 @@ export const DropdownMenu = styled.ul`
 
 export const FilterGroup = styled.li`
   padding: 5px 0;
-
 `;
 
 export const Button = styled.button`
@@ -38,10 +37,17 @@ export const Button = styled.button`
 `;
 
 export const Menu = styled.ul`
-  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  display: flex;
+  flex-direction: column;
   background-color: #fff;
   padding: 10px;
 `;
 export const MenuItem = styled.li`
   padding: 5px 0;
+`;
+
+export const SVG = styled.svg`
+  display: block;
+  fill: transparent;
+  stroke: currentColor;
 `;

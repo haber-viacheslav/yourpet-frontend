@@ -7,12 +7,31 @@ import {
   Button,
   Menu,
   MenuItem,
+  SVG,
 } from './FilterCards.styled';
 import { useEffect } from 'react';
+import icons from 'images/icons.svg';
+
+export const IconClose = () => {
+  return (
+    <SVG width={24} height={24}>
+      <use href={icons + '#icon-chevron-down'}></use>
+    </SVG>
+  );
+};
+
+export const IconOpen = () => {
+  return (
+    <SVG width={24} height={24}>
+      <use href={icons + '#icon-chevron-up'}></use>
+    </SVG>
+  );
+};
 
 export const FilterCards = onClick => {
   const [isOpen, setIsOpen] = useState(false);
-    const [isOpenAge, setIsOpenAge] = useState(false);
+  const [isOpenAge, setIsOpenAge] = useState(false);
+  const [isOpenGender, setIsOpenGender] = useState(false);
 
   const dropdownRef = useRef(null);
 
@@ -40,9 +59,14 @@ export const FilterCards = onClick => {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
-    };
-      const toggleDropdownAge = () => {
+  };
+
+  const toggleDropdownAge = () => {
     setIsOpenAge(!isOpenAge);
+  };
+
+  const toggleDropdownGender = () => {
+    setIsOpenGender(!isOpenGender);
   };
 
   return (
@@ -52,21 +76,36 @@ export const FilterCards = onClick => {
           <DropdownMenu>
             <p>Filters</p>
             <FilterGroup>
-              <Button onClick={toggleDropdownAge}>Open Dropdown</Button>
-              <Menu isOpen={isOpen}>
-                <MenuItem>3-12m</MenuItem>
-                <MenuItem>1 year</MenuItem>
-                <MenuItem>2 year</MenuItem>
-              </Menu>
+              <span onClick={toggleDropdownAge}>
+                {isOpenAge ? <IconClose /> : <IconOpen />}
+                <p>By age</p>
+              </span>
+              {isOpenAge && (
+                <Menu>
+                  <li>
+                    <input type="checkbox" />
+                    3-12m
+                  </li>
+                  <li>
+                    <input type="checkbox" />1 year
+                  </li>
+
+                  <li>
+                    <input type="checkbox" />2 year
+                  </li>
+                </Menu>
+              )}
             </FilterGroup>
-            {/* <FilterGroup>
-              <Button onClick={toggleDropdown}>Open Dropdown</Button>
-              <Menu isOpen={isOpen}>
-                <MenuItem>Option 1</MenuItem>
-                <MenuItem>Option 2</MenuItem>
-                <MenuItem>Option 3</MenuItem>
-              </Menu>
-            </FilterGroup> */}
+            <FilterGroup>
+              <Button onClick={toggleDropdownGender}>By gender</Button>
+              {isOpenGender && (
+                <Menu>
+                  <MenuItem>3-12m</MenuItem>
+                  <MenuItem>1 year</MenuItem>
+                  <MenuItem>2 year</MenuItem>
+                </Menu>
+              )}
+            </FilterGroup>
           </DropdownMenu>
         </DropdownWrapper>
       )}
