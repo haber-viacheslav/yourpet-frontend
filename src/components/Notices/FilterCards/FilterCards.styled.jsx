@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
 export const DropdownWrapper = styled.div`
-  /* position: relative; */
+  position: relative;
 `;
 const fadeIn = keyframes`
   from {
@@ -14,17 +14,34 @@ const fadeIn = keyframes`
 
 export const DropdownMenu = styled.ul`
   position: absolute;
-  top: 100px;
-  left: 0;
-  width: 200px;
+  top: 60px;
+  left: 12px;
+  width: 152px;
   background-color: #f0f0f0;
   list-style: none;
-  padding: 10px;
+  padding: 8px;
   margin: 0;
   z-index: 200;
+  background: #ffffff;
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  border-radius: 20px;
   animation: ${fadeIn} 0.3s ease-in-out;
 `;
 
-export const DropdownMenuItem = styled.li`
+export const FilterGroup = styled.li`
+  padding: 5px 0;
+
+`;
+
+export const Button = styled.button`
+  padding: 10px;
+`;
+
+export const Menu = styled.ul`
+  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  background-color: #fff;
+  padding: 10px;
+`;
+export const MenuItem = styled.li`
   padding: 5px 0;
 `;
