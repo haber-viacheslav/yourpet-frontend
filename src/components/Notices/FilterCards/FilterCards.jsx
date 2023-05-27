@@ -5,7 +5,6 @@ import {
   DropdownMenu,
   FilterGroup,
   Menu,
-  MenuItem,
   MenuButton,
   SVG,
   Title,
@@ -176,9 +175,22 @@ export const FilterCards = () => {
               </MenuButton>
               {isOpenGender && (
                 <Menu>
-                  <MenuItem>3-12m</MenuItem>
-                  <MenuItem>1 year</MenuItem>
-                  <MenuItem>2 year</MenuItem>
+                   <Item>
+                    <Label>
+                      {checkedItems['female'] ? (
+                        <IconCheckRound />
+                      ) : (
+                        <IconCheck />
+                      )}
+                      <CheckBox
+                        type="checkbox"
+                        checked={checkedItems['female']}
+                        onChange={handleCheckboxChange}
+                        name={'female'}
+                      />
+                      female
+                    </Label>
+                  </Item>
                 </Menu>
               )}
             </FilterGroup>
