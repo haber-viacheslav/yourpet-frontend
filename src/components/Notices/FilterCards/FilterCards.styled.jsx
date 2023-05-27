@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import icons from 'images/icons.svg';
 
 export const DropdownWrapper = styled.div`
   position: relative;
@@ -12,9 +13,16 @@ const fadeIn = keyframes`
   }
 `;
 
+export const IconCheck = () => {
+  return (
+    <SVG width={24} height={24}>
+      <use href={icons + '#icon-check'}></use>
+    </SVG>
+  );
+};
 export const DropdownMenu = styled.ul`
   position: absolute;
-  top: 60px;
+  top: 50px;
   left: 12px;
   width: 152px;
   background-color: #f0f0f0;
@@ -29,8 +37,12 @@ export const DropdownMenu = styled.ul`
 `;
 
 export const FilterGroup = styled.li`
-  background: #CCE4FB;
-border-radius: 20px;
+  background: #cce4fb;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  &:last-child {
+    margin-bottom: 0px;
+  }
 `;
 
 export const Menu = styled.ul`
@@ -38,8 +50,9 @@ export const Menu = styled.ul`
   flex-direction: column;
   background-color: #fff;
   padding: 10px;
-  background: #CCE4FB;
+  background: #cce4fb;
   border-radius: 20px;
+  gap: 8px;
 `;
 export const MenuItem = styled.li`
   padding: 5px 0;
@@ -55,24 +68,71 @@ export const MenuButton = styled.span`
   display: flex;
   padding: 4px 8px;
   cursor: pointer;
-  color: #54ADFF;
-`
+  color: #54adff;
+`;
 export const Title = styled.p`
-font-family: 'Manrope';
-font-style: normal;
-font-weight: 700;
-font-size: 16px;
-line-height: 22px;
-align-items: center;
-letter-spacing: 0.04em;
-color: #54ADFF;
-margin-bottom: 8px;
-`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  align-items: center;
+  letter-spacing: 0.04em;
+  color: #54adff;
+  margin-bottom: 8px;
+`;
 export const Text = styled.p`
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-align-items: center;
-margin-left: 8px;
-`
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  align-items: center;
+  margin-left: 8px;
+`;
+
+export const Item = styled.li`
+  position: relative;
+  margin-left: 30px;
+`;
+
+export const Label = styled.label`
+  font-family: 'Inter';
+  gap: 12px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  color: #54adff;
+  &::before {
+    content: '';
+    display: block;
+    width: 16px;
+    height: 16px;
+    color: #54adff;
+    border: 1px solid #54adff;
+    border-radius: 3px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  &::after {
+    content: '';
+    display: block;
+    width: 16px;
+    height: 16px;
+
+    background: url('${IconCheck}') no-repeat;
+  background-size: 16px 16px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+  }
+`;
+
+export const CheckBox = styled.input`
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+`;

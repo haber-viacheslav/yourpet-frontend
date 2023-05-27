@@ -7,9 +7,12 @@ import {
   Menu,
   MenuItem,
   MenuButton,
-    SVG,
-    Title,
-  Text
+  SVG,
+  Title,
+  Text,
+  Item,
+  Label,
+  CheckBox,
 } from './FilterCards.styled';
 // import { useEffect } from 'react';
 import icons from 'images/icons.svg';
@@ -30,6 +33,23 @@ export const IconOpen = () => {
   );
 };
 
+export const IconCheck = () => {
+  return (
+    <SVG width={24} height={24}>
+      <use href={icons + '#icon-round'}></use>
+    </SVG>
+  );
+};
+
+
+export const IconCheckRound = () => {
+  return (
+    <SVG width={24} height={24}>
+      <use href={icons + '#icon-check-round'}></use>
+    </SVG>
+  );
+};
+
 export const FilterCards = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenAge, setIsOpenAge] = useState(false);
@@ -37,27 +57,27 @@ export const FilterCards = () => {
 
   const dropdownRef = useRef(null);
 
-    // useEffect(() => {
-    //   const handleEscapeKey = event => {
-    //     if (event.key === 'Escape') {
-    //       setIsOpen(false);
-    //     }
-    //   };
+  // useEffect(() => {
+  //   const handleEscapeKey = event => {
+  //     if (event.key === 'Escape') {
+  //       setIsOpen(false);
+  //     }
+  //   };
 
-    //   const handleClickOutside = event => {
-    //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-    //       setIsOpen(false);
-    //     }
-    //   };
+  //   const handleClickOutside = event => {
+  //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+  //       setIsOpen(false);
+  //     }
+  //   };
 
-    //   document.addEventListener('keydown', handleEscapeKey);
-    //   document.addEventListener('mousedown', handleClickOutside);
+  //   document.addEventListener('keydown', handleEscapeKey);
+  //   document.addEventListener('mousedown', handleClickOutside);
 
-    //   return () => {
-    //     document.removeEventListener('keydown', handleEscapeKey);
-    //     document.removeEventListener('mousedown', handleClickOutside);
-    //   };
-    // }, []);
+  //   return () => {
+  //     document.removeEventListener('keydown', handleEscapeKey);
+  //     document.removeEventListener('mousedown', handleClickOutside);
+  //   };
+  // }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -84,17 +104,22 @@ export const FilterCards = () => {
               </MenuButton>
               {isOpenAge && (
                 <Menu>
-                  <label>
-                    <input type="checkbox" />
-                    3-12m
-                  </label>
-                  <label>
-                    <input type="checkbox" />1 year
-                  </label>
-
-                  <label>
-                    <input type="checkbox" />2 year
-                  </label>
+                  <Item>
+                    <Label>
+                      <CheckBox type="checkbox" />
+                      3-12m
+                    </Label>
+                  </Item>
+                  <Item>
+                    <label>
+                      <input type="checkbox" />1 year
+                    </label>
+                  </Item>
+                  <Item>
+                    <label>
+                      <input type="checkbox" />2 year
+                    </label>
+                  </Item>
                 </Menu>
               )}
             </FilterGroup>
