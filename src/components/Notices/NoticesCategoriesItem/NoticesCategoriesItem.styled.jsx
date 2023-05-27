@@ -56,3 +56,37 @@ export const Img = styled.img`
     width: 288px;
   }
 `;
+export const Button = styled.button`
+display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 57px;
+  right: 1px;
+  height: 40px;
+  width: 40px;
+  margin: 12px 12px 16px 0;
+
+  background: #cce4fb;
+  border: transparent;
+  border-radius: 50%;
+
+  cursor: pointer;
+ `
+ export const DeleteBtn = styled.button`
+   display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 57px;
+  right: 1px;
+  margin: 12px 12px 16px 0;
+  background: #cce4fb;
+  border: transparent;
+  border-radius: 40px;
+  cursor: pointer;
+  :hover {
+  fill: #54adff;`
+
+  
+
