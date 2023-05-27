@@ -97,42 +97,19 @@ export const Item = styled.li`
 
 export const Label = styled.label`
   font-family: 'Inter';
+  display: flex;
+  align-items: center;
   gap: 12px;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
   color: #54adff;
-  &::before {
-    content: '';
-    display: block;
-    width: 16px;
-    height: 16px;
-    color: #54adff;
-    border: 1px solid #54adff;
-    border-radius: 3px;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-  }
-  &::after {
-    content: '';
-    display: block;
-    width: 16px;
-    height: 16px;
-
-    background: url('${IconCheck}') no-repeat;
-  background-size: 16px 16px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-  }
+  cursor: pointer;
 `;
 
 export const CheckBox = styled.input`
   -webkit-appearance: none;
   appearance: none;
   position: absolute;
+
 `;

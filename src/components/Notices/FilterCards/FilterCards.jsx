@@ -41,7 +41,6 @@ export const IconCheck = () => {
   );
 };
 
-
 export const IconCheckRound = () => {
   return (
     <SVG width={24} height={24}>
@@ -54,6 +53,7 @@ export const FilterCards = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenAge, setIsOpenAge] = useState(false);
   const [isOpenGender, setIsOpenGender] = useState(false);
+  const [checkedItems, setCheckedItems] = useState({});
 
   const dropdownRef = useRef(null);
 
@@ -91,6 +91,14 @@ export const FilterCards = () => {
     setIsOpenGender(!isOpenGender);
   };
 
+  const handleCheckboxChange = (event) => {
+    const { name } = event.target;
+    setCheckedItems((prevCheckedItems) => ({
+      ...prevCheckedItems,
+      [name]: !prevCheckedItems[name],
+    }));
+  };
+
   return (
     <>
       {isOpen && (
@@ -106,19 +114,37 @@ export const FilterCards = () => {
                 <Menu>
                   <Item>
                     <Label>
-                      <CheckBox type="checkbox" />
+                      {checkedItems['age-3-12m'] ? <IconCheck /> : <IconCheckRound />}
+                      <CheckBox
+                        type="checkbox"
+                        checked={checkedItems['age-3-12m']}
+                        onChange={handleCheckboxChange}
+                        name = {'age-3-12m'}
+                      />
                       3-12m
                     </Label>
                   </Item>
                   <Item>
-                    <label>
-                      <input type="checkbox" />1 year
-                    </label>
+                    <Label>
+                      {checkedItems['age-1-year'] ? <IconCheck /> : <IconCheckRound />}
+                      <CheckBox
+                        type="checkbox"
+                        checked={checkedItems['age-1-year']}
+                        onChange={handleCheckboxChange}
+                        name = {'age-1-year'}
+                      />1 year
+                    </Label>
                   </Item>
                   <Item>
-                    <label>
-                      <input type="checkbox" />2 year
-                    </label>
+                    <Label>
+                      {checkedItems['age-2-year'] ? <IconCheck /> : <IconCheckRound />}
+                      <CheckBox
+                        type="checkbox"
+                        checked={checkedItems['age-2-year']}
+                        onChange={handleCheckboxChange}
+                        name = {checkedItems['age-2-year']}
+                      />2 year
+                    </Label>
                   </Item>
                 </Menu>
               )}
