@@ -45,29 +45,3 @@ export const BurgerBtn = () => {
     </>
   );
 };
-
-// export const BackdropMenu = ({ isOpen, handleClose }) => {
-// const handleLinkClick = () => {
-//   handleClose();
-// };
-// const [isTablet, setTabletDevice] = useState(isTabletDevice());
-// const isLogIn = useSelector(state => state.auth.token);
-
-// useEffect(() => {
-// const handleResize = () => {
-//   setTabletDevice(isTabletDevice());
-// };
-
-//   window.addEventListener('resize', handleResize);
-
-//   return () => {
-//     window.removeEventListener('resize', handleResize);
-//   };
-// }, []);
-
-// return (
-// <Box>
-
-// </Box>
-// );
-// };

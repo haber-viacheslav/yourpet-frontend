@@ -1,28 +1,6 @@
 import * as yup from 'yup';
 import 'yup-phone';
 
-export const contactYupSchema = yup.object().shape({
-  name: yup.string().trim().strict().required(),
-  number: yup.string().phone('UA').required(),
-});
-
-export const yupRegisterValidation = yup.object().shape({
-  name: yup.string().trim().strict().required('Required !'),
-  email: yup
-    .string()
-    .email('Enter a Valid Email')
-    .required('Email is Required'),
-  password: yup
-    .string()
-    .required('Enter Your Password')
-    .min(8, 'Password Should be minimum 8 character')
-    .max(50, 'Too long'),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref('password')], 'Password does not matched')
-    .required('Confirm Password is Required'),
-});
-
 export const yupLoginValidation = yup.object().shape({
   email: yup
     .string()
@@ -33,6 +11,25 @@ export const yupLoginValidation = yup.object().shape({
     .required('Enter Your Password')
     .min(8, 'Password Should be minimum 8 character')
     .max(50, 'Too long'),
+});
+
+export const yupRegisterValidation = yup.object().shape({
+  email: yup
+    .string()
+    .email('Enter a Valid Email')
+    .required('Email is Required'),
+  password: yup
+    .string()
+    .required('Enter Your Password')
+    .min(6, 'Password should be minimum 6 character')
+    .max(16, 'Too long')
+    .matches(/[0-9]/, 'Password requires a number')
+    .matches(/[a-z]/, 'Password requires a lowercase letter')
+    .matches(/[A-Z]/, 'Password requires an uppercase letter'),
+  confirm: yup
+    .string()
+    .oneOf([yup.ref('password')], 'Password does not matched')
+    .required('Confirm Password is Required'),
 });
 
 export const addPetFormSchema = yup.object().shape({
@@ -117,17 +114,10 @@ export const profileSchema = yup.object().shape({
   phone: yup.string().matches(/^\+\d{12}$/, 'UA format number'),
   file: yup
     .mixed()
-    .required('Upload photo')
-
     .test(
       'fileType',
       'Only image files are allowed',
       value =>
         !value || ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type)
-    )
-    .test(
-      'fileSize',
-      'File size is too large',
-      value => value?.size <= 3145728
     ),
 });

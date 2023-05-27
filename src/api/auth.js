@@ -55,7 +55,6 @@ export const loginFetch = async credentials => {
 // --CURRENT OPERATION--
 export const currentFetch = async () => {
   const { data } = await axios.get('/auth/current');
-
   return data;
 };
 // --LOGOUT OPERATION--
@@ -67,6 +66,9 @@ export const logoutFetch = async () => {
 };
 // --UPDATE OPERATION--
 export const updateFetch = async userData => {
-  const { data } = await axios.put('/auth/update', userData);
+  const { data } = await axios.put('/auth/update', userData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+  // console.log(data);
   return data;
 };

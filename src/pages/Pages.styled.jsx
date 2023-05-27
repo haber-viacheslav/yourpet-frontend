@@ -14,7 +14,7 @@ export const BgWrapper = styled.div`
   margin-right: auto;
 
   background-repeat: no-repeat;
-  background-position: center top;
+  background-position: center -70px;
   background-size: 100%;
 
   background-image: url(${bg_sm_1x});
@@ -26,6 +26,8 @@ export const BgWrapper = styled.div`
   }
 
   @media screen and (${theme.media.md}) {
+    background-size: 100%;
+    background-position: center -100px;
     background-image: url(${bg_md_1x});
 
     @media (min-device-pixel-ratio: 2),

@@ -73,8 +73,8 @@ export const PetFormBtn = styled.button`
   padding-left: 36px;
   :hover,
   :focus {
-    background: ${theme.colors.blue};
-    color: ${theme.colors.white};
+    background: ${theme.colors.blueGradient};
+
     border: none;
   }
 `;

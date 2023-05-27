@@ -1,4 +1,11 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
+export const UserLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const Box = styled.div`
   width: 100%;
@@ -17,8 +24,7 @@ export const Box = styled.div`
 export const UserName = styled.span`
   display: inherit;
   margin-left: 12px;
-  display: ${({ isOpen }) =>
-      isOpen ? "display" : "none"};
+  display: ${({ isOpen }) => (isOpen ? 'display' : 'none')};
   @media screen and (${props => props.theme.media.md}) {
     display: inherit;
     font-weight: ${props => props.theme.fontWeights.medium};
