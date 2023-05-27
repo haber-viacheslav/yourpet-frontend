@@ -424,10 +424,10 @@ export const BtnAddTo = ({ onClick }) => {
 export const BtnCongrats = ({ onClick }) => {
   return (
     <>
-      <BigBtnFavor type="button" onClick={onClick}>
+      <PetFormBtn type="button" onClick={onClick}>
         Go to profile
         <SvgPawprint />
-      </BigBtnFavor>
+      </PetFormBtn>
     </>
   );
 };
