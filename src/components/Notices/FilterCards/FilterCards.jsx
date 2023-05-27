@@ -56,6 +56,8 @@ export const FilterCards = () => {
     'age-3-12m': false,
     'age-1-year': false,
     'age-2-year': false,
+    'female': false,
+    'male': false,
   });
 
   const dropdownRef = useRef(null);
@@ -189,6 +191,22 @@ export const FilterCards = () => {
                         name={'female'}
                       />
                       female
+                    </Label>
+                  </Item>
+                  <Item>
+                    <Label>
+                      {checkedItems['male'] ? (
+                        <IconCheckRound />
+                      ) : (
+                        <IconCheck />
+                      )}
+                      <CheckBox
+                        type="checkbox"
+                        checked={checkedItems['male']}
+                        onChange={handleCheckboxChange}
+                        name={'male'}
+                      />
+                      male
                     </Label>
                   </Item>
                 </Menu>
