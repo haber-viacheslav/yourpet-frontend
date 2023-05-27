@@ -1,3 +1,4 @@
+import { DeletePetBtn } from './icons'
 import {
   BtnAddFavorite,
   BtnAddPetCurcle,
@@ -28,6 +29,7 @@ export const NoticesCategoryItem = ({ petList }) => {
       <ContainerCard>
         <Img src={smImgUrl1x} alt="Pet image" />
         <BtnAddFavorite />
+        <DeletePetBtn />
         <BtnAddPetCurcle />
         <PetCategory text={`${category}`} />
         <ContainerInfo>
