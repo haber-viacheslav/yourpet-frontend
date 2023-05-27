@@ -20,7 +20,7 @@ import {
   TelInfo,
 } from './ModalNotice.styled';
 
-export const ModalItem = ({ onClick, petsList }) => {
+export const ModalItem = ({ onClick, petItem }) => {
   const {
     smImgUrl1x,
     sex,
@@ -32,7 +32,7 @@ export const ModalItem = ({ onClick, petsList }) => {
     email,
     phone,
     comments,
-  } = petsList[0];
+  } = petItem;
 
   return (
     <>
