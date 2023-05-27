@@ -1,22 +1,22 @@
+import { useAuth } from 'hooks/useAuth';
 import { SvgUser } from '../../buttons/buttons';
-import { Box, UserName } from './UserMenu.styled';
-import { Link } from 'react-router-dom';
+import { Box, UserName, UserLink } from './UserMenu.styled';
+
 import PropTypes from 'prop-types';
 
 export const UserMenu = ({ isOpen }) => {
-  // const dispatch = useDispatch();
-  // const { user } = useAuth();
+  const { user } = useAuth();
+  const nickname = user.name || user.email;
 
   return (
     <Box>
-      <Link to="./user">
+      <UserLink to="./user">
         <SvgUser />
-      </Link>
-      <UserName isOpen={isOpen}>Anna</UserName>
+      </UserLink>
+      <UserName isOpen={isOpen}>{nickname}</UserName>
     </Box>
   );
 };
-
 
 UserMenu.propTypes = {
   user: PropTypes.arrayOf(

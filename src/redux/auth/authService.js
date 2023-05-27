@@ -31,6 +31,7 @@ export const logIn = createAsyncThunk(
     try {
       console.log(credentials);
       const data = await loginFetch(credentials);
+      console.log(data);
       return data;
     } catch (error) {
       if (error.message === 'Request failed with status code 401') {
@@ -69,9 +70,10 @@ export const userCurrent = createAsyncThunk(
 );
 export const updateUser = createAsyncThunk(
   'auth/updateUser',
-  async (dy, thunkAPI) => {
+  async (body, thunkAPI) => {
     try {
-      const data = await updateFetch(); // need provide data to update
+      const data = await updateFetch(body);
+      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

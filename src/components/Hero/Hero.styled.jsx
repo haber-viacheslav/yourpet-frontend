@@ -40,7 +40,7 @@ export const DogImage = styled.img`
   animation-name: ${anim};
   animation-duration: 5s;
   animation-iteration-count: infinite;
-
+  pointer-events: none;
   @media screen and (${props => props.theme.media.md}) {
     top: 240px;
     right: -100px;

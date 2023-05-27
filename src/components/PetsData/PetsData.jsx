@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { BtnAddPet } from 'components/buttons/buttons';
 import { PetsItem } from './PetsItem/PetsItem';
 import { Title, Wrapper, PetsList, TitleWrapper } from './PetsData.styled';
-import { getPets } from 'redux/pets/petsService';
-import { deletePet } from 'redux/pets/petsService';
+import { getPets } from 'api/pets';
+import { deletePet } from 'api/pets';
 
 export const PetsData = () => {
   const [data, SetData] = useState([]);

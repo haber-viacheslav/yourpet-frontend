@@ -1,9 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
 import { register } from '../../redux/auth/authService';
+// import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 import { Formik, ErrorMessage } from 'formik';
-import { string, object, ref } from 'yup';
+import { yupRegisterValidation } from 'helpers/yupValidation';
+
 import { iconClose, iconOpen, IconCrossSmall, IconCheck } from './Icons/Icons';
 import {
   Wrapper,
@@ -25,38 +28,39 @@ import {
   Link,
 } from './RegisterForm.styled';
 
+const initialValues = {
+  email: '',
+  password: '',
+  confirm: '',
+};
+
 export const RegisterForm = () => {
   const [toggleIconPass, setToggleIconPass] = useState(iconClose);
   const [typePass, setTypePass] = useState('password');
   const [toggleIconConfirm, setToggleIconConfirm] = useState(iconClose);
   const [typeConfirm, setTypeConfirm] = useState('password');
-
+  // const [isNewUser, setIsNewUser] = useState(false);
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const yupRegisterValidation = object().shape({
-    email: string().email('Enter a Valid Email').required('Email is Required'),
-    password: string()
-      .required('Enter Your Password')
-      .min(6, 'Password should be minimum 6 character')
-      .max(16, 'Too long')
-      .matches(/[0-9]/, 'Password requires a number')
-      .matches(/[a-z]/, 'Password requires a lowercase letter')
-      .matches(/[A-Z]/, 'Password requires an uppercase letter'),
-    confirm: string()
-      .oneOf([ref('password')], 'Password does not matched')
-      .required('Confirm Password is Required'),
-  });
-
-  const initialValues = {
-    email: '',
-    password: '',
-    confirm: '',
+  const handleSubmit = async ({ email, password }, { resetForm }) => {
+    try {
+      const registerResult = await dispatch(register({ email, password }));
+      console.log(registerResult);
+      const status = registerResult.payload.response.status;
+      if (status === 'Success') {
+        // setIsNewUser(true);
+        resetForm();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const handleSubmit = ({ email, password }, { resetForm }) => {
-    dispatch(register({ email, password }));
-    resetForm();
-  };
+  // const handleCongratsOut = () => {
+  //   navigate('/user');
+  //   setIsNewUser(false);
+  // };
 
   const togglePassInput = e => {
     if (typePass === 'password') {
@@ -79,114 +83,125 @@ export const RegisterForm = () => {
   };
 
   return (
-    <Wrapper>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={yupRegisterValidation}
-        onSubmit={handleSubmit}
-      >
-        {({ errors, touched }) => (
-          <RegisterFormStyled autoComplete="off">
-            <Title>Registration</Title>
-            <Box>
-              <Input
-                type="text"
-                name="email"
-                placeholder="Email"
-                valid={touched.email && !errors.email ? 'true' : undefined}
-                error={touched.email && errors.email}
-              />
-              <ErrorMessage
-                name="email"
-                type="email"
-                id="email"
-                render={msg => <EmailMessage>{msg}</EmailMessage>}
-              />
-              {errors.email && touched.email && (
-                <IconMail error={errors.email && touched.email && 'false'}>
-                  <IconCrossSmall />
-                </IconMail>
-              )}
-              {touched.email && !errors.email && (
-                <IconMail error={errors.email && touched.email && 'false'}>
-                  <IconCheck />
-                </IconMail>
-              )}
-              <Input
-                type={typePass}
-                id="password"
-                name="password"
-                placeholder="Password"
-                valid={
-                  touched.password && !errors.password ? 'true' : undefined
-                }
-                error={touched.password && errors.password}
-              />
-              {touched.password && errors.password && (
-                <ErrorMessage
-                  name="password"
-                  type="password"
-                  render={password => (
-                    <PasswordMessage>{password}</PasswordMessage>
+    <>
+      <Wrapper>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={yupRegisterValidation}
+          onSubmit={handleSubmit}
+        >
+          {({ errors, touched }) => {
+            return (
+              <RegisterFormStyled autoComplete="off">
+                <Title>Registration</Title>
+                <Box>
+                  <Input
+                    type="text"
+                    name="email"
+                    placeholder="Email"
+                    valid={touched.email && !errors.email ? 'true' : undefined}
+                    error={touched.email && errors.email}
+                  />
+                  <ErrorMessage
+                    name="email"
+                    type="email"
+                    id="email"
+                    render={msg => <EmailMessage>{msg}</EmailMessage>}
+                  />
+                  {errors.email && touched.email && (
+                    <IconMail error={errors.email && touched.email && 'false'}>
+                      <IconCrossSmall />
+                    </IconMail>
                   )}
-                />
-              )}
-              {touched.password && !errors.password && (
-                <SuccessMessagePass>Password is secure</SuccessMessagePass>
-              )}
-              {touched.password && !errors.password && (
-                <IconPass
-                  position={'40px'}
-                  error={errors.password && touched.password && 'false'}
-                >
-                  <IconCheck />
-                </IconPass>
-              )}
-              <IconPass onClick={togglePassInput}>{toggleIconPass}</IconPass>
+                  {touched.email && !errors.email && (
+                    <IconMail error={errors.email && touched.email && 'false'}>
+                      <IconCheck />
+                    </IconMail>
+                  )}
+                  <Input
+                    type={typePass}
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                    valid={
+                      touched.password && !errors.password ? 'true' : undefined
+                    }
+                    error={touched.password && errors.password}
+                  />
+                  {touched.password && errors.password && (
+                    <ErrorMessage
+                      name="password"
+                      type="password"
+                      render={password => (
+                        <PasswordMessage>{password}</PasswordMessage>
+                      )}
+                    />
+                  )}
+                  {touched.password && !errors.password && (
+                    <SuccessMessagePass>Password is secure</SuccessMessagePass>
+                  )}
+                  {touched.password && !errors.password && (
+                    <IconPass
+                      position={'40px'}
+                      error={errors.password && touched.password && 'false'}
+                    >
+                      <IconCheck />
+                    </IconPass>
+                  )}
+                  <IconPass onClick={togglePassInput}>
+                    {toggleIconPass}
+                  </IconPass>
 
-              <Input
-                type={typeConfirm}
-                name="confirm"
-                id="confirm"
-                placeholder="Confirm password"
-                valid={touched.confirm && !errors.confirm ? 'true' : undefined}
-                error={touched.confirm && errors.confirm}
-              />
-              {touched.confirm && !errors.confirm && (
-                <IconConfirm
-                  position={'40px'}
-                  error={errors.confirm && touched.confirm && 'false'}
-                >
-                  <IconCheck />
-                </IconConfirm>
-              )}
-              <IconConfirm onClick={toggleConfirmInput}>
-                {toggleIconConfirm}
-              </IconConfirm>
+                  <Input
+                    type={typeConfirm}
+                    name="confirm"
+                    id="confirm"
+                    placeholder="Confirm password"
+                    valid={
+                      touched.confirm && !errors.confirm ? 'true' : undefined
+                    }
+                    error={touched.confirm && errors.confirm}
+                  />
+                  {touched.confirm && !errors.confirm && (
+                    <IconConfirm
+                      position={'40px'}
+                      error={errors.confirm && touched.confirm && 'false'}
+                    >
+                      <IconCheck />
+                    </IconConfirm>
+                  )}
+                  <IconConfirm onClick={toggleConfirmInput}>
+                    {toggleIconConfirm}
+                  </IconConfirm>
 
-              {touched.confirm && errors.confirm && (
-                <ErrorMessage
-                  name="confirm"
-                  type="confirm"
-                  render={msg => <ConfirmMessage>{msg}</ConfirmMessage>}
-                />
-              )}
-              {touched.confirm && !errors.confirm && (
-                <SuccessMessageConfirm>
-                  Passwords is matched
-                </SuccessMessageConfirm>
-              )}
-            </Box>
-            <Button type="submit">Registration</Button>
-            <Text>
-              Already have an account?
-              <Span>
-                <Link to="/login">Login</Link>
-              </Span>
-            </Text>
-          </RegisterFormStyled>
-        )}
-      </Formik>
-    </Wrapper>
+                  {touched.confirm && errors.confirm && (
+                    <ErrorMessage
+                      name="confirm"
+                      type="confirm"
+                      render={msg => <ConfirmMessage>{msg}</ConfirmMessage>}
+                    />
+                  )}
+                  {touched.confirm && !errors.confirm && (
+                    <SuccessMessageConfirm>
+                      Passwords is matched
+                    </SuccessMessageConfirm>
+                  )}
+                </Box>
+                <Button type="submit">Registration</Button>
+                <Text>
+                  Already have an account?
+                  <Span>
+                    <Link to="/login">Login</Link>
+                  </Span>
+                </Text>
+              </RegisterFormStyled>
+            );
+          }}
+        </Formik>
+      </Wrapper>
+      {/* {isNewUser && (
+        <ModalApproveAction onClick={handleCongratsOut} variant={'congrats'} />
+      )} */}
+    </>
   );
 };

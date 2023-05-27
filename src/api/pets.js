@@ -1,5 +1,4 @@
 import axios from 'axios';
-// import { setAuthHeader, clearAuthHeader } from 'redux/auth/utility/authUtility';
 
 const baseServerURL = `https://your-pet-api.onrender.com`;
 const baseAPIEndpoint = '/api/v1';

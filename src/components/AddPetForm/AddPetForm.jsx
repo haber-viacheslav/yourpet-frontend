@@ -10,7 +10,7 @@ import { Title } from './Title/Title';
 import { StageIndicator } from './StageIndicator/StageIndicator';
 import { SexIcon } from './Icon/Icon';
 import { addPetFormSchema } from 'helpers/yupValidation';
-import { createPet, createNotice } from 'redux/pets/petsService';
+import { createPet, createNotice } from 'api/pets';
 
 import { Formik } from 'formik';
 
@@ -182,7 +182,7 @@ export const AddPetForm = () => {
           handleChange,
           handleBlur,
         }) => {
-          console.log(values);
+          // console.log(values);
           const { category, sex } = values;
           const isFieldInvalid = errors.sex && touched.sex;
           return (
