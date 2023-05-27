@@ -19,8 +19,8 @@ export const SectionWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  height: 100%;
   gap: 20px;
-  height: 100vh;
 
   @media screen and (${props => props.theme.media.md}) {
     gap: 27px;
@@ -37,7 +37,7 @@ export const DogImage = styled.img`
   top: 108px;
   right: -68px;
   transform-origin: 0% 100%;
-  /* animation-name: ${anim}; */
+  animation-name: ${anim};
   animation-duration: 5s;
   animation-iteration-count: infinite;
 
@@ -48,7 +48,7 @@ export const DogImage = styled.img`
 
   @media screen and (${props => props.theme.media.lg}) {
     top: -5px;
-    right: -40px;
+    right: 0;
   }
 `;
 
@@ -58,7 +58,7 @@ export const CatImage = styled.img`
   right: -23px;
 
   transform-origin: 0% 50%;
-  /* animation-name: ${anim}; */
+  animation-name: ${anim};
 
   animation-duration: 5s;
   animation-iteration-count: infinite;
@@ -69,7 +69,7 @@ export const CatImage = styled.img`
   }
   @media screen and (${props => props.theme.media.lg}) {
     top: 435px;
-    right: 50px;
+    right: 90px;
   }
 `;
 
@@ -90,7 +90,7 @@ export const DoggyImage = styled.img`
   }
   @media screen and (${props => props.theme.media.lg}) {
     top: 260px;
-    right: 463px;
+    right: 500px;
   }
 `;
 
