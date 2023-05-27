@@ -96,6 +96,7 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
+        console.log(action);
         state.user = {
           name: action.payload.body.name,
           email: action.payload.body.email,

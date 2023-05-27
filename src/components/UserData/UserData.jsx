@@ -1,17 +1,16 @@
 import { useState, useEffect } from 'react';
-import { Formik } from 'formik';
-import { useSelector } from 'react-redux';
-import { selectUser } from 'redux/auth/selectors';
 import { useDispatch } from 'react-redux';
-import {
-  logOut,
-  updateUser,
-  // userCurrent
-} from 'redux/auth/authService';
 import { useNavigate } from 'react-router-dom';
+
+import { useAuth } from 'hooks/useAuth';
+import { updateFetch } from 'api/auth';
+import { logOut, userCurrent } from 'redux/auth/authService';
+
+import { Formik } from 'formik';
+
+import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 import { UserDataItem } from './UserDataItem/UserDataItem';
 import { AvatarUploadInput } from './AvatarUploadInput/AvatarUploadInput';
-import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 import { LogOut } from '../buttons/buttons';
 import { profileSchema } from 'helpers/yupValidation';
 import {
@@ -31,22 +30,20 @@ const inputs = [
 export const UserData = () => {
   const [isEditingBlocked, setIsEditingBlocked] = useState(false);
   const [isLogOut, setIsLogOut] = useState(false);
-  const [isNewUser, setIsNewUser] = useState(true);
-  const user = useSelector(selectUser);
+  const [isNewUser, setIsNewUser] = useState(false);
+  const { user } = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    dispatch(userCurrent());
+  }, [dispatch]);
 
-  const avatar = user.avatarURL;
-  const initialValues = {
-    name: user.name || 'User',
-    email: user.email || 'example@mail.com',
-    birthday: user.birthday ? user.birthday.slice(0, 10) : '1900-01-01',
-    phone: user.phone || '',
-    city: user.city || '',
-    file: '',
-  };
+  useEffect(() => {
+    if (user.newUser) {
+      setIsNewUser(true);
+    }
+  }, [user]);
 
   const handleCongratsOut = () => {
     setIsNewUser(false);
@@ -67,14 +64,17 @@ export const UserData = () => {
       navigate('/');
     } catch (error) {}
   };
-
+  //SUBMIT
   const handleOnSubmit = async values => {
     const keys = Object.keys(values);
     const formData = new FormData();
 
     keys.forEach(key => {
-      if (values[key] && key !== 'file') {
+      if (values[key] && key !== 'file' && key !== 'email') {
         formData.append(key, values[key]);
+      }
+      if (values.email !== user.email) {
+        formData.append('email', values.email);
       }
     });
 
@@ -82,8 +82,14 @@ export const UserData = () => {
       formData.append('file', values.file, 'User`s photo');
     }
 
+    for (const pair of formData.entries()) {
+      console.log(pair[0] + ': ' + pair[1]);
+    }
     try {
-      dispatch(updateUser(formData));
+      const { body } = await updateFetch(formData);
+      console.log(body);
+      // dispatch(updateUser(formData));
+      dispatch(userCurrent());
     } catch (error) {
       console.log(error);
     }
@@ -95,7 +101,16 @@ export const UserData = () => {
         <ProfileTitle>My information:</ProfileTitle>
         <ProfileInfo>
           <Formik
-            initialValues={initialValues}
+            initialValues={{
+              name: user.name || '',
+              email: user.email || '',
+              birthday: user.birthday
+                ? user.birthday.slice(0, 10)
+                : '1999-01-01',
+              phone: user.phone || '',
+              city: user.city || '',
+              file: '',
+            }}
             onSubmit={handleOnSubmit}
             validationSchema={profileSchema}
           >
@@ -108,7 +123,7 @@ export const UserData = () => {
                     handleSubmit={handleSubmit}
                     isEditingBlocked={isEditingBlocked}
                     setIsEditingBlocked={setIsEditingBlocked}
-                    avatar={avatar}
+                    avatar={user.avatarURL}
                   />
                   <ProfileInputWrapper>
                     {inputs.map(input => {

@@ -8,10 +8,14 @@ import { useEffect, useState } from 'react';
 export const NoticesCategoriesList = () => {
   const [pets, setPets] = useState([]);
   const fetchPets = async () => {
-    const response = await axios.get(
-      'https://your-pet-api.onrender.com/api/v1/notices'
-    );
-    setPets(response.data.data);
+    try {
+      const response = await axios.get(
+        'https://your-pet-api.onrender.com/api/v1/notices'
+      );
+      setPets(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {

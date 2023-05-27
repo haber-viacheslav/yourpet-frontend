@@ -23,7 +23,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 export const ModalItem = ({ onClick, id }) => {
-  const [petsDetails, setPetsDetails] = useState([]);
+  const [petsDetails, setPetsDetails] = useState({});
   // const {
   //   imgUrl,
   //   sex,
@@ -34,18 +34,29 @@ export const ModalItem = ({ onClick, id }) => {
   //   name,
   //   breed,
   //   comments,
-  //   user,
+  //   // user,
   // } = petsDetails;
 
-  const fetchPetsDetail = async () => {
+  const fetchPetsDetail = async id => {
     const response = await axios.get(
       `https://your-pet-api.onrender.com/api/v1/notices/${id}`
     );
 
     setPetsDetails(response.data);
   };
-
   console.log(petsDetails);
+  useEffect(() => {
+    fetchPetsDetail(id);
+  }, [id]);
+
+  // useEffect(() => {
+  //   axios
+  //     .get(`https://your-pet-api.onrender.com/api/v1/notices/${id}`)
+  //     .then(response => {
+  //       console.log(response.data);
+  //     });
+  // }, []);
+
   return (
     <>
       <FlexContainer flexDirection={'column'}>

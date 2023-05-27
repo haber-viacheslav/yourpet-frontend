@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getFriends } from 'redux/pets/petsService';
+import { getFriends } from 'api/pets';
 
 import { CardItem } from './CardItem/CardItem';
 import { Title, Wrapper, CardList } from './Friends.styled';

@@ -60,7 +60,7 @@ export const ModalApproveAction = ({
     congrats: (
       <>
         <AnotherModalTitle>Congrats!</AnotherModalTitle>
-        <AnotherModalDescr>You're registration is success</AnotherModalDescr>
+        <AnotherModalDescr>Your registration is success</AnotherModalDescr>
         <FlexContainer>
           <BtnCongrats onClick={onClick} />
         </FlexContainer>

@@ -19,8 +19,8 @@ export const SectionWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  height: 100%;
   gap: 20px;
-  height: 100vh;
 
   @media screen and (${props => props.theme.media.md}) {
     gap: 27px;
@@ -32,74 +32,51 @@ export const SectionWrapper = styled.div`
   }
 `;
 
-export const ImageWrapper = styled.div`
-  position: absolute;
-  /* overflow: hidden; */
-  top: 108px;
-  right: -60px;
-  width: 474px;
-  height: 394px;
-
-  @media screen and (${props => props.theme.media.md}) {
-    top: 200px;
-    right: -260px;
-    width: 1085px;
-    height: 918px;
-  }
-
-  @media screen and (${props => props.theme.media.lg}) {
-    top: 30px;
-    right: 0;
-    width: 917px;
-    height: 800px;
-  }
-`;
-
 export const DogImage = styled.img`
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 108px;
+  right: -68px;
   transform-origin: 0% 100%;
-  /* animation-name: ${anim}; */
+  animation-name: ${anim};
   animation-duration: 5s;
   animation-iteration-count: infinite;
-
+  pointer-events: none;
   @media screen and (${props => props.theme.media.md}) {
-    top: 40px;
-    right: 160px;
+    top: 240px;
+    right: -100px;
   }
 
   @media screen and (${props => props.theme.media.lg}) {
-    top: -35px;
-    right: -40px;
+    top: -5px;
+    right: 0;
   }
 `;
 
 export const CatImage = styled.img`
   position: absolute;
-  top: 215px;
-  right: 45px;
+  top: 323px;
+  right: -23px;
 
   transform-origin: 0% 50%;
-  /* animation-name: ${anim}; */
+  animation-name: ${anim};
 
   animation-duration: 5s;
   animation-iteration-count: infinite;
 
   @media screen and (${props => props.theme.media.md}) {
-    top: 490px;
-    right: 250px;
+    top: 690px;
+    right: -10px;
   }
   @media screen and (${props => props.theme.media.lg}) {
-    top: 405px;
-    right: 50px;
+    top: 435px;
+    right: 90px;
   }
 `;
 
 export const DoggyImage = styled.img`
   position: absolute;
-  top: 130px;
-  right: 243px;
+  top: 238px;
+  right: 175px;
 
   transform-origin: 100% 100%;
   animation-name: ${anim};
@@ -108,12 +85,12 @@ export const DoggyImage = styled.img`
   animation-iteration-count: infinite;
 
   @media screen and (${props => props.theme.media.md}) {
-    top: 320px;
-    right: 665px;
+    top: 520px;
+    right: 405px;
   }
   @media screen and (${props => props.theme.media.lg}) {
-    top: 230px;
-    right: 463px;
+    top: 260px;
+    right: 500px;
   }
 `;
 

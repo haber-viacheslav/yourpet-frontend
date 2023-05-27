@@ -1,4 +1,4 @@
-import { DeletePetBtn } from './icons'
+import { DeletePetBtn } from './icons';
 import {
   BtnAddFavorite,
   BtnAddPetCurcle,
@@ -35,6 +35,7 @@ export const NoticesCategoryItem = ({ petItem }) => {
 
   let ege = Math.round((Date.now() - Date.parse(date)) / 31557600000);
   const years = ege >= 2 ? 'years' : 'year';
+
   return (
     <>
       {!isOpen && (

@@ -1,15 +1,16 @@
 import React from 'react';
-// import { BoxUser} from './NavBar.styled';
+import { useAuth } from 'hooks/useAuth';
+import { BoxUser } from './NavBar.styled';
 import { BoxAuth } from './NavBar.styled';
 import { Logo } from '../../Logo/Logo';
 import { AuthNav } from '../AuthNav/AuthNav';
-// import { UserMenu } from '../UserMenu/UserMenu';
+import { UserMenu } from '../UserMenu/UserMenu';
 import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
 import { Navigate, BoxNavigate } from './NavBar.styled';
 import { Nav } from '../Nav/Nav';
 
 export const NavBar = () => {
-  // const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = useAuth();
 
   return (
     <Navigate>
@@ -18,16 +19,16 @@ export const NavBar = () => {
         <Nav />
       </BoxNavigate>
       <nav>
-        <BoxAuth>
-          <AuthNav />
-        </BoxAuth>
-        {/* {isLoggedIn ?
-      <BoxAuth>
-          <AuthNav />
-      </BoxAuth> :
-       <BoxUser>
-          <UserMenu />
-      </BoxUser>} */}
+        {!isLoggedIn && (
+          <BoxAuth>
+            <AuthNav />
+          </BoxAuth>
+        )}
+        {isLoggedIn && (
+          <BoxUser>
+            <UserMenu />
+          </BoxUser>
+        )}
       </nav>
       <BurgerMenu />
     </Navigate>
