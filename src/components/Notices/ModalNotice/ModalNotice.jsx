@@ -19,32 +19,44 @@ import {
   PetInfoItem,
   TelInfo,
 } from './ModalNotice.styled';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
-export const ModalItem = ({ onClick, petItem }) => {
-  const {
-    smImgUrl1x,
-    sex,
-    place,
-    category,
-    name,
-    birthday,
-    breed,
-    email,
-    phone,
-    comments,
-  } = petItem;
+export const ModalItem = ({ onClick, id }) => {
+  const [petsDetails, setPetsDetails] = useState([]);
+  // const {
+  //   imgUrl,
+  //   sex,
+  //   location,
+  //   category,
+  //   title,
+  //   date,
+  //   name,
+  //   breed,
+  //   comments,
+  //   user,
+  // } = petsDetails;
 
+  const fetchPetsDetail = async () => {
+    const response = await axios.get(
+      `https://your-pet-api.onrender.com/api/v1/notices/${id}`
+    );
+
+    setPetsDetails(response.data);
+  };
+
+  console.log(petsDetails);
   return (
     <>
       <FlexContainer flexDirection={'column'}>
         <FlexBlock>
           <BtnCloseModal onClick={onClick} />
           <ImgContainer>
-            <ImgModal src={smImgUrl1x} alt="Pet image" />
-            <PetCategory text={`${category}`} />
+            <ImgModal src={'imgUrl' || 'unknown'} alt="Pet image" />
+            <PetCategory text={`${'category'}` || 'unknown'} />
           </ImgContainer>
           <div>
-            <Text>Cute dog looking for a home</Text>
+            <Text>{'title' || 'unknown'}</Text>
             <PetInfoList>
               <li>
                 <InfoFlag>Name:</InfoFlag>
@@ -56,19 +68,19 @@ export const ModalItem = ({ onClick, petItem }) => {
                 <InfoFlag>Phone:</InfoFlag>
               </li>
               <PetInfoItem>
-                <InfoValue>{name}</InfoValue>
-                <InfoValue>{birthday}</InfoValue>
-                <InfoValue>{breed}</InfoValue>
-                <InfoValue>{place}</InfoValue>
-                <InfoValue>{sex}</InfoValue>
-                <MailInfo href="mailto:">{email}</MailInfo>
-                <TelInfo href="tel:+">{phone}</TelInfo>
+                <InfoValue>{'name' || 'unknown'}</InfoValue>
+                <InfoValue>{'date' || 'unknown'}</InfoValue>
+                <InfoValue>{'breed' || 'unknown'}</InfoValue>
+                <InfoValue>{'location' || 'unknown'} </InfoValue>
+                <InfoValue>{'sex' || 'unknown'}</InfoValue>
+                <MailInfo href="mailto:">{'user.email' || 'unknown'}</MailInfo>
+                <TelInfo href="tel:+">{'user.phone' || 'unknown'}</TelInfo>
               </PetInfoItem>
             </PetInfoList>
           </div>
         </FlexBlock>
 
-        <CommentInfo>Comments: {comments}</CommentInfo>
+        <CommentInfo>Comments: {'comments' || 'unknown'}</CommentInfo>
         <BtnContainer>
           <BtnCall />
           <BtnAddTo />

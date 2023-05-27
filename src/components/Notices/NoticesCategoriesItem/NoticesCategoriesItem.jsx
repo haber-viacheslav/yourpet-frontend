@@ -20,7 +20,7 @@ import { Modal } from 'components/Modal/Modal';
 import { ModalItem } from '../ModalNotice/ModalNotice';
 
 export const NoticesCategoryItem = ({ petItem }) => {
-  const { smImgUrl1x, sex, place, category, id } = petItem;
+  const { imgUrl, sex, location, category, _id, title, date } = petItem;
 
   const [isOpen, setIsOpen] = useState('false');
 
@@ -31,25 +31,28 @@ export const NoticesCategoryItem = ({ petItem }) => {
   const Svg = () => {
     return sex === 'female' ? SvgFemale : SvgMale;
   };
+
+  let ege = Math.round((Date.now() - Date.parse(date)) / 31557600000);
+  const years = ege >= 2 ? 'years' : 'year';
   return (
     <>
       {!isOpen && (
         <Modal onClick={onClick}>
-          <ModalItem onClick={onClick} petItem={petItem} />
+          <ModalItem onClick={onClick} id={petItem._id} />
         </Modal>
       )}
       <ContainerCard>
-        <Img src={smImgUrl1x} alt="Pet image" />
+        <Img src={imgUrl} alt="Pet image" />
         <BtnAddFavorite />
         <BtnAddPetCurcle />
         <PetCategory text={`${category}`} />
         <ContainerInfo>
-          <PetInfo Svg={SvgLocation} text={`${place}`} />
-          <PetInfo Svg={SvgClock} text={'1 year'} />
+          <PetInfo Svg={SvgLocation} text={`${location}`} />
+          <PetInfo Svg={SvgClock} text={`${ege} ${years}`} />
           <PetInfo Svg={Svg()} text={`${sex}`} />
         </ContainerInfo>
-        <Text>Сute dog looking for a home</Text>
-        <BtnLearnMoreFavorite id={id} onClick={onClick} />
+        <Text>{title}</Text>
+        <BtnLearnMoreFavorite id={_id} onClick={onClick} />
       </ContainerCard>
     </>
   );
