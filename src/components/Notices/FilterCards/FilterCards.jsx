@@ -7,7 +7,9 @@ import {
   Menu,
   MenuItem,
   MenuButton,
-  SVG,
+    SVG,
+    Title,
+  Text
 } from './FilterCards.styled';
 // import { useEffect } from 'react';
 import icons from 'images/icons.svg';
@@ -35,27 +37,27 @@ export const FilterCards = () => {
 
   const dropdownRef = useRef(null);
 
-  //   useEffect(() => {
-  //     const handleEscapeKey = event => {
-  //       if (event.key === 'Escape') {
-  //         setIsOpen(false);
-  //       }
-  //     };
+    // useEffect(() => {
+    //   const handleEscapeKey = event => {
+    //     if (event.key === 'Escape') {
+    //       setIsOpen(false);
+    //     }
+    //   };
 
-  //     const handleClickOutside = event => {
-  //       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-  //         setIsOpen(false);
-  //       }
-  //     };
+    //   const handleClickOutside = event => {
+    //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    //       setIsOpen(false);
+    //     }
+    //   };
 
-  //     document.addEventListener('keydown', handleEscapeKey);
-  //     document.addEventListener('mousedown', handleClickOutside);
+    //   document.addEventListener('keydown', handleEscapeKey);
+    //   document.addEventListener('mousedown', handleClickOutside);
 
-  //     return () => {
-  //       document.removeEventListener('keydown', handleEscapeKey);
-  //       document.removeEventListener('mousedown', handleClickOutside);
-  //     };
-  //   }, []);
+    //   return () => {
+    //     document.removeEventListener('keydown', handleEscapeKey);
+    //     document.removeEventListener('mousedown', handleClickOutside);
+    //   };
+    // }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -74,11 +76,11 @@ export const FilterCards = () => {
       {isOpen && (
         <DropdownWrapper ref={dropdownRef}>
           <DropdownMenu>
-            <p>Filters</p>
+            <Title>Filters</Title>
             <FilterGroup>
               <MenuButton onClick={toggleDropdownAge}>
                 {isOpenAge ? <IconClose /> : <IconOpen />}
-                <p>By age</p>
+                <Text>By age</Text>
               </MenuButton>
               {isOpenAge && (
                 <Menu>
@@ -99,7 +101,7 @@ export const FilterCards = () => {
             <FilterGroup>
               <MenuButton onClick={toggleDropdownGender}>
                 {isOpenGender ? <IconClose /> : <IconOpen />}
-                <p>By gender</p>
+                <Text>By gender</Text>
               </MenuButton>
               {isOpenGender && (
                 <Menu>

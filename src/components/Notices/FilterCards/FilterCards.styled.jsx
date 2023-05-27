@@ -29,7 +29,8 @@ export const DropdownMenu = styled.ul`
 `;
 
 export const FilterGroup = styled.li`
-  padding: 5px 0;
+  background: #CCE4FB;
+border-radius: 20px;
 `;
 
 export const Menu = styled.ul`
@@ -37,6 +38,8 @@ export const Menu = styled.ul`
   flex-direction: column;
   background-color: #fff;
   padding: 10px;
+  background: #CCE4FB;
+  border-radius: 20px;
 `;
 export const MenuItem = styled.li`
   padding: 5px 0;
@@ -50,5 +53,26 @@ export const SVG = styled.svg`
 
 export const MenuButton = styled.span`
   display: flex;
+  padding: 4px 8px;
   cursor: pointer;
+  color: #54ADFF;
+`
+export const Title = styled.p`
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 22px;
+align-items: center;
+letter-spacing: 0.04em;
+color: #54ADFF;
+margin-bottom: 8px;
+`
+export const Text = styled.p`
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+align-items: center;
+margin-left: 8px;
 `
