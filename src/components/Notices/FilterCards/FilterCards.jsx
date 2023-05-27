@@ -104,7 +104,7 @@ export const FilterCards = () => {
       [name]: !prevCheckedItems[name],
     }));
   };
-  console.log(checkedItems);
+  console.log(checkedItems['female']);
 
   return (
     <>
