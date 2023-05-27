@@ -32,10 +32,6 @@ export const FilterGroup = styled.li`
   padding: 5px 0;
 `;
 
-export const Button = styled.button`
-  padding: 10px;
-`;
-
 export const Menu = styled.ul`
   display: flex;
   flex-direction: column;
@@ -51,3 +47,8 @@ export const SVG = styled.svg`
   fill: transparent;
   stroke: currentColor;
 `;
+
+export const MenuButton = styled.span`
+  display: flex;
+  cursor: pointer;
+`
