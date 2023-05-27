@@ -1,28 +1,32 @@
 import { NoticesCategoryItem } from 'components/Notices/NoticesCategoriesItem/NoticesCategoriesItem';
-import petsList from '../../../mockData/petsList';
-import { nanoid } from '@reduxjs/toolkit';
+// import petsList from '../../../mockData/petsList';
+// import { nanoid } from '@reduxjs/toolkit';
 import { List } from './NoticesCategoriesList.styled';
-import { useState } from 'react';
-import { Modal } from 'components/Modal/Modal';
-import { ModalItem } from '../ModalNotice/ModalNotice';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 export const NoticesCategoriesList = () => {
-  const [isOpen, setIsOpen] = useState('false');
-  //   const onClick = () => setIsOpen(!isOpen);
-  const onClose = () => {
-    return setIsOpen(!isOpen);
+  const [pets, setPets] = useState([]);
+  const fetchPets = async () => {
+    try {
+      const response = await axios.get(
+        'https://your-pet-api.onrender.com/api/v1/notices'
+      );
+      setPets(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  useEffect(() => {
+    fetchPets();
+  }, []);
 
   return (
     <>
       <List>
-        {isOpen && (
-          <Modal onClick={onClose}>
-            <ModalItem onClick={onClose} petsList={petsList} />
-          </Modal>
-        )}
-        {petsList.map(petItem => (
-          <NoticesCategoryItem petList={petItem} key={nanoid()} />
+        {pets.map(petItem => (
+          <NoticesCategoryItem petItem={petItem} key={petItem._id} />
         ))}
       </List>
     </>

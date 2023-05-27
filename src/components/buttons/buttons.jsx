@@ -323,7 +323,7 @@ export const BtnCall = ({ onClick }) => {
 
 // components btn + svg
 // to favorite and to main page
-export const BtnLearnMoreFavorite = ({ onClick }) => {
+export const BtnLearnMoreFavorite = ({ onClick, id }) => {
   return (
     <>
       <BigBtnFavor type="button" onClick={onClick}>
