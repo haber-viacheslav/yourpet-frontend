@@ -54,12 +54,6 @@ export const MenuItem = styled.li`
   padding: 5px 0;
 `;
 
-export const SVG = styled.svg`
-  display: block;
-  fill: transparent;
-  stroke: currentColor;
-`;
-
 export const MenuButton = styled.span`
   display: flex;
   padding: 4px 8px;

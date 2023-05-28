@@ -1,12 +1,12 @@
 import { useState, useRef } from 'react';
 import { BtnFilters, BtnFiltersCircle } from 'components/buttons/buttons';
+import {IconClose, IconOpen, IconCheck, IconCheckRound} from './icons/icons'
 import {
   DropdownWrapper,
   DropdownMenu,
   FilterGroup,
   Menu,
   MenuButton,
-  SVG,
   Title,
   Text,
   Item,
@@ -14,39 +14,7 @@ import {
   CheckBox,
 } from './FilterCards.styled';
 // import { useEffect } from 'react';
-import icons from 'images/icons.svg';
 
-export const IconClose = () => {
-  return (
-    <SVG width={24} height={24}>
-      <use href={icons + '#icon-chevron-down'}></use>
-    </SVG>
-  );
-};
-
-export const IconOpen = () => {
-  return (
-    <SVG width={24} height={24}>
-      <use href={icons + '#icon-chevron-up'}></use>
-    </SVG>
-  );
-};
-
-export const IconCheck = () => {
-  return (
-    <SVG width={24} height={24}>
-      <use href={icons + '#icon-round'}></use>
-    </SVG>
-  );
-};
-
-export const IconCheckRound = () => {
-  return (
-    <SVG width={24} height={24}>
-      <use href={icons + '#icon-check-round'}></use>
-    </SVG>
-  );
-};
 
 export const FilterCards = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,28 +29,6 @@ export const FilterCards = () => {
   });
 
   const dropdownRef = useRef(null);
-
-  // useEffect(() => {
-  //   const handleEscapeKey = event => {
-  //     if (event.key === 'Escape') {
-  //       setIsOpen(false);
-  //     }
-  //   };
-
-  //   const handleClickOutside = event => {
-  //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-  //       setIsOpen(false);
-  //     }
-  //   };
-
-  //   document.addEventListener('keydown', handleEscapeKey);
-  //   document.addEventListener('mousedown', handleClickOutside);
-
-  //   return () => {
-  //     document.removeEventListener('keydown', handleEscapeKey);
-  //     document.removeEventListener('mousedown', handleClickOutside);
-  //   };
-  // }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -220,3 +166,26 @@ export const FilterCards = () => {
     </>
   );
 };
+
+
+  // useEffect(() => {
+  //   const handleEscapeKey = event => {
+  //     if (event.key === 'Escape') {
+  //       setIsOpen(false);
+  //     }
+  //   };
+
+  //   const handleClickOutside = event => {
+  //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+  //       setIsOpen(false);
+  //     }
+  //   };
+
+  //   document.addEventListener('keydown', handleEscapeKey);
+  //   document.addEventListener('mousedown', handleClickOutside);
+
+  //   return () => {
+  //     document.removeEventListener('keydown', handleEscapeKey);
+  //     document.removeEventListener('mousedown', handleClickOutside);
+  //   };
+  // }, []);
