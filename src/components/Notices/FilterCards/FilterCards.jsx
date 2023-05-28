@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { BtnFilters, BtnFiltersCircle } from 'components/buttons/buttons';
 import {IconClose, IconOpen, IconCheck, IconCheckRound} from './icons/icons'
 import {
@@ -13,13 +14,14 @@ import {
   Label,
   CheckBox,
 } from './FilterCards.styled';
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 
 
 export const FilterCards = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenAge, setIsOpenAge] = useState(false);
   const [isOpenGender, setIsOpenGender] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
   const [checkedItems, setCheckedItems] = useState({
     'age-3-12m': false,
     'age-1-year': false,
@@ -28,18 +30,20 @@ export const FilterCards = () => {
     male: false,
   });
 
-  const searchParams = new URLSearchParams();
+ useEffect(() => {
+    const searchParams = new URLSearchParams();
 
-  Object.entries(checkedItems).forEach(([key, value]) => {
-    if (value) {
-      searchParams.append(key, String(value));
-    }
-  });
+    Object.entries(checkedItems).forEach(([key, value]) => {
+      if (value) {
+        searchParams.append(key, String(value));
+      }
+    });
+   
+   console.log(searchParams.toString())
 
-  const queryString = searchParams.toString();
-  // const baseUrl = 'https://your-pet-api.onrender.com/api/v1/notices';
-  // const apiUrl = `${baseUrl}?${queryString}`;
-  console.log(queryString);
+   setSearchParams(searchParams.toString());
+   
+  }, [checkedItems, setSearchParams]);
 
   const dropdownRef = useRef(null);
 
