@@ -6,14 +6,14 @@ import PropTypes from 'prop-types';
 
 export const UserMenu = ({ isOpen }) => {
   const { user } = useAuth();
-  const nickname = user.name || user.email;
+  const nickName = user.name || user.email;
 
   return (
     <Box>
       <UserLink to="./user">
         <SvgUser />
       </UserLink>
-      <UserName isOpen={isOpen}>{nickname}</UserName>
+      <UserName isOpen={isOpen}>{nickName}</UserName>
     </Box>
   );
 };
@@ -21,7 +21,7 @@ export const UserMenu = ({ isOpen }) => {
 UserMenu.propTypes = {
   user: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string.isRequired,
+      nickName: PropTypes.string.isRequired,
     })
   ),
   isOpen: PropTypes.bool,

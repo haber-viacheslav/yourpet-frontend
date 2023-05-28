@@ -7,7 +7,7 @@ export const fetchNews = createAsyncThunk(
   async (params, thunkAPI) => {
     console.log(params);
     try {
-      const response = await axios.get('news', {
+      const response = await axios.get('/news', {
         params,
       });
       console.log('fetch news data--->', response);

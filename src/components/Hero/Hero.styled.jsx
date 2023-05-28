@@ -1,17 +1,74 @@
 import styled, { keyframes } from 'styled-components';
 
-const anim = keyframes`
+const anim1 = keyframes`
 0% {    
-    transform: rotateZ(0);
+    transform: rotateZ(0) scale(1);
   }
-40% {
-    transform: rotateZ(-15deg);
+16.7% {
+    transform: rotateZ(0) scale(1.05);
   }
-  60% {
-    transform: rotateZ(-15deg);
+33.4% {
+    transform: rotateZ(0) scale(1);
+  }
+  50.1% {
+    transform: rotateZ(0) scale(1);
+  }
+  66.6% {
+    transform: rotateZ(0) scale(1);
+  }
+ 83.3% {
+    transform: rotateZ(0) scale(1);
   }
 100% {
-    transform: rotateZ(0);
+    transform: rotateZ(0) scale(1);
+  }
+`;
+
+const anim2 = keyframes`
+0% {    
+    transform: rotateZ(0) scale(1);
+  }
+16.7% {
+    transform: rotateZ(0) scale(1);
+  }
+33.4% {
+    transform: rotateZ(0) scale(1);
+  }
+  50.1% {
+    transform: rotateZ(0) scale(1.05);
+  }
+  66.6% {
+    transform: rotateZ(0) scale(1);
+  }
+ 83.3% {
+    transform: rotateZ(0) scale(1);
+  }
+100% {
+    transform: rotateZ(0) scale(1);
+  }
+`;
+
+const anim3 = keyframes`
+0% {    
+    transform: rotateZ(0)  scale(1);
+  }
+16.7% {
+    transform: rotateZ(0) scale(1);
+  }
+33.4% {
+    transform: rotateZ(0) scale(1);
+  }
+  50.1% {
+    transform: rotateZ(0) scale(1);
+  }
+  66.6% {
+    transform: rotateZ(0) scale(1);
+  }
+ 83.3% {
+    transform: rotateZ(0) scale(1.05);
+  }
+100% {
+    transform: rotateZ(0) scale(1);
   }
 `;
 
@@ -37,8 +94,8 @@ export const DogImage = styled.img`
   top: 108px;
   right: -68px;
   transform-origin: 0% 100%;
-  animation-name: ${anim};
-  animation-duration: 5s;
+  animation-name: ${anim2};
+  animation-duration: 6s;
   animation-iteration-count: infinite;
   pointer-events: none;
   @media screen and (${props => props.theme.media.md}) {
@@ -58,9 +115,9 @@ export const CatImage = styled.img`
   right: -23px;
 
   transform-origin: 0% 50%;
-  animation-name: ${anim};
+  animation-name: ${anim3};
 
-  animation-duration: 5s;
+  animation-duration: 6s;
   animation-iteration-count: infinite;
 
   @media screen and (${props => props.theme.media.md}) {
@@ -79,9 +136,9 @@ export const DoggyImage = styled.img`
   right: 175px;
 
   transform-origin: 100% 100%;
-  animation-name: ${anim};
+  animation-name: ${anim1};
 
-  animation-duration: 5s;
+  animation-duration: 6s;
   animation-iteration-count: infinite;
 
   @media screen and (${props => props.theme.media.md}) {

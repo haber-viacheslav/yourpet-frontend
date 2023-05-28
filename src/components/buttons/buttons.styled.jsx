@@ -600,25 +600,12 @@ export const LogOutWrapper = styled.button`
 `;
 
 export const DeletePet = styled.button`
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  right: 16px;
-  top: 272px;
-
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding-top: 5px;
   outline: none;
   border: none;
   cursor: pointer;
   background-color: ${props => props.theme.colors.transparent};
-
-  @media screen and (${props => props.theme.media.md}) {
-    right: 20px;
-    top: 20px;
-  }
-
-  @media screen and (${props => props.theme.media.lg}) {
-    right: 23px;
-    top: 24px;
-  }
 `;

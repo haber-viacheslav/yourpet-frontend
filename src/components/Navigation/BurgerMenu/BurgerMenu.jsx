@@ -1,14 +1,15 @@
 import React from 'react';
 import { useState, useEffect, useRef } from 'react';
+import { useAuth } from 'hooks/useAuth';
 import { Spin as Hamburger } from 'hamburger-react';
 import { Burger, BoxNav, BoxUser, Box } from './BurgerMenu.styled';
 import { Nav } from '../Nav/Nav';
 import { AuthNav } from '../AuthNav/AuthNav';
 import PropTypes from 'prop-types';
-// import { UserMenu } from 'components/Navigation/UserMenu/UserMenu';
+import { UserMenu } from 'components/Navigation/UserMenu/UserMenu';
 
 export const BurgerMenu = () => {
-  // const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = useAuth();
 
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef();
@@ -66,8 +67,7 @@ export const BurgerMenu = () => {
 
       <Box isOpen={isOpen} onClick={handleClose} ref={menuRef}>
         <BoxUser>
-          <AuthNav />
-          {/* {isLoaddIn ?  <AuthNav /> : <UserMenu isOpen={isOpen}/>} */}
+        {isLoggedIn ? <UserMenu isOpen={isOpen}/> : <AuthNav />}
         </BoxUser>
         <BoxNav>
           <Nav />
