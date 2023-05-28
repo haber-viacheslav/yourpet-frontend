@@ -38,7 +38,7 @@ export const ModalItem = ({ onClick, id }) => {
       console.error(error);
     }
   }, [id]);
-
+  console.log(petsDetails);
   const {
     user,
     imgUrl,
@@ -79,8 +79,8 @@ export const ModalItem = ({ onClick, id }) => {
                 <InfoValue>{breed}</InfoValue>
                 <InfoValue>{location} </InfoValue>
                 <InfoValue>{sex}</InfoValue>
-                <MailInfo href="mailto:">{user.email}</MailInfo>
-                <TelInfo href="tel:+">{'user.phone'}</TelInfo>
+                <MailInfo href="mailto:">{user?.email}</MailInfo>
+                <TelInfo href="tel:+">{user?.phone}</TelInfo>
               </PetInfoItem>
             </PetInfoList>
           </div>
