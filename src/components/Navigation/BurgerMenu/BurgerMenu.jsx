@@ -6,7 +6,7 @@ import { Burger, BoxNav, BoxUser, Box } from './BurgerMenu.styled';
 import { Nav } from '../Nav/Nav';
 import { AuthNav } from '../AuthNav/AuthNav';
 import PropTypes from 'prop-types';
-import { UserMenu } from 'components/Navigation/UserMenu/UserMenu';
+import { UserNav } from 'components/Navigation/UserNav/UserNav';
 
 export const BurgerMenu = () => {
   const { isLoggedIn } = useAuth();
@@ -67,7 +67,7 @@ export const BurgerMenu = () => {
 
       <Box isOpen={isOpen} onClick={handleClose} ref={menuRef}>
         <BoxUser>
-        {isLoggedIn ? <UserMenu isOpen={isOpen}/> : <AuthNav />}
+        {isLoggedIn ? <UserNav isOpen={isOpen}/> : <AuthNav />}
         </BoxUser>
         <BoxNav>
           <Nav />
