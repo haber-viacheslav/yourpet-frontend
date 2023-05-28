@@ -4,7 +4,8 @@ export const ContainerCard = styled.li`
   position: relative;
   width: 280px;
   border-block: solid 0px #ffffff;
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  box-shadow: ${props => props.theme.shadows.mainShadow};
+
   border-radius: 0px 0px 40px 40px;
   margin-bottom: 24px;
   width: 280px;
@@ -49,7 +50,7 @@ export const DeleteBtnWrapper = styled.div`
 `;
 
 export const Text = styled.h3`
-  font-family: 'Manrope';
+  font-family: ${props => props.theme.fonts.main}
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
