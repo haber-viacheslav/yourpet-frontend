@@ -3,12 +3,14 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import { lazy } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../theme/theme';
+import { Loader } from './Loader/Loader';
+import PawLoader from '../images/Loader.png';
 
 import { NoticesCategoriesList } from './Notices/NoticesCategoriesList/NoticesCategoriesList';
 
 import { useEffect } from 'react';
 import { userCurrent } from 'redux/auth/authService';
-// import { useAuth } from 'hooks/useAuth';
+import { useAuth } from 'hooks/useAuth';
 import { useDispatch } from 'react-redux';
 
 import { RestrictedRoute } from '../routes/RestrictedRoute';
@@ -35,81 +37,73 @@ export const App = () => {
     dispatch(userCurrent());
   }, [dispatch]);
 
-  return (
-    // !isRefreshing &&
-    <>
-      <ThemeProvider theme={theme}>
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route index element={<MainPage />} />
-            <Route
-              path="login"
-              element={
-                <RestrictedRoute component={LoginPage} redirectTo="/user" />
-              }
-            />
-            <Route
-              path="register"
-              element={
-                <RestrictedRoute component={Register} redirectTo="/user" />
-              }
-            />
-            <Route
-              path="user"
-              element={
-                <PrivateRoute component={UserPage} redirectTo="/login" />
-              }
-            />
-            <Route path="/notices" element={<NoticesPage />}>
-              <Route index element={<NoticesCategoriesList />} />
-              <Route path="sell" element={<NoticesCategoriesList />} />
-              <Route path="lost-found" element={<NoticesCategoriesList />} />
-              <Route path="for-free" element={<NoticesCategoriesList />} />
-              <Route
-                path="favorite"
-                element={
-                  <PrivateRoute
-                    component={NoticesCategoriesList}
-                    redirectTo="/login"
-                  />
-                }
-              />
-              <Route
-                path="own"
-                element={
-                  <PrivateRoute
-                    component={NoticesCategoriesList}
-                    redirectTo="/login"
-                  />
-                }
-              />
-            </Route>
-            <Route path="friends" element={<OurFriendsPage />} />
-            <Route path="news" element={<NewsPage />} />
-            <Route
-              path="add-pet"
-              element={
-                <PrivateRoute component={AddPetPage} redirectTo="/login" />
-              }
-            />
-            <Route path="modals" element={<ModalTestPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
+  // const isRefreshing = true;
 
-        {/* <Routes>
-         
-            
-            
-            
-            
+  // return isRefreshing ? (
+  //   <Loader loaderSrc={PawLoader} size={600} />
+  // ) : (
+  return (
+    <ThemeProvider theme={theme}>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<MainPage />} />
+          <Route
+            path="login"
+            element={
+              <RestrictedRoute component={LoginPage} redirectTo="/user" />
+            }
+          />
+          <Route
+            path="register"
+            element={
+              <RestrictedRoute component={Register} redirectTo="/user" />
+            }
+          />
+          <Route
+            path="user"
+            element={<PrivateRoute component={UserPage} redirectTo="/login" />}
+          />
+          <Route path="/notices" element={<NoticesPage />}>
+            <Route index element={<NoticesCategoriesList />} />
+            <Route path="sell" element={<NoticesCategoriesList />} />
+            <Route path="lost-found" element={<NoticesCategoriesList />} />
+            <Route path="for-free" element={<NoticesCategoriesList />} />
+            <Route
+              path="favorite"
+              element={
+                <PrivateRoute
+                  component={NoticesCategoriesList}
+                  redirectTo="/login"
+                />
+              }
+            />
+            <Route
+              path="own"
+              element={
+                <PrivateRoute
+                  component={NoticesCategoriesList}
+                  redirectTo="/login"
+                />
+              }
+            />
+          </Route>
+          <Route path="friends" element={<OurFriendsPage />} />
+          <Route path="news" element={<NewsPage />} />
+          <Route
+            path="add-pet"
+            element={
+              <PrivateRoute component={AddPetPage} redirectTo="/login" />
+            }
+          />
+          <Route path="modals" element={<ModalTestPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+
+      {/* <Routes>             
             <Route path="notices" element={<NoticesPage />} />            
-            <Route path="news" element={<NewsPage />} />
-            
-           
-          
+            <Route path="news" element={<NewsPage />} />            
         </Routes> */}
-      </ThemeProvider>
-    </>
+    </ThemeProvider>
   );
 };

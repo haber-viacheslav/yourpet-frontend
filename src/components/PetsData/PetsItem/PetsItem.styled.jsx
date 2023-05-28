@@ -72,6 +72,28 @@ export const TextWrapper = styled.div`
   }
 `;
 
+export const DeleteBtnWrapper = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 16px;
+  top: 272px;
+
+  cursor: pointer;
+  background-color: ${props => props.theme.colors.transparent};
+
+  @media screen and (${props => props.theme.media.md}) {
+    right: 20px;
+    top: 20px;
+  }
+
+  @media screen and (${props => props.theme.media.lg}) {
+    right: 23px;
+    top: 24px;
+  }
+`;
+
 export const TextContent = styled.div`
   display: flex;
   align-items: center;

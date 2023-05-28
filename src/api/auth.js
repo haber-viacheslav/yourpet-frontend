@@ -14,7 +14,6 @@ export const setToken = token => {
 axios.interceptors.response.use(
   resp => resp,
   async error => {
-    console.log(error.response.data.code);
     if (
       error.response.data.code === 403 ||
       error.response.data.message.includes('authorization')
