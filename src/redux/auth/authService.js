@@ -29,9 +29,7 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
-      console.log(credentials);
       const data = await loginFetch(credentials);
-      console.log(data);
       return data;
     } catch (error) {
       if (error.message === 'Request failed with status code 401') {
