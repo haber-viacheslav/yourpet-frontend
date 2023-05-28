@@ -2,10 +2,10 @@ import { useState } from 'react';
 
 import { Container } from '../components/Container/Container';
 import { Section } from '../components/Section/Section';
-import { NoticesCategoriesNav } from 'components/Notices (new)/NoticesCategoriesNav/NoticesCategoriesNav';
-import { NoticesSearch } from 'components/Notices (new)/NoticesSearch/NoticesSearch';
+import { NoticesCategoriesNav } from 'components/Notices/NoticesCategoriesNav/NoticesCategoriesNav';
+import { NoticesSearch } from 'components/Notices/NoticesSearch/NoticesSearch';
 import { Title, Wrapper } from 'components/Friends/Friends.styled';
-import { NoticesCategoriesList } from 'components/Notices (new)/NoticesCategoriesList/NoticesCategoriesList';
+import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
 
 const NoticesPage = () => {
   const [category, setCategory] = useState('');
