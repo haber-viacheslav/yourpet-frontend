@@ -17,6 +17,7 @@ import { NotFound } from '../News/NewsNotFound/NewsNotFound';
 import { theme } from '../../theme/theme';
 import { fetchNews } from 'redux/news/newsService';
 import { Container } from 'components/Container/Container';
+// import { sortNewsByDate } from 'helpers/sortNewsByDate';
 
 export const NewsData = () => {
   const limit = 6;
@@ -28,7 +29,7 @@ export const NewsData = () => {
   const dispatch = useDispatch();
   const news = useSelector(selectNews);
   const isTablet = window.matchMedia(theme.media.md).matches;
-
+  // const sortedNews = sortNewsByDate(news);
   useEffect(() => {
     console.log('search', search);
 
