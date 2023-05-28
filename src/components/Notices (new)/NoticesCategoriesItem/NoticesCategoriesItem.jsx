@@ -26,7 +26,7 @@ import {
 export const NoticesCategoryItem = ({ notice, delNotice }) => {
   const [isDelete, setIsDelete] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [idModal, setIdModal] = useState(false);
+  // const [idModal, setIdModal] = useState(false);
   // let location = useLocation();
 
   const handleToggle = () => {
