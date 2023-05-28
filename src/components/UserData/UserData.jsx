@@ -1,17 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-
 import { useAuth } from 'hooks/useAuth';
 import { updateFetch } from 'api/auth';
-import { logOut, userCurrent } from 'redux/auth/authService';
+import { userCurrent } from 'redux/auth/authService';
 
 import { Formik } from 'formik';
 
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 import { UserDataItem } from './UserDataItem/UserDataItem';
 import { AvatarUploadInput } from './AvatarUploadInput/AvatarUploadInput';
-import { LogOut } from '../buttons/buttons';
 import { profileSchema } from 'helpers/yupValidation';
 import {
   ProfileTitle,
@@ -39,11 +36,9 @@ const initialEditStatus = {
 
 export const UserData = () => {
   const [isEditingBlocked, setIsEditingBlocked] = useState(initialEditStatus);
-  const [isLogOut, setIsLogOut] = useState(false);
   const [isNewUser, setIsNewUser] = useState(false);
   const { user } = useAuth();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (user.newUser) {
@@ -59,27 +54,11 @@ export const UserData = () => {
     setIsNewUser(false);
   };
 
-  const handleLogOut = () => {
-    setIsLogOut(true);
-  };
-
-  const handleLogOutCancel = () => {
-    setIsLogOut(false);
-  };
-
   const handleEditBlock = name => {
     const newEditStatus = { ...initialEditStatus, [name]: true };
-    console.log(newEditStatus);
     setIsEditingBlocked(newEditStatus);
   };
 
-  const handleLogOutYes = async () => {
-    try {
-      dispatch(logOut());
-      setIsLogOut(false);
-      navigate('/');
-    } catch (error) {}
-  };
   //SUBMIT
   const handleOnSubmit = async values => {
     const keys = Object.keys(values);
@@ -98,13 +77,8 @@ export const UserData = () => {
       formData.append('file', values.file, 'User`s photo');
     }
 
-    for (const pair of formData.entries()) {
-      console.log(pair[0] + ': ' + pair[1]);
-    }
     try {
-      const { body } = await updateFetch(formData);
-      console.log(body);
-      // dispatch(updateUser(formData));
+      await updateFetch(formData);
       dispatch(userCurrent());
     } catch (error) {
       console.log(error);
@@ -163,16 +137,8 @@ export const UserData = () => {
               );
             }}
           </Formik>
-          <LogOut onClick={handleLogOut} />
         </ProfileInfo>
       </div>
-      {isLogOut && (
-        <ModalApproveAction
-          onActivate={handleLogOutYes}
-          onClick={handleLogOutCancel}
-          variant={'logOut'}
-        />
-      )}
       {isNewUser && (
         <ModalApproveAction onClick={handleCongratsOut} variant={'congrats'} />
       )}
