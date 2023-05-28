@@ -34,7 +34,7 @@ export const ModalApproveAction = ({
         <ModalTitle>Delete advertisement?</ModalTitle>
         <ModalDescr>
           Are you sure you want to delete{' '}
-          <ModalDescrBold>“{newText}”?</ModalDescrBold> You can`t undo this
+          <ModalDescrBold>“{newText}”?</ModalDescrBold> You can't undo this
           action.
         </ModalDescr>
         <FlexContainer flexGap={'17px'}>
@@ -48,7 +48,7 @@ export const ModalApproveAction = ({
         <ModalTitle>Delete your pet?</ModalTitle>
         <ModalDescr>
           Are you sure you want to delete{' '}
-          <ModalDescrBold>“{newText}”?</ModalDescrBold> You can`t undo this
+          <ModalDescrBold>“{newText}”?</ModalDescrBold> You can't undo this
           action.
         </ModalDescr>
         <FlexContainer flexGap={'17px'}>

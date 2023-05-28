@@ -27,8 +27,18 @@ const inputs = [
   { type: 'text', name: 'city', placeholder: 'Kyiv' },
 ];
 
+const initialEditStatus = {
+  name: false,
+  email: false,
+  birthday: false,
+  phone: false,
+  city: false,
+  photo: false,
+  refresh: true,
+};
+
 export const UserData = () => {
-  const [isEditingBlocked, setIsEditingBlocked] = useState(false);
+  const [isEditingBlocked, setIsEditingBlocked] = useState(initialEditStatus);
   const [isLogOut, setIsLogOut] = useState(false);
   const [isNewUser, setIsNewUser] = useState(false);
   const { user } = useAuth();
@@ -36,14 +46,14 @@ export const UserData = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(userCurrent());
-  }, [dispatch]);
-
-  useEffect(() => {
     if (user.newUser) {
       setIsNewUser(true);
     }
   }, [user]);
+
+  useEffect(() => {
+    dispatch(userCurrent());
+  }, [dispatch]);
 
   const handleCongratsOut = () => {
     setIsNewUser(false);
@@ -55,6 +65,12 @@ export const UserData = () => {
 
   const handleLogOutCancel = () => {
     setIsLogOut(false);
+  };
+
+  const handleEditBlock = name => {
+    const newEditStatus = { ...initialEditStatus, [name]: true };
+    console.log(newEditStatus);
+    setIsEditingBlocked(newEditStatus);
   };
 
   const handleLogOutYes = async () => {
@@ -120,10 +136,10 @@ export const UserData = () => {
                   <AvatarUploadInput
                     errors={errors}
                     touched={touched}
-                    handleSubmit={handleSubmit}
                     isEditingBlocked={isEditingBlocked}
-                    setIsEditingBlocked={setIsEditingBlocked}
                     avatar={user.avatarURL}
+                    onEditClick={handleEditBlock}
+                    onFormSubmit={handleSubmit}
                   />
                   <ProfileInputWrapper>
                     {inputs.map(input => {
@@ -135,10 +151,10 @@ export const UserData = () => {
                           name={name}
                           placeholder={placeholder}
                           isEditingBlocked={isEditingBlocked}
-                          setIsEditingBlocked={setIsEditingBlocked}
-                          handleSubmit={handleSubmit}
                           errors={errors}
                           touched={touched}
+                          onEditClick={handleEditBlock}
+                          onFormSubmit={handleSubmit}
                         />
                       );
                     })}

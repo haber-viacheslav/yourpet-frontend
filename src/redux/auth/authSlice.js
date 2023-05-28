@@ -84,7 +84,7 @@ const authSlice = createSlice({
           phone: action.payload.body.phone,
           city: action.payload.body.city,
           avatarURL: action.payload.body.avatarURL,
-          newUser: action.payload.body.newUser,
+          newUser: false,
         };
         state.isLoggedIn = true;
         state.isRefreshing = false;

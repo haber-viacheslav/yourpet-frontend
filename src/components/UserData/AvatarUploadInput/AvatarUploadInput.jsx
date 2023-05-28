@@ -16,9 +16,9 @@ import PropTypes from 'prop-types';
 export const AvatarUploadInput = ({
   errors,
   touched,
-  handleSubmit,
+  onEditClick,
+  onFormSubmit,
   isEditingBlocked,
-  setIsEditingBlocked,
   avatar,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -27,13 +27,13 @@ export const AvatarUploadInput = ({
 
   const handleOnEdit = () => {
     setIsEditing(true);
-    setIsEditingBlocked(true);
+    onEditClick('photo');
   };
 
   const handleOnConfirm = () => {
     setIsEditing(false);
-    setIsEditingBlocked(false);
-    handleSubmit();
+    onEditClick('refresh');
+    onFormSubmit();
   };
 
   const handleUploadFile = e => {
@@ -54,7 +54,7 @@ export const AvatarUploadInput = ({
           accept="image/*"
           id="file"
           onChange={handleUploadFile}
-          disabled={isEditing ? false : true}
+          disabled={isEditingBlocked.photo ? false : true}
         />
         <PhotoPlaceWrapper>
           <PhotoWrapper data-color={photoPreview}>
@@ -64,23 +64,18 @@ export const AvatarUploadInput = ({
           {isFieldInvalid && <ErrWrapper>{errors.file}</ErrWrapper>}
         </PhotoPlaceWrapper>
       </UploadFileLabel>
-      {!isEditing && (
-        <EditPhotoBtn
-          onClick={handleOnEdit}
-          isEditingBlocked={isEditingBlocked}
-        />
-      )}
-      {isEditing && (
+      {isEditing && isEditingBlocked.photo && (
         <ConfirmPhotoBtn onClick={handleOnConfirm} error={isFieldInvalid} />
       )}
+      {!isEditingBlocked.photo && <EditPhotoBtn onClick={handleOnEdit} />}
     </Wrapper>
   );
 };
 
 AvatarUploadInput.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-  isEditingBlocked: PropTypes.bool.isRequired,
-  setIsEditingBlocked: PropTypes.func.isRequired,
+  onFormSubmit: PropTypes.func.isRequired,
+  isEditingBlocked: PropTypes.objectOf(PropTypes.bool.isRequired).isRequired,
+  onEditClick: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
   touched: PropTypes.object.isRequired,
 };

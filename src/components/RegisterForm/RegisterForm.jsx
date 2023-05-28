@@ -1,12 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
 import { register } from '../../redux/auth/authService';
-// import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 import { Formik, ErrorMessage } from 'formik';
 import { yupRegisterValidation } from 'helpers/yupValidation';
-
 import { iconClose, iconOpen, IconCrossSmall, IconCheck } from './Icons/Icons';
 import {
   Wrapper,
@@ -39,8 +36,6 @@ export const RegisterForm = () => {
   const [typePass, setTypePass] = useState('password');
   const [toggleIconConfirm, setToggleIconConfirm] = useState(iconClose);
   const [typeConfirm, setTypeConfirm] = useState('password');
-  // const [isNewUser, setIsNewUser] = useState(false);
-  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSubmit = async ({ email, password }, { resetForm }) => {
@@ -49,18 +44,12 @@ export const RegisterForm = () => {
       console.log(registerResult);
       const status = registerResult.payload.response.status;
       if (status === 'Success') {
-        // setIsNewUser(true);
         resetForm();
       }
     } catch (error) {
       console.log(error);
     }
   };
-
-  // const handleCongratsOut = () => {
-  //   navigate('/user');
-  //   setIsNewUser(false);
-  // };
 
   const togglePassInput = e => {
     if (typePass === 'password') {
@@ -199,9 +188,6 @@ export const RegisterForm = () => {
           }}
         </Formik>
       </Wrapper>
-      {/* {isNewUser && (
-        <ModalApproveAction onClick={handleCongratsOut} variant={'congrats'} />
-      )} */}
     </>
   );
 };

@@ -4,15 +4,17 @@ import { NoticesCategoryItem } from 'components/Notices/NoticesCategoriesItem/No
 import { List } from './NoticesCategoriesList.styled';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { deleteNotice } from 'api/notices';
 
 export const NoticesCategoriesList = () => {
-  const [pets, setPets] = useState([]);
+  const [notices, setNotices] = useState([]);
+
   const fetchPets = async () => {
     try {
       const response = await axios.get(
         'https://your-pet-api.onrender.com/api/v1/notices'
       );
-      setPets(response.data.data);
+      setNotices(response.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -22,26 +24,29 @@ export const NoticesCategoriesList = () => {
     fetchPets();
   }, []);
 
-  return (
-    <>
-      <List>
-        {pets.map(petItem => (
-          <NoticesCategoryItem petItem={petItem} key={petItem._id} />
-        ))}
-      </List>
-    </>
-  );
-};
-
-
-export const NoticesList = (petsList) => {
+  const handleDeleteBtn = async id => {
+    try {
+      const index = notices.findIndex(el => el['_id'] === id);
+      const updateData = [...notices];
+      updateData.splice(index, 1);
+      setNotices(updateData);
+      await deleteNotice(id);
+    } catch (error) {}
+  };
 
   return (
     <>
       <List>
-        {petsList.map(petItem => (
-          <NoticesCategoryItem petItem={petItem} key={petItem._id} />
-        ))}
+        {notices.map(notice => {
+          const { _id: id } = notice;
+          return (
+            <NoticesCategoryItem
+              key={id}
+              notice={notice}
+              delNotice={handleDeleteBtn}
+            />
+          );
+        })}
       </List>
     </>
   );
