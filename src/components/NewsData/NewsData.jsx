@@ -1,12 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-
-import {
-  selectIsLoading,
-  selectError,
-  selectTotalPages,
-  selectNews,
-} from 'redux/news/selectors';
 import Cat from '../../images/walking-cat.gif';
 import { Loader } from 'components/Loader/Loader';
 import { SearchNewsForm } from 'components/News/SearchNewsForm/SearchNewsForm';
@@ -15,39 +7,61 @@ import { NewsList } from '../../components/News/NewsList/NewsList';
 import { Pagination } from '../Pagination/Pagination';
 import { NotFound } from '../News/NewsNotFound/NewsNotFound';
 import { theme } from '../../theme/theme';
-import { fetchNews } from 'redux/news/newsService';
 import { Container } from 'components/Container/Container';
+import { useSearchParams } from 'react-router-dom';
+import { fetchNews } from '../../api/news.js';
 // import { sortNewsByDate } from 'helpers/sortNewsByDate';
 
 export const NewsData = () => {
   const limit = 6;
   const [search, setSearch] = useState('');
+  const [news, setNews] = useState([]);
   const [page, setPage] = useState(1);
-  const isLoading = useSelector(selectIsLoading);
-  const isError = useSelector(selectError);
-  const totalPages = useSelector(selectTotalPages);
-  const dispatch = useDispatch();
-  const news = useSelector(selectNews);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [totalPages, setTotalPages] = useState(0);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('search') ?? '';
+  const pageNumber = searchParams.get('page') ?? '';
   const isTablet = window.matchMedia(theme.media.md).matches;
   // const sortedNews = sortNewsByDate(news);
+
   useEffect(() => {
-    console.log('search', search);
-
-    dispatch(fetchNews({ search, page, limit }));
-  }, [dispatch, search, page]);
-
-  const handleNewsSearchSubmit = value => {
-    setSearch(prevState => {
-      if (prevState.search !== value) {
-        setSearch(value);
-        setPage(1);
+    setIsLoading(true);
+    const getNews = async ({ search, page, limit }) => {
+      try {
+        const newNews = await fetchNews({ search, page, limit });
+        console.log('newNews', newNews);
+        if (!newNews.totalPages) {
+          return;
+        }
+        setNews(newNews.data);
+        setTotalPages(newNews.totalPages);
+      } catch (error) {
+        setIsError(true);
+        console.log(error);
+      } finally {
+        setIsLoading(false);
       }
+    };
+    if (!search) {
+      getNews({ page, limit });
+      return;
+    }
+    getNews({ search, page, limit });
+  }, [search, page, limit]);
 
-      return setSearch(value);
-    });
+  const handleSearchSubmit = search => {
+    const nextParams = search !== '' ? { search } : {};
+    setSearchParams(nextParams);
+    setSearch(search);
+    setPage(1);
   };
 
   const handlePageChange = pageNumber => {
+    if (query) {
+      setSearchParams({ query, page });
+    }
     setPage(pageNumber);
   };
 
@@ -58,9 +72,9 @@ export const NewsData = () => {
       {isLoading && <Loader loaderSrc={Cat} size={160} />}
       {isError && !news.length && <NotFound />}
 
-      <SearchNewsForm onSubmit={handleNewsSearchSubmit} />
+      <SearchNewsForm onSubmit={handleSearchSubmit} />
       {news && news.length > 0 && <NewsList news={news} />}
-      {news && news.length > 0 && totalPages > 1 && (
+      {totalPages > 1 && (
         <Pagination
           currentPage={page}
           totalPages={totalPages}
