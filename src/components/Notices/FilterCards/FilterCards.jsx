@@ -28,6 +28,19 @@ export const FilterCards = () => {
     'male': false,
   });
 
+const baseUrl = 'https://your-pet-api.onrender.com/api/v1/notices';
+const searchParams = new URLSearchParams();
+
+Object.entries(checkedItems).forEach(([key, value]) => {
+  if (value) {
+    searchParams.append(key, key === 'female' ? 'male' : 'female');
+  }
+});
+
+const queryString = searchParams.toString();
+const apiUrl = `${baseUrl}?${queryString}`;
+console.log(apiUrl);
+
   const dropdownRef = useRef(null);
 
   const toggleMenu = () => {
@@ -44,13 +57,12 @@ export const FilterCards = () => {
 
   const handleCheckboxChange = event => {
     const { name } = event.target;
-    console.log(name);
     setCheckedItems(prevCheckedItems => ({
       ...prevCheckedItems,
       [name]: !prevCheckedItems[name],
     }));
   };
-  console.log(checkedItems['female']);
+
 
   return (
     <>
