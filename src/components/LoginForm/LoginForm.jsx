@@ -3,6 +3,8 @@ import { Formik, ErrorMessage } from 'formik';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { string, object } from 'yup';
+import { notify } from '../../helpers/notification';
+
 import { iconClose, iconOpen, IconCrossSmall, IconCheck } from './Icons/Icons';
 import {
   Wrapper,
@@ -53,7 +55,9 @@ export const LoginForm = () => {
         navigate('/user');
         resetForm();
       }
+      notify('success', 'You have successfully logged in');
     } catch (error) {
+      notify('error', error.message);
       console.log(error);
     }
   };
