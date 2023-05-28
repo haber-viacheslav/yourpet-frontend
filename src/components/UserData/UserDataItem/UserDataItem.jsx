@@ -13,8 +13,8 @@ export const UserDataItem = ({
   name,
   placeholder,
   isEditingBlocked,
-  setIsEditingBlocked,
-  handleSubmit,
+  onEditClick,
+  onFormSubmit,
   errors,
   touched,
 }) => {
@@ -22,13 +22,13 @@ export const UserDataItem = ({
 
   const handleOnEdit = () => {
     setIsEditing(true);
-    setIsEditingBlocked(true);
+    onEditClick(name);
   };
 
   const handleOnCheck = () => {
     setIsEditing(false);
-    setIsEditingBlocked(false);
-    handleSubmit();
+    onEditClick('refresh');
+    onFormSubmit();
   };
 
   const label = `${name.charAt(0).toUpperCase()}${name.slice(1)}`;
@@ -40,19 +40,14 @@ export const UserDataItem = ({
         <ProfileInput
           type={type}
           name={name}
-          placeholder={isEditing ? `${placeholder}` : ''}
-          disabled={isEditing ? false : true}
+          placeholder={isEditingBlocked[name] ? `${placeholder}` : ''}
+          disabled={isEditingBlocked[name] ? false : true}
         />
-        {isEditing && (
+        {isEditing && isEditingBlocked[name] && (
           <InputCheckBtn onClick={handleOnCheck} error={isFieldInvalid} />
         )}
 
-        {!isEditing && (
-          <InputEditBtn
-            onClick={handleOnEdit}
-            isEditingBlocked={isEditingBlocked}
-          />
-        )}
+        {!isEditingBlocked[name] && <InputEditBtn onClick={handleOnEdit} />}
         {isFieldInvalid && <ErrWrapper>{errors[name]}</ErrWrapper>}
       </SingleInputWrapper>
     </ProfileInputLabel>
@@ -62,10 +57,9 @@ export const UserDataItem = ({
 UserDataItem.propTypes = {
   errors: PropTypes.object.isRequired,
   touched: PropTypes.object.isRequired,
-
-  handleSubmit: PropTypes.func.isRequired,
-  isEditingBlocked: PropTypes.bool.isRequired,
-  setIsEditingBlocked: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  onEditClick: PropTypes.func.isRequired,
+  isEditingBlocked: PropTypes.objectOf(PropTypes.bool.isRequired).isRequired,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
 };

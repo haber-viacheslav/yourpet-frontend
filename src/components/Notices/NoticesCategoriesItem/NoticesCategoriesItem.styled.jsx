@@ -17,6 +17,7 @@ export const ContainerCard = styled.li`
     width: 288px;
   }
 `;
+
 export const ContainerInfo = styled.div`
   display: flex;
   gap: 12px;
@@ -32,6 +33,21 @@ export const ContainerInfo = styled.div`
     gap: 12px;
   }
 `;
+
+export const DeleteBtnWrapper = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 68px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  background-color: ${props => props.theme.colors.blueLight};
+`;
+
 export const Text = styled.h3`
   font-family: 'Manrope';
   font-style: normal;
@@ -57,7 +73,7 @@ export const Img = styled.img`
   }
 `;
 export const Button = styled.button`
-display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
@@ -72,21 +88,4 @@ display: flex;
   border-radius: 50%;
 
   cursor: pointer;
- `
- export const DeleteBtn = styled.button`
-   display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 57px;
-  right: 1px;
-  margin: 12px 12px 16px 0;
-  background: #cce4fb;
-  border: transparent;
-  border-radius: 40px;
-  cursor: pointer;
-  :hover {
-  fill: #54adff;`
-
-  
-
+`;
