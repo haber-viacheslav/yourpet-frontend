@@ -202,6 +202,14 @@ const SvgDelete = () => {
   );
 };
 
+const SvgDeleteYes = () => {
+  return (
+    <SVG width={24} height={24} stroke={theme.colors.clearWhite}>
+      <use href={icons + '#icon-trash'}></use>
+    </SVG>
+  );
+};
+
 const SvgLogout = () => {
   return (
     <Logout width={24} height={24}>
@@ -394,7 +402,7 @@ export const BtnAddPet = () => {
     </>
   );
 };
-export const BtnAddPetCurcle = () => {
+export const BtnAddPetCircle = () => {
   const navigate = useNavigate();
   return (
     <>
@@ -447,7 +455,7 @@ export const BtnYesDelete = ({ onClick }) => {
     <>
       <YesBtn type="button" onClick={onClick}>
         Yes
-        <SvgDelete />
+        <SvgDeleteYes />
       </YesBtn>
     </>
   );
@@ -474,14 +482,10 @@ export const InputCheckBtn = ({ onClick, error }) => {
   );
 };
 
-export const InputEditBtn = ({ onClick, isEditingBlocked }) => {
+export const InputEditBtn = ({ onClick }) => {
   return (
     <>
-      <InputButton
-        type="button"
-        onClick={onClick}
-        disabled={isEditingBlocked ? true : false}
-      >
+      <InputButton type="button" onClick={onClick}>
         <EditIcon />
       </InputButton>
     </>

@@ -10,6 +10,7 @@ import {
   TextContent,
   Title,
   Text,
+  DeleteBtnWrapper,
 } from './PetsItem.styled';
 import PropTypes from 'prop-types';
 
@@ -59,7 +60,9 @@ export const PetsItem = ({ id, url, name, date, breed, comments, delPet }) => {
             </Title>
           </TextContent>
         </TextWrapper>
-        <DeletePetBtn onClick={handleDeletePet} />
+        <DeleteBtnWrapper>
+          <DeletePetBtn onClick={handleDeletePet} />
+        </DeleteBtnWrapper>
       </Wrapper>
       {isDelete && (
         <ModalApproveAction
@@ -79,4 +82,6 @@ PetsItem.propTypes = {
   date: PropTypes.string.isRequired,
   breed: PropTypes.string.isRequired,
   comments: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  delPet: PropTypes.func.isRequired,
 };

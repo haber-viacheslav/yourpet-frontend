@@ -9,7 +9,7 @@ export const Navigate = styled.div`
   flex-wrap: wrap;
 `;
 
-export const BoxUser = styled.div`
+export const BoxUser = styled.nav`
   margin-left: auto;
 `;
 export const BoxAuth = styled.div`
