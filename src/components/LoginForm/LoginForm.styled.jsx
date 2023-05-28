@@ -110,9 +110,9 @@ export const Button = styled.button`
 `;
 
 export const Text = styled.p`
-  font-family: ${theme.fonts.main};
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
-  font-weight: ${theme.fontWeights.regular};
+  font-weight: ${props => props.theme.fontWeights.regular};
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0.04em;
