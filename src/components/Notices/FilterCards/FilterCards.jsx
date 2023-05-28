@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { useSearchParams } from 'react-router-dom';
+// import { useSearchParams } from 'react-router-dom';
 import { BtnFilters, BtnFiltersCircle } from 'components/buttons/buttons';
 import {IconClose, IconOpen, IconCheck, IconCheckRound} from './icons/icons'
 import {
@@ -14,14 +14,14 @@ import {
   Label,
   CheckBox,
 } from './FilterCards.styled';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 
 export const FilterCards = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenAge, setIsOpenAge] = useState(false);
   const [isOpenGender, setIsOpenGender] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
+  // const [searchParams, setSearchParams] = useSearchParams();
   const [checkedItems, setCheckedItems] = useState({
     'age-3-12m': false,
     'age-1-year': false,
@@ -30,8 +30,8 @@ export const FilterCards = () => {
     male: false,
   });
 
- useEffect(() => {
-    const searchParams = new URLSearchParams();
+
+   const searchParams = new URLSearchParams();
 
     Object.entries(checkedItems).forEach(([key, value]) => {
       if (value) {
@@ -41,9 +41,20 @@ export const FilterCards = () => {
    
    console.log(searchParams.toString())
 
-   setSearchParams(searchParams.toString());
+//  useEffect(() => {
+//     const searchParams = new URLSearchParams();
+
+//     Object.entries(checkedItems).forEach(([key, value]) => {
+//       if (value) {
+//         searchParams.append(key, String(value));
+//       }
+//     });
    
-  }, [checkedItems, setSearchParams]);
+//    console.log(searchParams.toString())
+
+//    setSearchParams(searchParams.toString());
+   
+//   }, [checkedItems, setSearchParams]);
 
   const dropdownRef = useRef(null);
 
