@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { theme } from '../../theme/theme';
 import { Form, Field } from 'formik';
 
 export const Wrapper = styled.div`
