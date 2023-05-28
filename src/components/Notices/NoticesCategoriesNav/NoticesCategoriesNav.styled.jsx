@@ -11,7 +11,6 @@ export const FiltersContainer = styled.div`
 export const FilterAdsContainer = styled.div``;
 
 export const FiltersBtnContainer = styled.div`
-  display: none;
   @media screen and (${props => props.theme.media.md}) {
     display: flex;
     gap: 12px;

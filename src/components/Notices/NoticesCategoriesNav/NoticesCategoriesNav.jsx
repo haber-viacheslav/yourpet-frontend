@@ -2,7 +2,6 @@ import { NavLink } from 'react-router-dom';
 import {
   BtnAddOption,
   BtnAddPet,
-  BtnFiltersCircle,
 } from 'components/buttons/buttons';
 import {
   FilterAdsContainer,
@@ -36,7 +35,6 @@ export const NoticesCategoriesNav = () => {
           <FilterCards />
           <BtnAddPet />
         </FiltersBtnContainer>
-        <BtnFiltersCircle />
       </FiltersContainer>
     </>
   );
