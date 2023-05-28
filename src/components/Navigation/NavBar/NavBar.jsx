@@ -18,18 +18,17 @@ export const NavBar = () => {
       <BoxNavigate>
         <Nav />
       </BoxNavigate>
-      <nav>
-        {!isLoggedIn && (
+      <BoxUser>
+        {isLoggedIn ? (
+          <div>
+            <UserMenu />
+          </div>
+        ) : (
           <BoxAuth>
             <AuthNav />
           </BoxAuth>
         )}
-        {isLoggedIn && (
-          <BoxUser>
-            <UserMenu />
-          </BoxUser>
-        )}
-      </nav>
+      </BoxUser>
       <BurgerMenu />
     </Navigate>
   );

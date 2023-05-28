@@ -3,18 +3,19 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import { lazy } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../theme/theme';
-import { Loader } from './Loader/Loader';
-import PawLoader from '../images/Loader.png';
+// import { Loader } from './Loader/Loader';
+// import PawLoader from '../images/Loader.png';
 
 import { NoticesCategoriesList } from './Notices/NoticesCategoriesList/NoticesCategoriesList';
 
 import { useEffect } from 'react';
 import { userCurrent } from 'redux/auth/authService';
-import { useAuth } from 'hooks/useAuth';
+// import { useAuth } from 'hooks/useAuth';
 import { useDispatch } from 'react-redux';
 
 import { RestrictedRoute } from '../routes/RestrictedRoute';
 import { PrivateRoute } from '../routes/PrivateRoute';
+import axios from 'axios';
 
 const MainPage = lazy(() => import('../pages/MainPage'));
 const Register = lazy(() => import('../pages/RegisterPage'));
@@ -35,6 +36,7 @@ export const App = () => {
   // }, 8000);
   useEffect(() => {
     dispatch(userCurrent());
+    console.log(axios.defaults.headers.common.Authorization);
   }, [dispatch]);
 
   // const isRefreshing = true;
