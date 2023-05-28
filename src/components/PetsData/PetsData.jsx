@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-// import { useAuth } from 'hooks/useAuth';
 import { BtnAddPet } from 'components/buttons/buttons';
-import { PetsItem } from './PetsItem/PetsItem';
-import { Title, Wrapper, PetsList, TitleWrapper } from './PetsData.styled';
+import { PetsList } from './PetsList/PetsList';
+import { Title, Wrapper, TitleWrapper } from './PetsData.styled';
 import { getPets } from 'api/pets';
 import { deletePet } from 'api/pets';
 
@@ -34,23 +33,7 @@ export const PetsData = () => {
         <Title>My pets:</Title>
         <BtnAddPet />
       </TitleWrapper>
-      <PetsList>
-        {data.map(pet => {
-          const { _id: id, name, date, breed, comments, avatarURL } = pet;
-          return (
-            <PetsItem
-              key={id}
-              name={name}
-              date={date}
-              breed={breed}
-              comments={comments}
-              url={avatarURL}
-              id={id}
-              delPet={handleDeleteBtn}
-            />
-          );
-        })}
-      </PetsList>
+      <PetsList data={data} delPet={handleDeleteBtn} />
     </Wrapper>
   );
 };

@@ -10,7 +10,8 @@ import { Title } from './Title/Title';
 import { StageIndicator } from './StageIndicator/StageIndicator';
 import { SexIcon } from './Icon/Icon';
 import { addPetFormSchema } from 'helpers/yupValidation';
-import { createPet, createNotice } from 'api/pets';
+import { createPet } from 'api/pets';
+import { createNotice } from 'api/notices';
 
 import { Formik } from 'formik';
 
@@ -159,11 +160,11 @@ export const AddPetForm = () => {
         }
     }
 
-    // localStorage.removeItem('formValues');
-    // localStorage.removeItem('stage');
-    // resetForm({});
-    // SetStage(1);
-    // SetEmulTouch([]);
+    localStorage.removeItem('formValues');
+    localStorage.removeItem('stage');
+    resetForm({});
+    SetStage(1);
+    SetEmulTouch([]);
   };
 
   return (
