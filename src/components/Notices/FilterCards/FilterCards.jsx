@@ -24,22 +24,22 @@ export const FilterCards = () => {
     'age-3-12m': false,
     'age-1-year': false,
     'age-2-year': false,
-    'female': false,
-    'male': false,
+    female: false,
+    male: false,
   });
 
-const baseUrl = 'https://your-pet-api.onrender.com/api/v1/notices';
-const searchParams = new URLSearchParams();
+  const searchParams = new URLSearchParams();
 
-Object.entries(checkedItems).forEach(([key, value]) => {
-  if (value) {
-    searchParams.append(key, key === 'female' ? 'male' : 'female');
-  }
-});
+  Object.entries(checkedItems).forEach(([key, value]) => {
+    if (value) {
+      searchParams.append(key, String(value));
+    }
+  });
 
-const queryString = searchParams.toString();
-const apiUrl = `${baseUrl}?${queryString}`;
-console.log(apiUrl);
+  const queryString = searchParams.toString();
+  const baseUrl = 'https://your-pet-api.onrender.com/api/v1/notices';
+  const apiUrl = `${baseUrl}?${queryString}`;
+  console.log(apiUrl);
 
   const dropdownRef = useRef(null);
 
