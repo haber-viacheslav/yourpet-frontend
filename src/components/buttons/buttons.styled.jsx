@@ -129,6 +129,8 @@ export const BtnBackArrow = styled.button`
   cursor: pointer;
 `;
 export const BtnAdd = styled.button`
+display: none;
+@media screen and (${props => props.theme.media.md}){
   height: 40px;
   width: 129px;
   display: flex;
@@ -149,6 +151,8 @@ export const BtnAdd = styled.button`
   :focus {
     background: ${theme.colors.blueGradient};
   }
+}
+
 `;
 export const BtnAddCurcle = styled.button`
   height: 80px;
@@ -271,6 +275,8 @@ export const BtnRegLog = styled.button`
   }
 `;
 export const BtnFilter = styled.button`
+display: none;
+@media screen and (${props => props.theme.media.md}){
   height: 40px;
   width: 129px;
   display: flex;
@@ -294,6 +300,8 @@ export const BtnFilter = styled.button`
     border: none;
     background: ${theme.colors.blueGradient};
   }
+}
+
 `;
 // export const Filter = styled.svg`
 //   fill: none;

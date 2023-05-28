@@ -22,8 +22,8 @@ export const IconCheck = () => {
 };
 export const DropdownMenu = styled.ul`
   position: absolute;
-  top: 50px;
-  left: 12px;
+  top: -126px;
+  right: 0px;
   width: 152px;
   background-color: #f0f0f0;
   list-style: none;
@@ -34,6 +34,10 @@ export const DropdownMenu = styled.ul`
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 20px;
   animation: ${fadeIn} 0.3s ease-in-out;
+@media screen and (${props => props.theme.media.md}){  position: absolute;
+  top: 50px;
+  left: 12px;
+}
 `;
 
 export const FilterGroup = styled.li`

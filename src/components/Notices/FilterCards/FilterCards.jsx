@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { BtnFilters } from 'components/buttons/buttons';
+import { BtnFilters, BtnFiltersCircle } from 'components/buttons/buttons';
 import {
   DropdownWrapper,
   DropdownMenu,
@@ -216,6 +216,7 @@ export const FilterCards = () => {
         </DropdownWrapper>
       )}
       <BtnFilters onClick={toggleMenu} />
+      <BtnFiltersCircle onClick={toggleMenu} />
     </>
   );
 };
