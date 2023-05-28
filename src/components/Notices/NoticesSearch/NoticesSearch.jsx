@@ -1,9 +1,9 @@
 import { SearchNewsForm } from 'components/News/SearchNewsForm/SearchNewsForm';
 
-export const NoticesSearch = () => {
+export const NoticesSearch = (onSubmit) => {
   return (
     <>
-      <SearchNewsForm />
+      <SearchNewsForm onSubmit={onSubmit}/>
     </>
   );
 };
