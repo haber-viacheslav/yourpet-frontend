@@ -1,12 +1,14 @@
 import { Routes, Route } from 'react-router-dom';
+
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { lazy } from 'react';
 import { ThemeProvider } from 'styled-components';
+import { ToastContainer } from 'react-toastify';
 import { theme } from '../theme/theme';
 // import { Loader } from './Loader/Loader';
 // import PawLoader from '../images/Loader.png';
 
-import { NoticesCategoriesList } from './Notices/NoticesCategoriesList/NoticesCategoriesList';
+import { NoticesCategoriesList } from './Notices (new)/NoticesCategoriesList/NoticesCategoriesList';
 
 import { useEffect } from 'react';
 import { userCurrent } from 'redux/auth/authService';
@@ -15,7 +17,6 @@ import { useDispatch } from 'react-redux';
 
 import { RestrictedRoute } from '../routes/RestrictedRoute';
 import { PrivateRoute } from '../routes/PrivateRoute';
-import axios from 'axios';
 
 const MainPage = lazy(() => import('../pages/MainPage'));
 const Register = lazy(() => import('../pages/RegisterPage'));
@@ -36,7 +37,7 @@ export const App = () => {
   // }, 8000);
   useEffect(() => {
     dispatch(userCurrent());
-    console.log(axios.defaults.headers.common.Authorization);
+    // console.log(axios.defaults.headers.common.Authorization);
   }, [dispatch]);
 
   // const isRefreshing = true;
@@ -46,6 +47,7 @@ export const App = () => {
   // ) : (
   return (
     <ThemeProvider theme={theme}>
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<MainPage />} />
