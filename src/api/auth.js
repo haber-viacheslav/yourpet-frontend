@@ -5,10 +5,10 @@ axios.defaults.baseURL = baseURL;
 // export const instance = axios.create({ baseURL });
 export const setToken = token => {
   if (!token) {
-    return (axios.defaults.headers.Authorization = ``);
+    return (axios.defaults.headers.common.Authorization = ``);
   }
 
-  return (axios.defaults.headers.Authorization = `Bearer ${token}`);
+  return (axios.defaults.headers.common.Authorization = `Bearer ${token}`);
 };
 
 axios.interceptors.response.use(
@@ -16,8 +16,8 @@ axios.interceptors.response.use(
   async error => {
     console.log(error.response.data.code);
     if (
-      error.response.data.code === 403 ||
-      error.response.data.message.includes('authorization')
+      error.response.data.code === 403
+      // || error.response.data.message.includes('authorization')
     ) {
       const oldRefreshToken = localStorageService.getItem('refreshToken');
       try {
@@ -26,6 +26,8 @@ axios.interceptors.response.use(
         });
         const { accessToken, refreshToken } = data.body;
         localStorageService.setItem('refreshToken', refreshToken);
+        localStorageService.setItem('accessToken', accessToken);
+
         error.config.headers.Authorization = `Bearer ${accessToken}`;
         return axios(error.config);
       } catch (error) {
@@ -42,6 +44,7 @@ export const registerFetch = async credentials => {
   const { accessToken, refreshToken } = data.body;
   setToken(accessToken);
   localStorageService.setItem('refreshToken', refreshToken);
+  localStorageService.setItem('accessToken', accessToken);
   return data;
 };
 // --LOGIN OPERATION--
@@ -50,10 +53,15 @@ export const loginFetch = async credentials => {
   const { accessToken, refreshToken } = data.body;
   setToken(accessToken);
   localStorageService.setItem('refreshToken', refreshToken);
+  localStorageService.setItem('accessToken', accessToken);
+
   return data;
 };
 // --CURRENT OPERATION--
 export const currentFetch = async () => {
+  const storedAccessToken = localStorageService.getItem('accessToken');
+
+  setToken(storedAccessToken);
   const { data } = await axios.get('/auth/current');
   return data;
 };
@@ -62,6 +70,8 @@ export const logoutFetch = async () => {
   const { data } = await axios.post('/auth/logout');
   setToken();
   localStorageService.setItem('refreshToken', null);
+  localStorageService.setItem('accessToken', null);
+
   return data;
 };
 // --UPDATE OPERATION--

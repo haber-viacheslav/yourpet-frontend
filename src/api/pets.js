@@ -1,8 +1,5 @@
 import axios from 'axios';
 
-const baseServerURL = `https://your-pet-api.onrender.com`;
-const baseAPIEndpoint = '/api/v1';
-axios.defaults.baseURL = baseServerURL + baseAPIEndpoint;
 // getFriends
 export const getFriends = async () => {
   const response = await axios.get('/friends');
