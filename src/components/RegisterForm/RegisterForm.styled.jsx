@@ -111,10 +111,8 @@ export const Button = styled.button`
 export const Text = styled.p`
   font-family: ${theme.fonts.main};
   font-style: normal;
-  font-weight: ${theme.fontWeights.regular};
-  font-size: ${props => props.theme.fontSizes[0]};
-  line-height: 1.33;
-  letter-spacing: 0.04em;
+  font-size: 12px;
+  line-height: 16px;
   color: ${props => props.theme.colors.grey};
 `;
 
