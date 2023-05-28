@@ -21,6 +21,7 @@ export const SearchNewsForm = ({ onSubmit }) => {
       });
     }
     onSubmit(searchQuery);
+    setSearchQuery('');
   };
 
   const handleChange = e => {
@@ -42,7 +43,10 @@ export const SearchNewsForm = ({ onSubmit }) => {
         value={searchQuery}
         onChange={e => handleChange(e)}
       />
-      <ButtonIconForm onClick={handleReset} searchQuery={searchQuery} />
+      <ButtonIconForm 
+        onClick={handleReset} 
+        searchQuery={searchQuery} 
+      />
     </FormSearch>
   );
 };

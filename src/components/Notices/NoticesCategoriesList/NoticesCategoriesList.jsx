@@ -32,3 +32,17 @@ export const NoticesCategoriesList = () => {
     </>
   );
 };
+
+
+export const NoticesList = (petsList) => {
+
+  return (
+    <>
+      <List>
+        {petsList.map(petItem => (
+          <NoticesCategoryItem petItem={petItem} key={petItem._id} />
+        ))}
+      </List>
+    </>
+  );
+};
