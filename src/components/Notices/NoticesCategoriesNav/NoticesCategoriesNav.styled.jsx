@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const FiltersContainer = styled.div`
@@ -11,6 +12,7 @@ export const FiltersContainer = styled.div`
 export const FilterAdsContainer = styled.div``;
 
 export const FiltersBtnContainer = styled.div`
+  display: none;
   @media screen and (${props => props.theme.media.md}) {
     display: flex;
     gap: 12px;
@@ -18,4 +20,39 @@ export const FiltersBtnContainer = styled.div`
     top: 0;
     right: 0;
   }
+`;
+
+export const StyledNavLink = styled(NavLink)`
+  color: ${props => props.theme.colors.blue};
+  background:${props => props.theme.colors.blueLight} ;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 40px;
+  font-family: ${props => props.theme.fonts.main};
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  align-items: center;
+  letter-spacing: 0.04em;
+  transition: color 250ms ease-in, background-color 250ms ease-in;
+
+  :hover, &.active {
+    color: #FEF9F9;
+    background: #54adff;
+  }
+`;
+export const NavList = styled.ul`
+ display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+@media screen and (${props => props.theme.media.md}) {
+    margin-top: 40px;
+    gap: 12px;
+
+}
 `;
