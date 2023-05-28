@@ -37,9 +37,9 @@ export const FilterCards = () => {
   });
 
   const queryString = searchParams.toString();
-  const baseUrl = 'https://your-pet-api.onrender.com/api/v1/notices';
-  const apiUrl = `${baseUrl}?${queryString}`;
-  console.log(apiUrl);
+  // const baseUrl = 'https://your-pet-api.onrender.com/api/v1/notices';
+  // const apiUrl = `${baseUrl}?${queryString}`;
+  console.log(queryString);
 
   const dropdownRef = useRef(null);
 
