@@ -240,7 +240,9 @@ export const FilterCurcle = styled.button`
 `;
 
 export const Heart = styled.svg`
-  fill: none;
+  fill: ${props => {
+    return props.isFavorite ? theme.colors.blue : 'none';
+  }};
   stroke: ${theme.colors.blue};
   :hover,
   :active {

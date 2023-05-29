@@ -22,7 +22,7 @@ import {
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-export const ModalItem = ({ onClick, id }) => {
+export const ModalItem = ({ onClick, onFavoriteClick, id, isFavorite }) => {
   const [petsDetails, setPetsDetails] = useState({});
   // const {
   //   imgUrl,
@@ -94,7 +94,7 @@ export const ModalItem = ({ onClick, id }) => {
         <CommentInfo>Comments: {'comments' || 'unknown'}</CommentInfo>
         <BtnContainer>
           <BtnCall />
-          <BtnAddTo />
+          <BtnAddTo onClick={onFavoriteClick} isFavorite={isFavorite} />
         </BtnContainer>
       </FlexContainer>
     </>

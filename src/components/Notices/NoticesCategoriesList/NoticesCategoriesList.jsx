@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { NoticesCategoryItem } from 'components/Notices (new)/NoticesCategoriesItem (new)/NoticesCategoriesItem';
+import { NoticesCategoryItem } from 'components/Notices/NoticesCategoriesItem/NoticesCategoriesItem';
 import { getAllNotices, getPrivateNotices, deleteNotice } from 'api/notices';
 import { List } from './NoticesCategoriesList.styled';
 

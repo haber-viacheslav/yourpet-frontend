@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useAuth } from 'hooks/useAuth';
 import { setNoticeToFavorite } from 'api/notices';
 import { Modal } from 'components/Modal/Modal';
 import { ModalItem } from '../ModalNotice/ModalNotice';
@@ -27,6 +28,8 @@ import {
 export const NoticesCategoryItem = ({ notice, delNotice }) => {
   const [isDelete, setIsDelete] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isNoticeFavorite, setIsNoticeFavorite] = useState(notice.isFavourite);
+  // console.log(notice.isFavourite);
 
   const handleModalClick = () => {
     setIsOpen(!isOpen);
@@ -34,11 +37,18 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
 
   const handleAddToFavorite = async () => {
     try {
-      const { _id: id } = notice;
-      const response = await setNoticeToFavorite(id);
-      console.log(response);
+      const response = await setNoticeToFavorite(notice._id);
+      if (response.data.code === 200) {
+        setIsNoticeFavorite(prevState => !prevState);
+      }
+      if (!response.data.code === 200) {
+        notify(
+          'error',
+          'Adding to favorites available only to authorized users'
+        );
+      }
     } catch (error) {
-      notify('error', 'Only available to authorized users');
+      notify('error', 'Adding to favorites available only to authorized users');
     }
   };
 
@@ -59,7 +69,16 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
     }
   };
   console.log(notice);
-  const { imgUrl, sex, location, category, _id: id, title, date } = notice;
+  const {
+    isOwner,
+    imgUrl,
+    sex,
+    location,
+    category,
+    _id: id,
+    title,
+    date,
+  } = notice;
 
   const Svg = () => {
     return sex === 'female' ? SvgFemale : SvgMale;
@@ -72,15 +91,26 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
     <>
       {isOpen && (
         <Modal onClick={handleModalClick}>
-          <ModalItem onClick={handleModalClick} id={id} />
+          <ModalItem
+            onClick={handleModalClick}
+            id={id}
+            onFavoriteClick={handleAddToFavorite}
+            isFavorite={isNoticeFavorite}
+          />
         </Modal>
       )}
       <ContainerCard>
         <Img src={imgUrl} alt="Pet image" />
-        <BtnAddFavorite onClick={handleAddToFavorite} />
-        <DeleteBtnWrapper>
-          <DeletePetBtn onClick={handleDeleteNotice} />
-        </DeleteBtnWrapper>
+        <BtnAddFavorite
+          onClick={handleAddToFavorite}
+          isFavorite={isNoticeFavorite}
+        />
+        {isOwner && (
+          <DeleteBtnWrapper>
+            <DeletePetBtn onClick={handleDeleteNotice} />
+          </DeleteBtnWrapper>
+        )}
+
         <BtnAddPetCircle />
         <PetCategory text={`${category}`} />
         <ContainerInfo>
