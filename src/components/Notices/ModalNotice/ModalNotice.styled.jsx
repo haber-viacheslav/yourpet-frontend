@@ -31,7 +31,7 @@ export const ImgModal = styled.img`
   }
 `;
 
-export const PetInfoList = styled.ul`
+export const PetInfoList = styled.div`
   display: flex;
   align-self: flex-start;
   margin-bottom: 12px;
@@ -42,7 +42,7 @@ export const PetInfoList = styled.ul`
   }
 `;
 
-export const PetInfoItem = styled.li`
+export const PetInfoItem = styled.div`
   margin-left: 20px;
   padding-top: 2px;
   @media screen and (${props => props.theme.media.md}) {
@@ -97,6 +97,7 @@ export const InfoFlag = styled(MailInfo)`
   }
 `;
 export const TelInfo = styled(MailInfo)``;
+
 export const CommentInfo = styled.p`
   font-family: 'Manrope';
   font-style: normal;
@@ -109,9 +110,10 @@ export const CommentInfo = styled.p`
   color: #000000;
   margin-bottom: 12px;
   @media screen and (${props => props.theme.media.md}) {
-    margin-bottom: 70px;
-  }
-  @media screen and (${props => props.theme.media.lg}) {
+    align-self: flex-start;
+
+    font-size: 16px;
+    line-height: 24px;
   }
 `;
 export const BtnContainer = styled.div`
@@ -122,8 +124,8 @@ export const BtnContainer = styled.div`
     flex-direction: row;
     width: 273px;
     gap: 17px;
-    align-self: flex-end;
-  }
-  @media screen and (${props => props.theme.media.lg}) {
+    position: absolute;
+    bottom: 24px;
+    right: 31px;
   }
 `;

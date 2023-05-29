@@ -42,7 +42,7 @@ export const ModalNotice = ({ onClick, id }) => {
     breed,
     category,
     comments,
-    date,
+    // date,
     imgUrl,
     // isFavourite,
     // isOwner,
@@ -57,7 +57,7 @@ export const ModalNotice = ({ onClick, id }) => {
   } = petsDetails;
 
   console.log(petsDetails);
-  const birthday = date.slice(0, 10);
+  // const birthday = date.slice(0, 10);
 
   return (
     <>
@@ -83,7 +83,7 @@ export const ModalNotice = ({ onClick, id }) => {
               </PetInfoItem>
               <PetInfoItem>
                 <InfoValue>{name} </InfoValue>
-                <InfoValue>{birthday} </InfoValue>
+                <InfoValue>{'birthday'} </InfoValue>
                 <InfoValue>{breed} </InfoValue>
                 <InfoValue>{price} </InfoValue>
                 <InfoValue>{location} </InfoValue>

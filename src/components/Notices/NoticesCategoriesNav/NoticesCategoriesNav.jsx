@@ -1,10 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
-import {
-  BtnAddPet,
-  BtnFiltersCircle,
-} from 'components/buttons/buttons';
+import { BtnAddPet, BtnFiltersCircle } from 'components/buttons/buttons';
 import {
   FiltersBtnContainer,
   FiltersContainer,
@@ -13,6 +10,7 @@ import {
 } from './NoticesCategoriesNav.styled';
 import { FilterCards } from '../FilterCards/FilterCards';
 import styled from 'styled-components';
+import { nanoid } from '@reduxjs/toolkit';
 
 const Link = [
   { to: 'sell', text: 'sell' },
@@ -21,14 +19,16 @@ const Link = [
 ];
 
 const getLink = ({ isActive }) => {
-  const className = isActive ? `${StyledNavLink} ${styled.active}` : StyledNavLink;
+  const className = isActive
+    ? `${StyledNavLink} ${styled.active}`
+    : StyledNavLink;
   return className;
 };
 export const NoticesCategoriesNav = ({ onOwnClick, onFavoriteClick }) => {
   const navigate = useNavigate();
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-   const handleClick = () => {
+  const handleClick = () => {
     if (!isLoggedIn) {
       //  ('You must be logged in');
       return;
@@ -36,48 +36,43 @@ export const NoticesCategoriesNav = ({ onOwnClick, onFavoriteClick }) => {
       navigate('/add-pet');
     }
   };
-  
 
   return (
-      <FiltersContainer>
-          <NavList>
+    <FiltersContainer>
+      <NavList>
         {Link.map(element => (
-            <StyledNavLink
-              to={element.to}
-              className={getLink}
-            >
-              {element.text}
-            </StyledNavLink>
-          
+          <StyledNavLink key={nanoid()} to={element.to} className={getLink}>
+            {element.text}
+          </StyledNavLink>
         ))}
         {isLoggedIn && (
           <>
-              <StyledNavLink
-                to="own"
-                className={getLink}
-                onClick={() => {
-                  onOwnClick();
-                }}
-              >
-                my ads
-              </StyledNavLink>
-              <StyledNavLink
-                to="favorite"
-                className={getLink}
-                onClick={() => {
-                  onFavoriteClick();
-                }}
-              >
-                favorite ads
-              </StyledNavLink>
+            <StyledNavLink
+              to="own"
+              className={getLink}
+              onClick={() => {
+                onOwnClick();
+              }}
+            >
+              my ads
+            </StyledNavLink>
+            <StyledNavLink
+              to="favorite"
+              className={getLink}
+              onClick={() => {
+                onFavoriteClick();
+              }}
+            >
+              favorite ads
+            </StyledNavLink>
           </>
         )}
       </NavList>
-        <FiltersBtnContainer>
-          <FilterCards />
-          <BtnAddPet onClick={handleClick} />
-        </FiltersBtnContainer>
-        <BtnFiltersCircle />
-      </FiltersContainer>
+      <FiltersBtnContainer>
+        <FilterCards />
+        <BtnAddPet onClick={handleClick} />
+      </FiltersBtnContainer>
+      <BtnFiltersCircle />
+    </FiltersContainer>
   );
 };

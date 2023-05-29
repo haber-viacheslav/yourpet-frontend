@@ -25,6 +25,8 @@ import {
 export const NoticesCategoryItem = ({ notice, delNotice }) => {
   const [isDelete, setIsDelete] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  // const [age, setAge] = useState(0);
+  // const [time, setTime] = useState('');
 
   const onClick = () => {
     return setIsOpen(!isOpen);
@@ -53,8 +55,26 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
     }
   };
 
-  let ege = Math.round((Date.now() - Date.parse(date)) / 31557600000);
-  const years = ege >= 2 ? 'years' : 'year';
+  // const timeHandler = date => {
+  //   const monthValue = Math.round((Date.now() - Date.parse(date)) / 2629800000);
+  //   const yearValue = Math.round((Date.now() - Date.parse(date)) / 31557600000);
+  //   const monthAge = monthValue > 1 ? 'months' : 'month';
+  //   const yearsAge = yearValue > 1 ? 'years' : 'year';
+
+  //   if (monthValue <= 12) {
+  //     setAge(monthValue);
+  //     setTime(monthAge);
+  //     return;
+  //   } else {
+  //     setAge(yearValue);
+  //     setTime(yearsAge);
+  //   }
+  //   return;
+  // };
+
+  let age = Math.round((Date.now() - Date.parse(date)) / 31557600000);
+
+  const years = age >= 2 ? 'years' : 'year';
 
   return (
     <>
@@ -73,7 +93,7 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
         <PetCategory text={`${category}`} />
         <ContainerInfo>
           <PetInfo Svg={SvgLocation} text={`${location}`} />
-          <PetInfo Svg={SvgClock} text={`${ege} ${years}`} />
+          <PetInfo Svg={SvgClock} text={`${age} ${years}`} />
           <PetInfo Svg={Svg()} text={`${sex}`} />
         </ContainerInfo>
         <Text>{title}</Text>

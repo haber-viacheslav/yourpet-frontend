@@ -1,4 +1,4 @@
-import { NoticesCategoryItem } from 'components/Notices (new)/NoticesCategoriesItem/NoticesCategoriesItem';
+import { NoticesCategoryItem } from 'components/Notices/NoticesCategoriesItem/NoticesCategoriesItem';
 // import petsList from '../../../mockData/petsList';
 // import { nanoid } from '@reduxjs/toolkit';
 import { List } from './NoticesCategoriesList.styled';

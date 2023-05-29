@@ -49,7 +49,9 @@ export const BigBtnFavor = styled.button`
     color: ${theme.colors.white};
     border: none;
   }
-  margin: 0 auto 20px;
+  position: absolute;
+  bottom: 24px;
+  right: 20px;
 `;
 
 export const PetFormBtn = styled.button`
@@ -129,30 +131,29 @@ export const BtnBackArrow = styled.button`
   cursor: pointer;
 `;
 export const BtnAdd = styled.button`
-display: none;
-@media screen and (${props => props.theme.media.md}){
-  height: 40px;
-  width: 129px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 9px;
-  padding-bottom: 9px;
-  padding-left: 16px;
-  border-radius: 40px;
-  font-size: 16px;
-  font-family: ${theme.fonts.main};
-  font-weight: ${theme.fontWeights.bold};
-  border: none;
-  background: ${theme.colors.blue};
-  color: ${theme.colors.white};
-  cursor: pointer;
-  :hover,
-  :focus {
-    background: ${theme.colors.blueGradient};
+  display: none;
+  @media screen and (${props => props.theme.media.md}) {
+    height: 40px;
+    width: 129px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 16px;
+    border-radius: 40px;
+    font-size: 16px;
+    font-family: ${theme.fonts.main};
+    font-weight: ${theme.fontWeights.bold};
+    border: none;
+    background: ${theme.colors.blue};
+    color: ${theme.colors.white};
+    cursor: pointer;
+    :hover,
+    :focus {
+      background: ${theme.colors.blueGradient};
+    }
   }
-}
-
 `;
 export const BtnAddCurcle = styled.button`
   height: 80px;
@@ -275,33 +276,32 @@ export const BtnRegLog = styled.button`
   }
 `;
 export const BtnFilter = styled.button`
-display: none;
-@media screen and (${props => props.theme.media.md}){
-  height: 40px;
-  width: 129px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 12px;
-  border-radius: 40px;
-  border: 2px solid ${theme.colors.blue};
-  color: ${theme.colors.blue};
-  background-color: ${theme.colors.white};
-  font-size: 16px;
-  font-family: ${theme.fonts.main};
-  font-weight: ${theme.fontWeights.bold};
-  cursor: pointer;
-  stroke: ${theme.colors.blue};
-  fill: none;
-  :hover,
-  :focus & svg {
-    stroke: ${theme.colors.white};
-    color: ${theme.colors.white};
-    border: none;
-    background: ${theme.colors.blueGradient};
+  display: none;
+  @media screen and (${props => props.theme.media.md}) {
+    height: 40px;
+    width: 129px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    border-radius: 40px;
+    border: 2px solid ${theme.colors.blue};
+    color: ${theme.colors.blue};
+    background-color: ${theme.colors.white};
+    font-size: 16px;
+    font-family: ${theme.fonts.main};
+    font-weight: ${theme.fontWeights.bold};
+    cursor: pointer;
+    stroke: ${theme.colors.blue};
+    fill: none;
+    :hover,
+    :focus & svg {
+      stroke: ${theme.colors.white};
+      color: ${theme.colors.white};
+      border: none;
+      background: ${theme.colors.blueGradient};
+    }
   }
-}
-
 `;
 // export const Filter = styled.svg`
 //   fill: none;
@@ -356,7 +356,7 @@ export const ToHeart = styled.svg`
   stroke: ${theme.colors.white};
   margin-left: 11px;
 `;
-export const BtnContact = styled.button`
+export const BtnContact = styled.a`
   height: 40px;
   width: 256px;
   border-radius: 40px;

@@ -19,25 +19,21 @@ import {
   PetInfoItem,
   TelInfo,
 } from './ModalNotice.styled';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { getNoticeById } from 'api/notices';
 
 export const ModalItem = ({ onClick, id }) => {
   const [petsDetails, setPetsDetails] = useState({});
 
-  const fetchPetsDetail = async id => {
-    await axios
-      .get(`https://your-pet-api.onrender.com/api/v1/notices/${id}`)
-      .then(data => setPetsDetails(data.data));
-  };
-
   useEffect(() => {
     try {
-      fetchPetsDetail(id);
-    } catch (error) {
-      console.error(error);
-    }
+      (async () => {
+        const response = await getNoticeById(id);
+        setPetsDetails(response.data);
+      })();
+    } catch (error) {}
   }, [id]);
+
   console.log(petsDetails);
   const {
     user,
@@ -51,6 +47,9 @@ export const ModalItem = ({ onClick, id }) => {
     breed,
     comments,
   } = petsDetails;
+  const email = user?.email;
+  const phone = user?.phone;
+  const birthday = date?.toString().slice(0, 10).split('-').reverse().join('-');
 
   return (
     <>
@@ -64,7 +63,7 @@ export const ModalItem = ({ onClick, id }) => {
           <div>
             <Text>{title}</Text>
             <PetInfoList>
-              <li>
+              <div>
                 <InfoFlag>Name:</InfoFlag>
                 <InfoFlag>Birthday:</InfoFlag>
                 <InfoFlag>Breed:</InfoFlag>
@@ -72,23 +71,24 @@ export const ModalItem = ({ onClick, id }) => {
                 <InfoFlag>The sex:</InfoFlag>
                 <InfoFlag>Email:</InfoFlag>
                 <InfoFlag>Phone:</InfoFlag>
-              </li>
+              </div>
               <PetInfoItem>
-                <InfoValue>{name}</InfoValue>
-                <InfoValue>{date}</InfoValue>
-                <InfoValue>{breed}</InfoValue>
-                <InfoValue>{location} </InfoValue>
-                <InfoValue>{sex}</InfoValue>
-                <MailInfo href="mailto:">{user?.email}</MailInfo>
-                <TelInfo href="tel:+">{user?.phone}</TelInfo>
+                <InfoValue>{name || ''}</InfoValue>
+                <InfoValue>{birthday || ''}</InfoValue>
+                <InfoValue>{breed || ''}</InfoValue>
+                <InfoValue>{location || ''} </InfoValue>
+                <InfoValue>{sex || ''}</InfoValue>
+                <MailInfo href={`${'mailto:' + email}`}>{email || ''}</MailInfo>
+                <TelInfo href={`${'tel:' + phone || ''}`}>
+                  {phone || ''}
+                </TelInfo>
               </PetInfoItem>
             </PetInfoList>
           </div>
         </FlexBlock>
-
-        <CommentInfo>Comments: {comments}</CommentInfo>
+        <CommentInfo>Comments: {comments || ''}</CommentInfo>
         <BtnContainer>
-          <BtnCall />
+          <BtnCall tel={`${'tel:' + phone || ''}`} />
           <BtnAddTo />
         </BtnContainer>
       </FlexContainer>

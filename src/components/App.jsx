@@ -8,7 +8,7 @@ import { theme } from '../theme/theme';
 // import { Loader } from './Loader/Loader';
 // import PawLoader from '../images/Loader.png';
 
-import { NoticesCategoriesList } from './Notices (new)/NoticesCategoriesList/NoticesCategoriesList';
+import { NoticesCategoriesList } from './Notices/NoticesCategoriesList/NoticesCategoriesList';
 
 import { useEffect } from 'react';
 import { userCurrent } from 'redux/auth/authService';
