@@ -35,9 +35,12 @@ export const PetsItem = ({ id, url, name, date, breed, comments, delPet }) => {
   return (
     <>
       <Wrapper>
-        <ImageWrapper>
-          <Image src={url} alt={name} loading="lazy" />
-        </ImageWrapper>
+        <div>
+          <ImageWrapper>
+            <Image src={url} alt={name} loading="lazy" />
+          </ImageWrapper>
+        </div>
+
         <TextWrapper>
           <TextContent>
             <Title>

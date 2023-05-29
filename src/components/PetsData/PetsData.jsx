@@ -1,12 +1,17 @@
 import { useState, useEffect } from 'react';
-import { BtnAddPet } from 'components/buttons/buttons';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from 'hooks/useAuth';
+import { BtnAddPetUser } from 'components/buttons/buttons';
 import { PetsList } from './PetsList/PetsList';
 import { Title, Wrapper, TitleWrapper } from './PetsData.styled';
 import { getPets } from 'api/pets';
 import { deletePet } from 'api/pets';
+import { notify } from 'helpers/notification';
 
 export const PetsData = () => {
   const [data, SetData] = useState([]);
+  const navigate = useNavigate();
+  const { isLoggedIn } = useAuth;
 
   useEffect(() => {
     (async () => {
@@ -16,6 +21,14 @@ export const PetsData = () => {
       } catch (error) {}
     })();
   }, []);
+
+  const handleAddPet = () => {
+    if (!isLoggedIn) {
+      notify('warning', 'To add a pet, you must be a registered user');
+      return;
+    }
+    navigate('/add-pet');
+  };
 
   const handleDeleteBtn = async id => {
     try {
@@ -31,7 +44,7 @@ export const PetsData = () => {
     <Wrapper>
       <TitleWrapper>
         <Title>My pets:</Title>
-        <BtnAddPet />
+        <BtnAddPetUser onClick={handleAddPet} />
       </TitleWrapper>
       <PetsList data={data} delPet={handleDeleteBtn} />
     </Wrapper>

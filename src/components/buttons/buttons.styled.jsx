@@ -154,6 +154,28 @@ export const BtnAdd = styled.button`
     }
   }
 `;
+export const BtnAddUser = styled.button`
+  height: 40px;
+  width: 129px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  padding-left: 16px;
+  border-radius: 40px;
+  font-size: 16px;
+  font-family: ${theme.fonts.main};
+  font-weight: ${theme.fontWeights.bold};
+  border: none;
+  background: ${theme.colors.blue};
+  color: ${theme.colors.white};
+  cursor: pointer;
+  :hover,
+  :focus {
+    background: ${theme.colors.blueGradient};
+  }
+`;
 export const BtnAddCurcle = styled.button`
   height: 80px;
   width: 80px;
