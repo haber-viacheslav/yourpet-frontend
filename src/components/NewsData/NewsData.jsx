@@ -26,7 +26,6 @@ export const NewsData = () => {
     () => Object.fromEntries([...searchParams]),
     [searchParams]
   );
-  console.log('URLSEARCHparams', params);
 
   useEffect(() => {
     setIsLoading(true);
@@ -70,7 +69,7 @@ export const NewsData = () => {
     <Container>
       <ReusableTitle>News</ReusableTitle>
 
-      {isLoading && <Loader loaderSrc={Cat} size={160} />}
+      {isLoading && <Loader loaderSrc={Cat} size={300} />}
       {isError && !news.length && <NotFound />}
 
       <SearchNewsForm onSubmit={handleSearchSubmit} />
