@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSchedule } from 'hooks/useSchedule';
+import paws from '../../../images/paws.png';
 
 import {
   CardTitle,
@@ -20,6 +21,10 @@ import {
   MinTime,
   MaxTime,
 } from './CardItem.styled';
+
+const Placeholder = () => {
+  return <img src={paws} width={130} height={20} alt={paws}></img>;
+};
 
 export const CardItem = ({
   email,
@@ -160,15 +165,15 @@ export const CardItem = ({
             aria-label="address"
           >
             <Title>Address:</Title>
-            <Text>{address ? address : '-- -- -- -- --'}</Text>
+            <Text>{address ? address : <Placeholder />}</Text>
           </Link>
           <Link href={`mailto:${email || ''}`} aria-label="email">
             <Title>Email:</Title>
-            <Text>{email ? email : '-- -- -- -- --'}</Text>
+            <Text>{email ? email : <Placeholder />}</Text>
           </Link>
           <Link href={`tel:${phone}`} aria-label="phone number">
             <Title>Phone:</Title>
-            <Text>{phone ? phone : '-- -- -- -- --'}</Text>
+            <Text>{phone ? phone : <Placeholder />}</Text>
           </Link>
         </TextContent>
       </ContentWrapper>
