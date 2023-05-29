@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import Cat from '../../images/walking-cat.gif';
 import { Loader } from 'components/Loader/Loader';
-import { SearchNewsForm } from 'components/News/SearchNewsForm/SearchNewsForm';
+import { Search } from 'components/Search/Search';
 import { ReusableTitle } from 'components/ReusableTitle/ReusableTitle';
 import { NewsList } from '../../components/News/NewsList/NewsList';
 import { Pagination } from '../Pagination/Pagination';
@@ -74,7 +74,7 @@ export const NewsData = () => {
       {isLoading && <Loader loaderSrc={Cat} size={300} />}
       {isError && !news.length && <NotFound />}
 
-      <SearchNewsForm onSubmit={handleSearchSubmit} />
+      <Search onSubmit={handleSearchSubmit} />
       {news && news.length > 0 && <NewsList news={news} />}
       {totalPages > 1 && (
         <Pagination
