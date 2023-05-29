@@ -42,6 +42,7 @@ import {
   StyledEditPhotoBtn,
   StyledConfirmPhotoBtn,
   SVG,
+  PetInfoNoticesStyle,
 } from '../buttons/buttons.styled';
 
 // components svg
@@ -179,6 +180,16 @@ export const PetInfo = ({ Svg, text, onClick }) => {
         <Svg />
         <TexStyletInfo> {text}</TexStyletInfo>
       </PetInfoStyle>
+    </>
+  );
+};
+export const PetNoticesInfo = ({ Svg, text, onClick }) => {
+  return (
+    <>
+      <PetInfoNoticesStyle onClick={onClick}>
+        <Svg />
+        <TexStyletInfo> {text}</TexStyletInfo>
+      </PetInfoNoticesStyle>
     </>
   );
 };

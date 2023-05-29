@@ -4,14 +4,13 @@ import { setNoticeToFavorite } from 'api/notices';
 import { Modal } from 'components/Modal/Modal';
 import { ModalItem } from '../ModalNotice/ModalNotice';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
-import { DeletePetBtn } from 'components/buttons/buttons';
+import { DeletePetBtn, PetInfo } from 'components/buttons/buttons';
 import { notify } from 'helpers/notification';
 import {
   BtnAddFavorite,
   BtnAddPetCircle,
   BtnLearnMoreFavorite,
   PetCategory,
-  PetInfo,
   SvgClock,
   SvgFemale,
   SvgLocation,
