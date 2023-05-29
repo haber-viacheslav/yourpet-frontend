@@ -21,10 +21,6 @@ export const NewsData = () => {
   const [isError, setIsError] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
-  // const query = searchParams.get('search') ?? '';
-  // const pageNum = searchParams.get('page') ?? '';
-  // console.log('query', query);
-  // console.log('pageNum', pageNum);
   const isTablet = window.matchMedia(theme.media.md).matches;
   const params = useMemo(
     () => Object.fromEntries([...searchParams]),
