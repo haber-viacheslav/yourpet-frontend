@@ -14,14 +14,13 @@ import {
   Label,
   CheckBox,
 } from './FilterCards.styled';
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 
 
 export const FilterCards = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenAge, setIsOpenAge] = useState(false);
   const [isOpenGender, setIsOpenGender] = useState(false);
-  // const [searchParams, setSearchParams] = useSearchParams();
   const [checkedItems, setCheckedItems] = useState({
     'age-3-12m': false,
     'age-1-year': false,
@@ -31,7 +30,8 @@ export const FilterCards = () => {
   });
 
 
-   const searchParams = new URLSearchParams();
+ useEffect(() => {
+    const searchParams = new URLSearchParams();
 
     Object.entries(checkedItems).forEach(([key, value]) => {
       if (value) {
@@ -41,20 +41,8 @@ export const FilterCards = () => {
    
    console.log(searchParams.toString())
 
-//  useEffect(() => {
-//     const searchParams = new URLSearchParams();
-
-//     Object.entries(checkedItems).forEach(([key, value]) => {
-//       if (value) {
-//         searchParams.append(key, String(value));
-//       }
-//     });
    
-//    console.log(searchParams.toString())
-
-//    setSearchParams(searchParams.toString());
-   
-//   }, [checkedItems, setSearchParams]);
+  }, [checkedItems]);
 
   const dropdownRef = useRef(null);
 
@@ -87,7 +75,7 @@ export const FilterCards = () => {
             <Title>Filters</Title>
             <FilterGroup>
               <MenuButton onClick={toggleDropdownAge}>
-                {isOpenAge ? <IconClose /> : <IconOpen />}
+                {isOpenAge ?  <IconOpen /> : <IconClose />}
                 <Text>By age</Text>
               </MenuButton>
               {isOpenAge && (
@@ -145,7 +133,7 @@ export const FilterCards = () => {
             </FilterGroup>
             <FilterGroup>
               <MenuButton onClick={toggleDropdownGender}>
-                {isOpenGender ? <IconClose /> : <IconOpen />}
+                {isOpenGender ? <IconOpen /> : <IconClose />}
                 <Text>By gender</Text>
               </MenuButton>
               {isOpenGender && (
