@@ -14,10 +14,8 @@ export const setToken = token => {
 axios.interceptors.response.use(
   resp => resp,
   async error => {
-    if (
-      error.response.data.code === 403
-      // || error.response.data.message.includes('authorization')
-    ) {
+    if (error.response.data.code === 403) {
+      console.log('REFRESHING...');
       const oldRefreshToken = localStorageService.getItem('refreshToken');
       try {
         const { data } = await axios.post('/auth/refresh', {
@@ -33,7 +31,6 @@ axios.interceptors.response.use(
         return Promise.reject(error);
       }
     }
-
     return Promise.reject(error);
   }
 );
