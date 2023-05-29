@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Cat from '../../images/walking-cat.gif';
 import { Loader } from 'components/Loader/Loader';
 import { SearchNewsForm } from 'components/News/SearchNewsForm/SearchNewsForm';
@@ -10,7 +10,7 @@ import { theme } from '../../theme/theme';
 import { Container } from 'components/Container/Container';
 import { useSearchParams } from 'react-router-dom';
 import { fetchNews } from '../../api/news.js';
-// import { sortNewsByDate } from 'helpers/sortNewsByDate';
+import { sortNewsByDate } from 'helpers/sortNewsByDate';
 
 export const NewsData = () => {
   const limit = 6;
@@ -21,10 +21,16 @@ export const NewsData = () => {
   const [isError, setIsError] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get('search') ?? '';
-  const pageNumber = searchParams.get('page') ?? '';
+  // const query = searchParams.get('search') ?? '';
+  // const pageNum = searchParams.get('page') ?? '';
+  // console.log('query', query);
+  // console.log('pageNum', pageNum);
   const isTablet = window.matchMedia(theme.media.md).matches;
-  // const sortedNews = sortNewsByDate(news);
+  const params = useMemo(
+    () => Object.fromEntries([...searchParams]),
+    [searchParams]
+  );
+  console.log('URLSEARCHparams', params);
 
   useEffect(() => {
     setIsLoading(true);
@@ -35,7 +41,7 @@ export const NewsData = () => {
         if (!newNews.totalPages) {
           return;
         }
-        setNews(newNews.data);
+        setNews(sortNewsByDate(newNews.data));
         setTotalPages(newNews.totalPages);
       } catch (error) {
         setIsError(true);
@@ -58,11 +64,10 @@ export const NewsData = () => {
     setPage(1);
   };
 
-  const handlePageChange = pageNumber => {
-    if (query) {
-      setSearchParams({ query, page });
-    }
-    setPage(pageNumber);
+  const handlePageChange = page => {
+    setSearchParams({ ...params, page });
+
+    setPage(page);
   };
 
   return (
