@@ -64,7 +64,7 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
       delNotice(id);
       setIsDelete(false);
     } catch (error) {
-      console.log(error);
+      notify('error', 'Delete available only to owner');
     }
   };
 

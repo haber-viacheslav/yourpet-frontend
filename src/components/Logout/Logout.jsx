@@ -35,12 +35,13 @@ export const Logout = () => {
   return (
     <>
       <LogOut onClick={handleLogOut} />
+
       {isLogOut && (
         <ModalApproveAction
           onActivate={handleLogOutYes}
           onClick={handleLogOutCancel}
           variant={'logOut'}
-        />
+        /> 
       )}
     </>
   );
