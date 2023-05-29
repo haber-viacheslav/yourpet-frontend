@@ -121,7 +121,7 @@ export const BtnContainer = styled.div`
   flex-direction: column;
   gap: 8px;
   @media screen and (${props => props.theme.media.md}) {
-    flex-direction: row;
+    flex-direction: row-reverse;
     width: 273px;
     gap: 17px;
     position: absolute;
