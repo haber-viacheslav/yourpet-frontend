@@ -23,9 +23,9 @@ export const FilterCards = () => {
   const [isOpenGender, setIsOpenGender] = useState(false);
 // const [searchParams, setSearchParams] = useSearchParams();
   const [checkedItems, setCheckedItems] = useState({
-    'age-3-12m': false,
-    'age-1-year': false,
-    'age-2-year': false,
+    '3-12m': false,
+    '1-year': false,
+    '2-year': false,
     female: false,
     male: false,
   });
@@ -34,9 +34,13 @@ export const FilterCards = () => {
  useEffect(() => {
    const searchParams = new URLSearchParams();
 
-    Object.entries(checkedItems).forEach(([key, value]) => {
+  Object.entries(checkedItems).forEach(([key, value]) => {
     if (value) {
-      searchParams.append('gender', key);
+      if (key.startsWith('age')) {
+        searchParams.append('age', key);
+      } else {
+        searchParams.append('gender', key);
+      }
     }
   });
    
@@ -117,48 +121,48 @@ fetchPets();
                 <Menu>
                   <Item>
                     <Label>
-                      {checkedItems['age-3-12m'] ? (
+                      {checkedItems['3-12m'] ? (
                         <IconCheckRound />
                       ) : (
                         <IconCheck />
                       )}
                       <CheckBox
                         type="checkbox"
-                        checked={checkedItems['age-3-12m']}
+                        checked={checkedItems['3-12m']}
                         onChange={handleCheckboxChange}
-                        name={'age-3-12m'}
+                        name={'3-12m'}
                       />
                       3-12m
                     </Label>
                   </Item>
                   <Item>
                     <Label>
-                      {checkedItems['age-1-year'] ? (
+                      {checkedItems['1-year'] ? (
                         <IconCheckRound />
                       ) : (
                         <IconCheck />
                       )}
                       <CheckBox
                         type="checkbox"
-                        checked={checkedItems['age-1-year']}
+                        checked={checkedItems['1-year']}
                         onChange={handleCheckboxChange}
-                        name={'age-1-year'}
+                        name={'1-year'}
                       />
                       1 year
                     </Label>
                   </Item>
                   <Item>
                     <Label>
-                      {checkedItems['age-2-year'] ? (
+                      {checkedItems['2-year'] ? (
                         <IconCheckRound />
                       ) : (
                         <IconCheck />
                       )}
                       <CheckBox
                         type="checkbox"
-                        checked={checkedItems['age-2-year']}
+                        checked={checkedItems['2-year']}
                         onChange={handleCheckboxChange}
-                        name={'age-2-year'}
+                        name={'2-year'}
                       />
                       2 year
                     </Label>
