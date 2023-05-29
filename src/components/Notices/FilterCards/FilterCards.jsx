@@ -14,7 +14,6 @@ import {
   CheckBox,
 } from './FilterCards.styled';
 import { useEffect } from 'react';
-import { getNoticeByFilters } from 'api/notices';
 
 export const FilterCards = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,9 +28,7 @@ export const FilterCards = () => {
     male: false,
   });
 
-  useEffect(() => {
-    const fetchPets = async () => {
-      try {
+
         const searchParams = new URLSearchParams();
 
         const currentDate = new Date();
@@ -112,16 +109,7 @@ export const FilterCards = () => {
 
         const queryString = searchParams.toString();
 
-        console.log(queryString);
-        const response = await getNoticeByFilters(queryString);
-        console.log(response.data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchPets();
-  }, [checkedItems]);
+ console.log(queryString)
 
   // Close menu by Esc key and clicking on the backdrop
   useEffect(() => {
