@@ -25,6 +25,7 @@ export const UserName = styled.span`
   display: inherit;
   margin-left: 12px;
   display: ${({ isOpen }) => (isOpen ? 'display' : 'none')};
+  color: ${props => props.theme.colors.orange};
   @media screen and (${props => props.theme.media.md}) {
     display: inherit;
     font-weight: ${props => props.theme.fontWeights.medium};
