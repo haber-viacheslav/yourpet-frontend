@@ -39,7 +39,7 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
       const response = await setNoticeToFavorite(notice._id);
       if (response.data.code === 200) {
         setIsNoticeFavorite(prevState => !prevState);
-        notify('info', 'Your notice has been added to the favorites')
+        notify('success', 'Your notice has been added to the favorites')
       }
       if (!response.data.code === 200) {
         notify(
@@ -100,8 +100,9 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
           />
         </Modal>
       )}
+     
       <ContainerCard>
-        <>
+        <>        
           <Img src={imgUrl} alt="Pet image" />
           <BtnAddFavorite
             onClick={handleAddToFavorite}
