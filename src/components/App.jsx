@@ -8,7 +8,7 @@ import { theme } from '../theme/theme';
 // import { Loader } from './Loader/Loader';
 // import PawLoader from '../images/Loader.png';
 
-import { NoticesCategoriesList } from './Notices (new)/NoticesCategoriesList/NoticesCategoriesList';
+import { NoticesCategoriesList } from './Notices (new)/NoticesCategoriesList (new)/NoticesCategoriesList';
 
 import { useEffect } from 'react';
 import { userCurrent } from 'redux/auth/authService';
@@ -69,7 +69,7 @@ export const App = () => {
           />
           <Route path="/notices" element={<NoticesPage />}>
             <Route index element={<NoticesCategoriesList />} />
-            <Route path="sell" element={<NoticesCategoriesList />} />
+            <Route exact path="sell" element={<NoticesCategoriesList />} />
             <Route path="lost-found" element={<NoticesCategoriesList />} />
             <Route path="for-free" element={<NoticesCategoriesList />} />
             <Route

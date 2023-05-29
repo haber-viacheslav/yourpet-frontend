@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { setNoticeToFavorite } from 'api/notices';
 import { Modal } from 'components/Modal/Modal';
 import { ModalItem } from '../ModalNotice/ModalNotice';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 import { DeletePetBtn } from 'components/buttons/buttons';
+import { notify } from 'helpers/notification';
 import {
   BtnAddFavorite,
   BtnAddPetCircle,
@@ -26,14 +28,18 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
   const [isDelete, setIsDelete] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const onClick = () => {
-    return setIsOpen(!isOpen);
+  const handleModalClick = () => {
+    setIsOpen(!isOpen);
   };
 
-  const { imgUrl, sex, location, category, _id: id, title, date } = notice;
-
-  const Svg = () => {
-    return sex === 'female' ? SvgFemale : SvgMale;
+  const handleAddToFavorite = async () => {
+    try {
+      const { _id: id } = notice;
+      const response = await setNoticeToFavorite(id);
+      console.log(response);
+    } catch (error) {
+      notify('error', 'Only available to authorized users');
+    }
   };
 
   const handleDeleteNotice = () => {
@@ -52,6 +58,12 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
       console.log(error);
     }
   };
+  console.log(notice);
+  const { imgUrl, sex, location, category, _id: id, title, date } = notice;
+
+  const Svg = () => {
+    return sex === 'female' ? SvgFemale : SvgMale;
+  };
 
   let ege = Math.round((Date.now() - Date.parse(date)) / 31557600000);
   const years = ege >= 2 ? 'years' : 'year';
@@ -59,13 +71,13 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
   return (
     <>
       {isOpen && (
-        <Modal onClick={onClick}>
-          <ModalItem onClick={onClick} id={id} />
+        <Modal onClick={handleModalClick}>
+          <ModalItem onClick={handleModalClick} id={id} />
         </Modal>
       )}
       <ContainerCard>
         <Img src={imgUrl} alt="Pet image" />
-        <BtnAddFavorite />
+        <BtnAddFavorite onClick={handleAddToFavorite} />
         <DeleteBtnWrapper>
           <DeletePetBtn onClick={handleDeleteNotice} />
         </DeleteBtnWrapper>
@@ -77,7 +89,7 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
           <PetInfo Svg={Svg()} text={`${sex}`} />
         </ContainerInfo>
         <Text>{title}</Text>
-        <BtnLearnMoreFavorite id={id} onClick={onClick} />
+        <BtnLearnMoreFavorite id={id} onClick={handleModalClick} />
       </ContainerCard>
       {isDelete && (
         <ModalApproveAction

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 // import { useLocation } from 'react-router-dom';
 import { Modal } from 'components/Modal/Modal';
-import { ModalNotice } from '../ModalNotice/ModalNotice';
+import { ModalNotice } from '../ModalNotice (new)/ModalNotice';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 import { DeletePetBtn } from 'components/buttons/buttons';
 import {
@@ -88,11 +88,7 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
           <PetInfo Svg={Svg()} text={`${sex}`} />
         </ContainerInfo>
         <Text>{title}</Text>
-        <BtnLearnMoreFavorite
-          onClick={handleToggle}
-          // to={`notices/${id}`}
-          // state={{ from: location }}
-        />
+        <BtnLearnMoreFavorite onClick={handleToggle} />
       </ContainerCard>
       {isDelete && (
         <ModalApproveAction
