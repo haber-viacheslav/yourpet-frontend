@@ -14,48 +14,80 @@ import {
   CheckBox,
 } from './FilterCards.styled';
 import { useEffect } from 'react';
-import axios from 'axios';
+import { getNoticeByFilters } from 'api/notices';
+
+
 
 
 export const FilterCards = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenAge, setIsOpenAge] = useState(false);
   const [isOpenGender, setIsOpenGender] = useState(false);
-// const [searchParams, setSearchParams] = useSearchParams();
+
   const [checkedItems, setCheckedItems] = useState({
-    '3-12m': false,
-    '1-year': false,
-    '2-year': false,
+  'upToYear': false,
+  'upToTwoYears': false,
+  'upToThreeYears': false,
     female: false,
     male: false,
   });
 
 
  useEffect(() => {
-   const searchParams = new URLSearchParams();
-
-  Object.entries(checkedItems).forEach(([key, value]) => {
-    if (value) {
-      if (key.startsWith('age')) {
-        searchParams.append('age', key);
-      } else {
-        searchParams.append('gender', key);
-      }
-    }
-  });
    
-  //  console.log(`https://your-pet-api.onrender.com/api/v1/notices?${searchParams.toString()}`)
+   
+   
 
-    const fetchPets = async () => {
+const fetchPets = async () => {
     try {
-      const response = await axios.get(
-        `https://your-pet-api.onrender.com/api/v1/notices?${searchParams.toString()}`
-      );
-      console.log(response.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+      const searchParams = new URLSearchParams();
+
+      const currentDate = new Date();
+
+      if (checkedItems['upToYear']) {
+        const fromTheDate1 = new Date(currentDate.getFullYear() - 1, currentDate.getMonth(), currentDate.getDate());
+        const toTheDate1 = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
+        searchParams.append('fromTheDate', fromTheDate1.toISOString().split('T')[0]);
+        searchParams.append('toTheDate', toTheDate1.toISOString().split('T')[0]);
+      }
+
+      if (checkedItems['upToTwoYears']) {
+        const fromTheDate2 = new Date(currentDate.getFullYear() - 2, currentDate.getMonth(), currentDate.getDate());
+        const toTheDate2 = new Date(currentDate.getFullYear() - 1, currentDate.getMonth(), currentDate.getDate());
+        searchParams.append('fromTheDate', fromTheDate2.toISOString().split('T')[0]);
+        searchParams.append('toTheDate', toTheDate2.toISOString().split('T')[0]);
+      }
+
+      if (checkedItems['upToThreeYears']) {
+        const fromTheDate3 = new Date(currentDate.getFullYear() - 3, currentDate.getMonth(), currentDate.getDate());
+        const toTheDate3 = new Date(currentDate.getFullYear() - 2, currentDate.getMonth(), currentDate.getDate());
+        searchParams.append('fromTheDate', fromTheDate3.toISOString().split('T')[0]);
+        searchParams.append('toTheDate', toTheDate3.toISOString().split('T')[0]);
+      }
+
+      const ageFilters = [];
+      Object.entries(checkedItems).forEach(([key, value]) => {
+        if (value) {
+          if (key.startsWith('upTo')) {
+            ageFilters.push(key);
+          } else if (key === 'female' || key === 'male') {
+            searchParams.append('gender', key);
+          }
+        }
+      });
+
+
+    const queryString = searchParams.toString();
+    const url = `https://your-pet-api.onrender.com/api/v1/notices?${queryString}`;
+
+    console.log(queryString)
+    const response = await getNoticeByFilters(url);
+    console.log(response.data.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 fetchPets();
  }, [checkedItems]);
   
@@ -121,48 +153,48 @@ fetchPets();
                 <Menu>
                   <Item>
                     <Label>
-                      {checkedItems['3-12m'] ? (
+                      {checkedItems['upToYear'] ? (
                         <IconCheckRound />
                       ) : (
                         <IconCheck />
                       )}
                       <CheckBox
                         type="checkbox"
-                        checked={checkedItems['3-12m']}
+                        checked={checkedItems['upToYear']}
                         onChange={handleCheckboxChange}
-                        name={'3-12m'}
+                        name={'upToYear'}
                       />
                       3-12m
                     </Label>
                   </Item>
                   <Item>
                     <Label>
-                      {checkedItems['1-year'] ? (
+                      {checkedItems['upToTwoYears'] ? (
                         <IconCheckRound />
                       ) : (
                         <IconCheck />
                       )}
                       <CheckBox
                         type="checkbox"
-                        checked={checkedItems['1-year']}
+                        checked={checkedItems['upToTwoYears']}
                         onChange={handleCheckboxChange}
-                        name={'1-year'}
+                        name={'upToTwoYears'}
                       />
                       1 year
                     </Label>
                   </Item>
                   <Item>
                     <Label>
-                      {checkedItems['2-year'] ? (
+                      {checkedItems['upToThreeYears'] ? (
                         <IconCheckRound />
                       ) : (
                         <IconCheck />
                       )}
                       <CheckBox
                         type="checkbox"
-                        checked={checkedItems['2-year']}
+                        checked={checkedItems['upToThreeYears']}
                         onChange={handleCheckboxChange}
-                        name={'2-year'}
+                        name={'upToThreeYears'}
                       />
                       2 year
                     </Label>

@@ -38,3 +38,10 @@ export const setNoticeToFavorite = async id => {
   console.log(response);
   return response;
 };
+
+// GetNoticeByFilters
+
+export const getNoticeByFilters = async queryString => {
+  const response = await axios.get(`/notices?${queryString}`);
+  return response;
+};
