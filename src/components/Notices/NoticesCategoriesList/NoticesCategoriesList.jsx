@@ -1,29 +1,24 @@
-import { NoticesCategoryItem } from 'components/Notices (new)/NoticesCategoriesItem/NoticesCategoriesItem';
-// import petsList from '../../../mockData/petsList';
-// import { nanoid } from '@reduxjs/toolkit';
-import { List } from './NoticesCategoriesList.styled';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { deleteNotice } from 'api/notices';
+import { NoticesCategoryItem } from 'components/Notices (new)/NoticesCategoriesItem (new)/NoticesCategoriesItem';
+import { getAllNotices, getPrivateNotices, deleteNotice } from 'api/notices';
+import { List } from './NoticesCategoriesList.styled';
 
-export const NoticesCategoriesList = () => {
+export const NoticesCategoriesList = ({ url, category }) => {
   const [notices, setNotices] = useState([]);
 
-  const fetchPets = async () => {
-    try {
-      const response = await axios.get(
-        'https://your-pet-api.onrender.com/api/v1/notices'
-      );
-      setNotices(response.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    fetchPets();
-  }, []);
-
+    try {
+      (async () => {
+        if (category === 'favorite' || category === 'own') {
+          const response = await getPrivateNotices(url);
+          setNotices(response.data.data);
+        } else {
+          const response = await getAllNotices(url);
+          setNotices(response.data.data);
+        }
+      })();
+    } catch (error) {}
+  }, [url, category]);
   const handleDeleteBtn = async id => {
     try {
       const index = notices.findIndex(el => el['_id'] === id);
