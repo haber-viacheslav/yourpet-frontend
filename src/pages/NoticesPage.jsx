@@ -11,12 +11,11 @@ import { theme } from '../theme/theme';
 import { Pagination } from 'components/Pagination/Pagination';
 
 const NoticesPage = () => {
-  const limit = 11;
+  const limit = 10;
   const [category, setCategory] = useState('sell');
   const [notices, setNotices] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [isError, setIsError] = useState(false);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const isTablet = window.matchMedia(theme.media.mdToLg).matches;
 
@@ -86,7 +85,7 @@ const NoticesPage = () => {
           />
           {totalPages > 1 && (
             <Pagination
-              currentPage={params.page}
+              currentPage={+params.page}
               totalPages={totalPages}
               onPageChange={handlePageChange}
               paginationLength={isTablet ? 5 : 4}

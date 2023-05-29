@@ -33,6 +33,7 @@ export const NewsData = () => {
     const getNews = async ({ search, page, limit }) => {
       try {
         const newNews = await fetchNews({ search, page, limit });
+        console.log('newNews', newNews);
         if (!newNews.totalPages) {
           return;
         }
@@ -78,7 +79,7 @@ export const NewsData = () => {
       {totalPages > 1 && (
         <Pagination
           currentPage={page}
-          totalPages={20}
+          totalPages={totalPages}
           onPageChange={handlePageChange}
           paginationLength={isTablet ? 5 : 4}
         />
