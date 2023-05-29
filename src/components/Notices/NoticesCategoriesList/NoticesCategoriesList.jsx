@@ -1,6 +1,8 @@
 import { NoticesCategoryItem } from '../NoticesCategoriesItem/NoticesCategoriesItem';
 import { List } from './NoticesCategoriesList.styled';
 
+
+
 export const NoticesCategoriesList = ({ notices, delNotice }) => {
   return (
     <>
