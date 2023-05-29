@@ -12,8 +12,8 @@ export const UserNav = ({ isOpen }) => {
     <Box>
       <UserLink to="./user">
         <SvgUser />
-      </UserLink>
-      <UserName isOpen={isOpen}>{nickName}</UserName>
+         <UserName isOpen={isOpen}>{nickName}</UserName>
+      </UserLink>     
     </Box>
   );
 };
