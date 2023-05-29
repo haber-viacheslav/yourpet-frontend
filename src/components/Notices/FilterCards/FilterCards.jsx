@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { BtnFilters, BtnFiltersCircle } from 'components/buttons/buttons';
-import {IconClose, IconOpen, IconCheck, IconCheckRound} from './icons/icons'
+import { IconClose, IconOpen, IconCheck, IconCheckRound } from './icons/icons';
 import {
   DropdownWrapper,
   DropdownMenu,
@@ -16,83 +16,115 @@ import {
 import { useEffect } from 'react';
 import { getNoticeByFilters } from 'api/notices';
 
-
-
-
 export const FilterCards = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenAge, setIsOpenAge] = useState(false);
   const [isOpenGender, setIsOpenGender] = useState(false);
 
   const [checkedItems, setCheckedItems] = useState({
-  'upToYear': false,
-  'upToTwoYears': false,
-  'upToThreeYears': false,
+    upToYear: null,
+    upToTwoYears: null,
+    upToThreeYears: null,
     female: false,
     male: false,
   });
 
+  useEffect(() => {
+    const fetchPets = async () => {
+      try {
+        const searchParams = new URLSearchParams();
 
- useEffect(() => {
-   
-   
-   
+        const currentDate = new Date();
 
-const fetchPets = async () => {
-    try {
-      const searchParams = new URLSearchParams();
-
-      const currentDate = new Date();
-
-      if (checkedItems['upToYear']) {
-        const fromTheDate1 = new Date(currentDate.getFullYear() - 1, currentDate.getMonth(), currentDate.getDate());
-        const toTheDate1 = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
-        searchParams.append('fromTheDate', fromTheDate1.toISOString().split('T')[0]);
-        searchParams.append('toTheDate', toTheDate1.toISOString().split('T')[0]);
-      }
-
-      if (checkedItems['upToTwoYears']) {
-        const fromTheDate2 = new Date(currentDate.getFullYear() - 2, currentDate.getMonth(), currentDate.getDate());
-        const toTheDate2 = new Date(currentDate.getFullYear() - 1, currentDate.getMonth(), currentDate.getDate());
-        searchParams.append('fromTheDate', fromTheDate2.toISOString().split('T')[0]);
-        searchParams.append('toTheDate', toTheDate2.toISOString().split('T')[0]);
-      }
-
-      if (checkedItems['upToThreeYears']) {
-        const fromTheDate3 = new Date(currentDate.getFullYear() - 3, currentDate.getMonth(), currentDate.getDate());
-        const toTheDate3 = new Date(currentDate.getFullYear() - 2, currentDate.getMonth(), currentDate.getDate());
-        searchParams.append('fromTheDate', fromTheDate3.toISOString().split('T')[0]);
-        searchParams.append('toTheDate', toTheDate3.toISOString().split('T')[0]);
-      }
-
-      const ageFilters = [];
-      Object.entries(checkedItems).forEach(([key, value]) => {
-        if (value) {
-          if (key.startsWith('upTo')) {
-            ageFilters.push(key);
-          } else if (key === 'female' || key === 'male') {
-            searchParams.append('gender', key);
-          }
+        if (checkedItems['upToYear']) {
+          const fromTheDate1 = new Date(
+            currentDate.getFullYear() - 1,
+            currentDate.getMonth(),
+            currentDate.getDate()
+          );
+          const toTheDate1 = new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth(),
+            currentDate.getDate()
+          );
+          searchParams.append(
+            'fromTheDate',
+            fromTheDate1.toISOString().split('T')[0]
+          );
+          searchParams.append(
+            'toTheDate',
+            toTheDate1.toISOString().split('T')[0]
+          );
         }
-      });
 
+        if (checkedItems['upToTwoYears']) {
+          const fromTheDate2 = new Date(
+            currentDate.getFullYear() - 2,
+            currentDate.getMonth(),
+            currentDate.getDate()
+          );
+          const toTheDate2 = new Date(
+            currentDate.getFullYear() - 1,
+            currentDate.getMonth(),
+            currentDate.getDate()
+          );
+          searchParams.append(
+            'fromTheDate',
+            fromTheDate2.toISOString().split('T')[0]
+          );
+          searchParams.append(
+            'toTheDate',
+            toTheDate2.toISOString().split('T')[0]
+          );
+        }
 
-    const queryString = searchParams.toString();
-    const url = `https://your-pet-api.onrender.com/api/v1/notices?${queryString}`;
+        if (checkedItems['upToThreeYears']) {
+          const fromTheDate3 = new Date(
+            currentDate.getFullYear() - 3,
+            currentDate.getMonth(),
+            currentDate.getDate()
+          );
+          const toTheDate3 = new Date(
+            currentDate.getFullYear() - 2,
+            currentDate.getMonth(),
+            currentDate.getDate()
+          );
+          searchParams.append(
+            'fromTheDate',
+            fromTheDate3.toISOString().split('T')[0]
+          );
+          searchParams.append(
+            'toTheDate',
+            toTheDate3.toISOString().split('T')[0]
+          );
+        }
 
-    console.log(queryString)
-    const response = await getNoticeByFilters(url);
-    console.log(response.data.data);
-  } catch (error) {
-    console.log(error);
-  }
-};
+        const ageFilters = [];
+        Object.entries(checkedItems).forEach(([key, value]) => {
+          if (value) {
+            if (key.startsWith('upTo')) {
+              ageFilters.push(key);
+            } else if (key === 'female' || key === 'male') {
+              searchParams.append('gender', key);
+            }
+          }
+        });
 
-fetchPets();
- }, [checkedItems]);
-  
+        const queryString = searchParams.toString();
+
+        console.log(queryString);
+        const response = await getNoticeByFilters(queryString);
+        console.log(response.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchPets();
+  }, [checkedItems]);
+
   // Close menu by Esc key and clicking on the backdrop
-    useEffect(() => {
+  useEffect(() => {
     const handleEscapeKey = event => {
       if (event.key === 'Escape') {
         setIsOpen(false);
@@ -112,7 +144,7 @@ fetchPets();
       document.removeEventListener('keydown', handleEscapeKey);
       document.removeEventListener('mousedown', handleClickOutside);
     };
-    }, []);
+  }, []);
   // =====================
 
   const dropdownRef = useRef(null);
@@ -133,10 +165,12 @@ fetchPets();
     const { name } = event.target;
     setCheckedItems(prevCheckedItems => ({
       ...prevCheckedItems,
+      upToYear: name === 'upToYear' ? true : false,
+      upToTwoYears: name === 'upToTwoYears' ? true : false,
+      upToThreeYears: name === 'upToThreeYears' ? true : false,
       [name]: !prevCheckedItems[name],
     }));
   };
-
 
   return (
     <>
@@ -146,7 +180,7 @@ fetchPets();
             <Title>Filters</Title>
             <FilterGroup>
               <MenuButton onClick={toggleDropdownAge}>
-                {isOpenAge ?  <IconOpen /> : <IconClose />}
+                {isOpenAge ? <IconOpen /> : <IconClose />}
                 <Text>By age</Text>
               </MenuButton>
               {isOpenAge && (
@@ -159,10 +193,11 @@ fetchPets();
                         <IconCheck />
                       )}
                       <CheckBox
-                        type="checkbox"
-                        checked={checkedItems['upToYear']}
+                        type="radio"
+                        value="upToYear"
+                        checked={checkedItems['upToYear'] === 'upToYear'}
                         onChange={handleCheckboxChange}
-                        name={'upToYear'}
+                        name="upToYear"
                       />
                       3-12m
                     </Label>
@@ -175,10 +210,13 @@ fetchPets();
                         <IconCheck />
                       )}
                       <CheckBox
-                        type="checkbox"
-                        checked={checkedItems['upToTwoYears']}
+                        type="radio"
+                        value="upToTwoYears"
+                        checked={
+                          checkedItems['upToTwoYears'] === 'upToTwoYears'
+                        }
                         onChange={handleCheckboxChange}
-                        name={'upToTwoYears'}
+                        name="upToTwoYears"
                       />
                       1 year
                     </Label>
@@ -191,10 +229,13 @@ fetchPets();
                         <IconCheck />
                       )}
                       <CheckBox
-                        type="checkbox"
-                        checked={checkedItems['upToThreeYears']}
+                        type="radio"
+                        value="upToThreeYears"
+                        checked={
+                          checkedItems['upToThreeYears'] === 'upToThreeYears'
+                        }
                         onChange={handleCheckboxChange}
-                        name={'upToThreeYears'}
+                        name="upToThreeYears"
                       />
                       2 year
                     </Label>
@@ -209,7 +250,7 @@ fetchPets();
               </MenuButton>
               {isOpenGender && (
                 <Menu>
-                   <Item>
+                  <Item>
                     <Label>
                       {checkedItems['female'] ? (
                         <IconCheckRound />
@@ -252,5 +293,3 @@ fetchPets();
     </>
   );
 };
-
-
