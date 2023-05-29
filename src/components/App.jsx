@@ -52,9 +52,9 @@ export const App = () => {
           />
           <Route path="/notices" element={<NoticesPage />}>
             <Route index element={<NoticesCategoriesList />} />
-            <Route path="sell" element={<NoticesCategoriesList />} />
-            <Route path="lost-found" element={<NoticesCategoriesList />} />
-            <Route path="for-free" element={<NoticesCategoriesList />} />
+            <Route path="sell" end element={<NoticesCategoriesList />} />
+            <Route path="lost-found" end element={<NoticesCategoriesList />} />
+            <Route path="for-free" end element={<NoticesCategoriesList />} />
             <Route
               path="favorite"
               element={

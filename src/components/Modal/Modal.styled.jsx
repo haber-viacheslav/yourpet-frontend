@@ -8,6 +8,8 @@ export const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden auto;
+  z-index: 1000;
   background-color: ${props => props.theme.colors.backdropColor};
 `;
 

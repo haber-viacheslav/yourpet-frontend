@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import icons from 'images/icons.svg';
 import { theme } from '../../theme/theme';
 
@@ -31,6 +30,7 @@ import {
   LogOutWrapper,
   LogOutTitle,
   BtnCloseStyled,
+  BtnAddUser,
   PetInfoStyle,
   TexStyletInfo,
   FilterCurcle,
@@ -42,6 +42,7 @@ import {
   StyledEditPhotoBtn,
   StyledConfirmPhotoBtn,
   SVG,
+  PetInfoNoticesStyle,
 } from '../buttons/buttons.styled';
 
 // components svg
@@ -179,6 +180,16 @@ export const PetInfo = ({ Svg, text, onClick }) => {
         <Svg />
         <TexStyletInfo> {text}</TexStyletInfo>
       </PetInfoStyle>
+    </>
+  );
+};
+export const PetNoticesInfo = ({ Svg, text, onClick }) => {
+  return (
+    <>
+      <PetInfoNoticesStyle onClick={onClick}>
+        <Svg />
+        <TexStyletInfo> {text}</TexStyletInfo>
+      </PetInfoNoticesStyle>
     </>
   );
 };
@@ -391,22 +402,31 @@ export const BtnBack = ({ onClick }) => {
     </>
   );
 };
-export const BtnAddPet = () => {
-  const navigate = useNavigate();
+
+export const BtnAddPet = ({ onClick }) => {
   return (
     <>
-      <BtnAdd type="button" onClick={() => navigate('/add-pet')}>
+      <BtnAdd type="button" onClick={onClick}>
         Add Pet
         <SvgAdd />
       </BtnAdd>
     </>
   );
 };
-export const BtnAddPetCircle = () => {
-  const navigate = useNavigate();
+export const BtnAddPetUser = ({ onClick }) => {
   return (
     <>
-      <BtnAddCurcle type="button" onClick={() => navigate('/add-pet')}>
+      <BtnAddUser type="button" onClick={onClick}>
+        Add Pet
+        <SvgAdd />
+      </BtnAddUser>
+    </>
+  );
+};
+export const BtnAddPetCircle = ({ onClick }) => {
+  return (
+    <>
+      <BtnAddCurcle type="button" onClick={onClick}>
         <SvgAddCurcle />
         Add Pet
       </BtnAddCurcle>

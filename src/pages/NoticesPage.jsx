@@ -1,9 +1,4 @@
 import { useState, useEffect, useMemo } from 'react';
-import {
-  useNavigate,
-  // useParams,
-  // useSearchParams
-} from 'react-router-dom';
 import { getAllNotices, getPrivateNotices, deleteNotice } from 'api/notices';
 import { Container } from '../components/Container/Container';
 import { Section } from '../components/Section/Section';
@@ -18,7 +13,6 @@ import { Pagination } from 'components/Pagination/Pagination';
 const NoticesPage = () => {
   const limit = 11;
   const [category, setCategory] = useState('sell');
-  const [isFirstRedirect, setIsFirstRedirect] = useState(true);
   const [notices, setNotices] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   // const [isLoading, setIsLoading] = useState(false);
@@ -30,15 +24,6 @@ const NoticesPage = () => {
     () => Object.fromEntries([...searchParams]),
     [searchParams]
   );
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isFirstRedirect) {
-      navigate('/notices/sell');
-    }
-    setIsFirstRedirect(false);
-  }, [navigate, isFirstRedirect]);
 
   useEffect(() => {
     try {
