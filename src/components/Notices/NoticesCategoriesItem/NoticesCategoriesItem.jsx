@@ -10,7 +10,7 @@ import {
   BtnAddPetCircle,
   BtnLearnMoreFavorite,
   PetCategory,
-  PetInfo,
+  PetNoticesInfo,
   SvgClock,
   SvgFemale,
   SvgLocation,
@@ -104,9 +104,9 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
         <BtnAddPetCircle />
         <PetCategory text={`${category}`} />
         <ContainerInfo>
-          <PetInfo Svg={SvgLocation} text={`${location}`} />
-          <PetInfo Svg={SvgClock} text={`${age} ${years}`} />
-          <PetInfo Svg={Svg()} text={`${sex}`} />
+          <PetNoticesInfo Svg={SvgLocation} text={`${location}`} />
+          <PetNoticesInfo Svg={SvgClock} text={`${age} ${years}`} />
+          <PetNoticesInfo Svg={Svg()} text={`${sex}`} />
         </ContainerInfo>
         <Text>{title}</Text>
         <BtnLearnMoreFavorite id={id} onClick={handleModalClick} />
