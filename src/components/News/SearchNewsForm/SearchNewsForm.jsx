@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { toast } from 'react-hot-toast';
 import { ButtonIconForm } from 'components/ButtonIconForm/ButtonIconForm';
 import { FormSearch, InputSearch } from './SearchNewsForm.styled';
 
@@ -9,17 +8,6 @@ export const SearchNewsForm = ({ onSubmit }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (searchQuery.trim() === '') {
-      return toast.error('Enter your request, please', {
-        style: {
-          position: 'top-center',
-          duration: 1000,
-          autoclose: 500,
-          background: '#9ae7a3',
-          color: '#fff',
-        },
-      });
-    }
     onSubmit(searchQuery);
   };
 
@@ -28,9 +16,9 @@ export const SearchNewsForm = ({ onSubmit }) => {
     setSearchQuery(e.target.value.toLowerCase().trim());
   };
 
-  const handleReset = async () => {
+  const handleReset = () => {
     setSearchQuery('');
-    await onSubmit(searchQuery);
+    onSubmit('');
   };
 
   return (

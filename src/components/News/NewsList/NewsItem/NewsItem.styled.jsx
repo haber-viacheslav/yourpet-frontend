@@ -32,13 +32,13 @@ export const Item = styled.li`
 export const WrapImg = styled.div`
   overflow: hidden;
   border-radius: 20px;
-  object-fit: cover;
   width: 100%;
   height: 252px;
 `;
 
 export const Img = styled.img`
   display: block;
+  object-fit: cover;
   height: 100%;
   width: 100%;
 `;
