@@ -5,7 +5,6 @@ import {
   BtnCloseModal,
   PetCategory,
 } from 'components/buttons/buttons';
-import { Text } from '../NoticesCategoriesItem/NoticesCategoriesItem.styled';
 import {
   BtnContainer,
   CommentInfo,
@@ -18,6 +17,7 @@ import {
   PetInfoList,
   PetInfoItem,
   TelInfo,
+  Text,
 } from './ModalNotice.styled';
 import { useEffect, useState } from 'react';
 import { getNoticeById } from 'api/notices';
