@@ -298,7 +298,7 @@ export const BtnAuth = ({ onClick }) => {
 export const BtnAddOption = ({ text, onClick }) => {
   return (
     <>
-      <BtnOption type="button" onClick={onClick}>
+      <BtnOption type="button" onClick={() => onClick(text)}>
         {text}
       </BtnOption>
     </>
@@ -331,7 +331,7 @@ export const BtnCall = ({ onClick }) => {
 
 // components btn + svg
 // to favorite and to main page
-export const BtnLearnMoreFavorite = ({ onClick, id }) => {
+export const BtnLearnMoreFavorite = ({ onClick }) => {
   return (
     <>
       <BigBtnFavor type="button" onClick={onClick}>

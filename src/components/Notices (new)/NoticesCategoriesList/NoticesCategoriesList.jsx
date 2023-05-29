@@ -1,28 +1,21 @@
 import { NoticesCategoryItem } from 'components/Notices (new)/NoticesCategoriesItem/NoticesCategoriesItem';
-// import petsList from '../../../mockData/petsList';
-// import { nanoid } from '@reduxjs/toolkit';
+import { getAllNotices } from 'api/notices';
 import { List } from './NoticesCategoriesList.styled';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { deleteNotice } from 'api/notices';
 
-export const NoticesCategoriesList = () => {
+export const NoticesCategoriesList = ({ category }) => {
   const [notices, setNotices] = useState([]);
 
-  const fetchPets = async () => {
-    try {
-      const response = await axios.get(
-        'https://your-pet-api.onrender.com/api/v1/notices'
-      );
-      setNotices(response.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    fetchPets();
-  }, []);
+    try {
+      (async () => {
+        const response = await getAllNotices(category);
+        // console.log(response);
+        setNotices(response.data.data);
+      })();
+    } catch (error) {}
+  }, [category]);
 
   const handleDeleteBtn = async id => {
     try {
