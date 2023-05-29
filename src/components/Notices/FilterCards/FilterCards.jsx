@@ -1,5 +1,4 @@
 import { useState, useRef } from 'react';
-// import { useSearchParams } from 'react-router-dom';
 import { BtnFilters, BtnFiltersCircle } from 'components/buttons/buttons';
 import {IconClose, IconOpen, IconCheck, IconCheckRound} from './icons/icons'
 import {
@@ -15,12 +14,14 @@ import {
   CheckBox,
 } from './FilterCards.styled';
 import { useEffect } from 'react';
+import axios from 'axios';
 
 
 export const FilterCards = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenAge, setIsOpenAge] = useState(false);
   const [isOpenGender, setIsOpenGender] = useState(false);
+// const [searchParams, setSearchParams] = useSearchParams();
   const [checkedItems, setCheckedItems] = useState({
     'age-3-12m': false,
     'age-1-year': false,
@@ -31,18 +32,56 @@ export const FilterCards = () => {
 
 
  useEffect(() => {
-    const searchParams = new URLSearchParams();
+   const searchParams = new URLSearchParams();
 
     Object.entries(checkedItems).forEach(([key, value]) => {
-      if (value) {
-        searchParams.append(key, String(value));
-      }
-    });
+    if (value) {
+      searchParams.append('gender', key);
+    }
+  });
    
-   console.log(searchParams.toString())
+  //  if (searchParams.toString() === '') {
+  //       return
+  //  }
+   
+  //  console.log(`https://your-pet-api.onrender.com/api/v1/notices?${searchParams.toString()}`)
 
-   
-  }, [checkedItems]);
+    const fetchPets = async () => {
+    try {
+      const response = await axios.get(
+        `https://your-pet-api.onrender.com/api/v1/notices?${searchParams.toString()}`
+      );
+      console.log(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+fetchPets();
+ }, [checkedItems]);
+  
+  // Close menu by Esc key and clicking on the backdrop
+    useEffect(() => {
+    const handleEscapeKey = event => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+
+    const handleClickOutside = event => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleEscapeKey);
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscapeKey);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+    }, []);
+  // =====================
 
   const dropdownRef = useRef(null);
 
@@ -183,24 +222,3 @@ export const FilterCards = () => {
 };
 
 
-  // useEffect(() => {
-  //   const handleEscapeKey = event => {
-  //     if (event.key === 'Escape') {
-  //       setIsOpen(false);
-  //     }
-  //   };
-
-  //   const handleClickOutside = event => {
-  //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-  //       setIsOpen(false);
-  //     }
-  //   };
-
-  //   document.addEventListener('keydown', handleEscapeKey);
-  //   document.addEventListener('mousedown', handleClickOutside);
-
-  //   return () => {
-  //     document.removeEventListener('keydown', handleEscapeKey);
-  //     document.removeEventListener('mousedown', handleClickOutside);
-  //   };
-  // }, []);
