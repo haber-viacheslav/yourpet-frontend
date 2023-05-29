@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { ButtonIconForm } from 'components/ButtonIconForm/ButtonIconForm';
-import { FormSearch, InputSearch } from './SearchNewsForm.styled';
+import { FormSearch, InputSearch } from './Search.styled';
 
-export const SearchNewsForm = ({ onSubmit }) => {
+export const Search = ({ onSubmit }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  console.log('searchQuery', searchQuery);
 
   const handleSubmit = e => {
     e.preventDefault();
