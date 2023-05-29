@@ -69,7 +69,7 @@ export const NewsData = () => {
     <Container>
       <ReusableTitle>News</ReusableTitle>
 
-      {isLoading && <Loader loaderSrc={Cat} size={250} />}
+      {isLoading && <Loader loaderSrc={Cat} size={300} />}
       {isError && !news.length && <NotFound />}
 
       <SearchNewsForm onSubmit={handleSearchSubmit} />
