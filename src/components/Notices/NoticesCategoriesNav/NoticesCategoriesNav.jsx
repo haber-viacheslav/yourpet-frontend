@@ -39,15 +39,7 @@ export const NoticesCategoriesNav = ({ onCategoryClick, active }) => {
         {navCategories.map(category => {
           const route = category[1];
           const text = category[0];
-          return active === category[1] ? (
-            <StyledNavLink
-              key={route}
-              end
-              onClick={() => onCategoryClick(route)}
-            >
-              {text}
-            </StyledNavLink>
-          ) : (
+          return (
             <StyledNavLink key={route} onClick={() => onCategoryClick(route)}>
               {text}
             </StyledNavLink>

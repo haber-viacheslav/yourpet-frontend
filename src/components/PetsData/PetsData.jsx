@@ -11,7 +11,7 @@ import { notify } from 'helpers/notification';
 export const PetsData = () => {
   const [data, SetData] = useState([]);
   const navigate = useNavigate();
-  const { isLoggedIn } = useAuth;
+  const { isLoggedIn } = useAuth();
 
   useEffect(() => {
     (async () => {

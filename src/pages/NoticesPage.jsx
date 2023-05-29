@@ -1,9 +1,4 @@
 import { useState, useEffect, useMemo } from 'react';
-import {
-  useNavigate,
-  // useParams,
-  // useSearchParams
-} from 'react-router-dom';
 import { getAllNotices, getPrivateNotices, deleteNotice } from 'api/notices';
 import { Container } from '../components/Container/Container';
 import { Section } from '../components/Section/Section';
@@ -19,7 +14,6 @@ const isDesktop = window.matchMedia(theme.media.lg).matches;
 const NoticesPage = () => {
   const [limit, setLimit] = useState(11);
   const [category, setCategory] = useState('sell');
-  const [isFirstRedirect, setIsFirstRedirect] = useState(true);
   const [notices, setNotices] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   // const [isLoading, setIsLoading] = useState(false);
@@ -30,9 +24,6 @@ const NoticesPage = () => {
     () => Object.fromEntries([...searchParams]),
     [searchParams]
   );
-  console.log('params', params);
-
-  // console.log('searchQuery', searchQuery);
 
   useEffect(() => {
     if (isTablet) {
@@ -42,15 +33,6 @@ const NoticesPage = () => {
       return setLimit(4);
     }
   }, []);
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isFirstRedirect) {
-      navigate('/notices/sell');
-    }
-    setIsFirstRedirect(false);
-  }, [navigate, isFirstRedirect]);
 
   useEffect(() => {
     try {
