@@ -1,11 +1,14 @@
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+
 import { notify } from 'helpers/notification';
-import { FormNoticeSearch } from './NoticeSearch.styled';
-import { InputNoticeSearch } from './NoticeSearch.styled';
+import { FormNoticeSearch, InputNoticeSearch } from './NoticeSearch.styled';
 import { ButtonIconNoticeForm } from './ButtonNoticeIconForm';
 
 export const NoticesSearch = ({ onSubmit }) => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [, setSearchParams] = useSearchParams();
+
   console.log('searchQuery', searchQuery);
 
   const handleSubmit = e => {
@@ -13,11 +16,12 @@ export const NoticesSearch = ({ onSubmit }) => {
     if (searchQuery.trim() === '') {
       notify('warning', 'Enter your request, please');
     }
-    onSubmit(searchQuery);
+    setSearchParams({ query: e.target[0].value });
+    // onSubmit(searchQuery);
   };
 
   const handleChange = e => {
-    console.log('e.target.value--->', e.target.value);
+    // console.log('e.target.value--->', e.target.value);
     setSearchQuery(e.target.value.toLowerCase().trim());
   };
 
