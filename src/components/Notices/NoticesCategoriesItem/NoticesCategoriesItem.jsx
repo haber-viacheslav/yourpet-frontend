@@ -38,15 +38,14 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
     try {
       const response = await setNoticeToFavorite(notice._id);
       if (response.data.code === 200) {
-        setIsNoticeFavorite(prevState => !prevState);
-        notify('success', 'Your notice has been added to the favorites')
+        setIsNoticeFavorite(prevState => !prevState);       
       }
-      if (!response.data.code === 200) {
-        notify(
-          'warning',
-          'You need to register to add this message to your favorites.'
-        );
-      }
+      // if (!response.data.code === 200) {
+      //   notify(
+      //     'warning',
+      //     'You need to register to add this message to your favorites.'
+      //   );
+      // }
     } catch (error) {
       notify('warning', 'You need to register to add this message to your favorites');
     }
