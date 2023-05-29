@@ -4,7 +4,7 @@ import { FormNoticeSearch } from './NoticeSearch.styled';
 import { InputNoticeSearch } from './NoticeSearch.styled';
 import { ButtonIconNoticeForm } from './ButtonNoticeIconForm';
 
-export const NoticesSearch = onSubmit => {
+export const NoticesSearch = ({ onSubmit }) => {
   const [searchQuery, setSearchQuery] = useState('');
   console.log('searchQuery', searchQuery);
 
