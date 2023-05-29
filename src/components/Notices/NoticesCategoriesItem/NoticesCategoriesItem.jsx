@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { textCutter } from 'helpers/textCutter';
 import { setNoticeToFavorite } from 'api/notices';
 import { Modal } from 'components/Modal/Modal';
 import { ModalItem } from '../ModalNotice/ModalNotice';
@@ -27,8 +28,7 @@ import {
 export const NoticesCategoryItem = ({ notice, delNotice }) => {
   const [isDelete, setIsDelete] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  // const [age, setAge] = useState(0);
-  // const [time, setTime] = useState('');
+  const [isNoticeFavorite, setIsNoticeFavorite] = useState(notice.isFavourite);
 
   const handleModalClick = () => {
     setIsOpen(!isOpen);
@@ -36,11 +36,18 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
 
   const handleAddToFavorite = async () => {
     try {
-      const { _id: id } = notice;
-      const response = await setNoticeToFavorite(id);
-      console.log(response);
+      const response = await setNoticeToFavorite(notice._id);
+      if (response.data.code === 200) {
+        setIsNoticeFavorite(prevState => !prevState);
+      }
+      if (!response.data.code === 200) {
+        notify(
+          'error',
+          'Adding to favorites available only to authorized users'
+        );
+      }
     } catch (error) {
-      notify('error', 'Only available to authorized users');
+      notify('error', 'Adding to favorites available only to authorized users');
     }
   };
 
@@ -60,55 +67,60 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
       console.log(error);
     }
   };
-  console.log(notice);
-  const { imgUrl, sex, location, category, _id: id, title, date } = notice;
+
+  const {
+    isOwner,
+    imgUrl,
+    sex,
+    location,
+    category,
+    _id: id,
+    title,
+    date,
+  } = notice;
 
   const Svg = () => {
     return sex === 'female' ? SvgFemale : SvgMale;
   };
 
-  // const timeHandler = date => {
-  //   const monthValue = Math.round((Date.now() - Date.parse(date)) / 2629800000);
-  //   const yearValue = Math.round((Date.now() - Date.parse(date)) / 31557600000);
-  //   const monthAge = monthValue > 1 ? 'months' : 'month';
-  //   const yearsAge = yearValue > 1 ? 'years' : 'year';
-
-  //   if (monthValue <= 12) {
-  //     setAge(monthValue);
-  //     setTime(monthAge);
-  //     return;
-  //   } else {
-  //     setAge(yearValue);
-  //     setTime(yearsAge);
-  //   }
-  //   return;
-  // };
-
   let age = Math.round((Date.now() - Date.parse(date)) / 31557600000);
-
   const years = age >= 2 ? 'years' : 'year';
 
   return (
     <>
       {isOpen && (
         <Modal onClick={handleModalClick}>
-          <ModalItem onClick={handleModalClick} id={id} />
+          <ModalItem
+            onClick={handleModalClick}
+            id={id}
+            onFavoriteClick={handleAddToFavorite}
+            isFavorite={isNoticeFavorite}
+          />
         </Modal>
       )}
       <ContainerCard>
-        <Img src={imgUrl} alt="Pet image" />
-        <BtnAddFavorite onClick={handleAddToFavorite} />
-        <DeleteBtnWrapper>
-          <DeletePetBtn onClick={handleDeleteNotice} />
-        </DeleteBtnWrapper>
-        <BtnAddPetCircle />
-        <PetCategory text={`${category}`} />
-        <ContainerInfo>
-          <PetInfo Svg={SvgLocation} text={`${location}`} />
-          <PetInfo Svg={SvgClock} text={`${age} ${years}`} />
-          <PetInfo Svg={Svg()} text={`${sex}`} />
-        </ContainerInfo>
-        <Text>{title}</Text>
+        <>
+          <Img src={imgUrl} alt="Pet image" />
+          <BtnAddFavorite
+            onClick={handleAddToFavorite}
+            isFavorite={isNoticeFavorite}
+          />
+          {isOwner && (
+            <DeleteBtnWrapper>
+              <DeletePetBtn onClick={handleDeleteNotice} />
+            </DeleteBtnWrapper>
+          )}
+
+          <BtnAddPetCircle />
+          <PetCategory text={`${category}`} />
+          <ContainerInfo>
+            <PetInfo Svg={SvgLocation} text={`${textCutter(location, 4)}`} />
+            <PetInfo Svg={SvgClock} text={`${age} ${years}`} />
+            <PetInfo Svg={Svg()} text={`${sex}`} />
+          </ContainerInfo>
+          <Text>{title}</Text>
+        </>
+
         <BtnLearnMoreFavorite id={id} onClick={handleModalClick} />
       </ContainerCard>
       {isDelete && (
