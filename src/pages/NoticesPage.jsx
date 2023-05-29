@@ -2,16 +2,24 @@ import { useState } from 'react';
 
 import { Container } from '../components/Container/Container';
 import { Section } from '../components/Section/Section';
-import { NoticesCategoriesNav } from 'components/Notices (new)/NoticesCategoriesNav/NoticesCategoriesNav';
-import { NoticesSearch } from 'components/Notices (new)/NoticesSearch/NoticesSearch';
+import { NoticesCategoriesNav } from 'components/Notices/NoticesCategoriesNav/NoticesCategoriesNav';
+import { NoticesSearch } from 'components/Notices/NoticesSearch/NoticesSearch';
 import { Title, Wrapper } from 'components/Friends/Friends.styled';
-import { NoticesCategoriesList } from 'components/Notices (new)/NoticesCategoriesList/NoticesCategoriesList';
+import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
+
+const initialCategory = localStorage.getItem('category')
+  ? localStorage.getItem('category')
+  : 'sell';
 
 const NoticesPage = () => {
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState(initialCategory);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const urlParams = `${category}` + searchQuery;
 
   const handleChoose = option => {
     setCategory(option);
+    localStorage.setItem('category', option);
   };
 
   return (
@@ -19,11 +27,14 @@ const NoticesPage = () => {
       <Section>
         <Container>
           <Wrapper>
-            <Title>Find your favorite pet{category}</Title>
+            <Title>Find your favorite pet</Title>
           </Wrapper>
           <NoticesSearch />
-          <NoticesCategoriesNav onChoosingCategory={handleChoose} />
-          <NoticesCategoriesList category={category} />
+          <NoticesCategoriesNav
+            onCategoryClick={handleChoose}
+            active={category}
+          />
+          <NoticesCategoriesList urlParams={urlParams} category={category} />
         </Container>
       </Section>
     </>

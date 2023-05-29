@@ -1,12 +1,15 @@
 import axios from 'axios';
 
-const baseServerURL = `https://your-pet-api.onrender.com`;
-const baseAPIEndpoint = '/api/v1';
-axios.defaults.baseURL = baseServerURL + baseAPIEndpoint;
-
 // getNotices
-export const getAllNotices = async category => {
-  const response = await axios.get(`/notices/${category}`);
+export const getAllNotices = async urlParams => {
+  const response = await axios.get(`/notices?category=${urlParams}`);
+  return response;
+};
+
+// getPrivateNotices
+export const getPrivateNotices = async urlParams => {
+  console.log(urlParams);
+  const response = await axios.get(`/notices/${urlParams}`);
   return response;
 };
 

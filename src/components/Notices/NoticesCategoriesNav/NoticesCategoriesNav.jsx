@@ -1,83 +1,80 @@
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { selectIsLoggedIn } from 'redux/auth/selectors';
-import {
-  BtnAddPet,
-  BtnFiltersCircle,
-} from 'components/buttons/buttons';
+import { BtnAddPet, BtnFiltersCircle } from 'components/buttons/buttons';
+import { StyledNavLink } from './NoticesCategoriesNav.styled';
+import { useAuth } from 'hooks/useAuth';
+import { notify } from 'helpers/notification';
+
 import {
   FiltersBtnContainer,
   FiltersContainer,
-  StyledNavLink,
-  NavList,
+  CategoryBntWrapper,
 } from './NoticesCategoriesNav.styled';
 import { FilterCards } from '../FilterCards/FilterCards';
-import styled from 'styled-components';
 
-const Link = [
-  { to: 'sell', text: 'sell' },
-  { to: 'lost-found', text: 'lost/found' },
-  { to: 'for-free', text: 'in good hands' },
+const navCategories = [
+  ['sell', 'sell'],
+  ['lost/found', 'lost-found'],
+  ['in good hands', 'for-free'],
 ];
-
-const getLink = ({ isActive }) => {
-  const className = isActive ? `${StyledNavLink} ${styled.active}` : StyledNavLink;
-  return className;
-};
-export const NoticesCategoriesNav = ({ onOwnClick, onFavoriteClick }) => {
+const navPrivateCategories = [
+  ['favorite ads', 'favourite'],
+  ['my ads', 'own'],
+];
+export const NoticesCategoriesNav = ({ onCategoryClick, active }) => {
   const navigate = useNavigate();
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const { isLoggedIn } = useAuth();
 
-   const handleClick = () => {
+  const handleClick = () => {
     if (!isLoggedIn) {
-      //  ('You must be logged in');
+      notify('warn', 'To add a pet, you must be a registered user');
       return;
     } else {
       navigate('/add-pet');
     }
   };
-  
 
   return (
-      <FiltersContainer>
-          <NavList>
-        {Link.map(element => (
+    <FiltersContainer>
+      <CategoryBntWrapper>
+        {navCategories.map(category => {
+          const route = category[1];
+          const text = category[0];
+          return active === category[1] ? (
             <StyledNavLink
-              to={element.to}
-              className={getLink}
+              to={`/notices/${route}`}
+              end
+              onClick={() => onCategoryClick(route)}
             >
-              {element.text}
+              {text}
             </StyledNavLink>
-          
-        ))}
-        {isLoggedIn && (
-          <>
+          ) : (
+            <StyledNavLink
+              to={`/notices/${route}`}
+              onClick={() => onCategoryClick(route)}
+            >
+              {text}
+            </StyledNavLink>
+          );
+        })}
+        {isLoggedIn &&
+          navPrivateCategories.map(category => {
+            const route = category[1];
+            const text = category[0];
+            return (
               <StyledNavLink
-                to="own"
-                className={getLink}
-                onClick={() => {
-                  onOwnClick();
-                }}
+                to={`/notices/${route}`}
+                onClick={() => onCategoryClick(route)}
               >
-                my ads
+                {text}
               </StyledNavLink>
-              <StyledNavLink
-                to="favorite"
-                className={getLink}
-                onClick={() => {
-                  onFavoriteClick();
-                }}
-              >
-                favorite ads
-              </StyledNavLink>
-          </>
-        )}
-      </NavList>
-        <FiltersBtnContainer>
-          <FilterCards />
-          <BtnAddPet onClick={handleClick} />
-        </FiltersBtnContainer>
-        <BtnFiltersCircle />
-      </FiltersContainer>
+            );
+          })}
+      </CategoryBntWrapper>
+      <FiltersBtnContainer>
+        <FilterCards />
+        <BtnAddPet onClick={handleClick} />
+      </FiltersBtnContainer>
+      <BtnFiltersCircle />
+    </FiltersContainer>
   );
 };

@@ -26,8 +26,8 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
   const [isDelete, setIsDelete] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const onClick = () => {
-    return setIsOpen(!isOpen);
+  const handleModalClick = () => {
+    setIsOpen(!isOpen);
   };
 
   const { imgUrl, sex, location, category, _id: id, title, date } = notice;
@@ -59,8 +59,8 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
   return (
     <>
       {isOpen && (
-        <Modal onClick={onClick}>
-          <ModalItem onClick={onClick} id={id} />
+        <Modal onClick={handleModalClick}>
+          <ModalItem onClick={handleModalClick} id={id} />
         </Modal>
       )}
       <ContainerCard>
@@ -77,7 +77,7 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
           <PetInfo Svg={Svg()} text={`${sex}`} />
         </ContainerInfo>
         <Text>{title}</Text>
-        <BtnLearnMoreFavorite id={id} onClick={onClick} />
+        <BtnLearnMoreFavorite id={id} onClick={handleModalClick} />
       </ContainerCard>
       {isDelete && (
         <ModalApproveAction
