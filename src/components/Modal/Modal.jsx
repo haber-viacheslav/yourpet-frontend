@@ -4,6 +4,7 @@ import { Overlay, ModalBody } from './Modal.styled';
 import { useEffect } from 'react';
 
 const modalRoot = document.querySelector('#modal-root');
+
 export const Modal = ({ onClick, children }) => {
   useEffect(() => {
     const handleEscDown = e => {

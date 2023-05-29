@@ -63,3 +63,7 @@ export const UserWrapper = styled.div`
     gap: 32px;
   }
 `;
+
+export const Wrapper = styled.div`
+  position: relative;
+`;
