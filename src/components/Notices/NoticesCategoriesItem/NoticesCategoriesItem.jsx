@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { setNoticeToFavorite } from 'api/notices';
 import { Modal } from 'components/Modal/Modal';
 import { ModalItem } from '../ModalNotice/ModalNotice';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 import { DeletePetBtn } from 'components/buttons/buttons';
+import { notify } from 'helpers/notification';
 import {
   BtnAddFavorite,
   BtnAddPetCircle,
@@ -30,10 +32,14 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
     setIsOpen(!isOpen);
   };
 
-  const { imgUrl, sex, location, category, _id: id, title, date } = notice;
-
-  const Svg = () => {
-    return sex === 'female' ? SvgFemale : SvgMale;
+  const handleAddToFavorite = async () => {
+    try {
+      const { _id: id } = notice;
+      const response = await setNoticeToFavorite(id);
+      console.log(response);
+    } catch (error) {
+      notify('error', 'Only available to authorized users');
+    }
   };
 
   const handleDeleteNotice = () => {
@@ -52,6 +58,12 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
       console.log(error);
     }
   };
+  console.log(notice);
+  const { imgUrl, sex, location, category, _id: id, title, date } = notice;
+
+  const Svg = () => {
+    return sex === 'female' ? SvgFemale : SvgMale;
+  };
 
   let ege = Math.round((Date.now() - Date.parse(date)) / 31557600000);
   const years = ege >= 2 ? 'years' : 'year';
@@ -65,7 +77,7 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
       )}
       <ContainerCard>
         <Img src={imgUrl} alt="Pet image" />
-        <BtnAddFavorite />
+        <BtnAddFavorite onClick={handleAddToFavorite} />
         <DeleteBtnWrapper>
           <DeletePetBtn onClick={handleDeleteNotice} />
         </DeleteBtnWrapper>

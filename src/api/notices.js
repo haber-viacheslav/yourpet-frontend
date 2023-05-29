@@ -1,15 +1,14 @@
 import axios from 'axios';
 
 // getNotices
-export const getAllNotices = async urlParams => {
-  const response = await axios.get(`/notices?category=${urlParams}`);
+export const getAllNotices = async url => {
+  const response = await axios.get(`/notices?category=${url}`);
   return response;
 };
 
 // getPrivateNotices
-export const getPrivateNotices = async urlParams => {
-  console.log(urlParams);
-  const response = await axios.get(`/notices/${urlParams}`);
+export const getPrivateNotices = async url => {
+  const response = await axios.get(`/notices/${url}`);
   return response;
 };
 
@@ -30,5 +29,12 @@ export const deleteNotice = async id => {
 // getNoticeById
 export const getNoticeById = async id => {
   const response = await axios.get(`/notices/${id}`);
+  return response;
+};
+
+// setNoticeToFavorite
+export const setNoticeToFavorite = async id => {
+  const response = await axios.patch(`/notices/${id}/favorite`);
+  console.log(response);
   return response;
 };

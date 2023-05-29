@@ -3,22 +3,22 @@ import { NoticesCategoryItem } from 'components/Notices (new)/NoticesCategoriesI
 import { getAllNotices, getPrivateNotices, deleteNotice } from 'api/notices';
 import { List } from './NoticesCategoriesList.styled';
 
-export const NoticesCategoriesList = ({ urlParams, category }) => {
+export const NoticesCategoriesList = ({ url, category }) => {
   const [notices, setNotices] = useState([]);
 
   useEffect(() => {
     try {
       (async () => {
         if (category === 'favorite' || category === 'own') {
-          const response = await getPrivateNotices(urlParams);
+          const response = await getPrivateNotices(url);
           setNotices(response.data.data);
         } else {
-          const response = await getAllNotices(urlParams);
+          const response = await getAllNotices(url);
           setNotices(response.data.data);
         }
       })();
     } catch (error) {}
-  }, [urlParams, category]);
+  }, [url, category]);
   const handleDeleteBtn = async id => {
     try {
       const index = notices.findIndex(el => el['_id'] === id);

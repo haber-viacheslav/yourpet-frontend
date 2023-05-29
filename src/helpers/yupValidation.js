@@ -57,7 +57,7 @@ export const addPetFormSchema = yup.object().shape({
     is: value => value !== 'my pet',
     then: yup
       .string()
-      .matches(/^[A-Z][a-zA-Z]*$/, 'Starts with capitalize character')
+      .matches(/^[A-Z][A-Za-z ]+$/, 'Starts with capitalize character')
       .required('Enter your location'),
     otherwise: yup.string(),
   }),

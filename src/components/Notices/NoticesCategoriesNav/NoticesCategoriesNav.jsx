@@ -17,7 +17,7 @@ const navCategories = [
   ['in good hands', 'for-free'],
 ];
 const navPrivateCategories = [
-  ['favorite ads', 'favourite'],
+  ['favorite ads', 'favorite'],
   ['my ads', 'own'],
 ];
 export const NoticesCategoriesNav = ({ onCategoryClick, active }) => {
@@ -41,6 +41,7 @@ export const NoticesCategoriesNav = ({ onCategoryClick, active }) => {
           const text = category[0];
           return active === category[1] ? (
             <StyledNavLink
+              key={route}
               to={`/notices/${route}`}
               end
               onClick={() => onCategoryClick(route)}
@@ -49,6 +50,7 @@ export const NoticesCategoriesNav = ({ onCategoryClick, active }) => {
             </StyledNavLink>
           ) : (
             <StyledNavLink
+              key={route}
               to={`/notices/${route}`}
               onClick={() => onCategoryClick(route)}
             >
@@ -62,6 +64,7 @@ export const NoticesCategoriesNav = ({ onCategoryClick, active }) => {
             const text = category[0];
             return (
               <StyledNavLink
+                key={route}
                 to={`/notices/${route}`}
                 onClick={() => onCategoryClick(route)}
               >

@@ -13,9 +13,12 @@ const initialCategory = localStorage.getItem('category')
 
 const NoticesPage = () => {
   const [category, setCategory] = useState(initialCategory);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [
+    searchQuery,
+    // , setSearchQuery
+  ] = useState('');
 
-  const urlParams = `${category}` + searchQuery;
+  const url = `${category}` + searchQuery;
 
   const handleChoose = option => {
     setCategory(option);
@@ -34,7 +37,7 @@ const NoticesPage = () => {
             onCategoryClick={handleChoose}
             active={category}
           />
-          <NoticesCategoriesList urlParams={urlParams} category={category} />
+          <NoticesCategoriesList url={url} category={category} />
         </Container>
       </Section>
     </>
