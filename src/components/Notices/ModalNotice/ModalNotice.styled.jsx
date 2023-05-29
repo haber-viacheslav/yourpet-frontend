@@ -59,16 +59,17 @@ export const MailInfo = styled.a`
   line-height: 16px;
   display: flex;
   align-items: center;
-  text-decoration-line: underline;
-  color: #ffc107;
   margin-bottom: 11px;
+  color: #ffc107;
+  :hover,
+  :focus {
+    text-decoration-line: underline;
+  }
 
   @media screen and (${props => props.theme.media.md}) {
     font-size: 16px;
     line-height: 22px;
     margin-bottom: 8px;
-  }
-  @media screen and (${props => props.theme.media.lg}) {
   }
 `;
 
