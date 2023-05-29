@@ -17,6 +17,7 @@ import { useDispatch } from 'react-redux';
 
 import { RestrictedRoute } from '../routes/RestrictedRoute';
 import { PrivateRoute } from '../routes/PrivateRoute';
+import axios from 'axios';
 
 const MainPage = lazy(() => import('../pages/MainPage'));
 const Register = lazy(() => import('../pages/RegisterPage'));
@@ -37,7 +38,7 @@ export const App = () => {
   // }, 8000);
   useEffect(() => {
     dispatch(userCurrent());
-    // console.log(axios.defaults.headers.common.Authorization);
+    console.log(axios.defaults.headers.common.Authorization);
   }, [dispatch]);
 
   // const isRefreshing = true;
@@ -69,7 +70,7 @@ export const App = () => {
           />
           <Route path="/notices" element={<NoticesPage />}>
             <Route index element={<NoticesCategoriesList />} />
-            <Route path="sell" element={<NoticesCategoriesList />} />
+            <Route exact path="sell" element={<NoticesCategoriesList />} />
             <Route path="lost-found" element={<NoticesCategoriesList />} />
             <Route path="for-free" element={<NoticesCategoriesList />} />
             <Route

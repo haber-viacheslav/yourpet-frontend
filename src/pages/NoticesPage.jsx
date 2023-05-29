@@ -7,11 +7,22 @@ import { NoticesSearch } from 'components/Notices/NoticesSearch/NoticesSearch';
 import { Title, Wrapper } from 'components/Friends/Friends.styled';
 import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
 
+const initialCategory = localStorage.getItem('category')
+  ? localStorage.getItem('category')
+  : 'sell';
+
 const NoticesPage = () => {
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState(initialCategory);
+  const [
+    searchQuery,
+    // , setSearchQuery
+  ] = useState('');
+
+  const url = `${category}` + searchQuery;
 
   const handleChoose = option => {
     setCategory(option);
+    localStorage.setItem('category', option);
   };
 
   return (
@@ -19,11 +30,14 @@ const NoticesPage = () => {
       <Section>
         <Container>
           <Wrapper>
-            <Title>Find your favorite pet{category}</Title>
+            <Title>Find your favorite pet</Title>
           </Wrapper>
           <NoticesSearch />
-          <NoticesCategoriesNav onChoosingCategory={handleChoose} />
-          <NoticesCategoriesList category={category} />
+          <NoticesCategoriesNav
+            onCategoryClick={handleChoose}
+            active={category}
+          />
+          <NoticesCategoriesList url={url} category={category} />
         </Container>
       </Section>
     </>

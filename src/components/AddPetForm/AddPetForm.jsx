@@ -183,7 +183,6 @@ export const AddPetForm = () => {
           handleChange,
           handleBlur,
         }) => {
-          // console.log(values);
           const { category, sex } = values;
           const isFieldInvalid = errors.sex && touched.sex;
           return (

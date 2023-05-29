@@ -44,7 +44,6 @@ export const BigBtnFavor = styled.button`
   padding-left: 36px;
   :hover,
   :focus {
-    padding-left: unset;
     background: ${theme.colors.blue};
     color: ${theme.colors.white};
     border: none;

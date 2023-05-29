@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import { getNoticeById } from 'api/notices';
 import { FlexContainer } from 'components/FlexContainer/FlexContainer';
-import { Text } from '../NoticesCategoriesItem/NoticesCategoriesItem.styled';
+import { Text } from '../NoticesCategoriesItem (new)/NoticesCategoriesItem.styled';
 import {
   BtnAddTo,
   BtnCall,
@@ -27,7 +27,6 @@ import {
 
 export const ModalNotice = ({ onClick, id }) => {
   const [petsDetails, setPetsDetails] = useState({});
-  console.log(id);
 
   useEffect(() => {
     try {

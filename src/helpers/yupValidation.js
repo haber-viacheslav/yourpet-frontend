@@ -57,7 +57,7 @@ export const addPetFormSchema = yup.object().shape({
     is: value => value !== 'my pet',
     then: yup
       .string()
-      .matches(/^[A-Z][a-zA-Z]*$/, 'Starts with capitalize character')
+      .matches(/^[A-Z][A-Za-z ]+$/, 'Starts with capitalize character')
       .required('Enter your location'),
     otherwise: yup.string(),
   }),
@@ -72,7 +72,7 @@ export const addPetFormSchema = yup.object().shape({
   comments: yup
     .string()
     .min(8, 'Minimum 8 characters')
-    .max(120, 'Maximum 120 characters'),
+    .max(350, 'Maximum 350 characters'),
   sex: yup.string().when('category', {
     is: value =>
       value === 'sell' || value === 'lost-found' || value === 'for-free',
