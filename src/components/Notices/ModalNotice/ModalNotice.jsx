@@ -34,7 +34,6 @@ export const ModalItem = ({ onClick, id }) => {
     } catch (error) {}
   }, [id]);
 
-  console.log(petsDetails);
   const {
     user,
     imgUrl,
@@ -88,7 +87,7 @@ export const ModalItem = ({ onClick, id }) => {
         </FlexBlock>
         <CommentInfo>Comments: {comments || ''}</CommentInfo>
         <BtnContainer>
-          <BtnCall tel={`${'tel:' + phone || ''}`} />
+          {!phone || <BtnCall tel={`${'tel:' + phone || ''}`} />}
           <BtnAddTo />
         </BtnContainer>
       </FlexContainer>
