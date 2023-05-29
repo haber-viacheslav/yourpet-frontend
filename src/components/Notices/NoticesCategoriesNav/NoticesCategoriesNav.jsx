@@ -26,7 +26,7 @@ export const NoticesCategoriesNav = ({ onCategoryClick, active }) => {
 
   const handleClick = () => {
     if (!isLoggedIn) {
-      notify('warn', 'To add a pet, you must be a registered user');
+      notify('warning', 'To add a pet, you must be a registered user');
       return;
     } else {
       navigate('/add-pet');

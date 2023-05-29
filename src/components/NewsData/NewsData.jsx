@@ -11,6 +11,7 @@ import { Container } from 'components/Container/Container';
 import { useSearchParams } from 'react-router-dom';
 import { fetchNews } from '../../api/news.js';
 import { sortNewsByDate } from 'helpers/sortNewsByDate';
+import { notify } from '../../helpers/notification';
 
 export const NewsData = () => {
   const limit = 6;
@@ -26,7 +27,6 @@ export const NewsData = () => {
     () => Object.fromEntries([...searchParams]),
     [searchParams]
   );
-  console.log('URLSEARCHparams', params);
 
   useEffect(() => {
     setIsLoading(true);
@@ -42,6 +42,7 @@ export const NewsData = () => {
       } catch (error) {
         setIsError(true);
         console.log(error);
+        notify('error', error.message);
       } finally {
         setIsLoading(false);
       }
@@ -70,7 +71,7 @@ export const NewsData = () => {
     <Container>
       <ReusableTitle>News</ReusableTitle>
 
-      {isLoading && <Loader loaderSrc={Cat} size={160} />}
+      {isLoading && <Loader loaderSrc={Cat} size={300} />}
       {isError && !news.length && <NotFound />}
 
       <SearchNewsForm onSubmit={handleSearchSubmit} />

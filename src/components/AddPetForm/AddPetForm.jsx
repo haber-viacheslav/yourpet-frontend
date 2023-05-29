@@ -12,9 +12,9 @@ import { SexIcon } from './Icon/Icon';
 import { addPetFormSchema } from 'helpers/yupValidation';
 import { createPet } from 'api/pets';
 import { createNotice } from 'api/notices';
-
+import{ textCutter } from 'helpers/textCutter'
 import { Formik } from 'formik';
-
+import { notify } from '../../helpers/notification';
 import {
   FormWrapper,
   Wrapper,
@@ -29,6 +29,7 @@ import {
   FlexWrapper,
   ErrWrapper,
 } from './AddPetForm.styled';
+
 
 const initialsValues = {
   title: '',
@@ -128,16 +129,18 @@ export const AddPetForm = () => {
         try {
           await createPet(formData);
           navigate('/user');
-        } catch (error) {}
+        } catch (error) {
+          notify('error', error.message);
+        }
 
         break;
       default:
         formData.append('category', values.category);
-        formData.append('title', values.title);
+        formData.append('title', textCutter(values.title, 20));
         formData.append('name', values.name);
         formData.append('breed', values.breed);
         formData.append('date', values.date);
-        formData.append('location', values.location);
+        formData.append('location', textCutter(values.location, 4));
         formData.append('file', values.file, 'Pet`s photo');
         formData.append('sex', values.sex);
         if (values.comments) {
@@ -157,6 +160,7 @@ export const AddPetForm = () => {
           navigate('/notices');
         } catch (error) {
           console.log(error);
+          notify('error', error.message);
         }
     }
 

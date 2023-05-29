@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getFriends } from 'api/pets';
-
+import { notify } from '../../helpers/notification';
 import { CardItem } from './CardItem/CardItem';
 import { Title, Wrapper, CardList } from './Friends.styled';
 
@@ -14,6 +14,7 @@ export const OurFriends = () => {
         SetData([...result.data]);
       } catch (error) {
         console.log(error);
+        notify('error', error.message);
       }
     };
     fetchFriends();

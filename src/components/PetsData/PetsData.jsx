@@ -4,6 +4,7 @@ import { PetsList } from './PetsList/PetsList';
 import { Title, Wrapper, TitleWrapper } from './PetsData.styled';
 import { getPets } from 'api/pets';
 import { deletePet } from 'api/pets';
+import { notify } from '../../helpers/notification';
 
 export const PetsData = () => {
   const [data, SetData] = useState([]);
@@ -13,7 +14,9 @@ export const PetsData = () => {
       try {
         const result = await getPets();
         SetData([...result.data.body.data]);
-      } catch (error) {}
+      } catch (error) {
+        notify('error', error.message);
+      }
     })();
   }, []);
 
@@ -24,7 +27,9 @@ export const PetsData = () => {
       updateData.splice(index, 1);
       SetData(updateData);
       deletePet(id);
-    } catch (error) {}
+    } catch (error) {
+      notify('error', error.message);
+    }
   };
 
   return (

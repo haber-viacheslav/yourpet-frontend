@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { textCutter } from 'helpers/textCutter';
 import { setNoticeToFavorite } from 'api/notices';
 import { Modal } from 'components/Modal/Modal';
 import { ModalItem } from '../ModalNotice/ModalNotice';
@@ -27,6 +28,7 @@ import {
 export const NoticesCategoryItem = ({ notice, delNotice }) => {
   const [isDelete, setIsDelete] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isNoticeFavorite, setIsNoticeFavorite] = useState(notice.isFavourite);
 
   const handleModalClick = () => {
     setIsOpen(!isOpen);
@@ -34,11 +36,19 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
 
   const handleAddToFavorite = async () => {
     try {
-      const { _id: id } = notice;
-      const response = await setNoticeToFavorite(id);
-      console.log(response);
+      const response = await setNoticeToFavorite(notice._id);
+      if (response.data.code === 200) {
+        setIsNoticeFavorite(prevState => !prevState);
+        notify('info', 'Your notice has been added to the favorites')
+      }
+      if (!response.data.code === 200) {
+        notify(
+          'warning',
+          'You need to register to add this message to your favorites.'
+        );
+      }
     } catch (error) {
-      notify('error', 'Only available to authorized users');
+      notify('warning', 'You need to register to add this message to your favorites');
     }
   };
 
@@ -54,41 +64,65 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
     try {
       delNotice(id);
       setIsDelete(false);
+      notify('info', 'Your notice has been deleted')
     } catch (error) {
-      console.log(error);
+      notify('error', 'Delete available only to owner');
     }
   };
-  console.log(notice);
-  const { imgUrl, sex, location, category, _id: id, title, date } = notice;
+
+  const {
+    isOwner,
+    imgUrl,
+    sex,
+    location,
+    category,
+    _id: id,
+    title,
+    date,
+  } = notice;
 
   const Svg = () => {
     return sex === 'female' ? SvgFemale : SvgMale;
   };
 
-  let ege = Math.round((Date.now() - Date.parse(date)) / 31557600000);
-  const years = ege >= 2 ? 'years' : 'year';
+  let age = Math.round((Date.now() - Date.parse(date)) / 31557600000);
+  const years = age >= 2 ? 'years' : 'year';
 
   return (
     <>
       {isOpen && (
         <Modal onClick={handleModalClick}>
-          <ModalItem onClick={handleModalClick} id={id} />
+          <ModalItem
+            onClick={handleModalClick}
+            id={id}
+            onFavoriteClick={handleAddToFavorite}
+            isFavorite={isNoticeFavorite}
+          />
         </Modal>
       )}
       <ContainerCard>
-        <Img src={imgUrl} alt="Pet image" />
-        <BtnAddFavorite onClick={handleAddToFavorite} />
-        <DeleteBtnWrapper>
-          <DeletePetBtn onClick={handleDeleteNotice} />
-        </DeleteBtnWrapper>
-        <BtnAddPetCircle />
-        <PetCategory text={`${category}`} />
-        <ContainerInfo>
-          <PetInfo Svg={SvgLocation} text={`${location}`} />
-          <PetInfo Svg={SvgClock} text={`${ege} ${years}`} />
-          <PetInfo Svg={Svg()} text={`${sex}`} />
-        </ContainerInfo>
-        <Text>{title}</Text>
+        <>
+          <Img src={imgUrl} alt="Pet image" />
+          <BtnAddFavorite
+            onClick={handleAddToFavorite}
+            isFavorite={isNoticeFavorite}
+          />
+          {isOwner && (
+            <DeleteBtnWrapper>
+              <DeletePetBtn onClick={handleDeleteNotice} />
+            </DeleteBtnWrapper>
+          )}
+
+          <BtnAddPetCircle />
+          <PetCategory text={`${category}`} />
+          <ContainerInfo>
+            <PetInfo Svg={SvgLocation} text={`${textCutter(location, 4)}`} />
+            <PetInfo Svg={SvgClock} text={`${age} ${years}`} />
+            <PetInfo Svg={Svg()} text={`${sex}`} />
+          </ContainerInfo>
+          <Text>{title}</Text>
+        </>
+
         <BtnLearnMoreFavorite id={id} onClick={handleModalClick} />
       </ContainerCard>
       {isDelete && (

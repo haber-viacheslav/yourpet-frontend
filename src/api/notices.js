@@ -35,7 +35,6 @@ export const getNoticeById = async id => {
 // setNoticeToFavorite
 export const setNoticeToFavorite = async id => {
   const response = await axios.patch(`/notices/${id}/favorite`);
-  console.log(response);
   return response;
 };
 

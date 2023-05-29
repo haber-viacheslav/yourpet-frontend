@@ -104,9 +104,9 @@ const SvgCancel = () => {
     </ArrowLeft>
   );
 };
-const SvgHeart = () => {
+const SvgHeart = ({ isFavorite }) => {
   return (
-    <Heart width={24} height={24}>
+    <Heart width={24} height={24} isFavorite={isFavorite}>
       <use href={icons + '#icon-heart'}></use>
     </Heart>
   );
@@ -319,10 +319,10 @@ export const BtnFiltersCircle = ({ onClick }) => {
     </FilterCurcle>
   );
 };
-export const BtnCall = ({ onClick }) => {
+export const BtnCall = ({ onClick, tel }) => {
   return (
     <>
-      <BtnContact type="button" onClick={onClick}>
+      <BtnContact href={`${tel}`} onClick={onClick}>
         Contact
       </BtnContact>
     </>
@@ -414,18 +414,18 @@ export const BtnAddPetCircle = () => {
   );
 };
 
-export const BtnAddFavorite = ({ onClick }) => {
+export const BtnAddFavorite = ({ onClick, isFavorite }) => {
   return (
     <BtnHeart type="button" onClick={onClick}>
-      <SvgHeart />
+      <SvgHeart isFavorite={isFavorite} />
     </BtnHeart>
   );
 };
-export const BtnAddTo = ({ onClick }) => {
+export const BtnAddTo = ({ onClick, isFavorite }) => {
   return (
     <BtnToHeart type="button" onClick={onClick}>
       Add to
-      <SvgToHeart />
+      <SvgToHeart isFavorite={isFavorite} />
     </BtnToHeart>
   );
 };
