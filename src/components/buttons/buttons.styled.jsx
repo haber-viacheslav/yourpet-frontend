@@ -408,6 +408,17 @@ export const PetInfoStyle = styled.div`
   border: none;
   color: ${theme.colors.black};
 `;
+export const PetInfoNoticesStyle = styled.div`
+  height: 28px;
+  width: 80px;
+  border-radius: 16px;
+  display: flex;
+  padding-left: 4px;
+  align-items: center;
+  background-color: ${theme.colors.blueLight};
+  border: none;
+  color: ${theme.colors.black};
+`;
 export const PetCategoryStyle = styled.div`
   width: 126px;
   height: 32px;
