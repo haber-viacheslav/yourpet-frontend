@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { ButtonIconForm } from 'components/ButtonIconForm/ButtonIconForm';
-import { FormSearch, InputSearch } from './SearchNewsForm.styled';
+import { FormSearch, InputSearch } from './Search.styled';
 
-export const SearchNewsForm = ({ onSubmit }) => {
+export const Search = ({ onSubmit }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  console.log('searchQuery', searchQuery);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -12,8 +11,7 @@ export const SearchNewsForm = ({ onSubmit }) => {
   };
 
   const handleChange = e => {
-    console.log('e.target.value--->', e.target.value);
-    setSearchQuery(e.target.value.toLowerCase().trim());
+    setSearchQuery(e.target.value.toLowerCase());
   };
 
   const handleReset = () => {

@@ -1,10 +1,10 @@
 import { createPortal } from 'react-dom';
-import { LoaderContainer } from './Loader.styled';
+import { LoaderContainer, LoaderImg } from './Loader.styled';
 const loader = document.querySelector('#loader');
-export const Loader = ({ size = 200, loaderSrc }) => {
+export const Loader = ({ size = 250, loaderSrc }) => {
   return createPortal(
     <LoaderContainer>
-      <img src={loaderSrc} alt="Loading" width={size} />
+      <LoaderImg src={loaderSrc} alt="Loading" width={size} />
     </LoaderContainer>,
     loader
   );

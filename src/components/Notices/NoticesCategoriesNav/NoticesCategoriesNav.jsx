@@ -26,7 +26,7 @@ export const NoticesCategoriesNav = ({ onCategoryClick, active }) => {
 
   const handleClick = () => {
     if (!isLoggedIn) {
-      notify('warn', 'To add a pet, you must be a registered user');
+      notify('warning', 'To add a pet, you must be a registered user');
       return;
     } else {
       navigate('/add-pet');
@@ -42,18 +42,13 @@ export const NoticesCategoriesNav = ({ onCategoryClick, active }) => {
           return active === category[1] ? (
             <StyledNavLink
               key={route}
-              to={`/notices/${route}`}
               end
               onClick={() => onCategoryClick(route)}
             >
               {text}
             </StyledNavLink>
           ) : (
-            <StyledNavLink
-              key={route}
-              to={`/notices/${route}`}
-              onClick={() => onCategoryClick(route)}
-            >
+            <StyledNavLink key={route} onClick={() => onCategoryClick(route)}>
               {text}
             </StyledNavLink>
           );
@@ -63,11 +58,7 @@ export const NoticesCategoriesNav = ({ onCategoryClick, active }) => {
             const route = category[1];
             const text = category[0];
             return (
-              <StyledNavLink
-                key={route}
-                to={`/notices/${route}`}
-                onClick={() => onCategoryClick(route)}
-              >
+              <StyledNavLink key={route} onClick={() => onCategoryClick(route)}>
                 {text}
               </StyledNavLink>
             );

@@ -41,6 +41,18 @@ export const PetInfoList = styled.div`
   @media screen and (${props => props.theme.media.lg}) {
   }
 `;
+export const Text = styled.h3`
+  font-family: ${props => props.theme.fonts.main};
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 33px;
+  padding: 0 0 20px 0;
+  @media screen and (${props => props.theme.media.md}) {
+    font-size: 28px;
+    line-height: 38px;
+  }
+`;
 
 export const PetInfoItem = styled.div`
   margin-left: 20px;
@@ -109,7 +121,7 @@ export const CommentInfo = styled.p`
   align-items: center;
   letter-spacing: 0.04em;
   color: #000000;
-  margin-bottom: 12px;
+  padding: 20px 20px 0 20px;
   @media screen and (${props => props.theme.media.md}) {
     align-self: flex-start;
 

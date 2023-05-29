@@ -8,8 +8,8 @@ export const LoaderContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${props => props.theme.colors.backdropColor};
 `;
-export const LoaderImage = styled.img`
-  width: 100%;
-  height: 100%;
+export const LoaderImg = styled.img`
+  /* position: absolute; */
 `;

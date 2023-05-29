@@ -5,6 +5,7 @@ import { logOut, userCurrent } from 'redux/auth/authService';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 
 import { LogOut } from '../buttons/buttons';
+import { notify } from 'helpers/notification';
 
 export const Logout = () => {
   const [isLogOut, setIsLogOut] = useState(false);
@@ -18,6 +19,7 @@ export const Logout = () => {
 
   const handleLogOut = () => {
     setIsLogOut(true);
+    
   };
 
   const handleLogOutCancel = () => {
@@ -29,18 +31,22 @@ export const Logout = () => {
       dispatch(logOut());
       setIsLogOut(false);
       navigate('/');
-    } catch (error) {}
+      notify('info', 'You have successfully logged out');
+    } catch (error) {
+      notify('error', error.message);
+    }
   };
 
   return (
     <>
       <LogOut onClick={handleLogOut} />
+
       {isLogOut && (
         <ModalApproveAction
           onActivate={handleLogOutYes}
           onClick={handleLogOutCancel}
           variant={'logOut'}
-        />
+        /> 
       )}
     </>
   );

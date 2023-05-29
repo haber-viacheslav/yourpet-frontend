@@ -19,9 +19,8 @@ export const FiltersBtnContainer = styled.div`
   @media screen and (${props => props.theme.media.md}) {
     display: flex;
     gap: 12px;
-    position: absolute;
-    top: 0;
-    right: 0;
+    justify-content: flex-end;
+    margin-left: auto;
   }
 `;
 
@@ -51,9 +50,13 @@ export const StyledNavLink = styled(NavLink)`
 `;
 export const CategoryBntWrapper = styled.ul`
   display: flex;
+  align-items: flex-start;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
+  
   @media screen and (${props => props.theme.media.md}) {
     gap: 12px;
+    
+    
   }
 `;
