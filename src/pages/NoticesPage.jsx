@@ -9,16 +9,15 @@ import { NoticesCategoriesList } from '../components/Notices/NoticesCategoriesLi
 import { useSearchParams } from 'react-router-dom';
 import { theme } from '../theme/theme';
 import { Pagination } from 'components/Pagination/Pagination';
-const isTablet = window.matchMedia(theme.media.mdToLg).matches;
-const isDesktop = window.matchMedia(theme.media.lg).matches;
+
 const NoticesPage = () => {
-  const [limit, setLimit] = useState(11);
+  const limit = 10;
   const [category, setCategory] = useState('sell');
   const [notices, setNotices] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [isError, setIsError] = useState(false);
+
   const [searchParams, setSearchParams] = useSearchParams();
+  const isTablet = window.matchMedia(theme.media.mdToLg).matches;
 
   const params = useMemo(
     () => Object.fromEntries([...searchParams]),
@@ -26,26 +25,16 @@ const NoticesPage = () => {
   );
 
   useEffect(() => {
-    if (isTablet) {
-      return setLimit(4);
-    }
-    if (isDesktop) {
-      return setLimit(4);
-    }
-  }, []);
-
-  useEffect(() => {
     try {
       (async () => {
         if (category === 'favorite' || category === 'own') {
           const response = await getPrivateNotices(category, params);
-
+          setSearchParams({ ...params, category });
           setNotices(response.data);
           setTotalPages(response.totalPages);
         } else {
           setSearchParams({ ...params, category });
           const response = await getAllNotices(params);
-          console.log('response', response);
           setNotices(response.data);
           setTotalPages(response.totalPages);
         }
@@ -56,10 +45,7 @@ const NoticesPage = () => {
   }, [setSearchParams, params, category]);
 
   const handleSearchSubmit = search => {
-    console.log('search-handleSearchSubmit', search);
-
     const nextParams = search !== '' ? { search } : {};
-    console.log('nextParams', nextParams);
     setSearchParams({ ...nextParams, page: 1, limit });
   };
   const handleDeleteBtn = async id => {
@@ -78,7 +64,7 @@ const NoticesPage = () => {
   };
 
   const handlePageChange = page => {
-    setSearchParams({ ...params, page });
+    setSearchParams({ ...params, page, limit });
   };
 
   return (
@@ -97,14 +83,14 @@ const NoticesPage = () => {
             notices={notices}
             delNotice={handleDeleteBtn}
           />
-          {
+          {totalPages > 1 && (
             <Pagination
-              currentPage={params.page}
+              currentPage={+params.page}
               totalPages={totalPages}
               onPageChange={handlePageChange}
               paginationLength={isTablet ? 5 : 4}
             />
-          }
+          )}
         </Container>
       </Section>
     </>
