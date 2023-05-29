@@ -1,6 +1,5 @@
 import { NoticesCategoryItem } from '../NoticesCategoriesItem/NoticesCategoriesItem';
 import { List } from './NoticesCategoriesList.styled';
-import { notify } from 'helpers/notification';
 
 export const NoticesCategoriesList = ({ notices, delNotice }) => {
   return (
