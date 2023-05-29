@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
-import { NoticesCategoryItem } from 'components/Notices (new)/NoticesCategoriesItem (new)/NoticesCategoriesItem';
-import { getAllNotices, getPrivateNotices, deleteNotice } from 'api/notices';
+import { NoticesCategoryItem } from 'components/Notices/NoticesCategoriesItem/NoticesCategoriesItem';
+// import petsList from '../../../mockData/petsList';
+// import { nanoid } from '@reduxjs/toolkit';
 import { List } from './NoticesCategoriesList.styled';
+import { useEffect, useState } from 'react';
+import { getAllNotices, getPrivateNotices, deleteNotice } from 'api/notices';
 
 export const NoticesCategoriesList = ({ url, category }) => {
   const [notices, setNotices] = useState([]);

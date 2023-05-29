@@ -45,25 +45,25 @@ export const NoticesCategoriesNav = ({ onChoosingCategory }) => {
   );
 };
 
-{
-  /* <Formik initialValues={initialValues} onSubmit={handleOnSubmit}>
-  {({ props, values }) => {
-    const { category } = values;
-    return (
-      <GroupWrapper role="group">
-        {navBtnCategories.map(variant => {
-          const selected = variant[1] === category;
-          return (
-            <RadioBtn
-              key={variant[0]}
-              value={variant}
-              name="category"
-              selected={selected}
-            />
-          );
-        })}
-      </GroupWrapper>
-    );
-  }}
-</Formik>; */
-}
+// {
+//   /* <Formik initialValues={initialValues} onSubmit={handleOnSubmit}>
+//   {({ props, values }) => {
+//     const { category } = values;
+//     return (
+//       <GroupWrapper role="group">
+//         {navBtnCategories.map(variant => {
+//           const selected = variant[1] === category;
+//           return (
+//             <RadioBtn
+//               key={variant[0]}
+//               value={variant}
+//               name="category"
+//               selected={selected}
+//             />
+//           );
+//         })}
+//       </GroupWrapper>
+//     );
+//   }}
+// </Formik>; */
+// }
