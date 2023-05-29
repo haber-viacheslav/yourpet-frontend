@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const FiltersContainer = styled.div`
@@ -24,7 +24,7 @@ export const FiltersBtnContainer = styled.div`
   }
 `;
 
-export const StyledNavLink = styled(NavLink)`
+export const StyledNavLink = styled(Link)`
   color: ${props => props.theme.colors.blue};
   background: ${props => props.theme.colors.blueLight};
   text-decoration: none;
@@ -53,10 +53,8 @@ export const CategoryBntWrapper = styled.ul`
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 6px;
-  
+
   @media screen and (${props => props.theme.media.md}) {
     gap: 12px;
-    
-    
   }
 `;
