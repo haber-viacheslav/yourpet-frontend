@@ -40,10 +40,6 @@ export const FilterCards = () => {
     }
   });
    
-  //  if (searchParams.toString() === '') {
-  //       return
-  //  }
-   
   //  console.log(`https://your-pet-api.onrender.com/api/v1/notices?${searchParams.toString()}`)
 
     const fetchPets = async () => {
