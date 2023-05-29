@@ -1,24 +1,15 @@
 import { Routes, Route } from 'react-router-dom';
-
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { lazy } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { ToastContainer } from 'react-toastify';
 import { theme } from '../theme/theme';
-// import { Loader } from './Loader/Loader';
-// import PawLoader from '../images/Loader.png';
-
 import { NoticesCategoriesList } from './Notices/NoticesCategoriesList/NoticesCategoriesList';
-
 import { useEffect } from 'react';
 import { userCurrent } from 'redux/auth/authService';
-// import { useAuth } from 'hooks/useAuth';
 import { useDispatch } from 'react-redux';
-
 import { RestrictedRoute } from '../routes/RestrictedRoute';
 import { PrivateRoute } from '../routes/PrivateRoute';
-import axios from 'axios';
-
 const MainPage = lazy(() => import('../pages/MainPage'));
 const Register = lazy(() => import('../pages/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage'));
@@ -32,20 +23,11 @@ const ModalTestPage = lazy(() => import('../pages/ModalTestPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  // const { isRefreshing } = useAuth();
-  // setInterval(() => {
-  //   dispatch(userCurrent());
-  // }, 8000);
+
   useEffect(() => {
     dispatch(userCurrent());
-    console.log(axios.defaults.headers.common.Authorization);
   }, [dispatch]);
 
-  // const isRefreshing = true;
-
-  // return isRefreshing ? (
-  //   <Loader loaderSrc={PawLoader} size={600} />
-  // ) : (
   return (
     <ThemeProvider theme={theme}>
       <ToastContainer />

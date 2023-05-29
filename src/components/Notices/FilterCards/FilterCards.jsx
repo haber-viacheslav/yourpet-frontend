@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 // import { useSearchParams } from 'react-router-dom';
 import { BtnFilters, BtnFiltersCircle } from 'components/buttons/buttons';
-import {IconClose, IconOpen, IconCheck, IconCheckRound} from './icons/icons'
+import { IconClose, IconOpen, IconCheck, IconCheckRound } from './icons/icons';
 import {
   DropdownWrapper,
   DropdownMenu,
@@ -16,7 +16,6 @@ import {
 } from './FilterCards.styled';
 // import { useEffect } from 'react';
 
-
 export const FilterCards = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenAge, setIsOpenAge] = useState(false);
@@ -30,31 +29,30 @@ export const FilterCards = () => {
     male: false,
   });
 
+  const searchParams = new URLSearchParams();
 
-   const searchParams = new URLSearchParams();
+  Object.entries(checkedItems).forEach(([key, value]) => {
+    if (value) {
+      searchParams.append(key, String(value));
+    }
+  });
 
-    Object.entries(checkedItems).forEach(([key, value]) => {
-      if (value) {
-        searchParams.append(key, String(value));
-      }
-    });
-   
-   console.log(searchParams.toString())
+  //  console.log(searchParams.toString())
 
-//  useEffect(() => {
-//     const searchParams = new URLSearchParams();
+  //  useEffect(() => {
+  //     const searchParams = new URLSearchParams();
 
-//     Object.entries(checkedItems).forEach(([key, value]) => {
-//       if (value) {
-//         searchParams.append(key, String(value));
-//       }
-//     });
-   
-//    console.log(searchParams.toString())
+  //     Object.entries(checkedItems).forEach(([key, value]) => {
+  //       if (value) {
+  //         searchParams.append(key, String(value));
+  //       }
+  //     });
 
-//    setSearchParams(searchParams.toString());
-   
-//   }, [checkedItems, setSearchParams]);
+  //    console.log(searchParams.toString())
+
+  //    setSearchParams(searchParams.toString());
+
+  //   }, [checkedItems, setSearchParams]);
 
   const dropdownRef = useRef(null);
 
@@ -77,7 +75,6 @@ export const FilterCards = () => {
       [name]: !prevCheckedItems[name],
     }));
   };
-
 
   return (
     <>
@@ -150,7 +147,7 @@ export const FilterCards = () => {
               </MenuButton>
               {isOpenGender && (
                 <Menu>
-                   <Item>
+                  <Item>
                     <Label>
                       {checkedItems['female'] ? (
                         <IconCheckRound />
@@ -194,25 +191,24 @@ export const FilterCards = () => {
   );
 };
 
+// useEffect(() => {
+//   const handleEscapeKey = event => {
+//     if (event.key === 'Escape') {
+//       setIsOpen(false);
+//     }
+//   };
 
-  // useEffect(() => {
-  //   const handleEscapeKey = event => {
-  //     if (event.key === 'Escape') {
-  //       setIsOpen(false);
-  //     }
-  //   };
+//   const handleClickOutside = event => {
+//     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+//       setIsOpen(false);
+//     }
+//   };
 
-  //   const handleClickOutside = event => {
-  //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-  //       setIsOpen(false);
-  //     }
-  //   };
+//   document.addEventListener('keydown', handleEscapeKey);
+//   document.addEventListener('mousedown', handleClickOutside);
 
-  //   document.addEventListener('keydown', handleEscapeKey);
-  //   document.addEventListener('mousedown', handleClickOutside);
-
-  //   return () => {
-  //     document.removeEventListener('keydown', handleEscapeKey);
-  //     document.removeEventListener('mousedown', handleClickOutside);
-  //   };
-  // }, []);
+//   return () => {
+//     document.removeEventListener('keydown', handleEscapeKey);
+//     document.removeEventListener('mousedown', handleClickOutside);
+//   };
+// }, []);
