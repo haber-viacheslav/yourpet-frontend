@@ -87,7 +87,7 @@ export const ModalItem = ({ onClick, id }) => {
         </FlexBlock>
         <CommentInfo>Comments: {comments || ''}</CommentInfo>
         <BtnContainer>
-          {!phone || <BtnCall tel={`${'tel:' + phone || ''}`} />}
+          <BtnCall tel={`${'tel:' + phone || ''}`} />
           <BtnAddTo />
         </BtnContainer>
       </FlexContainer>
