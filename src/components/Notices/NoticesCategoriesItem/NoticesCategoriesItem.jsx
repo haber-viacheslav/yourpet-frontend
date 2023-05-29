@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAuth } from 'hooks/useAuth';
+import { textCutter } from 'helpers/textCutter';
 import { setNoticeToFavorite } from 'api/notices';
 import { Modal } from 'components/Modal/Modal';
 import { ModalItem } from '../ModalNotice/ModalNotice';
@@ -29,7 +29,6 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
   const [isDelete, setIsDelete] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isNoticeFavorite, setIsNoticeFavorite] = useState(notice.isFavourite);
-  // console.log(notice.isFavourite);
 
   const handleModalClick = () => {
     setIsOpen(!isOpen);
@@ -68,7 +67,7 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
       console.log(error);
     }
   };
-  console.log(notice);
+
   const {
     isOwner,
     imgUrl,
@@ -84,8 +83,8 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
     return sex === 'female' ? SvgFemale : SvgMale;
   };
 
-  let ege = Math.round((Date.now() - Date.parse(date)) / 31557600000);
-  const years = ege >= 2 ? 'years' : 'year';
+  let age = Math.round((Date.now() - Date.parse(date)) / 31557600000);
+  const years = age >= 2 ? 'years' : 'year';
 
   return (
     <>
@@ -100,25 +99,28 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
         </Modal>
       )}
       <ContainerCard>
-        <Img src={imgUrl} alt="Pet image" />
-        <BtnAddFavorite
-          onClick={handleAddToFavorite}
-          isFavorite={isNoticeFavorite}
-        />
-        {isOwner && (
-          <DeleteBtnWrapper>
-            <DeletePetBtn onClick={handleDeleteNotice} />
-          </DeleteBtnWrapper>
-        )}
+        <>
+          <Img src={imgUrl} alt="Pet image" />
+          <BtnAddFavorite
+            onClick={handleAddToFavorite}
+            isFavorite={isNoticeFavorite}
+          />
+          {isOwner && (
+            <DeleteBtnWrapper>
+              <DeletePetBtn onClick={handleDeleteNotice} />
+            </DeleteBtnWrapper>
+          )}
 
-        <BtnAddPetCircle />
-        <PetCategory text={`${category}`} />
-        <ContainerInfo>
-          <PetInfo Svg={SvgLocation} text={`${location}`} />
-          <PetInfo Svg={SvgClock} text={`${ege} ${years}`} />
-          <PetInfo Svg={Svg()} text={`${sex}`} />
-        </ContainerInfo>
-        <Text>{title}</Text>
+          <BtnAddPetCircle />
+          <PetCategory text={`${category}`} />
+          <ContainerInfo>
+            <PetInfo Svg={SvgLocation} text={`${textCutter(location, 4)}`} />
+            <PetInfo Svg={SvgClock} text={`${age} ${years}`} />
+            <PetInfo Svg={Svg()} text={`${sex}`} />
+          </ContainerInfo>
+          <Text>{title}</Text>
+        </>
+
         <BtnLearnMoreFavorite id={id} onClick={handleModalClick} />
       </ContainerCard>
       {isDelete && (

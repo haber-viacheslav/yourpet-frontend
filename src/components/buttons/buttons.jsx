@@ -319,10 +319,10 @@ export const BtnFiltersCircle = ({ onClick }) => {
     </FilterCurcle>
   );
 };
-export const BtnCall = ({ onClick }) => {
+export const BtnCall = ({ onClick, tel }) => {
   return (
     <>
-      <BtnContact type="button" onClick={onClick}>
+      <BtnContact href={`${tel}`} onClick={onClick}>
         Contact
       </BtnContact>
     </>

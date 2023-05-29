@@ -48,7 +48,9 @@ export const BigBtnFavor = styled.button`
     color: ${theme.colors.white};
     border: none;
   }
-  margin: 0 auto 20px;
+  position: absolute;
+  bottom: 24px;
+  right: 20px;
 `;
 
 export const PetFormBtn = styled.button`
@@ -355,7 +357,7 @@ export const ToHeart = styled.svg`
   stroke: ${theme.colors.white};
   margin-left: 11px;
 `;
-export const BtnContact = styled.button`
+export const BtnContact = styled.a`
   height: 40px;
   width: 256px;
   border-radius: 40px;
