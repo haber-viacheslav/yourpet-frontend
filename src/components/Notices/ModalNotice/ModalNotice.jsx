@@ -22,7 +22,7 @@ import {
 import { useEffect, useState } from 'react';
 import { getNoticeById } from 'api/notices';
 
-export const ModalItem = ({ onClick, id }) => {
+export const ModalItem = ({ onClick, onFavoriteClick, id, isFavorite }) => {
   const [petsDetails, setPetsDetails] = useState({});
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export const ModalItem = ({ onClick, id }) => {
 
   return (
     <>
-      <FlexContainer flexDirection={'column'}>
+      <FlexContainer flexDirection={'column'} justifyContent={'space-between'}>
         <FlexBlock>
           <BtnCloseModal onClick={onClick} />
           <ImgContainer>
@@ -85,10 +85,10 @@ export const ModalItem = ({ onClick, id }) => {
             </PetInfoList>
           </div>
         </FlexBlock>
-        <CommentInfo>Comments: {comments || ''}</CommentInfo>
+        {comments && <CommentInfo>Comments: {comments || ''}</CommentInfo>}
         <BtnContainer>
           <BtnCall tel={`${'tel:' + phone || ''}`} />
-          <BtnAddTo />
+          <BtnAddTo onClick={onFavoriteClick} isFavorite={isFavorite} />
         </BtnContainer>
       </FlexContainer>
     </>
