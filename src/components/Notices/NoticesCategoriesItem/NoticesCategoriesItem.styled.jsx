@@ -50,12 +50,12 @@ export const DeleteBtnWrapper = styled.div`
 `;
 
 export const Text = styled.h3`
-  font-family: ${props => props.theme.fonts.main}
+  font-family: ${props => props.theme.fonts.main};
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
   line-height: 33px;
-  padding: 0px 20px 20px 0;
+  padding: 0 20px 0 20px;
   @media screen and (${props => props.theme.media.md}) {
     font-size: 28px;
     line-height: 38px;

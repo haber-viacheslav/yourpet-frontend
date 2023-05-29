@@ -70,7 +70,7 @@ export const App = () => {
           />
           <Route path="/notices" element={<NoticesPage />}>
             <Route index element={<NoticesCategoriesList />} />
-            <Route exact path="sell" element={<NoticesCategoriesList />} />
+            <Route path="sell" element={<NoticesCategoriesList />} />
             <Route path="lost-found" element={<NoticesCategoriesList />} />
             <Route path="for-free" element={<NoticesCategoriesList />} />
             <Route
@@ -104,11 +104,6 @@ export const App = () => {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-
-      {/* <Routes>             
-            <Route path="notices" element={<NoticesPage />} />            
-            <Route path="news" element={<NewsPage />} />            
-        </Routes> */}
     </ThemeProvider>
   );
 };
