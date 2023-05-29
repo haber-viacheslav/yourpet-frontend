@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/authService';
 import { Formik, ErrorMessage } from 'formik';
 import { yupRegisterValidation } from 'helpers/yupValidation';
+import { notify } from '../../helpers/notification';
 import { iconClose, iconOpen, IconCrossSmall, IconCheck } from './Icons/Icons';
 import {
   Wrapper,
@@ -46,7 +47,9 @@ export const RegisterForm = () => {
       if (status === 'Success') {
         resetForm();
       }
+      notify('success', 'You have successfully registered');
     } catch (error) {
+      notify('error', error.message);
       console.log(error);
     }
   };

@@ -14,7 +14,7 @@ import { createPet } from 'api/pets';
 import { createNotice } from 'api/notices';
 import{ textCutter } from 'helpers/textCutter'
 import { Formik } from 'formik';
-
+import { notify } from '../../helpers/notification';
 import {
   FormWrapper,
   Wrapper,
@@ -129,7 +129,9 @@ export const AddPetForm = () => {
         try {
           await createPet(formData);
           navigate('/user');
-        } catch (error) {}
+        } catch (error) {
+          notify('error', error.message);
+        }
 
         break;
       default:
@@ -158,6 +160,7 @@ export const AddPetForm = () => {
           navigate('/notices');
         } catch (error) {
           console.log(error);
+          notify('error', error.message);
         }
     }
 

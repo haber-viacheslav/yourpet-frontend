@@ -21,6 +21,7 @@ import {
 } from './ModalNotice.styled';
 import { useEffect, useState } from 'react';
 import { getNoticeById } from 'api/notices';
+import { notify } from 'helpers/notification';
 
 export const ModalItem = ({ onClick, onFavoriteClick, id, isFavorite }) => {
   const [petsDetails, setPetsDetails] = useState({});
@@ -31,7 +32,9 @@ export const ModalItem = ({ onClick, onFavoriteClick, id, isFavorite }) => {
         const response = await getNoticeById(id);
         setPetsDetails(response.data);
       })();
-    } catch (error) {}
+    } catch (error) {
+      notify('error', error.message);
+    }
   }, [id]);
 
   const {

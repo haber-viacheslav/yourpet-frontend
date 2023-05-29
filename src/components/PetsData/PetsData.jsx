@@ -18,7 +18,9 @@ export const PetsData = () => {
       try {
         const result = await getPets();
         SetData([...result.data.body.data]);
-      } catch (error) {}
+      } catch (error) {
+        notify('error', error.message);
+      }
     })();
   }, []);
 
@@ -37,7 +39,9 @@ export const PetsData = () => {
       updateData.splice(index, 1);
       SetData(updateData);
       deletePet(id);
-    } catch (error) {}
+    } catch (error) {
+      notify('error', error.message);
+    }
   };
 
   return (

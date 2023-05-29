@@ -1,15 +1,15 @@
 import axios from 'axios';
 
 // getNotices
-export const getAllNotices = async url => {
-  const response = await axios.get(`/notices?category=${url}`);
-  return response;
+export const getAllNotices = async params => {
+  const response = await axios.get(`/notices`, { params });
+  return response.data;
 };
 
 // getPrivateNotices
-export const getPrivateNotices = async url => {
-  const response = await axios.get(`/notices/${url}`);
-  return response;
+export const getPrivateNotices = async (category, params) => {
+  const response = await axios.get(`/notices/${category}`, { params });
+  return response.data;
 };
 
 // createNotice
