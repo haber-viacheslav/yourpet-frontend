@@ -39,15 +39,16 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
       const response = await setNoticeToFavorite(notice._id);
       if (response.data.code === 200) {
         setIsNoticeFavorite(prevState => !prevState);
+        notify('info', 'Your notice has been added to the favorites')
       }
       if (!response.data.code === 200) {
         notify(
-          'error',
-          'Adding to favorites available only to authorized users'
+          'warning',
+          'You need to register to add this message to your favorites.'
         );
       }
     } catch (error) {
-      notify('error', 'Adding to favorites available only to authorized users');
+      notify('warning', 'You need to register to add this message to your favorites');
     }
   };
 
@@ -63,8 +64,9 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
     try {
       delNotice(id);
       setIsDelete(false);
+      notify('info', 'Your notice has been deleted')
     } catch (error) {
-      console.log(error);
+      notify('error', 'Delete available only to owner');
     }
   };
 
