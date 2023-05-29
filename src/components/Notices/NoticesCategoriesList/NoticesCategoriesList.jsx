@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { NoticesCategoryItem } from '../NoticesCategoriesItem/NoticesCategoriesItem';
 import { getAllNotices, getPrivateNotices, deleteNotice } from 'api/notices';
 import { List } from './NoticesCategoriesList.styled';
+import { notify } from 'helpers/notification';
 
 export const NoticesCategoriesList = ({ url, category }) => {
   const [notices, setNotices] = useState([]);
@@ -17,7 +18,9 @@ export const NoticesCategoriesList = ({ url, category }) => {
           setNotices(response.data.data);
         }
       })();
-    } catch (error) {}
+    } catch (error) {
+      notify('error', error.message);
+    }
   }, [url, category]);
   const handleDeleteBtn = async id => {
     try {
@@ -26,7 +29,9 @@ export const NoticesCategoriesList = ({ url, category }) => {
       updateData.splice(index, 1);
       setNotices(updateData);
       await deleteNotice(id);
-    } catch (error) {}
+    } catch (error) {
+      notify('error', error.message);
+    }
   };
 
   return (

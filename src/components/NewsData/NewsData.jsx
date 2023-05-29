@@ -11,6 +11,7 @@ import { Container } from 'components/Container/Container';
 import { useSearchParams } from 'react-router-dom';
 import { fetchNews } from '../../api/news.js';
 import { sortNewsByDate } from 'helpers/sortNewsByDate';
+import { notify } from '../../helpers/notification';
 
 export const NewsData = () => {
   const limit = 6;
@@ -41,6 +42,7 @@ export const NewsData = () => {
       } catch (error) {
         setIsError(true);
         console.log(error);
+        notify('error', error.message);
       } finally {
         setIsLoading(false);
       }

@@ -7,6 +7,7 @@ import {
   logoutFetch,
   updateFetch,
 } from 'api/auth';
+import { notify } from 'helpers/notification';
 
 export const register = createAsyncThunk(
   'auth/register',
@@ -16,7 +17,8 @@ export const register = createAsyncThunk(
       return data;
     } catch (error) {
       if (error.message === 'Request failed with status code 409') {
-        alert(
+        notify(
+          'warning',
           `User "${credentials.email}" is already registered, please login `
         );
       }
@@ -33,7 +35,8 @@ export const logIn = createAsyncThunk(
       return data;
     } catch (error) {
       if (error.message === 'Request failed with status code 401') {
-        alert(
+        notify(
+          'warning',
           `User "${credentials.email}" is not found please register and try again`
         );
       }

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { DeletePetBtn } from 'components/buttons/buttons';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
-
+import { notify } from 'helpers/notification';
 import {
   Wrapper,
   ImageWrapper,
@@ -29,7 +29,9 @@ export const PetsItem = ({ id, url, name, date, breed, comments, delPet }) => {
     try {
       delPet(id);
       setIsDelete(false);
-    } catch (error) {}
+    } catch (error) {
+      notify('error', error.message);
+    }
   };
 
   return (

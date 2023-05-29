@@ -15,6 +15,7 @@ import {
   ProfileInputWrapper,
   ProfileInfo,
 } from './UserData.styled';
+import { notify } from 'helpers/notification';
 
 const inputs = [
   { type: 'text', name: 'name', placeholder: 'Enter your name' },
@@ -82,6 +83,7 @@ export const UserData = () => {
       dispatch(userCurrent());
     } catch (error) {
       console.log(error);
+      notify('error', error.message);
     }
   };
 
