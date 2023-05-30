@@ -1,22 +1,21 @@
-import { BgWrapper } from "./Pages.styled";
+import { BgWrapper } from './Pages.styled';
 import { Section } from 'components/Section/Section';
 import { Container } from 'components/Container/Container';
-import { NotFoundHero} from 'components/NotFoundHero/NotFoundHero'
+import { NotFoundHero } from 'components/NotFoundHero/NotFoundHero';
 
 const NotFound = () => {
-  return (    
+  return (
     <BgWrapper>
       <Section
-        padTopSm={'10px'}
-        padTopMd={'20px'}
-        padTopLg={'30px'}
+        padTopSm={'20px'}
+        padTopMd={'56px'}
+        padTopLg={'60px'}
         padBottomLg={'15px'}
       >
         <Container>
           <NotFoundHero />
         </Container>
       </Section>
-      
     </BgWrapper>
   );
 };

@@ -10,7 +10,7 @@ const AddPetPage = () => {
         padTopSm={'68px'}
         padTopMd={'128px'}
         padTopLg={'108px'}
-        padBottomLg={'81px'}
+        // padBottomLg={'81px'}
       >
         <Container>
           <AddPetForm />
