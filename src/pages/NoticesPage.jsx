@@ -14,9 +14,13 @@ import { Pagination } from 'components/Pagination/Pagination';
 import { getNoticeByFilters } from 'api/notices';
 import { notify } from 'helpers/notification';
 
+const initialsCategory = localStorage.getItem('category')
+  ? localStorage.getItem('category')
+  : 'sell';
+
 const NoticesPage = () => {
   const limit = 10;
-  const [category, setCategory] = useState('sell');
+  const [category, setCategory] = useState(initialsCategory);
   const [notices, setNotices] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [queryString, setQueryString] = useState('');
