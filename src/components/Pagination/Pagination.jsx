@@ -15,7 +15,7 @@ export const Pagination = ({
   paginationLength,
 }) => {
   const getPageNumbers = () => {
-    const step = 2;
+    const step = 1;
     const range = [];
     const left = currentPage - step;
     const right = currentPage + step + 1;
