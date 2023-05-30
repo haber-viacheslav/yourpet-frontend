@@ -6,12 +6,7 @@ import { NotFoundHero } from 'components/NotFoundHero/NotFoundHero';
 const NotFound = () => {
   return (
     <BgWrapper>
-      <Section
-        padTopSm={'20px'}
-        padTopMd={'56px'}
-        padTopLg={'60px'}
-        padBottomLg={'15px'}
-      >
+      <Section padTopSm={'20px'} padTopMd={'56px'} padTopLg={'60px'}>
         <Container>
           <NotFoundHero />
         </Container>

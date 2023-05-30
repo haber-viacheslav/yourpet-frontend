@@ -4,12 +4,7 @@ import { Container } from 'components/Container/Container';
 
 const OurFriendsPage = () => {
   return (
-    <Section
-      padTopSm={'20px'}
-      padTopMd={'56px'}
-      padTopLg={'60px'}
-      padBottomLg={'81px'}
-    >
+    <Section padTopSm={'20px'} padTopMd={'56px'} padTopLg={'60px'}>
       <Container>
         <OurFriends />
       </Container>
