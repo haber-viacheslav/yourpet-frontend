@@ -43,16 +43,15 @@ export const BlockTitle = styled.div`
       transform: scale(1);
     }
     50% {
-      transform: scale(1.2);
+      transform: scale(1.1);
     }
     100% {
       transform: scale(1);
     }
-  };
-  padding: 80px auto 80px auto;
-  margin-bottom: 80px;
+  }
+  margin: 0 auto 80px auto;
   @media screen and (${props => props.theme.media.md}) {
-    margin: 60px auto 80px auto;
+    margin: 0 auto 80px auto;
   }
 `;
 export const ImageWrapper = styled.div`
@@ -70,12 +69,12 @@ export const ImageWrapper = styled.div`
 
 export const Cat = styled.img`
   width: 280px;
- 
+
   @media screen and (${props => props.theme.media.md}) {
-    width: 704px;   
+    width: 704px;
   }
   @media screen and (${props => props.theme.media.lg}) {
-    width: 822px;    
+    width: 822px;
   }
 `;
 
@@ -113,12 +112,11 @@ export const LinkToMain = styled.div`
     background: ${theme.colors.blueGradient};
   }
 `;
-export const Links = styled(Link)`  
+export const Links = styled(Link)`
   display: flex;
   justify-items: center;
   align-items: center;
   text-decoration: none;
   color: ${theme.colors.white};
-  font-weight: 500;   
+  font-weight: 500;
 `;
-  

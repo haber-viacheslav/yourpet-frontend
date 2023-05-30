@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { textCutter } from 'helpers/textCutter';
 import { setNoticeToFavorite, getNoticeById } from 'api/notices';
 import { Modal } from 'components/Modal/Modal';
@@ -51,6 +51,12 @@ export const NoticesCategoryItem = ({
     }
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    isOpen
+      ? (document.body.style.overflow = 'hidden')
+      : (document.body.style.overflow = 'visible');
+  }, [isOpen]);
 
   const handleAddToFavorite = async () => {
     try {
