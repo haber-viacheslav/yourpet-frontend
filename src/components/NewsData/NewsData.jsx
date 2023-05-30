@@ -18,7 +18,7 @@ export const NewsData = () => {
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams({});
   const isTablet = window.matchMedia(theme.media.md).matches;
 
   const params = useMemo(
@@ -29,7 +29,6 @@ export const NewsData = () => {
   useEffect(() => {
     setSearchParams({
       ...params,
-
       limit,
     });
     setIsLoading(true);
@@ -45,7 +44,7 @@ export const NewsData = () => {
         setTotalPages(newNews.totalPages);
       } catch (error) {
         console.log(error);
-        notify('error', "Sorry, something wrong. Please try again");
+        notify('error', 'Sorry, something wrong. Please try again');
       } finally {
         setIsLoading(false);
       }
@@ -65,13 +64,11 @@ export const NewsData = () => {
   return (
     <Container>
       <ReusableTitle>News</ReusableTitle>
-
       {isLoading && <Loader loaderSrc={Cat} size={300} />}
-
       <Search onSubmit={handleSearchSubmit} />
-      {news.length > 0 ? (
-        <NewsList news={news} />
-      ) : (
+      {news.length > 0 && <NewsList news={news} />}
+
+      {!isLoading && news.length === 0 && (
         <NotResults title={'Ooops:( Such news not found'} />
       )}
       {totalPages > 1 && (

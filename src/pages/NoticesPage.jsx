@@ -13,6 +13,7 @@ import { theme } from '../theme/theme';
 import { Pagination } from 'components/Pagination/Pagination';
 import { getNoticeByFilters } from 'api/notices';
 import { notify } from 'helpers/notification';
+import { NotResults } from '../components/NotResults/NotResults';
 
 const initialsCategory = localStorage.getItem('category')
   ? localStorage.getItem('category')
@@ -23,6 +24,7 @@ const NoticesPage = () => {
   const [category, setCategory] = useState(initialsCategory);
   const [notices, setNotices] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const [queryString, setQueryString] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
   const isTablet = window.matchMedia(theme.media.mdToLg).matches;
@@ -33,6 +35,7 @@ const NoticesPage = () => {
   );
 
   useEffect(() => {
+    setIsLoading(true);
     try {
       (async () => {
         if (category === 'favorite' || category === 'own') {
@@ -52,6 +55,8 @@ const NoticesPage = () => {
       })();
     } catch (error) {
       notify('error', 'Sorry, server just have a "fiesta" at this moment...');
+    } finally {
+      setIsLoading(false);
     }
   }, [setSearchParams, params, category, queryString]);
 
@@ -90,6 +95,8 @@ const NoticesPage = () => {
 
   const handleChoose = option => {
     setCategory(option);
+    setTotalPages(0);
+    setSearchParams({ ...params, category: option, page: 1, limit });
     localStorage.setItem('category', option);
   };
 
@@ -115,16 +122,20 @@ const NoticesPage = () => {
             onQueryStringChange={handleQueryStringChange}
           />
           <Suspense fallback={<Loader loaderSrc={PawLoader} size={250} />}>
-            <NoticesCategoriesList
-              notices={notices}
-              delNotice={handleDeleteBtn}
-              removeNoticeFromFavorite={handleRemoveNotice}
-            >
-              <Outlet />
-            </NoticesCategoriesList>
+            {notices.length > 0 && (
+              <NoticesCategoriesList
+                notices={notices}
+                delNotice={handleDeleteBtn}
+                removeNoticeFromFavorite={handleRemoveNotice}
+              >
+                <Outlet />
+              </NoticesCategoriesList>
+            )}
           </Suspense>
-
-          {totalPages > 1 && (
+          {!isLoading && notices.length === 0 && (
+            <NotResults title={'Ooops:( Such notices not found'} />
+          )}
+          {totalPages > 1 && !queryString && (
             <Pagination
               currentPage={+params.page}
               totalPages={totalPages}
