@@ -16,7 +16,7 @@ import {
 } from './FilterCards.styled';
 import { useEffect } from 'react';
 
-export const FilterCards = () => {
+export const FilterCards = ({ onQueryStringChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenAge, setIsOpenAge] = useState(false);
   const [isOpenGender, setIsOpenGender] = useState(false);
@@ -30,87 +30,88 @@ export const FilterCards = () => {
   });
 
 
-        const searchParams = new URLSearchParams();
+  useEffect(() => {
+    const searchParams = new URLSearchParams();
 
-        const currentDate = new Date();
+    const currentDate = new Date();
 
-        if (checkedItems['upToYear']) {
-          const fromTheDate1 = new Date(
-            currentDate.getFullYear() - 1,
-            currentDate.getMonth(),
-            currentDate.getDate()
-          );
-          const toTheDate1 = new Date(
-            currentDate.getFullYear(),
-            currentDate.getMonth(),
-            currentDate.getDate()
-          );
-          searchParams.append(
-            'fromTheDate',
-            fromTheDate1.toISOString().split('T')[0]
-          );
-          searchParams.append(
-            'toTheDate',
-            toTheDate1.toISOString().split('T')[0]
-          );
+    if (checkedItems['upToYear']) {
+      const fromTheDate1 = new Date(
+        currentDate.getFullYear() - 1,
+        currentDate.getMonth(),
+        currentDate.getDate()
+      );
+      const toTheDate1 = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        currentDate.getDate()
+      );
+      searchParams.append(
+        'fromTheDate',
+        fromTheDate1.toISOString().split('T')[0]
+      );
+      searchParams.append(
+        'toTheDate',
+        toTheDate1.toISOString().split('T')[0]
+      );
+    }
+
+    if (checkedItems['upToTwoYears']) {
+      const fromTheDate2 = new Date(
+        currentDate.getFullYear() - 2,
+        currentDate.getMonth(),
+        currentDate.getDate()
+      );
+      const toTheDate2 = new Date(
+        currentDate.getFullYear() - 1,
+        currentDate.getMonth(),
+        currentDate.getDate()
+      );
+      searchParams.append(
+        'fromTheDate',
+        fromTheDate2.toISOString().split('T')[0]
+      );
+      searchParams.append(
+        'toTheDate',
+        toTheDate2.toISOString().split('T')[0]
+      );
+    }
+
+    if (checkedItems['upToThreeYears']) {
+      const fromTheDate3 = new Date(
+        currentDate.getFullYear() - 3,
+        currentDate.getMonth(),
+        currentDate.getDate()
+      );
+      const toTheDate3 = new Date(
+        currentDate.getFullYear() - 2,
+        currentDate.getMonth(),
+        currentDate.getDate()
+      );
+      searchParams.append(
+        'fromTheDate',
+        fromTheDate3.toISOString().split('T')[0]
+      );
+      searchParams.append(
+        'toTheDate',
+        toTheDate3.toISOString().split('T')[0]
+      );
+    }
+
+    const ageFilters = [];
+    Object.entries(checkedItems).forEach(([key, value]) => {
+      if (value) {
+        if (key.startsWith('upTo')) {
+          ageFilters.push(key);
+        } else if (key === 'female' || key === 'male') {
+          searchParams.append('gender', key);
         }
+      }
+    });
 
-        if (checkedItems['upToTwoYears']) {
-          const fromTheDate2 = new Date(
-            currentDate.getFullYear() - 2,
-            currentDate.getMonth(),
-            currentDate.getDate()
-          );
-          const toTheDate2 = new Date(
-            currentDate.getFullYear() - 1,
-            currentDate.getMonth(),
-            currentDate.getDate()
-          );
-          searchParams.append(
-            'fromTheDate',
-            fromTheDate2.toISOString().split('T')[0]
-          );
-          searchParams.append(
-            'toTheDate',
-            toTheDate2.toISOString().split('T')[0]
-          );
-        }
-
-        if (checkedItems['upToThreeYears']) {
-          const fromTheDate3 = new Date(
-            currentDate.getFullYear() - 3,
-            currentDate.getMonth(),
-            currentDate.getDate()
-          );
-          const toTheDate3 = new Date(
-            currentDate.getFullYear() - 2,
-            currentDate.getMonth(),
-            currentDate.getDate()
-          );
-          searchParams.append(
-            'fromTheDate',
-            fromTheDate3.toISOString().split('T')[0]
-          );
-          searchParams.append(
-            'toTheDate',
-            toTheDate3.toISOString().split('T')[0]
-          );
-        }
-
-        const ageFilters = [];
-        Object.entries(checkedItems).forEach(([key, value]) => {
-          if (value) {
-            if (key.startsWith('upTo')) {
-              ageFilters.push(key);
-            } else if (key === 'female' || key === 'male') {
-              searchParams.append('gender', key);
-            }
-          }
-        });
-
-        const queryString = searchParams.toString();
-
- console.log(queryString)
+    const queryString = searchParams.toString();
+    onQueryStringChange(queryString);
+  }, [checkedItems, onQueryStringChange]);
 
   // Close menu by Esc key and clicking on the backdrop
   useEffect(() => {

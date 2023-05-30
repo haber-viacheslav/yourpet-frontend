@@ -9,12 +9,15 @@ import { NoticesCategoriesList } from '../components/Notices/NoticesCategoriesLi
 import { useSearchParams } from 'react-router-dom';
 import { theme } from '../theme/theme';
 import { Pagination } from 'components/Pagination/Pagination';
+import { getNoticeByFilters } from 'api/notices';
+
 
 const NoticesPage = () => {
   const limit = 10;
   const [category, setCategory] = useState('sell');
   const [notices, setNotices] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
+  const [queryString, setQueryString] = useState('');
 
   const [searchParams, setSearchParams] = useSearchParams();
   const isTablet = window.matchMedia(theme.media.mdToLg).matches;
@@ -30,9 +33,16 @@ const NoticesPage = () => {
         if (category === 'favorite' || category === 'own') {
           const response = await getPrivateNotices(category, params);
           setSearchParams({ ...params, category });
+          
           setNotices(response.data);
+          console.log(response.data)
           setTotalPages(response.totalPages);
-        } else {
+        } else if (queryString !== '') {
+          const response = await getNoticeByFilters(queryString);
+          console.log(response.data.data)
+          setNotices(response.data.data);
+        }
+        else {
           setSearchParams({ ...params, category });
           const response = await getAllNotices(params);
           setNotices(response.data);
@@ -42,7 +52,7 @@ const NoticesPage = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [setSearchParams, params, category]);
+  }, [setSearchParams, params, category, queryString]);
 
   const handleSearchSubmit = search => {
     const nextParams = search !== '' ? { search } : {};
@@ -67,6 +77,11 @@ const NoticesPage = () => {
     setSearchParams({ ...params, page, limit });
   };
 
+  const handleQueryStringChange = (newQueryString) => {
+    setQueryString(newQueryString);
+    // console.log(queryString)
+  };
+
   return (
     <>
       <Section>
@@ -78,6 +93,7 @@ const NoticesPage = () => {
           <NoticesCategoriesNav
             onCategoryClick={handleChoose}
             active={category}
+            onQueryStringChange={handleQueryStringChange}
           />
           <NoticesCategoriesList
             notices={notices}
