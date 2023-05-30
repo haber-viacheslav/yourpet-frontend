@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { BtnAddPet, BtnFiltersCircle } from 'components/buttons/buttons';
+import { BtnAddPet } from 'components/buttons/buttons';
 import { StyledNavLink } from './NoticesCategoriesNav.styled';
 import { useAuth } from 'hooks/useAuth';
 import { notify } from 'helpers/notification';
@@ -60,7 +60,6 @@ export const NoticesCategoriesNav = ({ onCategoryClick, active, onQueryStringCha
         <FilterCards onQueryStringChange={onQueryStringChange} />
         <BtnAddPet onClick={handleClick} />
       </FiltersBtnContainer>
-      <BtnFiltersCircle />
     </FiltersContainer>
   );
 };
