@@ -1,9 +1,11 @@
 import { NoticesCategoryItem } from '../NoticesCategoriesItem/NoticesCategoriesItem';
 import { List } from './NoticesCategoriesList.styled';
 
-
-
-export const NoticesCategoriesList = ({ notices, delNotice }) => {
+export const NoticesCategoriesList = ({
+  notices,
+  delNotice,
+  removeNoticeFromFavorite,
+}) => {
   return (
     <>
       <List>
@@ -14,6 +16,7 @@ export const NoticesCategoriesList = ({ notices, delNotice }) => {
               key={id}
               notice={notice}
               delNotice={delNotice}
+              removeNoticeFromFavorite={removeNoticeFromFavorite}
             />
           );
         })}
