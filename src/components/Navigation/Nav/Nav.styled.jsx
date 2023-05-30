@@ -42,5 +42,7 @@ export const NavLinkItem = styled(NavLink)`
   :focus,
   &.active {
     color: ${props => props.theme.colors.orange};
+     transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 `;
