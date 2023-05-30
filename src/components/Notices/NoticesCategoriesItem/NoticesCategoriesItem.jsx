@@ -98,8 +98,13 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
     return sex === 'female' ? SvgFemale : SvgMale;
   };
 
-  let age = Math.round((Date.now() - Date.parse(date)) / 31557600000);
-  const years = age >= 2 ? 'years' : 'year';
+const birthDate = new Date(date);
+const currentDate = new Date();
+const ageInMilliseconds = currentDate - birthDate;
+const ageInYears = ageInMilliseconds / (1000 * 60 * 60 * 24 * 365.25); // 365.25 accounts for leap years
+
+const age = Math.floor(ageInYears);
+const years = age === 1 ? 'year' : 'years';
 
   return (
     <>
