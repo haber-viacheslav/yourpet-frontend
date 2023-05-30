@@ -7,15 +7,14 @@ export const NavList = styled.ul`
   align-items: center;
   gap: 20px;
   @media screen and (${props => props.theme.media.md}) {
-  gap: 60px;
-  };
+    gap: 60px;
+  }
   @media screen and (${props => props.theme.media.lg}) {
-  justify-content: space-between;
-  gap: 40px;
-  align-items: center;
-  flex-direction: row;
-  };
-
+    justify-content: space-between;
+    gap: 40px;
+    align-items: center;
+    flex-direction: row;
+  }
 `;
 export const NavItem = styled.li`
   display: flex;
@@ -24,11 +23,11 @@ export const NavItem = styled.li`
   font-weight: ${props => props.theme.fontWeights.medium};
   font-size: 32px;
   line-height: 1.35;
-  
+
   @media screen and (${props => props.theme.media.md}) {
-  font-size: 48px;
-  line-height: 1.36;
-  };
+    font-size: 48px;
+    line-height: 1.36;
+  }
   @media screen and (${props => props.theme.media.lg}) {
     font-size: 20px;
     letter-spacing: 0.04em;
