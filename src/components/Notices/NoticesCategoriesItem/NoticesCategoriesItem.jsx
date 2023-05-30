@@ -47,7 +47,7 @@ export const NoticesCategoryItem = ({
         setPetsDetails(response.data);
       })();
     } catch (error) {
-      notify('error', 'Sorry, server just have a "fiesta" at this moment...');
+      notify('error', 'Sorry, something wrong. Please try again');
     }
     setIsOpen(!isOpen);
   };
