@@ -98,13 +98,23 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
     return sex === 'female' ? SvgFemale : SvgMale;
   };
 
-const birthDate = new Date(date);
-const currentDate = new Date();
-const ageInMilliseconds = currentDate - birthDate;
-const ageInYears = ageInMilliseconds / (1000 * 60 * 60 * 24 * 365.25); // 365.25 accounts for leap years
+  const birthDate = new Date(date);
+  const currentDate = new Date();
+  const ageInMilliseconds = currentDate - birthDate;
+  const ageInMonths = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24 * 30.44)); // Average number of days in a month
+  const ageInYears = Math.floor(ageInMonths / 12);
+  const remainingMonths = ageInMonths % 12;
 
-const age = Math.floor(ageInYears);
-const years = age === 1 ? 'year' : 'years';
+
+  const ageElement = ageInYears > 0 ? (
+    <>
+      {remainingMonths > 0 && (
+        <PetInfo Svg={SvgClock} text={`${remainingMonths} mth`} />
+      )}
+    </>
+  ) : (
+    <PetInfo Svg={SvgClock} text={`${ageInMonths} mth`} />
+  );
 
   return (
     <>
@@ -136,7 +146,7 @@ const years = age === 1 ? 'year' : 'years';
           <PetCategory text={`${category}`} />
           <ContainerInfo>
             <PetInfo Svg={SvgLocation} text={`${textCutter(location, 4)}`} />
-            <PetInfo Svg={SvgClock} text={`${age} ${years}`} />
+            {ageElement}
             <PetInfo Svg={Svg()} text={`${sex}`} />
           </ContainerInfo>
           <Text>{title}</Text>
