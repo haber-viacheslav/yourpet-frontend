@@ -128,7 +128,7 @@ export const AddPetForm = () => {
           await createPet(formData);
           navigate('/user');
         } catch (error) {
-          notify('error', "Sorry, something wrong. Please try again");
+          notify('error', 'Sorry, something wrong. Please try again');
         }
 
         break;
@@ -149,12 +149,11 @@ export const AddPetForm = () => {
         }
 
         try {
-          console.log('SUBMIT NOTICE');
           await createNotice(formData);
           navigate('/notices');
         } catch (error) {
           console.log(error);
-          notify('error', "Sorry, something wrong. Please try again");
+          notify('error', 'Sorry, something wrong. Please try again');
         }
     }
 

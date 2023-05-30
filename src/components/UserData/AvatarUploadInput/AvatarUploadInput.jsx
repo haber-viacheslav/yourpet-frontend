@@ -78,4 +78,5 @@ AvatarUploadInput.propTypes = {
   onEditClick: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
   touched: PropTypes.object.isRequired,
+  avatar: PropTypes.string,
 };

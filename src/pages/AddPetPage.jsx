@@ -6,12 +6,7 @@ import { BgWrapper } from './Pages.styled';
 const AddPetPage = () => {
   return (
     <BgWrapper>
-      <Section
-        padTopSm={'68px'}
-        padTopMd={'128px'}
-        padTopLg={'108px'}
-        // padBottomLg={'81px'}
-      >
+      <Section padTopSm={'20px'} padTopMd={'36px'} padTopLg={'20px'}>
         <Container>
           <AddPetForm />
         </Container>
