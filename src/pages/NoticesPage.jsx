@@ -57,6 +57,7 @@ const NoticesPage = () => {
     const nextParams = search !== '' ? { search } : {};
     setSearchParams({ ...nextParams, page: 1, limit });
   };
+  
   const handleDeleteBtn = async id => {
     try {
       const index = notices.findIndex(el => el['_id'] === id);
