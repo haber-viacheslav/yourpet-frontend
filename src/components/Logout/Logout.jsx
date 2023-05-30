@@ -6,6 +6,7 @@ import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAc
 
 import { LogOut } from '../buttons/buttons';
 import { notify } from 'helpers/notification';
+import PropTypes from 'prop-types';
 
 export const Logout = () => {
   const [isLogOut, setIsLogOut] = useState(false);
@@ -50,4 +51,9 @@ export const Logout = () => {
       )}
     </>
   );
+};
+
+
+LogOut.propTypes = {
+  onClick: PropTypes.func.isRequired,
 };
