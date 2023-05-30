@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { textCutter } from 'helpers/textCutter';
-import { setNoticeToFavorite } from 'api/notices';
+import { setNoticeToFavorite, getNoticeById } from 'api/notices';
 import { Modal } from 'components/Modal/Modal';
+import { Loader } from 'components/Loader/Loader';
+import PawLoader from '../../../images/Loader.png';
 import { useAuth } from 'hooks/useAuth';
 import { ModalItem } from '../ModalNotice/ModalNotice';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
@@ -27,6 +29,7 @@ import {
 } from './NoticesCategoriesItem.styled';
 
 export const NoticesCategoryItem = ({ notice, delNotice }) => {
+  const [petsDetails, setPetsDetails] = useState({});
   const [isDelete, setIsDelete] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isNoticeFavorite, setIsNoticeFavorite] = useState(notice.isFavourite);
@@ -34,6 +37,14 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
   const navigate = useNavigate();
 
   const handleModalClick = () => {
+    try {
+      (async () => {
+        const response = await getNoticeById(id);
+        setPetsDetails(response.data);
+      })();
+    } catch (error) {
+      notify('error', 'Something went wrong');
+    }
     setIsOpen(!isOpen);
   };
 
@@ -43,12 +54,6 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
       if (response.data.code === 200) {
         setIsNoticeFavorite(prevState => !prevState);
       }
-      // if (!response.data.code === 200) {
-      //   notify(
-      //     'warning',
-      //     'You need to register to add this message to your favorites.'
-      //   );
-      // }
     } catch (error) {
       notify(
         'warning',
@@ -113,16 +118,22 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
     <PetInfo Svg={SvgClock} text={`${ageInMonths} mth`} />
   );
 
+  console.log(Object.keys(petsDetails).length);
   return (
     <>
       {isOpen && (
         <Modal onClick={handleModalClick}>
-          <ModalItem
-            onClick={handleModalClick}
-            id={id}
-            onFavoriteClick={handleAddToFavorite}
-            isFavorite={isNoticeFavorite}
-          />
+          {Object.keys(petsDetails).length === 0 ? (
+            <Loader loaderSrc={PawLoader} size={150} />
+          ) : (
+            <ModalItem
+              onClick={handleModalClick}
+              id={id}
+              onFavoriteClick={handleAddToFavorite}
+              isFavorite={isNoticeFavorite}
+              petsDetails={petsDetails}
+            />
+          )}
         </Modal>
       )}
 

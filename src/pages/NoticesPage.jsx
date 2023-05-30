@@ -1,4 +1,5 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, Suspense } from 'react';
+import { useSearchParams, Outlet } from 'react-router-dom';
 import { getAllNotices, getPrivateNotices, deleteNotice } from 'api/notices';
 import { Container } from '../components/Container/Container';
 import { Section } from '../components/Section/Section';
@@ -6,7 +7,8 @@ import { NoticesCategoriesNav } from 'components/Notices/NoticesCategoriesNav/No
 import { Search } from 'components/Search/Search';
 import { Title, Wrapper } from 'components/Friends/Friends.styled';
 import { NoticesCategoriesList } from '../components/Notices/NoticesCategoriesList/NoticesCategoriesList';
-import { useSearchParams } from 'react-router-dom';
+import { Loader } from 'components/Loader/Loader';
+import PawLoader from '../images/Loader.png';
 import { theme } from '../theme/theme';
 import { Pagination } from 'components/Pagination/Pagination';
 import { getNoticeByFilters } from 'api/notices';
@@ -95,10 +97,16 @@ const NoticesPage = () => {
             active={category}
             onQueryStringChange={handleQueryStringChange}
           />
-          <NoticesCategoriesList
-            notices={notices}
-            delNotice={handleDeleteBtn}
-          />
+
+          <Suspense fallback={<Loader loaderSrc={PawLoader} size={250} />}>
+            <NoticesCategoriesList
+              notices={notices}
+              delNotice={handleDeleteBtn}
+            >
+              <Outlet />
+            </NoticesCategoriesList>
+          </Suspense>
+
           {totalPages > 1 && (
             <Pagination
               currentPage={+params.page}

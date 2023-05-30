@@ -86,7 +86,6 @@ export const addPetFormSchema = yup.object().shape({
   file: yup
     .mixed()
     .required('Upload pet`s photo')
-
     .test(
       'fileType',
       'Only image files are allowed',
