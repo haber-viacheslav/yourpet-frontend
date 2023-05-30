@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
-// import { useSearchParams } from 'react-router-dom';
 import { BtnFilters, BtnFiltersCircle } from 'components/buttons/buttons';
 import { IconClose, IconOpen, IconCheck, IconCheckRound } from './icons/icons';
+
 import {
   DropdownWrapper,
   DropdownMenu,
@@ -14,45 +14,128 @@ import {
   Label,
   CheckBox,
 } from './FilterCards.styled';
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 
-export const FilterCards = () => {
+export const FilterCards = ({ onQueryStringChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenAge, setIsOpenAge] = useState(false);
   const [isOpenGender, setIsOpenGender] = useState(false);
-  // const [searchParams, setSearchParams] = useSearchParams();
+
   const [checkedItems, setCheckedItems] = useState({
-    'age-3-12m': false,
-    'age-1-year': false,
-    'age-2-year': false,
+    upToYear: null,
+    upToTwoYears: null,
+    upToThreeYears: null,
     female: false,
     male: false,
   });
 
-  const searchParams = new URLSearchParams();
 
-  Object.entries(checkedItems).forEach(([key, value]) => {
-    if (value) {
-      searchParams.append(key, String(value));
+  useEffect(() => {
+    const searchParams = new URLSearchParams();
+
+    const currentDate = new Date();
+
+    if (checkedItems['upToYear']) {
+      const fromTheDate1 = new Date(
+        currentDate.getFullYear() - 1,
+        currentDate.getMonth(),
+        currentDate.getDate()
+      );
+      const toTheDate1 = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        currentDate.getDate()
+      );
+      searchParams.append(
+        'fromTheDate',
+        fromTheDate1.toISOString().split('T')[0]
+      );
+      searchParams.append(
+        'toTheDate',
+        toTheDate1.toISOString().split('T')[0]
+      );
     }
-  });
 
-  //  console.log(searchParams.toString())
+    if (checkedItems['upToTwoYears']) {
+      const fromTheDate2 = new Date(
+        currentDate.getFullYear() - 2,
+        currentDate.getMonth(),
+        currentDate.getDate()
+      );
+      const toTheDate2 = new Date(
+        currentDate.getFullYear() - 1,
+        currentDate.getMonth(),
+        currentDate.getDate()
+      );
+      searchParams.append(
+        'fromTheDate',
+        fromTheDate2.toISOString().split('T')[0]
+      );
+      searchParams.append(
+        'toTheDate',
+        toTheDate2.toISOString().split('T')[0]
+      );
+    }
 
-  //  useEffect(() => {
-  //     const searchParams = new URLSearchParams();
+    if (checkedItems['upToThreeYears']) {
+      const fromTheDate3 = new Date(
+        currentDate.getFullYear() - 3,
+        currentDate.getMonth(),
+        currentDate.getDate()
+      );
+      const toTheDate3 = new Date(
+        currentDate.getFullYear() - 2,
+        currentDate.getMonth(),
+        currentDate.getDate()
+      );
+      searchParams.append(
+        'fromTheDate',
+        fromTheDate3.toISOString().split('T')[0]
+      );
+      searchParams.append(
+        'toTheDate',
+        toTheDate3.toISOString().split('T')[0]
+      );
+    }
 
-  //     Object.entries(checkedItems).forEach(([key, value]) => {
-  //       if (value) {
-  //         searchParams.append(key, String(value));
-  //       }
-  //     });
+    const ageFilters = [];
+    Object.entries(checkedItems).forEach(([key, value]) => {
+      if (value) {
+        if (key.startsWith('upTo')) {
+          ageFilters.push(key);
+        } else if (key === 'female' || key === 'male') {
+          searchParams.append('gender', key);
+        }
+      }
+    });
 
-  //    console.log(searchParams.toString())
+    const queryString = searchParams.toString();
+    onQueryStringChange(queryString);
+  }, [checkedItems, onQueryStringChange]);
 
-  //    setSearchParams(searchParams.toString());
+  // Close menu by Esc key and clicking on the backdrop
+  useEffect(() => {
+    const handleEscapeKey = event => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
 
-  //   }, [checkedItems, setSearchParams]);
+    const handleClickOutside = event => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleEscapeKey);
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscapeKey);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+  // =====================
 
   const dropdownRef = useRef(null);
 
@@ -72,6 +155,9 @@ export const FilterCards = () => {
     const { name } = event.target;
     setCheckedItems(prevCheckedItems => ({
       ...prevCheckedItems,
+      upToYear: name === 'upToYear' ? true : false,
+      upToTwoYears: name === 'upToTwoYears' ? true : false,
+      upToThreeYears: name === 'upToThreeYears' ? true : false,
       [name]: !prevCheckedItems[name],
     }));
   };
@@ -84,55 +170,62 @@ export const FilterCards = () => {
             <Title>Filters</Title>
             <FilterGroup>
               <MenuButton onClick={toggleDropdownAge}>
-                {isOpenAge ? <IconClose /> : <IconOpen />}
+                {isOpenAge ? <IconOpen /> : <IconClose />}
                 <Text>By age</Text>
               </MenuButton>
               {isOpenAge && (
                 <Menu>
                   <Item>
                     <Label>
-                      {checkedItems['age-3-12m'] ? (
+                      {checkedItems['upToYear'] ? (
                         <IconCheckRound />
                       ) : (
                         <IconCheck />
                       )}
                       <CheckBox
-                        type="checkbox"
-                        checked={checkedItems['age-3-12m']}
+                        type="radio"
+                        value="upToYear"
+                        checked={checkedItems['upToYear'] === 'upToYear'}
                         onChange={handleCheckboxChange}
-                        name={'age-3-12m'}
+                        name="upToYear"
                       />
                       3-12m
                     </Label>
                   </Item>
                   <Item>
                     <Label>
-                      {checkedItems['age-1-year'] ? (
+                      {checkedItems['upToTwoYears'] ? (
                         <IconCheckRound />
                       ) : (
                         <IconCheck />
                       )}
                       <CheckBox
-                        type="checkbox"
-                        checked={checkedItems['age-1-year']}
+                        type="radio"
+                        value="upToTwoYears"
+                        checked={
+                          checkedItems['upToTwoYears'] === 'upToTwoYears'
+                        }
                         onChange={handleCheckboxChange}
-                        name={'age-1-year'}
+                        name="upToTwoYears"
                       />
                       1 year
                     </Label>
                   </Item>
                   <Item>
                     <Label>
-                      {checkedItems['age-2-year'] ? (
+                      {checkedItems['upToThreeYears'] ? (
                         <IconCheckRound />
                       ) : (
                         <IconCheck />
                       )}
                       <CheckBox
-                        type="checkbox"
-                        checked={checkedItems['age-2-year']}
+                        type="radio"
+                        value="upToThreeYears"
+                        checked={
+                          checkedItems['upToThreeYears'] === 'upToThreeYears'
+                        }
                         onChange={handleCheckboxChange}
-                        name={'age-2-year'}
+                        name="upToThreeYears"
                       />
                       2 year
                     </Label>
@@ -142,7 +235,7 @@ export const FilterCards = () => {
             </FilterGroup>
             <FilterGroup>
               <MenuButton onClick={toggleDropdownGender}>
-                {isOpenGender ? <IconClose /> : <IconOpen />}
+                {isOpenGender ? <IconOpen /> : <IconClose />}
                 <Text>By gender</Text>
               </MenuButton>
               {isOpenGender && (
@@ -191,24 +284,3 @@ export const FilterCards = () => {
   );
 };
 
-// useEffect(() => {
-//   const handleEscapeKey = event => {
-//     if (event.key === 'Escape') {
-//       setIsOpen(false);
-//     }
-//   };
-
-//   const handleClickOutside = event => {
-//     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-//       setIsOpen(false);
-//     }
-//   };
-
-//   document.addEventListener('keydown', handleEscapeKey);
-//   document.addEventListener('mousedown', handleClickOutside);
-
-//   return () => {
-//     document.removeEventListener('keydown', handleEscapeKey);
-//     document.removeEventListener('mousedown', handleClickOutside);
-//   };
-// }, []);
