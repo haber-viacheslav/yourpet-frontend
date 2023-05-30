@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const FiltersContainer = styled.div`
@@ -15,7 +14,6 @@ export const FiltersContainer = styled.div`
 export const FilterAdsContainer = styled.div``;
 
 export const FiltersBtnContainer = styled.div`
-
   @media screen and (${props => props.theme.media.md}) {
     display: flex;
     gap: 12px;
@@ -24,7 +22,7 @@ export const FiltersBtnContainer = styled.div`
   }
 `;
 
-export const StyledNavLink = styled(Link)`
+export const CategoryBtn = styled.button`
   color: ${props => props.theme.colors.blue};
   background: ${props => props.theme.colors.blueLight};
   text-decoration: none;
@@ -41,11 +39,13 @@ export const StyledNavLink = styled(Link)`
   align-items: center;
   letter-spacing: 0.04em;
   transition: color 250ms ease-in, background-color 250ms ease-in;
+  border: none;
+  cursor: pointer;
 
   :hover,
   &.active {
-    color: #fef9f9;
-    background: #54adff;
+    color: ${props => props.theme.colors.whity};
+    background-color: ${props => props.theme.colors.blue};
   }
 `;
 export const CategoryBntWrapper = styled.ul`

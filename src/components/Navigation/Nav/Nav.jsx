@@ -27,7 +27,7 @@ export const Nav = () => {
         <NavLinkItem to="/news">News</NavLinkItem>
       </NavItem>
       <NavItem>
-        <NavLinkItem to="/notices">{nameLink}</NavLinkItem>
+        <NavLinkItem to="/notices/sell">{nameLink}</NavLinkItem>
       </NavItem>
       <NavItem>
         <NavLinkItem to="/friends">Our Friends</NavLinkItem>

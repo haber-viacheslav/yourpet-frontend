@@ -28,7 +28,11 @@ import {
   Text,
 } from './NoticesCategoriesItem.styled';
 
-export const NoticesCategoryItem = ({ notice, delNotice }) => {
+export const NoticesCategoryItem = ({
+  notice,
+  delNotice,
+  removeNoticeFromFavorite,
+}) => {
   const [petsDetails, setPetsDetails] = useState({});
   const [isDelete, setIsDelete] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -43,7 +47,7 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
         setPetsDetails(response.data);
       })();
     } catch (error) {
-      notify('error', 'Something went wrong');
+      notify('error', 'Sorry, something wrong. Please try again');
     }
     setIsOpen(!isOpen);
   };
@@ -58,6 +62,9 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
     try {
       const response = await setNoticeToFavorite(notice._id);
       if (response.data.code === 200) {
+        if (isNoticeFavorite) {
+          removeNoticeFromFavorite(notice._id);
+        }
         setIsNoticeFavorite(prevState => !prevState);
       }
     } catch (error) {

@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { BtnAddPet } from 'components/buttons/buttons';
-import { StyledNavLink } from './NoticesCategoriesNav.styled';
 import { useAuth } from 'hooks/useAuth';
 import { notify } from 'helpers/notification';
 
@@ -8,6 +7,7 @@ import {
   FiltersBtnContainer,
   FiltersContainer,
   CategoryBntWrapper,
+  CategoryBtn,
 } from './NoticesCategoriesNav.styled';
 import { FilterCards } from '../FilterCards/FilterCards';
 
@@ -20,7 +20,11 @@ const navPrivateCategories = [
   ['favorite ads', 'favorite'],
   ['my ads', 'own'],
 ];
-export const NoticesCategoriesNav = ({ onCategoryClick, active, onQueryStringChange }) => {
+export const NoticesCategoriesNav = ({
+  onCategoryClick,
+  active,
+  onQueryStringChange,
+}) => {
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
 
@@ -39,20 +43,30 @@ export const NoticesCategoriesNav = ({ onCategoryClick, active, onQueryStringCha
         {navCategories.map(category => {
           const route = category[1];
           const text = category[0];
+          const isActive = active === route ? 'active' : '';
           return (
-            <StyledNavLink key={route} onClick={() => onCategoryClick(route)}>
+            <CategoryBtn
+              key={route}
+              className={isActive}
+              onClick={() => onCategoryClick(route)}
+            >
               {text}
-            </StyledNavLink>
+            </CategoryBtn>
           );
         })}
         {isLoggedIn &&
           navPrivateCategories.map(category => {
             const route = category[1];
             const text = category[0];
+            const isActive = active === route ? 'active' : '';
             return (
-              <StyledNavLink key={route} onClick={() => onCategoryClick(route)}>
+              <CategoryBtn
+                key={route}
+                className={isActive}
+                onClick={() => onCategoryClick(route)}
+              >
                 {text}
-              </StyledNavLink>
+              </CategoryBtn>
             );
           })}
       </CategoryBntWrapper>

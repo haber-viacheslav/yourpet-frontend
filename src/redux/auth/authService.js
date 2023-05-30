@@ -37,9 +37,10 @@ export const logIn = createAsyncThunk(
       if (error.message === 'Request failed with status code 401') {
         notify(
           'warning',
-          `User "${credentials.email}" is not found please register and try again`
+          `User "${credentials.email}" is not found, please register and try again`
         );
       }
+      notify('error', error.status);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
