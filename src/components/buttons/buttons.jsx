@@ -333,7 +333,7 @@ export const BtnFiltersCircle = ({ onClick }) => {
 export const BtnCall = ({ onClick, tel }) => {
   return (
     <>
-      <BtnContact href={`${tel}`} onClick={onClick}>
+      <BtnContact href={`${tel}`} onClick={onClick} aria-label="call">
         Contact
       </BtnContact>
     </>

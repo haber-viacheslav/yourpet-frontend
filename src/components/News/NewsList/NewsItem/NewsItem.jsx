@@ -34,7 +34,7 @@ export const NewsItem = ({ imgUrl, title, text, date, url }) => {
         <Description>{textCutter(text, 160)}</Description>
         <WrapBottom>
           <Date>{transformDate(date)}</Date>
-          <Link href={url} target="_blank" rel="noreferrer noopener">
+          <Link href={url} target="_blank" rel="noreferrer noopener" aria-label='news'>
             Read more
           </Link>
         </WrapBottom>

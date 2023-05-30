@@ -17,6 +17,7 @@ export const ButtonIconNoticeForm = ({ searchQuery, onClick }) => {
           fill={'#757575'}
           hovercolor="#F43F5E"
           onClick={onClick}
+          aria-label='button'
         >
           <RxCross1 size={24} hovercolor={'#F43F5E'} />
         </ButtonNoticeIcon>
