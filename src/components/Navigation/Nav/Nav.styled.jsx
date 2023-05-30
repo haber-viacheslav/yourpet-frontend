@@ -41,7 +41,7 @@ export const NavLinkItem = styled(NavLink)`
   color: ${props => props.theme.colors.black};
   :hover,
   :focus,
-  :active {
+  &.active {
     color: ${props => props.theme.colors.orange};
   }
 `;
