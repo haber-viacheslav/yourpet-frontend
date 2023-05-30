@@ -39,21 +39,8 @@ export const NoticesCategoriesNav = ({ onCategoryClick, active }) => {
         {navCategories.map(category => {
           const route = category[1];
           const text = category[0];
-          return active === category[1] ? (
-            <StyledNavLink
-              key={route}
-              to={`/notices/${route}`}
-              end
-              onClick={() => onCategoryClick(route)}
-            >
-              {text}
-            </StyledNavLink>
-          ) : (
-            <StyledNavLink
-              key={route}
-              to={`/notices/${route}`}
-              onClick={() => onCategoryClick(route)}
-            >
+          return (
+            <StyledNavLink key={route} onClick={() => onCategoryClick(route)}>
               {text}
             </StyledNavLink>
           );
@@ -63,11 +50,7 @@ export const NoticesCategoriesNav = ({ onCategoryClick, active }) => {
             const route = category[1];
             const text = category[0];
             return (
-              <StyledNavLink
-                key={route}
-                to={`/notices/${route}`}
-                onClick={() => onCategoryClick(route)}
-              >
+              <StyledNavLink key={route} onClick={() => onCategoryClick(route)}>
                 {text}
               </StyledNavLink>
             );

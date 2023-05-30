@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { BtnFilters, BtnFiltersCircle } from 'components/buttons/buttons';
 import { IconClose, IconOpen, IconCheck, IconCheckRound } from './icons/icons';
+import { IconClose, IconOpen, IconCheck, IconCheckRound } from './icons/icons';
 import {
   DropdownWrapper,
   DropdownMenu,
@@ -238,6 +239,7 @@ export const FilterCards = () => {
               </MenuButton>
               {isOpenGender && (
                 <Menu>
+                  <Item>
                   <Item>
                     <Label>
                       {checkedItems['female'] ? (

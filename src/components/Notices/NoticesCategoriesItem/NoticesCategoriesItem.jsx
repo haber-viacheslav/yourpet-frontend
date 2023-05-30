@@ -2,16 +2,17 @@ import { useState } from 'react';
 import { textCutter } from 'helpers/textCutter';
 import { setNoticeToFavorite } from 'api/notices';
 import { Modal } from 'components/Modal/Modal';
+import { useAuth } from 'hooks/useAuth';
 import { ModalItem } from '../ModalNotice/ModalNotice';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
-import { DeletePetBtn } from 'components/buttons/buttons';
+import { useNavigate } from 'react-router-dom';
+import { DeletePetBtn, PetInfo } from 'components/buttons/buttons';
 import { notify } from 'helpers/notification';
 import {
   BtnAddFavorite,
   BtnAddPetCircle,
   BtnLearnMoreFavorite,
   PetCategory,
-  PetInfo,
   SvgClock,
   SvgFemale,
   SvgLocation,
@@ -29,6 +30,8 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
   const [isDelete, setIsDelete] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isNoticeFavorite, setIsNoticeFavorite] = useState(notice.isFavourite);
+  const { isLoggedIn } = useAuth;
+  const navigate = useNavigate();
 
   const handleModalClick = () => {
     setIsOpen(!isOpen);
@@ -39,16 +42,18 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
       const response = await setNoticeToFavorite(notice._id);
       if (response.data.code === 200) {
         setIsNoticeFavorite(prevState => !prevState);
-        notify('info', 'Your notice has been added to the favorites')
       }
-      if (!response.data.code === 200) {
-        notify(
-          'warning',
-          'You need to register to add this message to your favorites.'
-        );
-      }
+      // if (!response.data.code === 200) {
+      //   notify(
+      //     'warning',
+      //     'You need to register to add this message to your favorites.'
+      //   );
+      // }
     } catch (error) {
-      notify('warning', 'You need to register to add this message to your favorites');
+      notify(
+        'warning',
+        'You need to register to add this message to your favorites'
+      );
     }
   };
 
@@ -64,10 +69,18 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
     try {
       delNotice(id);
       setIsDelete(false);
-      notify('info', 'Your notice has been deleted')
+      notify('info', 'Your notice has been deleted');
     } catch (error) {
       notify('error', 'Delete available only to owner');
     }
+  };
+
+  const handleAddPet = () => {
+    if (!isLoggedIn) {
+      notify('warning', 'To add a pet, you must be a registered user');
+      return;
+    }
+    navigate('/add-pet');
   };
 
   const {
@@ -100,6 +113,7 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
           />
         </Modal>
       )}
+
       <ContainerCard>
         <>
           <Img src={imgUrl} alt="Pet image" />
@@ -113,7 +127,7 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
             </DeleteBtnWrapper>
           )}
 
-          <BtnAddPetCircle />
+          <BtnAddPetCircle onClick={handleAddPet} />
           <PetCategory text={`${category}`} />
           <ContainerInfo>
             <PetInfo Svg={SvgLocation} text={`${textCutter(location, 4)}`} />
