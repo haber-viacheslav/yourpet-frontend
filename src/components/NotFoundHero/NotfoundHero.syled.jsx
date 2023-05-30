@@ -7,6 +7,7 @@ export const Box = styled.div`
   flex-direction: column;
   justify-items: center;
   align-items: center;
+  
 `;
 
 export const Title = styled.h2`
@@ -48,7 +49,8 @@ export const BlockTitle = styled.div`
       transform: scale(1);
     }
   };
-  margin: 80px auto 80px auto;
+  padding: 80px auto 80px auto;
+  margin-bottom: 80px;
   @media screen and (${props => props.theme.media.md}) {
     margin: 60px auto 80px auto;
   }
