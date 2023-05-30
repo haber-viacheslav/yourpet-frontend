@@ -37,3 +37,10 @@ export const setNoticeToFavorite = async id => {
   const response = await axios.patch(`/notices/${id}/favorite`);
   return response;
 };
+
+// GetNoticeByFilters
+
+export const getNoticeByFilters = async queryString => {
+  const response = await axios.get(`/notices?${queryString}`);
+  return response;
+};
