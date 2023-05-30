@@ -7,7 +7,9 @@ export const PetsList = ({ data, delPet }) => {
     <Wrapper>
       {data.map(pet => {
         const { _id: id, name, date, breed, comments, avatarURL } = pet;
-        const cutedDate = date ? date.slice(0, 10) : '';
+        const cutedDate = date
+          ? date.slice(0, 10).split('-').reverse().join('-')
+          : '';
         return (
           <PetsItem
             key={id}
