@@ -110,7 +110,7 @@ const NoticesPage = () => {
 
   return (
     <>
-      <Section>
+      <Section padTopSm={'20px'} padTopMd={'56px'} padTopLg={'60px'}>
         <Container>
           <Wrapper>
             <Title>Find your favorite pet</Title>

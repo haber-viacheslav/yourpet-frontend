@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { textCutter } from 'helpers/textCutter';
 import { setNoticeToFavorite, getNoticeById } from 'api/notices';
 import { Modal } from 'components/Modal/Modal';
@@ -52,6 +52,12 @@ export const NoticesCategoryItem = ({
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    isOpen
+      ? (document.body.style.overflow = 'hidden')
+      : (document.body.style.overflow = 'visible');
+  }, [isOpen]);
+
   const handleAddToFavorite = async () => {
     try {
       const response = await setNoticeToFavorite(notice._id);
@@ -64,7 +70,7 @@ export const NoticesCategoryItem = ({
     } catch (error) {
       notify(
         'warning',
-        'You need to register to add this message to your favorites'
+        'You need to be logged in for this action'
       );
     }
   };
