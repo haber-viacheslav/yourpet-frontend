@@ -32,8 +32,7 @@ export const ImageWrapper = styled.div`
   width: 240px;
   height: 240px;
 
-  border-radius: 20px;
-  /* overflow: hidden; */
+  border-radius: 20px; 
 
   @media screen and (${props => props.theme.media.md}) {
     width: 128px;

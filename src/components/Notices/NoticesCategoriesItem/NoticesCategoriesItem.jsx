@@ -105,6 +105,18 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
     date,
   } = notice;
 
+  const label = () => {
+    switch (category) {
+      case 'sell':
+        return 'sell';
+      case 'lost-found':
+        return 'lost/found';
+      case 'for-free':
+        return 'in good hands';
+      default:
+    }
+  };
+
   const Svg = () => {
     return sex === 'female' ? SvgFemale : SvgMale;
   };
@@ -130,7 +142,7 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
     <>
       {isOpen && (
         <Modal onClick={handleModalClick}>
-          {Object.keys(petsDetails).length === 15 ? (
+          {Object.keys(petsDetails).length === 0 ? (
             <Loader loaderSrc={PawLoader} size={150} />
           ) : (
             <ModalItem
@@ -158,7 +170,7 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
           )}
 
           <BtnAddPetCircle onClick={handleAddPet} />
-          <PetCategory text={`${category}`} />
+          <PetCategory text={`${label()}`} />
           <ContainerInfo>
             <PetInfo Svg={SvgLocation} text={`${textCutter(location, 4)}`} />
             {ageElement}

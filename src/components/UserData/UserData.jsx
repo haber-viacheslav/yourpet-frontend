@@ -9,7 +9,7 @@ import { Formik } from 'formik';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
 import { UserDataItem } from './UserDataItem/UserDataItem';
 import { AvatarUploadInput } from './AvatarUploadInput/AvatarUploadInput';
-import { profileSchema } from 'helpers/yupValidation';
+import { profileSchema, photoSchema } from 'helpers/yupValidation';
 import {
   ProfileTitle,
   ProfileInputWrapper,
@@ -61,7 +61,24 @@ export const UserData = () => {
   };
 
   //SUBMIT
-  const handleOnSubmit = async values => {
+  const handleOnEditPhotoSubmit = async values => {
+    const formData = new FormData();
+    if (values.file) {
+      formData.append('file', values.file, 'User`s photo');
+    }
+    try {
+      const result = await updateFetch(formData);
+
+      if (result.response.code === 200) {
+        notify('success', 'Photo successfully updated');
+        dispatch(userCurrent());
+      }
+    } catch (error) {
+      notify('error', 'Unsuccessful');
+    }
+  };
+
+  const handleOnEditProfileSubmit = async values => {
     const keys = Object.keys(values);
     const formData = new FormData();
 
@@ -74,19 +91,18 @@ export const UserData = () => {
       }
     });
 
-    if (values.file) {
-      formData.append('file', values.file, 'User`s photo');
-    }
-
     try {
-      await updateFetch(formData);
-      dispatch(userCurrent());
+      const result = await updateFetch(formData);
+
+      if (result.response.code === 200) {
+        notify('success', 'Profile successfully updated');
+        dispatch(userCurrent());
+      }
     } catch (error) {
-      console.log(error);
-      notify('error', error.message);
+      notify('error', 'Unsuccessful');
     }
   };
-
+  const initialName = user.email.slice(0, user.email.lastIndexOf('@'));
   return (
     <>
       <div>
@@ -94,48 +110,57 @@ export const UserData = () => {
         <ProfileInfo>
           <Formik
             initialValues={{
-              name: user.name || '',
+              file: '',
+            }}
+            onSubmit={handleOnEditPhotoSubmit}
+            validationSchema={photoSchema}
+          >
+            {({ errors, touched, handleSubmit }) => {
+              return (
+                <AvatarUploadInput
+                  errors={errors}
+                  touched={touched}
+                  isEditingBlocked={isEditingBlocked}
+                  avatar={user.avatarURL}
+                  onEditClick={handleEditBlock}
+                  onFormSubmit={handleSubmit}
+                />
+              );
+            }}
+          </Formik>
+          <Formik
+            initialValues={{
+              name: user.name || initialName,
               email: user.email || '',
               birthday: user.birthday
                 ? user.birthday.slice(0, 10)
                 : '1999-01-01',
               phone: user.phone || '',
               city: user.city || '',
-              file: '',
             }}
-            onSubmit={handleOnSubmit}
+            onSubmit={handleOnEditProfileSubmit}
             validationSchema={profileSchema}
           >
-            {({ values, errors, touched, handleSubmit }) => {
+            {({ errors, touched, handleSubmit }) => {
               return (
-                <>
-                  <AvatarUploadInput
-                    errors={errors}
-                    touched={touched}
-                    isEditingBlocked={isEditingBlocked}
-                    avatar={user.avatarURL}
-                    onEditClick={handleEditBlock}
-                    onFormSubmit={handleSubmit}
-                  />
-                  <ProfileInputWrapper>
-                    {inputs.map(input => {
-                      const { type, name, placeholder } = input;
-                      return (
-                        <UserDataItem
-                          key={name}
-                          type={type}
-                          name={name}
-                          placeholder={placeholder}
-                          isEditingBlocked={isEditingBlocked}
-                          errors={errors}
-                          touched={touched}
-                          onEditClick={handleEditBlock}
-                          onFormSubmit={handleSubmit}
-                        />
-                      );
-                    })}
-                  </ProfileInputWrapper>
-                </>
+                <ProfileInputWrapper>
+                  {inputs.map(input => {
+                    const { type, name, placeholder } = input;
+                    return (
+                      <UserDataItem
+                        key={name}
+                        type={type}
+                        name={name}
+                        placeholder={placeholder}
+                        isEditingBlocked={isEditingBlocked}
+                        errors={errors}
+                        touched={touched}
+                        onEditClick={handleEditBlock}
+                        onFormSubmit={handleSubmit}
+                      />
+                    );
+                  })}
+                </ProfileInputWrapper>
               );
             }}
           </Formik>
