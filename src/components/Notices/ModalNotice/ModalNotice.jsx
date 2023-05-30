@@ -1,5 +1,4 @@
 import { FlexContainer } from 'components/FlexContainer/FlexContainer';
-
 import {
   BtnAddTo,
   BtnCall,
@@ -42,7 +41,6 @@ export const ModalItem = ({
   const email = user?.email;
   const phone = user?.phone;
   const birthday = date?.toString().slice(0, 10).split('-').reverse().join('-');
-
   return (
     <>
       <FlexContainer flexDirection={'column'} justifyContent={'space-between'}>
@@ -64,7 +62,7 @@ export const ModalItem = ({
                 <InfoFlag>Place:</InfoFlag>
                 <InfoFlag>The sex:</InfoFlag>
                 <InfoFlag>Email:</InfoFlag>
-                <InfoFlag>Phone:</InfoFlag>
+                {phone && <InfoFlag>Phone:</InfoFlag>}
               </div>
               <PetInfoItem>
                 <InfoValue>{name || ''}</InfoValue>
@@ -73,16 +71,14 @@ export const ModalItem = ({
                 <InfoValue>{location || ''} </InfoValue>
                 <InfoValue>{sex || ''}</InfoValue>
                 <MailInfo href={`${'mailto:' + email}`}>{email || ''}</MailInfo>
-                <TelInfo href={`${'tel:' + phone || ''}`}>
-                  {phone || ''}
-                </TelInfo>
+                <TelInfo href={`${'tel:' + phone}`}>{phone}</TelInfo>
               </PetInfoItem>
             </PetInfoList>
           </div>
         </FlexBlock>
         {comments && <CommentInfo>Comments: {comments || ''}</CommentInfo>}
         <BtnContainer>
-          <BtnCall tel={`${'tel:' + phone || ''}`} />
+          <BtnCall tel={phone ? `${'tel:' + phone}` : `${'mailto:' + email}`} />
           <BtnAddTo onClick={onFavoriteClick} isFavorite={isFavorite} />
         </BtnContainer>
       </FlexContainer>

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 export const Overlay = styled.div`
   position: fixed;
+
   top: 0;
   left: 0;
   width: 100vw;
@@ -15,7 +16,7 @@ export const Overlay = styled.div`
 
 export const ModalBody = styled.div`
   position: absolute;
-  top: 100px;
+  top: 30px;
   left: 50%;
   transform: translateX(-50%);
   width: 95vw;
@@ -30,7 +31,6 @@ export const ModalBody = styled.div`
   }
 
   @media screen and (${props => props.theme.media.md}) {
-    top: 200px;
     padding: 32px 32px 24px;
     width: 681px;
     height: 540px;

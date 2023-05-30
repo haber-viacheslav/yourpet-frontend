@@ -7,6 +7,7 @@ export const Box = styled.div`
   flex-direction: column;
   justify-items: center;
   align-items: center;
+  
 `;
 
 export const Title = styled.h2`

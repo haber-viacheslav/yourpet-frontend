@@ -13,6 +13,7 @@ export const FlexBlock = styled.div`
   @media screen and (${props => props.theme.media.md}) {
     display: flex;
     gap: 24px;
+    align-self: flex-start;
   }
   @media screen and (${props => props.theme.media.lg}) {
   }
@@ -121,7 +122,7 @@ export const CommentInfo = styled.p`
   align-items: center;
   letter-spacing: 0.04em;
   color: #000000;
-  padding: 20px 20px 0 20px;
+  padding: 20px 20px;
   @media screen and (${props => props.theme.media.md}) {
     align-self: flex-start;
 
