@@ -6,7 +6,6 @@ export const Wrap = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   position: relative;
   @media screen and (${props => props.theme.media.md}) {
     height: auto;
