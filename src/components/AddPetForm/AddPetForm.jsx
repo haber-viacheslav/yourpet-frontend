@@ -12,7 +12,6 @@ import { SexIcon } from './Icon/Icon';
 import { addPetFormSchema } from 'helpers/yupValidation';
 import { createPet } from 'api/pets';
 import { createNotice } from 'api/notices';
-import{ textCutter } from 'helpers/textCutter'
 import { Formik } from 'formik';
 import { notify } from '../../helpers/notification';
 import {
@@ -29,7 +28,6 @@ import {
   FlexWrapper,
   ErrWrapper,
 } from './AddPetForm.styled';
-
 
 const initialsValues = {
   title: '',
@@ -136,11 +134,11 @@ export const AddPetForm = () => {
         break;
       default:
         formData.append('category', values.category);
-        formData.append('title', textCutter(values.title, 20));
+        formData.append('title', values.title);
         formData.append('name', values.name);
         formData.append('breed', values.breed);
         formData.append('date', values.date);
-        formData.append('location', textCutter(values.location, 4));
+        formData.append('location', values.location);
         formData.append('file', values.file, 'Pet`s photo');
         formData.append('sex', values.sex);
         if (values.comments) {
@@ -149,10 +147,6 @@ export const AddPetForm = () => {
         if (values.category === 'sell') {
           formData.append('price', values.price);
         }
-
-        //   for (const pair of formData.entries()) {
-        //   console.log(pair[0] + ': ' + pair[1]);
-        // }
 
         try {
           console.log('SUBMIT NOTICE');
