@@ -13,6 +13,7 @@ export const FlexBlock = styled.div`
   @media screen and (${props => props.theme.media.md}) {
     display: flex;
     gap: 24px;
+    align-self: flex-start;
   }
   @media screen and (${props => props.theme.media.lg}) {
   }

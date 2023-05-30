@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { textCutter } from 'helpers/textCutter';
 import { setNoticeToFavorite, getNoticeById } from 'api/notices';
 import { Modal } from 'components/Modal/Modal';
@@ -47,6 +47,12 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
     }
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    isOpen
+      ? (document.body.style.overflow = 'hidden')
+      : (document.body.style.overflow = 'visible');
+  }, [isOpen]);
 
   const handleAddToFavorite = async () => {
     try {
@@ -106,24 +112,25 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
   const birthDate = new Date(date);
   const currentDate = new Date();
   const ageInMilliseconds = currentDate - birthDate;
-  const ageInMonths = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24 * 30.44)); // Average number of days in a month
+  const ageInMonths = Math.floor(
+    ageInMilliseconds / (1000 * 60 * 60 * 24 * 30.44)
+  ); // Average number of days in a month
   const ageInYears = Math.floor(ageInMonths / 12);
 
+  const ageElement =
+    ageInYears > 0 ? (
+      <>
+        <PetInfo Svg={SvgClock} text={`${ageInYears} year`} />
+      </>
+    ) : (
+      <PetInfo Svg={SvgClock} text={`${ageInMonths} mth`} />
+    );
 
-  const ageElement = ageInYears > 0 ? (
-    <>
-      <PetInfo Svg={SvgClock} text={`${ageInYears} year`} />
-    </>
-  ) : (
-    <PetInfo Svg={SvgClock} text={`${ageInMonths} mth`} />
-  );
-
-  console.log(Object.keys(petsDetails).length);
   return (
     <>
       {isOpen && (
         <Modal onClick={handleModalClick}>
-          {Object.keys(petsDetails).length === 0 ? (
+          {Object.keys(petsDetails).length === 15 ? (
             <Loader loaderSrc={PawLoader} size={150} />
           ) : (
             <ModalItem
