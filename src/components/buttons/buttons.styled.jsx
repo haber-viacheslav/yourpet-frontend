@@ -46,6 +46,8 @@ export const BigBtnFavor = styled.button`
     background: ${props => props.theme.colors.blue};
     color: ${props => props.theme.colors.white};
     border: none;
+     transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
   position: absolute;
   bottom: 24px;
@@ -324,16 +326,12 @@ export const BtnFilter = styled.button`
       color: ${props => props.theme.colors.white};
       border: none;
       background: ${props => props.theme.colors.blueGradient};
+       transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
 `;
-// export const Filter = styled.svg`
-//   fill: none;
-//   stroke: ${props => props.theme.colors.blue};
-//   :hover,
-//   :focus {
-//   }
-// `;
+
 export const BtnOption = styled.button`
   height: 35px;
   border-radius: 40px;
@@ -373,6 +371,8 @@ export const BtnToHeart = styled.button`
   :hover,
   :focus {
     background: ${props => props.theme.colors.blueGradient};
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 `;
 export const ToHeart = styled.svg`
@@ -399,6 +399,8 @@ export const BtnContact = styled.a`
   border: 2px solid ${props => props.theme.colors.blue};
   :hover{
     box-shadow: ${props => props.theme.shadows.secondShadow};
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 `;
 export const PetInfoStyle = styled.div`
@@ -518,6 +520,8 @@ export const BtnClose = styled.button`
   :hover,
   :focus {
     color: ${props => props.theme.colors.black};
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
   @media screen and (${props => props.theme.media.md}) {
     top: 24px;
@@ -623,7 +627,8 @@ export const LogOutWrapper = styled.button`
   width: 96px;
   left: 10px;
   bottom: 25px;
-  padding: 0;
+  padding: 2px;
+  border-radius:3px;
 
   font-weight: ${props => props.theme.fontWeights.regular};
   font-size: 16px;
@@ -636,6 +641,8 @@ export const LogOutWrapper = styled.button`
   cursor: pointer;
   :hover{
     box-shadow: ${props => props.theme.shadows.secondShadow};
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   @media screen and (${props => props.theme.media.md}) {

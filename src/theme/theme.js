@@ -19,6 +19,7 @@ export const theme = Object.freeze({
     clearWhite: '#FFFFFF',
     blueGradient: 'linear-gradient(290.46deg, #419EF1 0%, #9BD0FF 107.89%)',
     blue: '#54ADFF',
+    blueDark: '#419EF1',
     blueLight: '#CCE4FB',
     green: '#00C3AD;',
     red: '#F43F5E',

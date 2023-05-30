@@ -12,13 +12,7 @@ export const CheckIcon = props => {
 
 export const UserPhotoIcon = props => {
   return (
-    <SVG
-      width={100}
-      height={95}
-      // fill={theme.colors.blue}
-      stroke={theme.colors.blue}
-      {...props}
-    >
+    <SVG width={100} height={95} stroke={theme.colors.blue} {...props}>
       <use href={icons + '#icon-user-photo'}></use>
     </SVG>
   );

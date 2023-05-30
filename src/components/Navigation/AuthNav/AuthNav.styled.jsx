@@ -29,6 +29,8 @@ export const RegisterLink = styled(NavLink)`
   border-radius: 40px;
   :hover{
     box-shadow: ${props => props.theme.shadows.secondShadow};
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 `;
 
@@ -48,6 +50,8 @@ export const LoginLink = styled(NavLink)`
   border-radius: 40px;
   :hover{
     box-shadow: ${props => props.theme.shadows.secondShadow};
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
   @media screen and (min-width: 767px) {
     margin-top: 0;

@@ -1,5 +1,6 @@
 import icons from '../../../images/icons.svg';
 import { SvgSexIcon, SvgPlusIcon } from '../AddPetForm.styled';
+import PropTypes from 'prop-types';
 
 export const SexIcon = ({ iconName, index, selected, sex }) => {
   return (
@@ -21,4 +22,15 @@ export const PlusIcon = ({ iconName }) => {
       <use href={icons + `${iconName}`}></use>
     </SvgPlusIcon>
   );
+};
+
+SexIcon.propTypes = {
+  iconName: PropTypes.string.isRequired,
+  selected: PropTypes.bool.isRequired,
+  index: PropTypes.number.isRequired,
+  sex: PropTypes.string.isRequired,
+};
+
+PlusIcon.propTypes = {
+  iconName: PropTypes.string.isRequired,
 };
