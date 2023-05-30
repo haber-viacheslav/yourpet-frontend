@@ -60,7 +60,6 @@ export const NoticesCategoriesNav = ({ onCategoryClick, active, onQueryStringCha
         <FilterCards onQueryStringChange={onQueryStringChange} />
         <BtnAddPet onClick={handleClick} />
       </FiltersBtnContainer>
-      <BtnFiltersCircle />
     </FiltersContainer>
   );
 };
