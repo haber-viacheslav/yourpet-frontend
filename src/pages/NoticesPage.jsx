@@ -34,14 +34,11 @@ const NoticesPage = () => {
       (async () => {
         if (category === 'favorite' || category === 'own') {
           const response = await getPrivateNotices(category, params);
-          setSearchParams({ ...params, category });
-          
+          setSearchParams({ ...params, category });  
           setNotices(response.data);
-          console.log(response.data)
           setTotalPages(response.totalPages);
         } else if (queryString !== '') {
           const response = await getNoticeByFilters(queryString);
-          console.log(response.data.data)
           setNotices(response.data.data);
         }
         else {
@@ -81,7 +78,6 @@ const NoticesPage = () => {
 
   const handleQueryStringChange = (newQueryString) => {
     setQueryString(newQueryString);
-    // console.log(queryString)
   };
 
   return (
