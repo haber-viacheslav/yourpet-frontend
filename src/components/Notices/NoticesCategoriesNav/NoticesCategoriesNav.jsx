@@ -20,7 +20,7 @@ const navPrivateCategories = [
   ['favorite ads', 'favorite'],
   ['my ads', 'own'],
 ];
-export const NoticesCategoriesNav = ({ onCategoryClick, active }) => {
+export const NoticesCategoriesNav = ({ onCategoryClick, active, onQueryStringChange }) => {
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
 
@@ -57,7 +57,7 @@ export const NoticesCategoriesNav = ({ onCategoryClick, active }) => {
           })}
       </CategoryBntWrapper>
       <FiltersBtnContainer>
-        <FilterCards />
+        <FilterCards onQueryStringChange={onQueryStringChange} />
         <BtnAddPet onClick={handleClick} />
       </FiltersBtnContainer>
       <BtnFiltersCircle />

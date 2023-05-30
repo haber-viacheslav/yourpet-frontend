@@ -49,7 +49,6 @@ export const RegisterForm = () => {
       }
       notify('success', 'You have successfully registered');
     } catch (error) {
-      notify('error', error.message);
       console.log(error);
     }
   };

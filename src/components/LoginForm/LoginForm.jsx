@@ -57,7 +57,6 @@ export const LoginForm = () => {
       }
       notify('success', 'You have successfully logged in');
     } catch (error) {
-      notify('error', error.message);
       console.log(error);
     }
   };
