@@ -12,7 +12,7 @@ import PawLoader from '../images/Loader.png';
 import { theme } from '../theme/theme';
 import { Pagination } from 'components/Pagination/Pagination';
 import { getNoticeByFilters } from 'api/notices';
-
+import { notify } from 'helpers/notification';
 
 const NoticesPage = () => {
   const limit = 10;
@@ -35,16 +35,12 @@ const NoticesPage = () => {
         if (category === 'favorite' || category === 'own') {
           const response = await getPrivateNotices(category, params);
           setSearchParams({ ...params, category });
-          
           setNotices(response.data);
-          console.log(response.data)
           setTotalPages(response.totalPages);
         } else if (queryString !== '') {
           const response = await getNoticeByFilters(queryString);
-          console.log(response.data.data)
           setNotices(response.data.data);
-        }
-        else {
+        } else {
           setSearchParams({ ...params, category });
           const response = await getAllNotices(params);
           setNotices(response.data);
@@ -52,7 +48,7 @@ const NoticesPage = () => {
         }
       })();
     } catch (error) {
-      console.log(error);
+      notify('error', 'Sorry, server just have a "fiesta" at this moment...');
     }
   }, [setSearchParams, params, category, queryString]);
 
@@ -60,14 +56,33 @@ const NoticesPage = () => {
     const nextParams = search !== '' ? { search } : {};
     setSearchParams({ ...nextParams, page: 1, limit });
   };
+
+  const handleRemoveNotice = async id => {
+    if (category === 'favorite') {
+      try {
+        const index = notices.findIndex(el => el['_id'] === id);
+        const updateData = [...notices];
+        updateData.splice(index, 1);
+        setNotices(updateData);
+      } catch (error) {
+        notify('error', 'Sorry, server just have a "fiesta" at this moment...');
+      }
+    }
+  };
+
   const handleDeleteBtn = async id => {
     try {
       const index = notices.findIndex(el => el['_id'] === id);
       const updateData = [...notices];
       updateData.splice(index, 1);
       setNotices(updateData);
-      await deleteNotice(id);
-    } catch (error) {}
+      const result = await deleteNotice(id);
+      if (result.code === 200) {
+        notify('success', 'Notice deleted successfully');
+      }
+    } catch (error) {
+      notify('error', 'Sorry, server just have a "fiesta" at this moment...');
+    }
   };
 
   const handleChoose = option => {
@@ -79,9 +94,8 @@ const NoticesPage = () => {
     setSearchParams({ ...params, page, limit });
   };
 
-  const handleQueryStringChange = (newQueryString) => {
+  const handleQueryStringChange = newQueryString => {
     setQueryString(newQueryString);
-    // console.log(queryString)
   };
 
   return (
@@ -97,11 +111,11 @@ const NoticesPage = () => {
             active={category}
             onQueryStringChange={handleQueryStringChange}
           />
-
           <Suspense fallback={<Loader loaderSrc={PawLoader} size={250} />}>
             <NoticesCategoriesList
               notices={notices}
               delNotice={handleDeleteBtn}
+              removeNoticeFromFavorite={handleRemoveNotice}
             >
               <Outlet />
             </NoticesCategoriesList>

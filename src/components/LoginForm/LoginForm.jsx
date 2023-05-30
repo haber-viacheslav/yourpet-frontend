@@ -54,8 +54,8 @@ export const LoginForm = () => {
       if (status === 'Success') {
         navigate('/user');
         resetForm();
+        notify('success', 'You have successfully logged in');
       }
-      notify('success', 'You have successfully logged in');
     } catch (error) {
       console.log(error);
     }
