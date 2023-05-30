@@ -30,7 +30,7 @@ export const PetsItem = ({ id, url, name, date, breed, comments, delPet }) => {
       delPet(id);
       setIsDelete(false);
     } catch (error) {
-      notify('error', error.message);
+      notify('error', "Sorry, something wrong. Please try again");
     }
   };
 

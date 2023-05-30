@@ -28,7 +28,11 @@ import {
   Text,
 } from './NoticesCategoriesItem.styled';
 
-export const NoticesCategoryItem = ({ notice, delNotice }) => {
+export const NoticesCategoryItem = ({
+  notice,
+  delNotice,
+  removeNoticeFromFavorite,
+}) => {
   const [petsDetails, setPetsDetails] = useState({});
   const [isDelete, setIsDelete] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -43,7 +47,7 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
         setPetsDetails(response.data);
       })();
     } catch (error) {
-      notify('error', 'Something went wrong');
+      notify('error', 'Sorry, something wrong. Please try again');
     }
     setIsOpen(!isOpen);
   };
@@ -52,6 +56,9 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
     try {
       const response = await setNoticeToFavorite(notice._id);
       if (response.data.code === 200) {
+        if (isNoticeFavorite) {
+          removeNoticeFromFavorite(notice._id);
+        }
         setIsNoticeFavorite(prevState => !prevState);
       }
     } catch (error) {
@@ -99,6 +106,18 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
     date,
   } = notice;
 
+  const label = () => {
+    switch (category) {
+      case 'sell':
+        return 'sell';
+      case 'lost-found':
+        return 'lost/found';
+      case 'for-free':
+        return 'in good hands';
+      default:
+    }
+  };
+
   const Svg = () => {
     return sex === 'female' ? SvgFemale : SvgMale;
   };
@@ -106,19 +125,20 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
   const birthDate = new Date(date);
   const currentDate = new Date();
   const ageInMilliseconds = currentDate - birthDate;
-  const ageInMonths = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24 * 30.44)); // Average number of days in a month
+  const ageInMonths = Math.floor(
+    ageInMilliseconds / (1000 * 60 * 60 * 24 * 30.44)
+  ); // Average number of days in a month
   const ageInYears = Math.floor(ageInMonths / 12);
 
+  const ageElement =
+    ageInYears > 0 ? (
+      <>
+        <PetInfo Svg={SvgClock} text={`${ageInYears} year`} />
+      </>
+    ) : (
+      <PetInfo Svg={SvgClock} text={`${ageInMonths} mth`} />
+    );
 
-  const ageElement = ageInYears > 0 ? (
-    <>
-      <PetInfo Svg={SvgClock} text={`${ageInYears} year`} />
-    </>
-  ) : (
-    <PetInfo Svg={SvgClock} text={`${ageInMonths} mth`} />
-  );
-
-  console.log(Object.keys(petsDetails).length);
   return (
     <>
       {isOpen && (
@@ -151,7 +171,7 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
           )}
 
           <BtnAddPetCircle onClick={handleAddPet} />
-          <PetCategory text={`${category}`} />
+          <PetCategory text={`${label()}`} />
           <ContainerInfo>
             <PetInfo Svg={SvgLocation} text={`${textCutter(location, 4)}`} />
             {ageElement}

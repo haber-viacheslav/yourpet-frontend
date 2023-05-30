@@ -33,7 +33,7 @@ export const Logout = () => {
       navigate('/');
       notify('info', 'You have successfully logged out');
     } catch (error) {
-      notify('error', error.message);
+      notify('error', "Sorry, something wrong. Please try again");
     }
   };
 

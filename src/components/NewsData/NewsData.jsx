@@ -45,7 +45,7 @@ export const NewsData = () => {
         setTotalPages(newNews.totalPages);
       } catch (error) {
         console.log(error);
-        notify('error', error.message);
+        notify('error', "Sorry, something wrong. Please try again");
       } finally {
         setIsLoading(false);
       }
