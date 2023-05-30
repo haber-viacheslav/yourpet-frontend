@@ -103,6 +103,12 @@ export const Button = styled.button`
   margin-bottom: 24px;
   color: ${props => props.theme.colors.clearWhite};
 
+   &:hover{
+    background: ${props => props.theme.colors.blueDark};
+     transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
   @media screen and (${props => props.theme.media.md}) {
     margin-bottom: 16px;
   }
