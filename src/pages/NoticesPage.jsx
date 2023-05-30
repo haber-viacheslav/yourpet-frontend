@@ -13,14 +13,12 @@ import { theme } from '../theme/theme';
 import { Pagination } from 'components/Pagination/Pagination';
 import { getNoticeByFilters } from 'api/notices';
 
-
 const NoticesPage = () => {
   const limit = 10;
   const [category, setCategory] = useState('sell');
   const [notices, setNotices] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [queryString, setQueryString] = useState('');
-
   const [searchParams, setSearchParams] = useSearchParams();
   const isTablet = window.matchMedia(theme.media.mdToLg).matches;
 
@@ -35,16 +33,15 @@ const NoticesPage = () => {
         if (category === 'favorite' || category === 'own') {
           const response = await getPrivateNotices(category, params);
           setSearchParams({ ...params, category });
-          
+
           setNotices(response.data);
-          console.log(response.data)
+          console.log(response.data);
           setTotalPages(response.totalPages);
         } else if (queryString !== '') {
           const response = await getNoticeByFilters(queryString);
-          console.log(response.data.data)
+          console.log(response.data.data);
           setNotices(response.data.data);
-        }
-        else {
+        } else {
           setSearchParams({ ...params, category });
           const response = await getAllNotices(params);
           setNotices(response.data);
@@ -79,7 +76,7 @@ const NoticesPage = () => {
     setSearchParams({ ...params, page, limit });
   };
 
-  const handleQueryStringChange = (newQueryString) => {
+  const handleQueryStringChange = newQueryString => {
     setQueryString(newQueryString);
     // console.log(queryString)
   };

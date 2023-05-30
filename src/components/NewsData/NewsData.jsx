@@ -5,7 +5,7 @@ import { Search } from 'components/Search/Search';
 import { ReusableTitle } from 'components/ReusableTitle/ReusableTitle';
 import { NewsList } from '../../components/News/NewsList/NewsList';
 import { Pagination } from '../Pagination/Pagination';
-import { NotFound } from '../News/NewsNotFound/NewsNotFound';
+import { NotResults } from '../NotResults/NotResults';
 import { theme } from '../../theme/theme';
 import { Container } from 'components/Container/Container';
 import { useSearchParams } from 'react-router-dom';
@@ -15,56 +15,51 @@ import { notify } from '../../helpers/notification';
 
 export const NewsData = () => {
   const limit = 6;
-  const [search, setSearch] = useState('');
   const [news, setNews] = useState([]);
-  const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
   const isTablet = window.matchMedia(theme.media.md).matches;
+
   const params = useMemo(
     () => Object.fromEntries([...searchParams]),
     [searchParams]
   );
 
   useEffect(() => {
+    setSearchParams({
+      ...params,
+
+      limit,
+    });
     setIsLoading(true);
-    const getNews = async ({ search, page, limit }) => {
+    const getNews = async params => {
       try {
-        const newNews = await fetchNews({ search, page, limit });
-        console.log('newNews', newNews);
+        const newNews = await fetchNews(params);
         if (!newNews.totalPages) {
+          setTotalPages(0);
+          setNews([]);
           return;
         }
         setNews(sortNewsByDate(newNews.data));
         setTotalPages(newNews.totalPages);
       } catch (error) {
-        setIsError(true);
         console.log(error);
         notify('error', error.message);
       } finally {
         setIsLoading(false);
       }
     };
-    if (!search) {
-      getNews({ page, limit });
-      return;
-    }
-    getNews({ search, page, limit });
-  }, [search, page, limit]);
+    getNews(params);
+  }, [setSearchParams, params]);
 
   const handleSearchSubmit = search => {
     const nextParams = search !== '' ? { search } : {};
-    setSearchParams(nextParams);
-    setSearch(search);
-    setPage(1);
+    setSearchParams({ ...nextParams, page: 1, limit });
   };
 
   const handlePageChange = page => {
     setSearchParams({ ...params, page });
-
-    setPage(page);
   };
 
   return (
@@ -72,13 +67,16 @@ export const NewsData = () => {
       <ReusableTitle>News</ReusableTitle>
 
       {isLoading && <Loader loaderSrc={Cat} size={300} />}
-      {isError && !news.length && <NotFound />}
 
       <Search onSubmit={handleSearchSubmit} />
-      {news && news.length > 0 && <NewsList news={news} />}
+      {news.length > 0 ? (
+        <NewsList news={news} />
+      ) : (
+        <NotResults title={'Ooops:( Such news not found'} />
+      )}
       {totalPages > 1 && (
         <Pagination
-          currentPage={page}
+          currentPage={+params.page}
           totalPages={totalPages}
           onPageChange={handlePageChange}
           paginationLength={isTablet ? 5 : 4}
