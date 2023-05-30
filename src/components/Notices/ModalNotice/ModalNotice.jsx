@@ -1,4 +1,5 @@
 import { FlexContainer } from 'components/FlexContainer/FlexContainer';
+
 import {
   BtnAddTo,
   BtnCall,
@@ -19,24 +20,13 @@ import {
   TelInfo,
   Text,
 } from './ModalNotice.styled';
-import { useEffect, useState } from 'react';
-import { getNoticeById } from 'api/notices';
-import { notify } from 'helpers/notification';
 
-export const ModalItem = ({ onClick, onFavoriteClick, id, isFavorite }) => {
-  const [petsDetails, setPetsDetails] = useState({});
-
-  useEffect(() => {
-    try {
-      (async () => {
-        const response = await getNoticeById(id);
-        setPetsDetails(response.data);
-      })();
-    } catch (error) {
-      notify('error', error.message);
-    }
-  }, [id]);
-
+export const ModalItem = ({
+  onClick,
+  onFavoriteClick,
+  petsDetails,
+  isFavorite,
+}) => {
   const {
     user,
     imgUrl,
@@ -58,10 +48,12 @@ export const ModalItem = ({ onClick, onFavoriteClick, id, isFavorite }) => {
       <FlexContainer flexDirection={'column'} justifyContent={'space-between'}>
         <FlexBlock>
           <BtnCloseModal onClick={onClick} />
+
           <ImgContainer>
             <ImgModal src={imgUrl} alt="Pet image" />
             <PetCategory text={`${category}`} />
           </ImgContainer>
+
           <div>
             <Text>{title}</Text>
             <PetInfoList>
