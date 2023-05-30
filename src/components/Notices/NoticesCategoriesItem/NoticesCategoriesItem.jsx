@@ -37,7 +37,7 @@ export const NoticesCategoryItem = ({
   const [isDelete, setIsDelete] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isNoticeFavorite, setIsNoticeFavorite] = useState(notice.isFavourite);
-  const { isLoggedIn } = useAuth;
+  const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
 
   const handleModalClick = () => {
@@ -59,6 +59,10 @@ export const NoticesCategoryItem = ({
   }, [isOpen]);
 
   const handleAddToFavorite = async () => {
+    if (!isLoggedIn) {
+      notify('warning', 'You need to be logged in for this action');
+      return;
+    }
     try {
       const response = await setNoticeToFavorite(notice._id);
       if (response.data.code === 200) {
@@ -68,10 +72,7 @@ export const NoticesCategoryItem = ({
         setIsNoticeFavorite(prevState => !prevState);
       }
     } catch (error) {
-      notify(
-        'warning',
-        'You need to be logged in for this action'
-      );
+      notify('error', 'Sorry, server just have a "fiesta" at this moment...');
     }
   };
 

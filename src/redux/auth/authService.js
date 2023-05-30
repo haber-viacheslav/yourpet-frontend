@@ -1,5 +1,5 @@
-// import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { notify } from 'helpers/notification';
 import {
   registerFetch,
   loginFetch,
@@ -7,7 +7,6 @@ import {
   logoutFetch,
   updateFetch,
 } from 'api/auth';
-import { notify } from 'helpers/notification';
 
 export const register = createAsyncThunk(
   'auth/register',
@@ -40,7 +39,7 @@ export const logIn = createAsyncThunk(
           `User "${credentials.email}" is not found, please register and try again`
         );
       }
-      notify('error', error.status);
+
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -59,9 +58,16 @@ export const userCurrent = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.accessToken;
+    const isLoggedIn = state.auth.isLoggedIn;
+
+    if (!isLoggedIn) {
+      return;
+    }
+
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
+
     try {
       const data = await currentFetch();
       return data;
@@ -82,22 +88,3 @@ export const updateUser = createAsyncThunk(
     }
   }
 );
-// export const refreshTokens = createAsyncThunk(
-//   'auth/refreshTokens',
-//   async (_, thunkAPI) => {
-//     const state = thunkAPI.getState();
-//     const oldRefreshToken = state.auth.refreshToken;
-//     console.log(oldRefreshToken);
-//     try {
-//       const data = await axios.post('auth/refresh', {
-//         refreshToken: oldRefreshToken,
-//       });
-//       return data;
-//     } catch (error) {
-//       console.log(error.response);
-//       if (error.response.data.code === 401) {
-//       }
-//       return thunkAPI.rejectWithValue(error.response.data.message);
-//     }
-//   }
-// );

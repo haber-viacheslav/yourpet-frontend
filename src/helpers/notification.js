@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const notify = (type, text) => {
   const toastConfig = {
-    position: 'top-right',
+    position: 'top-left',
     autoClose: 3000,
     hideProgressBar: true,
     closeOnClick: true,
