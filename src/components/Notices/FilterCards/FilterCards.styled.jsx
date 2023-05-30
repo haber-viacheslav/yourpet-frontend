@@ -14,7 +14,7 @@ const fadeIn = keyframes`
 
 export const DropdownMenu = styled.ul`
   position: absolute;
-  top: -126px;
+  top: 45px;
   right: 0px;
   width: 152px;
   background-color: ${props => props.theme.colors.light};

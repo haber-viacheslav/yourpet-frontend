@@ -103,8 +103,20 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
     return sex === 'female' ? SvgFemale : SvgMale;
   };
 
-  let age = Math.round((Date.now() - Date.parse(date)) / 31557600000);
-  const years = age >= 2 ? 'years' : 'year';
+  const birthDate = new Date(date);
+  const currentDate = new Date();
+  const ageInMilliseconds = currentDate - birthDate;
+  const ageInMonths = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24 * 30.44)); // Average number of days in a month
+  const ageInYears = Math.floor(ageInMonths / 12);
+
+
+  const ageElement = ageInYears > 0 ? (
+    <>
+      <PetInfo Svg={SvgClock} text={`${ageInYears} year`} />
+    </>
+  ) : (
+    <PetInfo Svg={SvgClock} text={`${ageInMonths} mth`} />
+  );
 
   console.log(Object.keys(petsDetails).length);
   return (
@@ -142,7 +154,7 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
           <PetCategory text={`${category}`} />
           <ContainerInfo>
             <PetInfo Svg={SvgLocation} text={`${textCutter(location, 4)}`} />
-            <PetInfo Svg={SvgClock} text={`${age} ${years}`} />
+            {ageElement}
             <PetInfo Svg={Svg()} text={`${sex}`} />
           </ContainerInfo>
           <Text>{title}</Text>
