@@ -70,7 +70,7 @@ export const NoticesCategoryItem = ({
     } catch (error) {
       notify(
         'warning',
-        'You need to register to add this message to your favorites'
+        'You need to be logged in for this action'
       );
     }
   };
