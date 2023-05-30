@@ -118,7 +118,6 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
     <PetInfo Svg={SvgClock} text={`${ageInMonths} mth`} />
   );
 
-  console.log(Object.keys(petsDetails).length);
   return (
     <>
       {isOpen && (
