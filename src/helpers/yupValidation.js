@@ -111,6 +111,9 @@ export const profileSchema = yup.object().shape({
     .string()
     .matches(/^[A-Z][a-zA-Z]*$/, 'Starts with capitalize character'),
   phone: yup.string().matches(/^\+\d{12}$/, 'UA format number'),
+});
+
+export const photoSchema = yup.object().shape({
   file: yup
     .mixed()
     .test(

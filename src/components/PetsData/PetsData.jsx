@@ -38,9 +38,15 @@ export const PetsData = () => {
       const updateData = [...data];
       updateData.splice(index, 1);
       SetData(updateData);
-      deletePet(id);
+      const response = await deletePet(id);
+      if (response.status === 200) {
+        notify('success', 'Your pet has been successfully removed');
+      }
     } catch (error) {
-      notify('error', error.message);
+      notify(
+        'error',
+        'The server could not process your request. Please try again.'
+      );
     }
   };
 

@@ -6,14 +6,15 @@ import PropTypes from 'prop-types';
 
 export const UserNav = ({ isOpen }) => {
   const { user } = useAuth();
-  const nickName = user.name || user.email;
+  const index = user.email.indexOf('@');
+  const nickName = user.name || user.email.slice(0, index);
 
   return (
     <Box>
       <UserLink to="./user">
         <SvgUser />
-         <UserName isOpen={isOpen}>{nickName}</UserName>
-      </UserLink>     
+        <UserName isOpen={isOpen}>{nickName}</UserName>
+      </UserLink>
     </Box>
   );
 };
