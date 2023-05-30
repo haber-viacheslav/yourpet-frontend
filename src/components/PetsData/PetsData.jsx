@@ -19,7 +19,7 @@ export const PetsData = () => {
         const result = await getPets();
         SetData([...result.data.body.data]);
       } catch (error) {
-        notify('error', error.message);
+        notify('error', "Sorry, something wrong. Please try again");
       }
     })();
   }, []);
@@ -40,7 +40,7 @@ export const PetsData = () => {
       SetData(updateData);
       deletePet(id);
     } catch (error) {
-      notify('error', error.message);
+      notify('error', "Sorry, something wrong. Please try again");
     }
   };
 

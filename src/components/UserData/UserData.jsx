@@ -83,7 +83,7 @@ export const UserData = () => {
       dispatch(userCurrent());
     } catch (error) {
       console.log(error);
-      notify('error', error.message);
+      notify('error', "Sorry, something wrong. Please try again");
     }
   };
 

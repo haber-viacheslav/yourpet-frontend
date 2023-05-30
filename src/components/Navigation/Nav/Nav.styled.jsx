@@ -24,6 +24,7 @@ export const NavItem = styled.li`
   font-weight: ${props => props.theme.fontWeights.medium};
   font-size: 32px;
   line-height: 1.35;
+  
   @media screen and (${props => props.theme.media.md}) {
   font-size: 48px;
   line-height: 1.36;

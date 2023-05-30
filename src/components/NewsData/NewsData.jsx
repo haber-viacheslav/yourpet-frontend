@@ -42,7 +42,7 @@ export const NewsData = () => {
       } catch (error) {
         setIsError(true);
         console.log(error);
-        notify('error', error.message);
+        notify('error', "Sorry, something wrong. Please try again");
       } finally {
         setIsLoading(false);
       }
