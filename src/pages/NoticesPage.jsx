@@ -15,13 +15,9 @@ import { getNoticeByFilters } from 'api/notices';
 import { notify } from 'helpers/notification';
 import { NotResults } from '../components/NotResults/NotResults';
 
-const initialsCategory = localStorage.getItem('category')
-  ? localStorage.getItem('category')
-  : 'sell';
-
 const NoticesPage = () => {
   const limit = 10;
-  const [category, setCategory] = useState(initialsCategory);
+  const [category, setCategory] = useState('sell');
   const [notices, setNotices] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -97,7 +93,6 @@ const NoticesPage = () => {
     setCategory(option);
     setTotalPages(0);
     setSearchParams({ ...params, category: option, page: 1, limit });
-    localStorage.setItem('category', option);
   };
 
   const handlePageChange = page => {
