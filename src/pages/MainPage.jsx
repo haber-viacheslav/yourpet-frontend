@@ -10,9 +10,9 @@ const MainPage = () => {
         padTopSm={'20px'}
         padTopMd={'52px'}
         padTopLg={'10px'}
-        padBottomSM={'405px'}
-        padBottomLg={'400px'}
-        padBottomMd={'845px'}
+        // padBottomSM={'405px'}
+        // padBottomMd={'845px'}
+        // padBottomLg={'400px'}
       >
         <Container>
           <Hero />
