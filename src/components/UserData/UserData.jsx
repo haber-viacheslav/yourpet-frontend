@@ -99,7 +99,8 @@ export const UserData = () => {
         dispatch(userCurrent());
       }
     } catch (error) {
-      notify('error', 'Unsuccessful');
+      console.log(error);
+      notify('error', "Sorry, something wrong. Please try again");
     }
   };
   const initialName = user.email.slice(0, user.email.lastIndexOf('@'));

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { theme } from '../../theme/theme';
 
 export const BtnLM = styled.button`
   height: 38px;
@@ -8,18 +7,18 @@ export const BtnLM = styled.button`
   justify-content: center;
   padding: 8px 78px;
   border-radius: 40px;
-  border: 2px solid ${theme.colors.blue};
-  color: ${theme.colors.blue};
-  background-color: ${theme.colors.white};
+  border: 2px solid ${props => props.theme.colors.blue};
+  color: ${props => props.theme.colors.blue};
+  background-color: ${props => props.theme.colors.white};
   font-size: 16px;
-  font-family: ${theme.fonts.main};
-  font-weight: ${theme.fontWeights.semibold};
+  font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeights.semibold};
   cursor: pointer;
   :hover,
   :focus {
-    color: ${theme.colors.white};
+    color: ${props => props.theme.colors.white};
     border: none;
-    background: ${theme.colors.blueGradient};
+    background: ${props => props.theme.colors.blueGradient};
   }
   margin: 0 auto 20px;
 `;
@@ -34,18 +33,18 @@ export const BigBtnFavor = styled.button`
   border-radius: 40px;
   padding-left: auto;
   padding-right: auto;
-  border: 2px solid ${theme.colors.blue};
+  border: 2px solid ${props => props.theme.colors.blue};
   font-size: 16px;
-  color: ${theme.colors.blue};
-  background-color: ${theme.colors.white};
-  font-family: ${theme.fonts.main};
-  font-weight: ${theme.fontWeights.bold};
+  color: ${props => props.theme.colors.blue};
+  background-color: ${props => props.theme.colors.white};
+  font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeights.bold};
   cursor: pointer;
   padding-left: 36px;
   :hover,
   :focus {
-    background: ${theme.colors.blue};
-    color: ${theme.colors.white};
+    background: ${props => props.theme.colors.blue};
+    color: ${props => props.theme.colors.white};
     border: none;
   }
   position: absolute;
@@ -64,24 +63,24 @@ export const PetFormBtn = styled.button`
   border-radius: 40px;
   padding-left: auto;
   padding-right: auto;
-  border: 2px solid ${theme.colors.blue};
+  border: 2px solid ${props => props.theme.colors.blue};
   font-size: 16px;
-  color: ${theme.colors.clearWhite};
-  background-color: ${theme.colors.blue};
-  font-family: ${theme.fonts.main};
-  font-weight: ${theme.fontWeights.bold};
+  color: ${props => props.theme.colors.clearWhite};
+  background-color: ${props => props.theme.colors.blue};
+  font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeights.bold};
   cursor: pointer;
   padding-left: 36px;
   :hover,
   :focus {
-    background: ${theme.colors.blueGradient};
+    background: ${props => props.theme.colors.blueGradient};
 
     border: none;
   }
 `;
 
 export const Pawprint = styled.svg`
-  fill: ${theme.colors.white};
+  fill: ${props => props.theme.colors.white};
   margin-left: 12px;
 `;
 export const BtnCancelArrow = styled.button`
@@ -94,22 +93,18 @@ export const BtnCancelArrow = styled.button`
   padding-top: 6px;
   padding-bottom: 6px;
   font-size: 16px;
-  font-family: ${theme.fonts.main};
-  font-weight: ${theme.fontWeights.bold};
+  font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeights.bold};
   border: none;
-  color: ${theme.colors.blue};
-  background-color: ${theme.colors.transparent};
+  color: ${props => props.theme.colors.blue};
+  background-color: ${props => props.theme.colors.transparent};
   cursor: pointer;
-
-  /* :hover,
-  :focus {
-    color: ${theme.colors.white};
-    border: none;
-    background: ${theme.colors.blueGradient};
-  } */
+  :hover{
+    box-shadow: ${props => props.theme.shadows.secondShadow};
+  }
 `;
 export const ArrowLeft = styled.svg`
-  stroke: ${theme.colors.blue};
+  stroke: ${props => props.theme.colors.blue};
   margin-right: 12px;
 `;
 export const BtnBackArrow = styled.button`
@@ -122,12 +117,15 @@ export const BtnBackArrow = styled.button`
   padding-top: 6px;
   padding-bottom: 6px;
   font-size: 16px;
-  font-family: ${theme.fonts.main};
-  font-weight: ${theme.fontWeights.bold};
+  font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeights.bold};
   border: none;
-  color: ${theme.colors.blue};
-  background-color: ${theme.colors.transparent};
+  color: ${props => props.theme.colors.blue};
+  background-color: ${props => props.theme.colors.transparent};
   cursor: pointer;
+  :hover{
+    box-shadow: ${props => props.theme.shadows.secondShadow};    
+  }
 `;
 export const BtnAdd = styled.button`
   display: none;
@@ -142,15 +140,15 @@ export const BtnAdd = styled.button`
     padding-left: 16px;
     border-radius: 40px;
     font-size: 16px;
-    font-family: ${theme.fonts.main};
-    font-weight: ${theme.fontWeights.bold};
+    font-family: ${props => props.theme.fonts.main};
+    font-weight: ${props => props.theme.fontWeights.bold};
     border: none;
-    background: ${theme.colors.blue};
-    color: ${theme.colors.white};
+    background: ${props => props.theme.colors.blue};
+    color: ${props => props.theme.colors.white};
     cursor: pointer;
     :hover,
     :focus {
-      background: ${theme.colors.blueGradient};
+      background: ${props => props.theme.colors.blueGradient};
     }
   }
 `;
@@ -165,15 +163,15 @@ export const BtnAddUser = styled.button`
   padding-left: 16px;
   border-radius: 40px;
   font-size: 16px;
-  font-family: ${theme.fonts.main};
-  font-weight: ${theme.fontWeights.bold};
+  font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeights.bold};
   border: none;
-  background: ${theme.colors.blue};
-  color: ${theme.colors.white};
+  background: ${props => props.theme.colors.blue};
+  color: ${props => props.theme.colors.white};
   cursor: pointer;
   :hover,
   :focus {
-    background: ${theme.colors.blueGradient};
+    background: ${props => props.theme.colors.blueGradient};
   }
 `;
 export const BtnAddCurcle = styled.button`
@@ -188,16 +186,16 @@ export const BtnAddCurcle = styled.button`
   padding-bottom: 16px;
   border-radius: 40px;
   font-size: 12px;
-  font-family: ${theme.fonts.main};
-  font-weight: ${theme.fontWeights.semibold};
+  font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeights.semibold};
   border: none;
-  background: ${theme.colors.blue};
-  color: ${theme.colors.white};
-  box-shadow: ${theme.shadows.mainShadow};
+  background: ${props => props.theme.colors.blue};
+  color: ${props => props.theme.colors.white};
+  box-shadow: ${props => props.theme.shadows.mainShadow};
   cursor: pointer;
   :hover,
   :focus {
-    background: ${theme.colors.blueGradient};
+    background: ${props => props.theme.colors.blueGradient};
   }
   position: absolute;
   top: 108px;
@@ -207,11 +205,11 @@ export const BtnAddCurcle = styled.button`
   }
 `;
 export const Add = styled.svg`
-  stroke: ${theme.colors.white};
+  stroke: ${props => props.theme.colors.white};
   margin-right: 15px;
 `;
 export const AddCurcle = styled.svg`
-  stroke: ${theme.colors.white};
+  stroke: ${props => props.theme.colors.white};
   margin-bottom: 8px;
 `;
 export const BtnHeart = styled.button`
@@ -225,12 +223,15 @@ export const BtnHeart = styled.button`
   padding-bottom: 11px;
   padding-left: 11px;
   padding-right: 11px;
-  background-color: ${theme.colors.blueLight};
+  background-color: ${props => props.theme.colors.blueLight};
   border: none;
   cursor: pointer;
   position: absolute;
   top: 12px;
   right: 12px;
+  :hover{
+    border: 2px solid ${props=>props.theme.colors.blue};
+  }
 `;
 export const FilterCurcle = styled.button`
   height: 40px;
@@ -243,20 +244,20 @@ export const FilterCurcle = styled.button`
   padding-bottom: 11px;
   padding-left: 11px;
   padding-right: 11px;
-  background-color: ${theme.colors.blueLight};
+  background-color: ${props => props.theme.colors.blueLight};
   border: none;
   cursor: pointer;
   position: absolute;
   top: 0;
   right: 0;
-  stroke: ${theme.colors.blue};
+  stroke: ${props => props.theme.colors.blue};
   fill: none;
   :hover,
   :focus & svg {
-    stroke: ${theme.colors.white};
-    color: ${theme.colors.white};
+    stroke: ${props => props.theme.colors.white};
+    color: ${props => props.theme.colors.white};
     border: none;
-    background: ${theme.colors.blueGradient};
+    background: ${props => props.theme.colors.blueGradient};
   }
   @media screen and (${props => props.theme.media.md}) {
     display: none;
@@ -265,12 +266,12 @@ export const FilterCurcle = styled.button`
 
 export const Heart = styled.svg`
   fill: ${props => {
-    return props.isFavorite ? theme.colors.blue : 'none';
+    return props.isFavorite ? props.theme.colors.blue : 'none';
   }};
-  stroke: ${theme.colors.blue};
+  stroke: ${props => props.theme.colors.blue};
   :hover,
   :active {
-    fill: ${theme.colors.blue};
+    fill: ${props => props.theme.colors.blue};
   }
 `;
 export const BtnRegLog = styled.button`
@@ -283,19 +284,19 @@ export const BtnRegLog = styled.button`
   justify-content: center;
   padding: 8px 78px;
   border-radius: 40px;
-  background-color: ${theme.colors.blue};
-  color: ${theme.colors.white};
+  background-color: ${props => props.theme.colors.blue};
+  color: ${props => props.theme.colors.white};
   font-size: 20px;
   line-height: 1, 35;
   letter-spacing: 0.04em;
-  font-family: ${theme.fonts.main};
-  font-weight: ${theme.fontWeights.semibold};
+  font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeights.semibold};
   border: none;
   cursor: pointer;
 
   :hover,
   :focus {
-    background: ${theme.colors.blueGradient};
+    background: ${props => props.theme.colors.blueGradient};
   }
 `;
 export const BtnFilter = styled.button`
@@ -308,27 +309,27 @@ export const BtnFilter = styled.button`
     align-items: center;
     padding: 12px;
     border-radius: 40px;
-    border: 2px solid ${theme.colors.blue};
-    color: ${theme.colors.blue};
-    background-color: ${theme.colors.white};
+    border: 2px solid ${props => props.theme.colors.blue};
+    color: ${props => props.theme.colors.blue};
+    background-color: ${props => props.theme.colors.white};
     font-size: 16px;
-    font-family: ${theme.fonts.main};
-    font-weight: ${theme.fontWeights.bold};
+    font-family: ${props => props.theme.fonts.main};
+    font-weight: ${props => props.theme.fontWeights.bold};
     cursor: pointer;
-    stroke: ${theme.colors.blue};
+    stroke: ${props => props.theme.colors.blue};
     fill: none;
     :hover,
     :focus & svg {
-      stroke: ${theme.colors.white};
-      color: ${theme.colors.white};
+      stroke: ${props => props.theme.colors.white};
+      color: ${props => props.theme.colors.white};
       border: none;
-      background: ${theme.colors.blueGradient};
+      background: ${props => props.theme.colors.blueGradient};
     }
   }
 `;
 // export const Filter = styled.svg`
 //   fill: none;
-//   stroke: ${theme.colors.blue};
+//   stroke: ${props => props.theme.colors.blue};
 //   :hover,
 //   :focus {
 //   }
@@ -337,10 +338,10 @@ export const BtnOption = styled.button`
   height: 35px;
   border-radius: 40px;
   padding: 8px 16px;
-  background-color: ${theme.colors.blueLight};
+  background-color: ${props => props.theme.colors.blueLight};
   border: none;
-  color: ${theme.colors.blue};
-  font-weight: ${theme.fontWeights.medium};
+  color: ${props => props.theme.colors.blue};
+  font-weight: ${props => props.theme.fontWeights.medium};
   font-size: 14px;
   line-height: 1.35;
   letter-spacing: 0.04em;
@@ -348,8 +349,8 @@ export const BtnOption = styled.button`
   :hover,
   :focus,
   :active {
-    color: ${theme.colors.white};
-    background-color: ${theme.colors.blue};
+    color: ${props => props.theme.colors.white};
+    background-color: ${props => props.theme.colors.blue};
   }
   margin: 0 8px 8px 0;
 `;
@@ -362,21 +363,21 @@ export const BtnToHeart = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${theme.colors.blue};
+  background-color: ${props => props.theme.colors.blue};
   font-size: 16px;
-  font-family: ${theme.fonts.main};
-  font-weight: ${theme.fontWeights.bold};
-  color: ${theme.colors.white};
+  font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeights.bold};
+  color: ${props => props.theme.colors.white};
   border: none;
   cursor: pointer;
   :hover,
   :focus {
-    background: ${theme.colors.blueGradient};
+    background: ${props => props.theme.colors.blueGradient};
   }
 `;
 export const ToHeart = styled.svg`
   fill: none;
-  stroke: ${theme.colors.white};
+  stroke: ${props => props.theme.colors.white};
   margin-left: 11px;
 `;
 export const BtnContact = styled.a`
@@ -388,14 +389,17 @@ export const BtnContact = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${theme.colors.white};
+  background-color: ${props => props.theme.colors.white};
   font-size: 16px;
-  font-family: ${theme.fonts.main};
-  font-weight: ${theme.fontWeights.bold};
+  font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeights.bold};
   letter-spacing: 0.04em;
   line-height: 1.35;
-  color: ${theme.colors.blue};
-  border: 2px solid ${theme.colors.blue};
+  color: ${props => props.theme.colors.blue};
+  border: 2px solid ${props => props.theme.colors.blue};
+  :hover{
+    box-shadow: ${props => props.theme.shadows.secondShadow};
+  }
 `;
 export const PetInfoStyle = styled.div`
   height: 28px;
@@ -404,9 +408,9 @@ export const PetInfoStyle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${theme.colors.blueLight};
+  background-color: ${props => props.theme.colors.blueLight};
   border: none;
-  color: ${theme.colors.black};
+  color: ${props => props.theme.colors.black};
 `;
 export const PetInfoNoticesStyle = styled.div`
   height: 28px;
@@ -415,9 +419,9 @@ export const PetInfoNoticesStyle = styled.div`
   display: flex;
   padding-left: 4px;
   align-items: center;
-  background-color: ${theme.colors.blueLight};
+  background-color: ${props => props.theme.colors.blueLight};
   border: none;
-  color: ${theme.colors.black};
+  color: ${props => props.theme.colors.black};
 `;
 export const PetCategoryStyle = styled.div`
   width: 126px;
@@ -429,13 +433,13 @@ export const PetCategoryStyle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${theme.colors.blueLight};
+  background-color: ${props => props.theme.colors.blueLight};
   border: none;
-  color: ${theme.colors.black};
+  color: ${props => props.theme.colors.black};
 `;
 export const City = styled.svg`
   fill: none;
-  stroke: ${theme.colors.blue};
+  stroke: ${props => props.theme.colors.blue};
   margin-right: 4px;
 `;
 export const TexStyletInfo = styled.p`
@@ -469,18 +473,18 @@ export const YesBtn = styled.button`
   padding-top: 8px;
   padding-bottom: 8px;
   font-size: 16px;
-  font-family: ${theme.fonts.main};
-  font-weight: ${theme.fontWeights.bold};
+  font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeights.bold};
   letter-spacing: 0.04em;
   line-height: 1.35;
-  background-color: ${theme.colors.blue};
+  background-color: ${props => props.theme.colors.blue};
   border: none;
   cursor: pointer;
-  color: ${theme.colors.white};
+  color: ${props => props.theme.colors.white};
   :hover,
   :focus,
   :active {
-    background: ${theme.colors.blueGradient};
+    background: ${props => props.theme.colors.blueGradient};
   }
 
   @media screen and (${props => props.theme.media.md}) {
@@ -490,14 +494,15 @@ export const YesBtn = styled.button`
 
 export const Delete = styled.svg`
   fill: none;
-  stroke: ${theme.colors.white};
+  stroke: ${props => props.theme.colors.white};
   margin-left: 8px;
 `;
 
 export const Logout = styled.svg`
   fill: none;
-  stroke: ${theme.colors.white};
+  stroke: ${props => props.theme.colors.white};
   margin-left: 11px;
+  
 `;
 
 export const BtnClose = styled.button`
@@ -506,13 +511,13 @@ export const BtnClose = styled.button`
   right: 12px;
   height: 24px;
   width: 24px;
-  background-color: ${theme.colors.transparent};
-  color: ${theme.colors.blue};
+  background-color: ${props => props.theme.colors.transparent};
+  color: ${props => props.theme.colors.blue};
   border: none;
   cursor: pointer;
   :hover,
   :focus {
-    color: ${theme.colors.black};
+    color: ${props => props.theme.colors.black};
   }
   @media screen and (${props => props.theme.media.md}) {
     top: 24px;
@@ -527,8 +532,8 @@ export const Close = styled.svg`
   position: absolute;
   top: 0;
   left: 0;
-  fill: ${theme.colors.currentColor};
-  stroke: ${theme.colors.currentColor};
+  fill: ${props => props.theme.colors.currentColor};
+  stroke: ${props => props.theme.colors.currentColor};
 `;
 
 export const BtnCloseStyled = styled.button`
@@ -539,18 +544,18 @@ export const BtnCloseStyled = styled.button`
   align-items: center;
   padding: 12px;
   border-radius: 40px;
-  border: 2px solid ${theme.colors.blue};
-  color: ${theme.colors.blue};
-  background-color: ${theme.colors.clearWhite};
+  border: 2px solid ${props => props.theme.colors.blue};
+  color: ${props => props.theme.colors.blue};
+  background-color: ${props => props.theme.colors.clearWhite};
   font-size: 16px;
-  font-family: ${theme.fonts.main};
-  font-weight: ${theme.fontWeights.bold};
+  font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeights.bold};
   cursor: pointer;
   :hover,
   :focus {
-    color: ${theme.colors.white};
+    color: ${props => props.theme.colors.white};
     border: none;
-    background: ${theme.colors.blueGradient};
+    background: ${props => props.theme.colors.blueGradient};
   }
 
   @media screen and (${props => props.theme.media.md}) {
@@ -558,12 +563,12 @@ export const BtnCloseStyled = styled.button`
   }
 `;
 export const Arrow = styled.svg`
-  stroke: ${theme.colors.currentColor};
-  fill: ${theme.colors.currentColor};
+  stroke: ${props => props.theme.colors.currentColor};
+  fill: ${props => props.theme.colors.currentColor};
 `;
 export const Avatar = styled.svg`
   fill: none;
-  stroke: ${theme.colors.orange};
+  stroke: ${props => props.theme.colors.orange};
 `;
 
 export const StyledEditPhotoBtn = styled.button`
@@ -575,8 +580,8 @@ export const StyledEditPhotoBtn = styled.button`
   border: none;
   background-color: transparent;
   border: none;
-  color: ${theme.colors.dark};
-  font-weight: ${theme.fontWeights.regular};
+  color: ${props => props.theme.colors.dark};
+  font-weight: ${props => props.theme.fontWeights.regular};
   font-size: 12px;
   line-height: calc(22 / 12);
   letter-spacing: 0.04em;
@@ -608,7 +613,7 @@ export const LogOutTitle = styled.h3`
   font-weight: 500;
   font-size: 16px;
   line-height: 21.86px;
-  color: ${theme.colors.grey};
+  color: ${props => props.theme.colors.grey};
 `;
 
 export const LogOutWrapper = styled.button`
@@ -629,6 +634,9 @@ export const LogOutWrapper = styled.button`
   outline: none;
   border: none;
   cursor: pointer;
+  :hover{
+    box-shadow: ${props => props.theme.shadows.secondShadow};
+  }
 
   @media screen and (${props => props.theme.media.md}) {
     left: 20px;
@@ -650,4 +658,7 @@ export const DeletePet = styled.button`
   border: none;
   cursor: pointer;
   background-color: ${props => props.theme.colors.transparent};
+  :hover{
+    box-shadow: ${props => props.theme.shadows.secondShadow};
+  }
 `;

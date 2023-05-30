@@ -43,7 +43,7 @@ export const NoticesCategoryItem = ({ notice, delNotice }) => {
         setPetsDetails(response.data);
       })();
     } catch (error) {
-      notify('error', 'Something went wrong');
+      notify('error', "Sorry, something wrong. Please try again");
     }
     setIsOpen(!isOpen);
   };
