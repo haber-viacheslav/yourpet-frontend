@@ -28,6 +28,7 @@ export const NewsData = () => {
 
   useEffect(() => {
     setSearchParams({
+      page: 1,
       ...params,
       limit,
     });
@@ -73,7 +74,7 @@ export const NewsData = () => {
       )}
       {totalPages > 1 && (
         <Pagination
-          currentPage={+params.page}
+          currentPage={1 && +params.page}
           totalPages={totalPages}
           onPageChange={handlePageChange}
           paginationLength={isTablet ? 5 : 4}

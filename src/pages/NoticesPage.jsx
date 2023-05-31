@@ -31,19 +31,21 @@ const NoticesPage = () => {
   );
 
   useEffect(() => {
+    console.log(+params.page);
+
     setIsLoading(true);
     try {
       (async () => {
         if (category === 'favorite' || category === 'own') {
           const response = await getPrivateNotices(category, params);
-          setSearchParams({ ...params, category });
+          setSearchParams({ page: 1, ...params, category });
           setNotices(response.data);
           setTotalPages(response.totalPages);
         } else if (queryString !== '') {
           const response = await getNoticeByFilters(queryString);
           setNotices(response.data.data);
         } else {
-          setSearchParams({ ...params, category });
+          setSearchParams({ page: 1, ...params, category });
           const response = await getAllNotices(params);
           setNotices(response.data);
           setTotalPages(response.totalPages);
