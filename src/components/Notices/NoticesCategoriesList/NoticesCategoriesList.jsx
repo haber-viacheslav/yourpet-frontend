@@ -1,11 +1,14 @@
 import { NoticesCategoryItem } from '../NoticesCategoriesItem/NoticesCategoriesItem';
 import { List } from './NoticesCategoriesList.styled';
+// import { useAuth } from 'hooks/useAuth';
+// import { NotResults } from '../../../components/NotResults/NotResults';
 
 export const NoticesCategoriesList = ({
   notices,
   delNotice,
   removeNoticeFromFavorite,
 }) => {
+  // const { isRefreshing, isLoading } = useAuth();
   return (
     <>
       <List>
