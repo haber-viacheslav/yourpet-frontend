@@ -17,12 +17,15 @@ import { NotResults } from '../components/NotResults/NotResults';
 
 const NoticesPage = () => {
   const limit = 10;
-  const [category, setCategory] = useState('sell');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [category, setCategory] = useState(
+    () => searchParams.category || 'sell'
+  );
   const [notices, setNotices] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
   const [queryString, setQueryString] = useState('');
-  const [searchParams, setSearchParams] = useSearchParams();
+
   const isTablet = window.matchMedia(theme.media.mdToLg).matches;
 
   const params = useMemo(
@@ -31,18 +34,24 @@ const NoticesPage = () => {
   );
 
   useEffect(() => {
-    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setShowLoader(true);
+    }, 2000);
     try {
       (async () => {
         if (category === 'favorite' || category === 'own') {
+          console.log(params);
+
           const response = await getPrivateNotices(category, params);
-          setSearchParams({ ...params, category });
+          setSearchParams({ ...params });
           setNotices(response.data);
           setTotalPages(response.totalPages);
         } else if (queryString !== '') {
           const response = await getNoticeByFilters(queryString);
           setNotices(response.data.data);
         } else {
+          console.log(params);
+
           setSearchParams({ ...params, category });
           const response = await getAllNotices(params);
           setNotices(response.data);
@@ -51,9 +60,8 @@ const NoticesPage = () => {
       })();
     } catch (error) {
       notify('error', 'Sorry, server just have a "fiesta" at this moment...');
-    } finally {
-      setIsLoading(false);
     }
+    return () => clearTimeout(timer);
   }, [setSearchParams, params, category, queryString]);
 
   const handleSearchSubmit = search => {
@@ -113,7 +121,6 @@ const NoticesPage = () => {
           <Search onSubmit={handleSearchSubmit} />
           <NoticesCategoriesNav
             onCategoryClick={handleChoose}
-            active={category}
             onQueryStringChange={handleQueryStringChange}
           />
           <Suspense fallback={<Loader loaderSrc={PawLoader} size={250} />}>
@@ -127,9 +134,10 @@ const NoticesPage = () => {
               </NoticesCategoriesList>
             )}
           </Suspense>
-          {!isLoading && notices.length === 0 && (
+          {showLoader && notices.length === 0 && (
             <NotResults title={'Ooops:( Such notices not found'} />
           )}
+
           {totalPages > 1 && !queryString && (
             <Pagination
               currentPage={+params.page}
