@@ -7,7 +7,6 @@ import {
   PetFormBtn,
   BtnCancelArrow,
   BtnBackArrow,
-  BtnAddCurcle,
   BtnAdd,
   BtnHeart,
   BtnRegLog,
@@ -20,7 +19,6 @@ import {
   ArrowLeft,
   Pawprint,
   Add,
-  AddCurcle,
   Heart,
   ToHeart,
   City,
@@ -91,13 +89,7 @@ const SvgAdd = () => {
     </Add>
   );
 };
-const SvgAddCurcle = () => {
-  return (
-    <AddCurcle width={24} height={24}>
-      <use href={icons + '#icon-plus-small'}></use>
-    </AddCurcle>
-  );
-};
+
 const SvgCancel = () => {
   return (
     <ArrowLeft width={24} height={24}>
@@ -420,16 +412,6 @@ export const BtnAddPetUser = ({ onClick }) => {
         Add Pet
         <SvgAdd />
       </BtnAddUser>
-    </>
-  );
-};
-export const BtnAddPetCircle = ({ onClick }) => {
-  return (
-    <>
-      <BtnAddCurcle type="button" onClick={onClick}>
-        <SvgAddCurcle />
-        Add Pet
-      </BtnAddCurcle>
     </>
   );
 };

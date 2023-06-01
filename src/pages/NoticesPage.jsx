@@ -168,8 +168,7 @@ const NoticesPage = () => {
           <NoticesCategoriesNav
             onCategoryClick={handleChoose}
             setCheckboxValue={setCheckboxValue}
-            checkboxValue={checkboxValue}
-            limit={limit}
+            checkboxValue={checkboxValue}            
           />
           <Suspense fallback={<Loader loaderSrc={PawLoader} size={250} />}>
             <NoticesCategoriesList

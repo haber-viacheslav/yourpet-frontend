@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { BtnAddPet, BtnAddPetCircle } from 'components/buttons/buttons';
+import { BtnAddPet } from 'components/buttons/buttons';
 import { useAuth } from 'hooks/useAuth';
 import { notify } from 'helpers/notification';
 
@@ -24,7 +24,6 @@ export const NoticesCategoriesNav = ({
   onCategoryClick,
   setCheckboxValue,
   checkboxValue,
-  limit,
 }) => {
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
@@ -77,9 +76,8 @@ export const NoticesCategoriesNav = ({
           setCheckboxValue={setCheckboxValue}
           checkboxValue={checkboxValue}
         />
-        {limit !== 11 && <BtnAddPet onClick={handleClick} />}
+        <BtnAddPet onClick={handleClick} />
       </FiltersBtnContainer>
-      {limit === 11 && <BtnAddPetCircle onClick={handleClick} />}
     </FiltersContainer>
   );
 };
