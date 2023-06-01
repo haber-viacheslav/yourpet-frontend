@@ -42,7 +42,10 @@ export const addPetFormSchema = yup.object().shape({
       .required('Enter a title'),
     otherwise: yup.string(),
   }),
-  date: yup.string().required('Choose a date of birth'),
+  date: yup
+    .date()
+    .max(new Date(), 'Must be less than "now"')
+    .required('Choose a date of birth'),
   breed: yup
     .string('Must be a string')
     .min(2, 'Minimum 2 characters')
@@ -106,7 +109,10 @@ export const profileSchema = yup.object().shape({
     .max(20, 'max 20 characters')
     .required('Set your name'),
   email: yup.string().email('Enter a valid email').required('Set your email'),
-  birthday: yup.string().required('Choose your birthday'),
+  birthday: yup
+    .date()
+    .max(new Date(), 'Must be less than "now"')
+    .required('Choose  your birthday'),
   city: yup
     .string()
     .matches(/^[A-Z][a-zA-Z]*$/, 'Starts with capitalize character'),
