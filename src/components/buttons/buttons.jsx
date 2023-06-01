@@ -112,9 +112,9 @@ const SvgHeart = ({ isFavorite }) => {
     </Heart>
   );
 };
-const SvgToHeart = () => {
+const SvgToHeart = ({ isFavorite }) => {
   return (
-    <ToHeart width={24} height={24}>
+    <ToHeart width={24} height={24} isFavorite={isFavorite}>
       <use href={icons + '#icon-heart'}></use>
     </ToHeart>
   );
@@ -444,7 +444,7 @@ export const BtnAddFavorite = ({ onClick, isFavorite }) => {
 export const BtnAddTo = ({ onClick, isFavorite }) => {
   return (
     <BtnToHeart type="button" onClick={onClick}>
-      Add to
+      {isFavorite ? 'Remove' : 'Add to'}
       <SvgToHeart isFavorite={isFavorite} />
     </BtnToHeart>
   );

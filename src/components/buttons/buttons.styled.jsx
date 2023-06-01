@@ -46,7 +46,7 @@ export const BigBtnFavor = styled.button`
     background: ${props => props.theme.colors.blue};
     color: ${props => props.theme.colors.white};
     border: none;
-     transition-duration: 250ms;
+    transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
   position: absolute;
@@ -101,7 +101,7 @@ export const BtnCancelArrow = styled.button`
   color: ${props => props.theme.colors.blue};
   background-color: ${props => props.theme.colors.transparent};
   cursor: pointer;
-  :hover{
+  :hover {
     box-shadow: ${props => props.theme.shadows.secondShadow};
   }
 `;
@@ -125,8 +125,8 @@ export const BtnBackArrow = styled.button`
   color: ${props => props.theme.colors.blue};
   background-color: ${props => props.theme.colors.transparent};
   cursor: pointer;
-  :hover{
-    box-shadow: ${props => props.theme.shadows.secondShadow};    
+  :hover {
+    box-shadow: ${props => props.theme.shadows.secondShadow};
   }
 `;
 export const BtnAdd = styled.button`
@@ -177,6 +177,11 @@ export const BtnAddUser = styled.button`
   }
 `;
 export const BtnAddCurcle = styled.button`
+  z-index: 1000;
+  position: absolute;
+  top: 251px;
+  right: 0;
+
   height: 80px;
   width: 80px;
   display: flex;
@@ -199,9 +204,6 @@ export const BtnAddCurcle = styled.button`
   :focus {
     background: ${props => props.theme.colors.blueGradient};
   }
-  position: absolute;
-  top: 108px;
-  right: 0;
   @media screen and (${props => props.theme.media.md}) {
     display: none;
   }
@@ -231,8 +233,8 @@ export const BtnHeart = styled.button`
   position: absolute;
   top: 12px;
   right: 12px;
-  :hover{
-    border: 2px solid ${props=>props.theme.colors.blue};
+  :hover {
+    border: 2px solid ${props => props.theme.colors.blue};
   }
 `;
 export const FilterCurcle = styled.button`
@@ -326,8 +328,8 @@ export const BtnFilter = styled.button`
       color: ${props => props.theme.colors.white};
       border: none;
       background: ${props => props.theme.colors.blueGradient};
-       transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 250ms;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
 `;
@@ -376,7 +378,7 @@ export const BtnToHeart = styled.button`
   }
 `;
 export const ToHeart = styled.svg`
-  fill: none;
+  fill: ${props => (props.isFavorite ? props.theme.colors.white : 'none')};
   stroke: ${props => props.theme.colors.white};
   margin-left: 11px;
 `;
@@ -397,7 +399,7 @@ export const BtnContact = styled.a`
   line-height: 1.35;
   color: ${props => props.theme.colors.blue};
   border: 2px solid ${props => props.theme.colors.blue};
-  :hover{
+  :hover {
     box-shadow: ${props => props.theme.shadows.secondShadow};
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -504,7 +506,6 @@ export const Logout = styled.svg`
   fill: none;
   stroke: ${props => props.theme.colors.white};
   margin-left: 11px;
-  
 `;
 
 export const BtnClose = styled.button`
@@ -628,7 +629,7 @@ export const LogOutWrapper = styled.button`
   left: 10px;
   bottom: 25px;
   padding: 2px;
-  border-radius:3px;
+  border-radius: 3px;
 
   font-weight: ${props => props.theme.fontWeights.regular};
   font-size: 16px;
@@ -639,7 +640,7 @@ export const LogOutWrapper = styled.button`
   outline: none;
   border: none;
   cursor: pointer;
-  :hover{
+  :hover {
     box-shadow: ${props => props.theme.shadows.secondShadow};
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -665,7 +666,7 @@ export const DeletePet = styled.button`
   border: none;
   cursor: pointer;
   background-color: ${props => props.theme.colors.transparent};
-  :hover{
+  :hover {
     box-shadow: ${props => props.theme.shadows.secondShadow};
   }
 `;
