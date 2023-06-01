@@ -40,18 +40,6 @@ const NoticesPage = () => {
     [searchParams]
   );
 
-  console.log(
-    AllFilterQueries(
-      checkboxValue.lessOne,
-      checkboxValue.one,
-      checkboxValue.two,
-      checkboxValue.female,
-      checkboxValue.male
-    )
-  );
-
-  // console.log('===params===', params);
-
   useEffect(() => {
     setSearchParams({
       page: 1,
@@ -82,6 +70,7 @@ const NoticesPage = () => {
     if (Object.keys(params).length > 0) {
       try {
         (async () => {
+          setSearchParams({ page: 1, ...params });
           if (category === 'favorite' || category === 'own') {
             const response = await getPrivateNotices(category, params);
             setNotices(response.data);
@@ -91,6 +80,7 @@ const NoticesPage = () => {
             category === 'lost-found' ||
             category === 'for-free'
           ) {
+            setSearchParams({ page: 1, ...params });
             const response = await getAllNotices(params);
             setNotices(response.data);
             setTotalPages(response.totalPages);
