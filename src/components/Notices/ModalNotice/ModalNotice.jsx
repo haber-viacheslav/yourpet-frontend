@@ -70,8 +70,12 @@ export const ModalItem = ({
                 <InfoValue>{breed || ''}</InfoValue>
                 <InfoValue>{location || ''} </InfoValue>
                 <InfoValue>{sex || ''}</InfoValue>
-                <MailInfo href={`${'mailto:' + email}`} aria-label='email'>{email || ''}</MailInfo>
-                <TelInfo href={`${'tel:' + phone}`} aria-label='phone number'>{phone}</TelInfo>
+                <MailInfo href={`${'mailto:' + email}`} aria-label="email">
+                  {email || ''}
+                </MailInfo>
+                <TelInfo href={`${'tel:' + phone}`} aria-label="phone number">
+                  {phone}
+                </TelInfo>
               </PetInfoItem>
             </PetInfoList>
           </div>
