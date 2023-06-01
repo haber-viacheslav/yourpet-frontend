@@ -134,7 +134,7 @@ export const NoticesCategoryItem = ({
   const ageInMilliseconds = currentDate - birthDate;
   const ageInMonths = Math.floor(
     ageInMilliseconds / (1000 * 60 * 60 * 24 * 30.44)
-  ); // Average number of days in a month
+  );
   const ageInYears = Math.floor(ageInMonths / 12);
 
   const ageElement =

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const FiltersContainer = styled.div`
   display: flex;
@@ -22,7 +23,7 @@ export const FiltersBtnContainer = styled.div`
   }
 `;
 
-export const CategoryBtn = styled.button`
+export const StyledNavLink = styled(NavLink)`
   color: ${props => props.theme.colors.blue};
   background: ${props => props.theme.colors.blueLight};
   text-decoration: none;
@@ -48,6 +49,7 @@ export const CategoryBtn = styled.button`
     background-color: ${props => props.theme.colors.blue};
   }
 `;
+
 export const CategoryBntWrapper = styled.ul`
   display: flex;
   align-items: flex-start;

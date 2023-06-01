@@ -7,7 +7,7 @@ import {
   FiltersBtnContainer,
   FiltersContainer,
   CategoryBntWrapper,
-  CategoryBtn,
+  StyledNavLink,
 } from './NoticesCategoriesNav.styled';
 import { FilterCards } from '../FilterCards/FilterCards';
 
@@ -22,8 +22,8 @@ const navPrivateCategories = [
 ];
 export const NoticesCategoriesNav = ({
   onCategoryClick,
-  active,
-  onQueryStringChange,
+  setCheckboxValue,
+  checkboxValue,
 }) => {
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
@@ -43,35 +43,39 @@ export const NoticesCategoriesNav = ({
         {navCategories.map(category => {
           const route = category[1];
           const text = category[0];
-          const isActive = active === route ? 'active' : '';
           return (
-            <CategoryBtn
+            <StyledNavLink
               key={route}
-              className={isActive}
+              to={`/notices/${route}`}
+              end
               onClick={() => onCategoryClick(route)}
             >
               {text}
-            </CategoryBtn>
+            </StyledNavLink>
           );
         })}
         {isLoggedIn &&
           navPrivateCategories.map(category => {
             const route = category[1];
             const text = category[0];
-            const isActive = active === route ? 'active' : '';
+
             return (
-              <CategoryBtn
+              <StyledNavLink
                 key={route}
-                className={isActive}
+                to={`/notices/${route}`}
+                end
                 onClick={() => onCategoryClick(route)}
               >
                 {text}
-              </CategoryBtn>
+              </StyledNavLink>
             );
           })}
       </CategoryBntWrapper>
       <FiltersBtnContainer>
-        <FilterCards onQueryStringChange={onQueryStringChange} />
+        <FilterCards
+          setCheckboxValue={setCheckboxValue}
+          checkboxValue={checkboxValue}
+        />
         <BtnAddPet onClick={handleClick} />
       </FiltersBtnContainer>
     </FiltersContainer>
