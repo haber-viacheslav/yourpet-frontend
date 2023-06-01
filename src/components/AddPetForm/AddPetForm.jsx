@@ -150,7 +150,7 @@ export const AddPetForm = () => {
 
         try {
           await createNotice(formData);
-          navigate('/notices');
+          navigate(`/notices/${values.category}`);
         } catch (error) {
           console.log(error);
           notify('error', 'Sorry, something wrong. Please try again');
