@@ -22,7 +22,8 @@ const navPrivateCategories = [
 ];
 export const NoticesCategoriesNav = ({
   onCategoryClick,
-  onQueryStringChange,
+  setCheckboxValue,
+  checkboxValue,
 }) => {
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
@@ -71,7 +72,10 @@ export const NoticesCategoriesNav = ({
           })}
       </CategoryBntWrapper>
       <FiltersBtnContainer>
-        <FilterCards onQueryStringChange={onQueryStringChange} />
+        <FilterCards
+          setCheckboxValue={setCheckboxValue}
+          checkboxValue={checkboxValue}
+        />
         <BtnAddPet onClick={handleClick} />
       </FiltersBtnContainer>
     </FiltersContainer>

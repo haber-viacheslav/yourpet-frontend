@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, Suspense } from 'react';
-import { useSearchParams, Outlet } from 'react-router-dom';
+import { useSearchParams, Outlet, useParams } from 'react-router-dom';
 import { getAllNotices, getPrivateNotices, deleteNotice } from 'api/notices';
 import { Container } from '../components/Container/Container';
 import { Section } from '../components/Section/Section';
@@ -11,21 +11,28 @@ import { Loader } from 'components/Loader/Loader';
 import PawLoader from '../images/Loader.png';
 import { theme } from '../theme/theme';
 import { Pagination } from 'components/Pagination/Pagination';
-import { getNoticeByFilters } from 'api/notices';
 import { notify } from 'helpers/notification';
 import { NotResults } from '../components/NotResults/NotResults';
+import { AllFilterQueries } from 'helpers/filtersQueries';
+
+const initialFiltersValue = {
+  lessOne: false,
+  one: false,
+  two: false,
+  female: false,
+  male: false,
+};
 
 const NoticesPage = () => {
-  const limit = 10;
+  // const limit = 10;
+  const { categoryName } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [category, setCategory] = useState(
-    () => searchParams.category || 'sell'
-  );
+  const [category, setCategory] = useState(categoryName);
+  const [checkboxValue, setCheckboxValue] = useState(initialFiltersValue);
+  const [searchValue, setSearchValue] = useState({});
   const [notices, setNotices] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [showLoader, setShowLoader] = useState(false);
-  const [queryString, setQueryString] = useState('');
-
   const isTablet = window.matchMedia(theme.media.mdToLg).matches;
 
   const params = useMemo(
@@ -33,40 +40,75 @@ const NoticesPage = () => {
     [searchParams]
   );
 
+  console.log(
+    AllFilterQueries(
+      checkboxValue.lessOne,
+      checkboxValue.one,
+      checkboxValue.two,
+      checkboxValue.female,
+      checkboxValue.male
+    )
+  );
+
+  // console.log('===params===', params);
+
+  useEffect(() => {
+    setSearchParams({
+      page: 1,
+      ...searchValue,
+      ...AllFilterQueries(
+        checkboxValue.lessOne,
+        checkboxValue.one,
+        checkboxValue.two,
+        checkboxValue.female,
+        checkboxValue.male
+      ),
+      category,
+    });
+  }, [
+    checkboxValue,
+    params,
+    category,
+    setSearchParams,
+    searchValue,
+    searchParams,
+  ]);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowLoader(true);
     }, 2000);
-    try {
-      (async () => {
-        if (category === 'favorite' || category === 'own') {
-          console.log(params);
 
-          const response = await getPrivateNotices(category, params);
-          setSearchParams({ ...params });
-          setNotices(response.data);
-          setTotalPages(response.totalPages);
-        } else if (queryString !== '') {
-          const response = await getNoticeByFilters(queryString);
-          setNotices(response.data.data);
-        } else {
-          console.log(params);
-
-          setSearchParams({ ...params, category });
-          const response = await getAllNotices(params);
-          setNotices(response.data);
-          setTotalPages(response.totalPages);
-        }
-      })();
-    } catch (error) {
-      notify('error', 'Sorry, server just have a "fiesta" at this moment...');
+    if (Object.keys(params).length > 0) {
+      try {
+        (async () => {
+          if (category === 'favorite' || category === 'own') {
+            const response = await getPrivateNotices(category, params);
+            setNotices(response.data);
+            setTotalPages(response.totalPages);
+          } else if (
+            category === 'sell' ||
+            category === 'lost-found' ||
+            category === 'for-free'
+          ) {
+            const response = await getAllNotices(params);
+            setNotices(response.data);
+            setTotalPages(response.totalPages);
+          }
+        })();
+      } catch (error) {
+        notify('error', 'Sorry, server just have a "fiesta" at this moment...');
+      }
     }
     return () => clearTimeout(timer);
-  }, [setSearchParams, params, category, queryString]);
+  }, [setSearchParams, params, category, searchParams]);
 
   const handleSearchSubmit = search => {
-    const nextParams = search !== '' ? { search } : {};
-    setSearchParams({ ...nextParams, page: 1, limit });
+    if (search) {
+      setSearchValue({ search });
+    } else {
+      setSearchValue({});
+    }
   };
 
   const handleRemoveNotice = async id => {
@@ -97,18 +139,14 @@ const NoticesPage = () => {
     }
   };
 
-  const handleChoose = option => {
-    setCategory(option);
+  const handleChoose = route => {
+    setCategory(route);
     setTotalPages(0);
-    setSearchParams({ ...params, category: option, page: 1, limit });
+    setSearchParams({ ...params, category: route, page: 1 });
   };
 
   const handlePageChange = page => {
-    setSearchParams({ ...params, page, limit });
-  };
-
-  const handleQueryStringChange = newQueryString => {
-    setQueryString(newQueryString);
+    setSearchParams({ ...params, page });
   };
 
   return (
@@ -121,24 +159,22 @@ const NoticesPage = () => {
           <Search onSubmit={handleSearchSubmit} />
           <NoticesCategoriesNav
             onCategoryClick={handleChoose}
-            onQueryStringChange={handleQueryStringChange}
+            setCheckboxValue={setCheckboxValue}
+            checkboxValue={checkboxValue}
           />
           <Suspense fallback={<Loader loaderSrc={PawLoader} size={250} />}>
-            {notices.length > 0 && (
-              <NoticesCategoriesList
-                notices={notices}
-                delNotice={handleDeleteBtn}
-                removeNoticeFromFavorite={handleRemoveNotice}
-              >
-                <Outlet />
-              </NoticesCategoriesList>
-            )}
+            <NoticesCategoriesList
+              notices={notices}
+              delNotice={handleDeleteBtn}
+              removeNoticeFromFavorite={handleRemoveNotice}
+            >
+              <Outlet />
+            </NoticesCategoriesList>
           </Suspense>
           {showLoader && notices.length === 0 && (
             <NotResults title={'Ooops:( Such notices not found'} />
           )}
-
-          {totalPages > 1 && !queryString && (
+          {totalPages > 1 && (
             <Pagination
               currentPage={+params.page}
               totalPages={totalPages}

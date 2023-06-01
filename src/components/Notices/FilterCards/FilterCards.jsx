@@ -16,102 +16,10 @@ import {
 } from './FilterCards.styled';
 import { useEffect } from 'react';
 
-export const FilterCards = ({ onQueryStringChange }) => {
+export const FilterCards = ({ checkboxValue, setCheckboxValue }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenAge, setIsOpenAge] = useState(false);
   const [isOpenGender, setIsOpenGender] = useState(false);
-
-  const [checkedItems, setCheckedItems] = useState({
-    upToYear: null,
-    upToTwoYears: null,
-    upToThreeYears: null,
-    female: false,
-    male: false,
-  });
-
-
-  useEffect(() => {
-    const searchParams = new URLSearchParams();
-
-    const currentDate = new Date();
-
-    if (checkedItems['upToYear']) {
-      const fromTheDate1 = new Date(
-        currentDate.getFullYear() - 1,
-        currentDate.getMonth(),
-        currentDate.getDate()
-      );
-      const toTheDate1 = new Date(
-        currentDate.getFullYear(),
-        currentDate.getMonth(),
-        currentDate.getDate()
-      );
-      searchParams.append(
-        'fromTheDate',
-        fromTheDate1.toISOString().split('T')[0]
-      );
-      searchParams.append(
-        'toTheDate',
-        toTheDate1.toISOString().split('T')[0]
-      );
-    }
-
-    if (checkedItems['upToTwoYears']) {
-      const fromTheDate2 = new Date(
-        currentDate.getFullYear() - 2,
-        currentDate.getMonth(),
-        currentDate.getDate()
-      );
-      const toTheDate2 = new Date(
-        currentDate.getFullYear() - 1,
-        currentDate.getMonth(),
-        currentDate.getDate()
-      );
-      searchParams.append(
-        'fromTheDate',
-        fromTheDate2.toISOString().split('T')[0]
-      );
-      searchParams.append(
-        'toTheDate',
-        toTheDate2.toISOString().split('T')[0]
-      );
-    }
-
-    if (checkedItems['upToThreeYears']) {
-      const fromTheDate3 = new Date(
-        currentDate.getFullYear() - 3,
-        currentDate.getMonth(),
-        currentDate.getDate()
-      );
-      const toTheDate3 = new Date(
-        currentDate.getFullYear() - 2,
-        currentDate.getMonth(),
-        currentDate.getDate()
-      );
-      searchParams.append(
-        'fromTheDate',
-        fromTheDate3.toISOString().split('T')[0]
-      );
-      searchParams.append(
-        'toTheDate',
-        toTheDate3.toISOString().split('T')[0]
-      );
-    }
-
-    const ageFilters = [];
-    Object.entries(checkedItems).forEach(([key, value]) => {
-      if (value) {
-        if (key.startsWith('upTo')) {
-          ageFilters.push(key);
-        } else if (key === 'female' || key === 'male') {
-          searchParams.append('gender', key);
-        }
-      }
-    });
-
-    const queryString = searchParams.toString();
-    onQueryStringChange(queryString);
-  }, [checkedItems, onQueryStringChange]);
 
   // Close menu by Esc key and clicking on the backdrop
   useEffect(() => {
@@ -120,16 +28,13 @@ export const FilterCards = ({ onQueryStringChange }) => {
         setIsOpen(false);
       }
     };
-
     const handleClickOutside = event => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
       }
     };
-
     document.addEventListener('keydown', handleEscapeKey);
     document.addEventListener('mousedown', handleClickOutside);
-
     return () => {
       document.removeEventListener('keydown', handleEscapeKey);
       document.removeEventListener('mousedown', handleClickOutside);
@@ -153,12 +58,9 @@ export const FilterCards = ({ onQueryStringChange }) => {
 
   const handleCheckboxChange = event => {
     const { name } = event.target;
-    setCheckedItems(prevCheckedItems => ({
-      ...prevCheckedItems,
-      upToYear: name === 'upToYear' ? true : false,
-      upToTwoYears: name === 'upToTwoYears' ? true : false,
-      upToThreeYears: name === 'upToThreeYears' ? true : false,
-      [name]: !prevCheckedItems[name],
+    setCheckboxValue(prevState => ({
+      ...prevState,
+      [name]: !prevState[name],
     }));
   };
 
@@ -177,55 +79,40 @@ export const FilterCards = ({ onQueryStringChange }) => {
                 <Menu>
                   <Item>
                     <Label>
-                      {checkedItems['upToYear'] ? (
+                      {checkboxValue.lessOne ? (
                         <IconCheckRound />
                       ) : (
                         <IconCheck />
                       )}
                       <CheckBox
-                        type="radio"
-                        value="upToYear"
-                        checked={checkedItems['upToYear'] === 'upToYear'}
+                        type="checkbox"
+                        checked={checkboxValue.lessOne}
                         onChange={handleCheckboxChange}
-                        name="upToYear"
+                        name="lessOne"
                       />
                       3-12m
                     </Label>
                   </Item>
                   <Item>
                     <Label>
-                      {checkedItems['upToTwoYears'] ? (
-                        <IconCheckRound />
-                      ) : (
-                        <IconCheck />
-                      )}
+                      {checkboxValue.one ? <IconCheckRound /> : <IconCheck />}
                       <CheckBox
-                        type="radio"
-                        value="upToTwoYears"
-                        checked={
-                          checkedItems['upToTwoYears'] === 'upToTwoYears'
-                        }
+                        type="checkbox"
+                        checked={checkboxValue.one}
                         onChange={handleCheckboxChange}
-                        name="upToTwoYears"
+                        name="one"
                       />
                       1 year
                     </Label>
                   </Item>
                   <Item>
                     <Label>
-                      {checkedItems['upToThreeYears'] ? (
-                        <IconCheckRound />
-                      ) : (
-                        <IconCheck />
-                      )}
+                      {checkboxValue.two ? <IconCheckRound /> : <IconCheck />}
                       <CheckBox
-                        type="radio"
-                        value="upToThreeYears"
-                        checked={
-                          checkedItems['upToThreeYears'] === 'upToThreeYears'
-                        }
+                        type="checkbox"
+                        checked={checkboxValue.two}
                         onChange={handleCheckboxChange}
-                        name="upToThreeYears"
+                        name="two"
                       />
                       2 year
                     </Label>
@@ -242,32 +129,28 @@ export const FilterCards = ({ onQueryStringChange }) => {
                 <Menu>
                   <Item>
                     <Label>
-                      {checkedItems['female'] ? (
+                      {checkboxValue.female ? (
                         <IconCheckRound />
                       ) : (
                         <IconCheck />
                       )}
                       <CheckBox
                         type="checkbox"
-                        checked={checkedItems['female']}
+                        checked={checkboxValue.female}
                         onChange={handleCheckboxChange}
-                        name={'female'}
+                        name="female"
                       />
                       female
                     </Label>
                   </Item>
                   <Item>
                     <Label>
-                      {checkedItems['male'] ? (
-                        <IconCheckRound />
-                      ) : (
-                        <IconCheck />
-                      )}
+                      {checkboxValue.male ? <IconCheckRound /> : <IconCheck />}
                       <CheckBox
                         type="checkbox"
-                        checked={checkedItems['male']}
+                        checked={checkboxValue.male}
                         onChange={handleCheckboxChange}
-                        name={'male'}
+                        name="male"
                       />
                       male
                     </Label>
@@ -283,4 +166,3 @@ export const FilterCards = ({ onQueryStringChange }) => {
     </>
   );
 };
-

@@ -50,7 +50,7 @@ export const App = () => {
             path="user"
             element={<PrivateRoute component={UserPage} redirectTo="/login" />}
           />
-          <Route path="/notices" element={<NoticesPage />}>
+          <Route path="/notices/:categoryName" element={<NoticesPage />}>
             <Route index element={<NoticesCategoriesList />} />
             <Route path="sell" end element={<NoticesCategoriesList />} />
             <Route path="lost-found" end element={<NoticesCategoriesList />} />

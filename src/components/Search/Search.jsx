@@ -1,9 +1,13 @@
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { ButtonIconForm } from 'components/ButtonIconForm/ButtonIconForm';
 import { FormSearch, InputSearch } from './Search.styled';
 
 export const Search = ({ onSubmit }) => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchParams] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState(
+    Object.fromEntries(searchParams).search || ''
+  );
 
   const handleSubmit = e => {
     e.preventDefault();
