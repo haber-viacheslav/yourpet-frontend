@@ -172,7 +172,6 @@ export const AddPetForm = () => {
         validationSchema={addPetFormSchema}
       >
         {({
-          props,
           values,
           errors,
           touched,
@@ -191,6 +190,7 @@ export const AddPetForm = () => {
                   <GroupWrapper role="group">
                     {statuses.map(status => {
                       const selected = status[1] === category;
+
                       return (
                         <RadioBtn
                           key={status[0]}
