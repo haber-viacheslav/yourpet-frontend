@@ -39,10 +39,13 @@ const NoticesPage = () => {
     () => Object.fromEntries([...searchParams]),
     [searchParams]
   );
+  const limit =
+    window.innerWidth < 767 ? 11 : window.innerWidth < 1279 ? 10 : 12;
 
   useEffect(() => {
     setSearchParams({
       page: 1,
+      limit,
       ...searchValue,
       ...AllFilterQueries(
         checkboxValue.lessOne,
@@ -60,6 +63,7 @@ const NoticesPage = () => {
     setSearchParams,
     searchValue,
     searchParams,
+    limit,
   ]);
 
   useEffect(() => {
@@ -70,7 +74,7 @@ const NoticesPage = () => {
     if (Object.keys(params).length > 0) {
       try {
         (async () => {
-          setSearchParams({ page: 1, ...params });
+          setSearchParams({ page: 1, ...params, limit });
           if (category === 'favorite' || category === 'own') {
             const response = await getPrivateNotices(category, params);
             setNotices(response.data);
@@ -80,7 +84,7 @@ const NoticesPage = () => {
             category === 'lost-found' ||
             category === 'for-free'
           ) {
-            setSearchParams({ page: 1, ...params });
+            setSearchParams({ page: 1, ...params, limit });
             const response = await getAllNotices(params);
             setNotices(response.data);
             setTotalPages(response.totalPages);
@@ -91,7 +95,7 @@ const NoticesPage = () => {
       }
     }
     return () => clearTimeout(timer);
-  }, [setSearchParams, params, category, searchParams]);
+  }, [setSearchParams, params, category, searchParams, limit]);
 
   const handleSearchSubmit = search => {
     if (search) {
