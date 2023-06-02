@@ -53,6 +53,43 @@ export const BigBtnFavor = styled.button`
   bottom: 24px;
   right: 20px;
 `;
+export const BtnLearnMoreStyled = styled.button`
+  height: 38px;
+  width: 248px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 40px;
+  padding-left: auto;
+  padding-right: auto;
+  border: 2px solid ${props => props.theme.colors.blue};
+  font-size: 16px;
+  color: ${props => props.theme.colors.blue};
+  background-color: ${props => props.theme.colors.white};
+  font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeights.bold};
+  cursor: pointer;
+  padding-left: 36px;
+  :hover,
+  :focus {
+    background: ${props => props.theme.colors.blue};
+    color: ${props => props.theme.colors.white};
+    border: none;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  position: absolute;
+  bottom: 24px;
+  right: 16px;
+  @media screen and (${props => props.theme.media.md}) {
+    right: 44px;
+  }
+  @media screen and (${props => props.theme.media.lg}) {
+    right: 20px;
+  }
+`;
 
 export const PetFormBtn = styled.button`
   height: 38px;

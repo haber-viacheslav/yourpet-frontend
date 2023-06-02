@@ -135,6 +135,8 @@ export const NoticesCategoryItem = ({
       <PetInfo Svg={SvgClock} text={`${ageInMonths} mth`} />
     );
 
+  const newTitle = textCutter(title, 40);
+
   return (
     <>
       {isOpen && (
@@ -171,7 +173,7 @@ export const NoticesCategoryItem = ({
             {ageElement}
             <PetInfo Svg={Svg()} text={`${sex}`} />
           </ContainerInfo>
-          <Text>{title}</Text>
+          <Text>{newTitle}</Text>
         </>
 
         <BtnLearnMoreFavorite id={id} onClick={handleModalClick} />

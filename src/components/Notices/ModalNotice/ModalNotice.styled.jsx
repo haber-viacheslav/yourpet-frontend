@@ -52,6 +52,7 @@ export const Text = styled.h3`
   @media screen and (${props => props.theme.media.md}) {
     font-size: 28px;
     line-height: 38px;
+    padding-right: 15px;
   }
 `;
 
