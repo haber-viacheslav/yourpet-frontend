@@ -167,7 +167,7 @@ export const BtnBackArrow = styled.button`
   }
 `;
 export const BtnAdd = styled.button`
-  z-index: 1000;
+  z-index: 50;
   position: absolute;
   top: 251px;
   right: 0;
