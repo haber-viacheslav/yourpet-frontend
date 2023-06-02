@@ -41,6 +41,7 @@ import {
   StyledConfirmPhotoBtn,
   SVG,
   PetInfoNoticesStyle,
+  BtnLearnMoreStyled,
 } from '../buttons/buttons.styled';
 
 // components svg
@@ -337,10 +338,10 @@ export const BtnCall = ({ onClick, tel }) => {
 export const BtnLearnMoreFavorite = ({ onClick }) => {
   return (
     <>
-      <BigBtnFavor type="button" onClick={onClick}>
+      <BtnLearnMoreStyled type="button" onClick={onClick}>
         Learn more
         <SvgPawprint />
-      </BigBtnFavor>
+      </BtnLearnMoreStyled>
     </>
   );
 };
