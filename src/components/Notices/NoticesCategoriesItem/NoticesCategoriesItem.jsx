@@ -7,12 +7,10 @@ import PawLoader from '../../../images/Loader.png';
 import { useAuth } from 'hooks/useAuth';
 import { ModalItem } from '../ModalNotice/ModalNotice';
 import { ModalApproveAction } from 'components/ModalApproveAction/ModalApproveAction';
-import { useNavigate } from 'react-router-dom';
 import { DeletePetBtn, PetInfo } from 'components/buttons/buttons';
 import { notify } from 'helpers/notification';
 import {
   BtnAddFavorite,
-  BtnAddPetCircle,
   BtnLearnMoreFavorite,
   PetCategory,
   SvgClock,
@@ -38,7 +36,6 @@ export const NoticesCategoryItem = ({
   const [isOpen, setIsOpen] = useState(false);
   const [isNoticeFavorite, setIsNoticeFavorite] = useState(notice.isFavourite);
   const { isLoggedIn } = useAuth();
-  const navigate = useNavigate();
 
   const handleModalClick = () => {
     try {
@@ -92,14 +89,6 @@ export const NoticesCategoryItem = ({
     } catch (error) {
       notify('error', 'Delete available only to owner');
     }
-  };
-
-  const handleAddPet = () => {
-    if (!isLoggedIn) {
-      notify('warning', 'To add a pet, you must be a registered user');
-      return;
-    }
-    navigate('/add-pet');
   };
 
   const {
@@ -178,8 +167,6 @@ export const NoticesCategoryItem = ({
               <DeletePetBtn onClick={handleDeleteNotice} />
             </DeleteBtnWrapper>
           )}
-
-          <BtnAddPetCircle onClick={handleAddPet} />
           <PetCategory text={`${label()}`} />
           <ContainerInfo>
             <PetInfo Svg={SvgLocation} text={`${textCutter(location, 4)}`} />

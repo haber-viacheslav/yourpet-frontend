@@ -7,7 +7,6 @@ import {
   PetFormBtn,
   BtnCancelArrow,
   BtnBackArrow,
-  BtnAddCurcle,
   BtnAdd,
   BtnHeart,
   BtnRegLog,
@@ -20,7 +19,6 @@ import {
   ArrowLeft,
   Pawprint,
   Add,
-  AddCurcle,
   Heart,
   ToHeart,
   City,
@@ -92,13 +90,7 @@ const SvgAdd = () => {
     </Add>
   );
 };
-const SvgAddCurcle = () => {
-  return (
-    <AddCurcle width={24} height={24}>
-      <use href={icons + '#icon-plus-small'}></use>
-    </AddCurcle>
-  );
-};
+
 const SvgCancel = () => {
   return (
     <ArrowLeft width={24} height={24}>
@@ -113,9 +105,9 @@ const SvgHeart = ({ isFavorite }) => {
     </Heart>
   );
 };
-const SvgToHeart = () => {
+const SvgToHeart = ({ isFavorite }) => {
   return (
-    <ToHeart width={24} height={24}>
+    <ToHeart width={24} height={24} isFavorite={isFavorite}>
       <use href={icons + '#icon-heart'}></use>
     </ToHeart>
   );
@@ -424,16 +416,6 @@ export const BtnAddPetUser = ({ onClick }) => {
     </>
   );
 };
-export const BtnAddPetCircle = ({ onClick }) => {
-  return (
-    <>
-      <BtnAddCurcle type="button" onClick={onClick}>
-        <SvgAddCurcle />
-        Add Pet
-      </BtnAddCurcle>
-    </>
-  );
-};
 
 export const BtnAddFavorite = ({ onClick, isFavorite }) => {
   return (
@@ -445,7 +427,7 @@ export const BtnAddFavorite = ({ onClick, isFavorite }) => {
 export const BtnAddTo = ({ onClick, isFavorite }) => {
   return (
     <BtnToHeart type="button" onClick={onClick}>
-      Add to
+      {isFavorite ? 'Remove' : 'Add to'}
       <SvgToHeart isFavorite={isFavorite} />
     </BtnToHeart>
   );

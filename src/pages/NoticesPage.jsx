@@ -22,9 +22,10 @@ const initialFiltersValue = {
   female: false,
   male: false,
 };
+const initialLimit =
+  window.innerWidth < 767 ? 11 : window.innerWidth < 1279 ? 10 : 12;
 
 const NoticesPage = () => {
-  // const limit = 10;
   const { categoryName } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const [category, setCategory] = useState(categoryName);
@@ -33,14 +34,27 @@ const NoticesPage = () => {
   const [notices, setNotices] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [showLoader, setShowLoader] = useState(false);
+  const [limit, setLimit] = useState(initialLimit);
   const isTablet = window.matchMedia(theme.media.mdToLg).matches;
 
   const params = useMemo(
     () => Object.fromEntries([...searchParams]),
     [searchParams]
   );
-  const limit =
-    window.innerWidth < 767 ? 11 : window.innerWidth < 1279 ? 10 : 12;
+  useEffect(() => {
+    const setWindowSize = () => {
+      if (window.innerWidth < 767) {
+        setLimit(11);
+      } else if (window.innerWidth < 1279) {
+        setLimit(10);
+      } else if (window.innerWidth >= 1280) {
+        setLimit(12);
+      }
+    };
+
+    window.addEventListener('resize', setWindowSize);
+    return () => window.removeEventListener('resize', setWindowSize);
+  }, []);
 
   useEffect(() => {
     setSearchParams({
@@ -154,7 +168,7 @@ const NoticesPage = () => {
           <NoticesCategoriesNav
             onCategoryClick={handleChoose}
             setCheckboxValue={setCheckboxValue}
-            checkboxValue={checkboxValue}
+            checkboxValue={checkboxValue}            
           />
           <Suspense fallback={<Loader loaderSrc={PawLoader} size={250} />}>
             <NoticesCategoriesList

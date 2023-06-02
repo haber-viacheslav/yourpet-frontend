@@ -167,30 +167,48 @@ export const BtnBackArrow = styled.button`
   }
 `;
 export const BtnAdd = styled.button`
-  display: none;
+  z-index: 1000;
+  position: absolute;
+  top: 251px;
+  right: 0;
+  height: 80px;
+  width: 80px;
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding-top: 18px;
+  padding-bottom: 16px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-family: ${props => props.theme.fonts.main};
+  font-weight: ${props => props.theme.fontWeights.semibold};
+  border: none;
+  background: ${props => props.theme.colors.blue};
+  color: ${props => props.theme.colors.white};
+  box-shadow: ${props => props.theme.shadows.mainShadow};
+
   @media screen and (${props => props.theme.media.md}) {
+    position: static;
     height: 40px;
     width: 129px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding-top: 9px;
     padding-bottom: 9px;
     padding-left: 16px;
     border-radius: 40px;
     font-size: 16px;
-    font-family: ${props => props.theme.fonts.main};
     font-weight: ${props => props.theme.fontWeights.bold};
-    border: none;
-    background: ${props => props.theme.colors.blue};
-    color: ${props => props.theme.colors.white};
-    cursor: pointer;
-    :hover,
-    :focus {
-      background: ${props => props.theme.colors.blueGradient};
-    }
+  }
+
+  cursor: pointer;
+  :hover,
+  :focus {
+    background: ${props => props.theme.colors.blueGradient};
   }
 `;
+
 export const BtnAddUser = styled.button`
   height: 40px;
   width: 129px;
@@ -213,43 +231,12 @@ export const BtnAddUser = styled.button`
     background: ${props => props.theme.colors.blueGradient};
   }
 `;
-export const BtnAddCurcle = styled.button`
-  height: 80px;
-  width: 80px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  padding-top: 18px;
-  padding-bottom: 16px;
-  border-radius: 40px;
-  font-size: 12px;
-  font-family: ${props => props.theme.fonts.main};
-  font-weight: ${props => props.theme.fontWeights.semibold};
-  border: none;
-  background: ${props => props.theme.colors.blue};
-  color: ${props => props.theme.colors.white};
-  box-shadow: ${props => props.theme.shadows.mainShadow};
-  cursor: pointer;
-  :hover,
-  :focus {
-    background: ${props => props.theme.colors.blueGradient};
-  }
-  position: absolute;
-  top: 108px;
-  right: 0;
-  @media screen and (${props => props.theme.media.md}) {
-    display: none;
-  }
-`;
+
 export const Add = styled.svg`
   stroke: ${props => props.theme.colors.white};
-  margin-right: 15px;
 `;
 export const AddCurcle = styled.svg`
   stroke: ${props => props.theme.colors.white};
-  margin-bottom: 8px;
 `;
 export const BtnHeart = styled.button`
   height: 40px;
@@ -413,7 +400,7 @@ export const BtnToHeart = styled.button`
   }
 `;
 export const ToHeart = styled.svg`
-  fill: none;
+  fill: ${props => (props.isFavorite ? props.theme.colors.white : 'none')};
   stroke: ${props => props.theme.colors.white};
   margin-left: 11px;
 `;
