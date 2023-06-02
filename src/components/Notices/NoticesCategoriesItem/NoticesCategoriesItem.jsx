@@ -135,7 +135,7 @@ export const NoticesCategoryItem = ({
       <PetInfo Svg={SvgClock} text={`${ageInMonths} mth`} />
     );
 
-  const newTitle = textCutter(title, 40);
+  const newTitle = textCutter(title, 27);
 
   return (
     <>

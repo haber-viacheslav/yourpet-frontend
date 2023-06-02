@@ -13,6 +13,31 @@ for pet lovers.
 - Get notifications and updates on your adoption requests.
 - And more!
 
+## Team
+
+- :man:
+  [**Team Lead Frontend & Developer:** Viacheslav Haber](https://github.com/haber-viacheslav)
+- :boy:
+  [**Team Lead Backend & Developer:** Vladislav Perebziak](https://github.com/Vladislav-UZH)
+- :woman:
+  [**Scrum master & Developer Frontend :** Daria Vdovichenko](https://github.com/daria31v)
+- :boy:
+  [**Developer Backend:** Maxym Huklivsky](https://github.com/maxym-huklivsky)
+- :man:
+  [**Developer Frontend:** Serhiy Belyavskii](https://github.com/SerhiySBV)
+- :woman:
+  [**Developer Backend:** Yuliya Skobel](https://github.com/Skobel58912171)
+- :man: [**Developer Frontend:** Oleg Deda](https://github.com/Oleg-Deda)
+- :boy:
+  [**Developer Frontend:** Vitaliy Saburdo](https://github.com/VitaliySaburdo)
+- :boy: [**Developer Frontend:** Andrii Hokhman](https://github.com/AH400796)
+- :boy:
+  [**Developer Frontend:** Alexander Bryukhovetskiy](https://github.com/AlexanderBryukhovetskiy)
+- :girl:
+  [**Developer Frontend:** Darina Pilganchuk](https://github.com/DarinaPilganchuk)
+- :woman:
+  [**Developer Backend:** Svitlana Chudak](https://github.com/SvitlanaChudak)
+
 ## Technologies Used
 
 - React
@@ -21,7 +46,7 @@ for pet lovers.
 - Redux Toolkit
 - Axios
 - Formik
-- Yup
+- Yup, Yup-phone
 - Styled Components
 - React Icons
 - React Loader Spinner
@@ -30,7 +55,8 @@ for pet lovers.
 - Redux Persist
 - PropTypes
 - Testing Library (Jest, React, User Event)
-- Web Vitals
+- Hamburger-React
+- Modern-normalize
 
 ## Installation
 
