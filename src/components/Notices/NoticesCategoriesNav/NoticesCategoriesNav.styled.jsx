@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const FiltersContainer = styled.div`
+  position: relative;
   display: flex;
   align-items: flex-start;
 
@@ -15,6 +16,7 @@ export const FiltersContainer = styled.div`
 export const FilterAdsContainer = styled.div``;
 
 export const FiltersBtnContainer = styled.div`
+  position: relative;
   @media screen and (${props => props.theme.media.md}) {
     display: flex;
     gap: 12px;
